@@ -14,6 +14,8 @@ target = { file = "scans/Utility_Blade_Holder.STL", units = "mm", tolerance_mm =
 
 Parametric reconstruction of `Utility_Blade_Holder.STL`.
 
+Original STL: [Thingiverse model 3713857](https://www.thingiverse.com/thing:3713857).
+
 ## Design notes
 
 The selected B-Large grip changes only the free tip at x=0..9 mm: a 3 mm outer flat ledge at y=28..31 mm stays at z=5.5 mm, followed by a straight inward bevel to y=26 mm and z=4 mm. It stays inside the original rounded footprint and is an intentional deviation from the STL; the blade pocket and tongue are unchanged.

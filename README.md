@@ -9,7 +9,9 @@ The repository is itself a nurb project: each Python file in `parts/` is an edit
 | Part | Description | Reference |
 | --- | --- | --- |
 | `maixcam2` | MaixCAM2 enclosure, radiator grille, camera stack, and PMOD sockets | `scans/Maixcam2.stl` |
-| `utility_blade_holder` | Parametric EDC utility blade holder reconstruction | `scans/Utility_Blade_Holder.STL` |
+| `utility_blade_holder` | Parametric EDC utility blade holder reconstruction | [Thingiverse 3713857](https://www.thingiverse.com/thing:3713857) |
+
+`maixcam2` is an assembly of independently buildable `maixcam2_body`, `pmod_socket`, `maixcam2_camera_base`, `maixcam2_camera_mount`, and `maixcam2_lens` parts.
 
 ## Use
 
@@ -20,3 +22,5 @@ nurb build utility_blade_holder
 ```
 
 Generated exports and renders belong in `build/` and are intentionally not committed.
+
+The utility blade holder target mesh came from [Thingiverse model 3713857](https://www.thingiverse.com/thing:3713857). Its copied STL remains in `scans/` so the reconstruction can be compared reproducibly.
