@@ -1,5 +1,7 @@
 *.3mf binary
 *.glb binary
+*.ply binary
+*.ply.gz binary
 *.step binary
 *.stl binary
 *.STL binary

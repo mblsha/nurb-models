@@ -13,6 +13,12 @@ This repository contains two independent nurb projects. Open the `maixcam2/` or 
 
 Each project contains its own `parts/` Python models and Markdown cards, plus `scans/` comparison targets. Target paths in the cards are relative to that project's root.
 
+## Reference mesh storage
+
+Convert imported STL reference meshes to geometry-only binary little-endian PLY before their first commit. Binary PLY shares vertices instead of repeating three vertices per triangle, so it is substantially smaller while preserving the triangle geometry exactly. Set `units = "mm"` explicitly in the part card because PLY does not declare units, and omit vertex colors and stored normals because nurb recomputes what comparison and rendering need.
+
+Gzip can reduce a binary PLY further for archival storage, but nurb does not currently open `.ply.gz` directly. Keep the active comparison target as an uncompressed `.ply`; use a gzipped copy only outside the active project or as a separately downloadable archive.
+
 The `maixcam2` assembly uses the independently buildable `maixcam2_body`, `pmod_socket`, `maixcam2_camera_base`, `maixcam2_camera_mount`, and `maixcam2_lens` parts. Their shared helpers live in `maixcam2/system.py`, and the camera adapter imports the STEP file from that project's `references/` directory.
 
 ## Use
