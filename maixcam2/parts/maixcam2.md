@@ -7,7 +7,7 @@ Checks: clean
 <!-- /AUTO -->
 
 ```toml
-target = { file = "scans/Maixcam2.stl", units = "mm", tolerance_mm = 0.2, transform = [-1.0, 0.0, 0.0, 66.6794815063, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 20.4616794586, 0.0, 0.0, 0.0, 1.0] }
+target = { file = "scans/Maixcam2.ply", units = "mm", tolerance_mm = 0.2, transform = [-1.0, 0.0, 0.0, 66.6794815063, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 20.4616794586, 0.0, 0.0, 0.0, 1.0] }
 ```
 
 ## What it is

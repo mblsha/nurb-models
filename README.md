@@ -8,7 +8,7 @@ This repository contains two independent nurb projects. Open the `maixcam2/` or 
 
 | Project | Description | Reference |
 | --- | --- | --- |
-| [maixcam2](maixcam2/) | MaixCAM2 enclosure, radiator grille, camera stack, and PMOD sockets | [Source STL](maixcam2/scans/Maixcam2.stl) and [camera adapter STEP](maixcam2/references/maixcam2-camera-mount.step) |
+| [maixcam2](maixcam2/) | MaixCAM2 enclosure, radiator grille, camera stack, and PMOD sockets | [Binary PLY reference](maixcam2/scans/Maixcam2.ply) and [camera adapter STEP](maixcam2/references/maixcam2-camera-mount.step) |
 | [utility-blade-holder](utility-blade-holder/) | Parametric EDC utility blade holder reconstruction | [Source STL](utility-blade-holder/scans/Utility_Blade_Holder.STL), from [Thingiverse 3713857](https://www.thingiverse.com/thing:3713857) |
 
 Each project contains its own `parts/` Python models and Markdown cards, plus `scans/` comparison targets. Target paths in the cards are relative to that project's root.
