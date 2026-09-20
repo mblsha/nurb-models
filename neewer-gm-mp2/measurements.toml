@@ -1,0 +1,116 @@
+[slider_range]
+value = 140.0
+unit = "mm"
+how = "Neewer GM-MP2 manufacturer product page, https://neewer.com/products/neewer-gm-mp2-140mm-macro-focusing-rail-slider-with-360-rotation-66606520"
+
+[scan_overall_length]
+value = 235.401457
+unit = "mm"
+how = "bounds of scans/neewer-macro-slide-GM-MP2.ply.gz"
+provisional = true
+
+[scan_overall_width]
+value = 83.892311
+unit = "mm"
+how = "bounds of scans/neewer-macro-slide-GM-MP2.ply.gz; includes the clamp knob"
+provisional = true
+
+[scan_overall_height]
+value = 47.762943
+unit = "mm"
+how = "bounds of scans/neewer-macro-slide-GM-MP2.ply.gz"
+provisional = true
+
+[front_guide_rod_center_y]
+value = 4.5144
+unit = "mm"
+how = "circle fit to scan section x=20 mm"
+provisional = true
+
+[rear_guide_rod_center_y]
+value = 39.6991
+unit = "mm"
+how = "circle fit to scan section x=20 mm"
+provisional = true
+
+[guide_rod_center_z]
+value = 17.58
+unit = "mm"
+how = "mean of circle fits to scan section x=20 mm"
+provisional = true
+
+[guide_rod_diameter]
+value = 6.086
+unit = "mm"
+how = "mean diameter of two circle fits to scan section x=20 mm"
+provisional = true
+
+[lead_screw_center_y]
+value = 22.0
+unit = "mm"
+how = "centerline inferred from the scan sections and symmetric guide-rod layout"
+provisional = true
+
+[large_focus_knob_center_x]
+value = -18.75
+unit = "mm"
+how = "midpoint of the scan knob bounds x=-28.5 to -9.0 mm"
+provisional = true
+
+[large_focus_knob_center_y]
+value = 22.1955
+unit = "mm"
+how = "circle fit to scan section x=-15 mm"
+provisional = true
+
+[large_focus_knob_center_z]
+value = 17.3643
+unit = "mm"
+how = "circle fit to scan section x=-15 mm"
+provisional = true
+
+[large_focus_knob_section_radius]
+value = 9.814
+unit = "mm"
+how = "circle fit to scan section x=-15 mm; residual 0.681 mm reflects the fluted profile"
+provisional = true
+
+[outer_sleeve_outer_diameter]
+value = 22.0
+unit = "mm"
+how = "analytic cylindrical face in references/neewer-outer-focus-sleeve.step"
+
+[outer_sleeve_axial_width]
+value = 5.0
+unit = "mm"
+how = "analytic bounds of references/neewer-outer-focus-sleeve.step"
+
+[outer_sleeve_alignment_x]
+value = 0.0
+unit = "mm"
+how = "STEP and scan share the same x coordinates around the large focus knob"
+provisional = true
+
+[outer_sleeve_alignment_y]
+value = 22.1955
+unit = "mm"
+how = "translated from the STEP axis at y=0 to the scan knob axis"
+provisional = true
+
+[outer_sleeve_alignment_z]
+value = 0.1643
+unit = "mm"
+how = "translated from the STEP axis at z=17.2 to the scan knob axis at z=17.3643"
+provisional = true
+
+[outer_sleeve_fitted_radial_clearance_median]
+value = 0.097
+unit = "mm"
+how = "fitted STEP sleeve opening against the scanned large focus knob section; about 0.19 mm diametral clearance"
+provisional = true
+
+[outer_sleeve_fit_residual_rms]
+value = 0.093
+unit = "mm"
+how = "RMS residual of the fitted STEP sleeve opening against the scanned large focus knob; tiny negative patches remain in the scan"
+provisional = true
