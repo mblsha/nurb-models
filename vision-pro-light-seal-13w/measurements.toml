@@ -20,49 +20,53 @@ v = [-48.8915, 47.4379]
 w = [-31.3645, 53.6715]
 extents = [161.4699, 96.3293, 85.0361]
 
-[fit_evidence]
-tolerance_mm = 1.0
-vision_station_median_mm = 0.20561
-vision_station_p95_mm = 0.32462
-cushion_station_median_mm = 0.50788
-cushion_station_p95_mm = 1.66593
-cad_to_scan_coverage = 0.808667
-scan_to_cad_coverage = 0.786
-cad_to_scan_median_mm = 0.344216
-scan_to_cad_median_mm = 0.334862
-cad_to_scan_p95_mm = 2.003741
-scan_to_cad_p95_mm = 2.411199
-cad_to_scan_max_mm = 3.928026
-scan_to_cad_max_mm = 6.171193
-vision_component_coverage = 0.784667
-vision_component_median_mm = 0.513018
-vision_component_p95_mm = 1.59229
-vision_component_max_mm = 3.5903
-cushion_component_coverage = 0.715333
-cushion_component_median_mm = 0.701888
-cushion_component_p95_mm = 1.550174
-cushion_component_max_mm = 2.123187
+[reconstruction]
+method = "three sparse periodic spline profiles sewn into four smooth surfaces"
+profile_landmarks_each = 22
+connected_solids = 1
+faces = 4
+perimeter_continuity = "C2"
+nominal_mid_wall_mm = 1.8
+mating_rim_width_mm = 3.2
+adaptive_volume_mm3 = 37452.320164
+exported_mesh_extents_mm = [161.18624114990234, 95.5733528137207, 85.45969200134277]
 
-[fit_evidence.surface_sampling]
-cad_mesh = "build/vision_pro_light_seal_13w_geometry.stl"
-cad_triangles = 121430
-cad_watertight_components = 6
+[export_validation]
+step = "build/vision_pro_light_seal_13w.step"
+stl = "build/vision_pro_light_seal_13w.stl"
+three_mf = "build/vision_pro_light_seal_13w.3mf"
+step_reopened_valid_solids = 1
+stl_watertight_components = 1
+three_mf_watertight_components = 1
+stl_triangles = 2678
+
+[fit_method]
 reference_mesh = "scans/vision-pro-light-seal-13w-reference.glb"
-reference_triangles = 493477
-fixed_seed = 20260921
-samples_per_result = 1500
+measured_geometry = "smooth mating rim centerlines"
+samples_per_rim = 1000
 nearest_triangle_candidates = 64
-exhaustive_validation_samples = 8
+exhaustive_validation_samples_per_rim = 8
 maximum_acceleration_error_mm = 0.0
+physical_fit_verified = false
+uncertain_headset_region = "abs(X)<30 and Y>0; hard nose saddle obscured by cloth"
 
-[curve_validation]
-curve_type = "closed piecewise cubic Bezier"
-vision_segments = 52
-cushion_segments = 36
-vision_connected_solids = 1
-cushion_connected_solids = 1
-maximum_station_interpolation_error_mm = 3.6e-15
-maximum_tangent_discontinuity_degrees = 0.0
-vision_flange_volume_mm3 = 1461.594
-cushion_rail_volume_mm3 = 4216.389
-vision_flange_x_bounds_mm = [-81.2196, 80.4196]
+[headset_observable_rim]
+samples = 850
+median_mm = 0.2979320017105275
+p95_mm = 0.8939748150445456
+max_mm = 1.0355102139755876
+within_1mm_fraction = 0.9752941176470589
+
+[headset_obscured_saddle]
+samples = 150
+median_mm = 1.5845185674423337
+p95_mm = 6.143737089524007
+max_mm = 6.659049758129288
+within_1mm_fraction = 0.3333333333333333
+
+[cushion_rim]
+samples = 1000
+median_mm = 0.279895185335039
+p95_mm = 1.2169733518392913
+max_mm = 1.7271130297883677
+within_1mm_fraction = 0.917
