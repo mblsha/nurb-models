@@ -114,3 +114,8 @@ value = 0.093
 unit = "mm"
 how = "RMS residual of the fitted STEP sleeve opening against the scanned large focus knob; tiny negative patches remain in the scan"
 provisional = true
+
+[outer_sleeve_cad_clearance_minimum]
+value = 0.05
+unit = "mm"
+how = "Design regression lower bound for the modeled large focus knob against the exact supplied STEP sleeve; protects the current 0.089 mm CAD-to-CAD gap without claiming manufactured clearance"

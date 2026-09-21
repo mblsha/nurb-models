@@ -1,0 +1,865 @@
+{
+  "status": "accepted_for_current_modeled_CAD_scope",
+  "identity": {
+    "model_source": "parts/neewer_macro_slide_gm_mp2.py",
+    "model_source_sha256": "65fd1b3f7866f9b17545eca6167cd183ac9c8f4c03b95db2e6367620be81e704",
+    "model_geometry_sha256": "d2893df914907bec364da344b6be724315d11e1e20aeef5cbeab444d0a034ba3",
+    "pose_geometry_sha256": "d2893df914907bec364da344b6be724315d11e1e20aeef5cbeab444d0a034ba3",
+    "parameters_sha256": "521678b651920b741382c54d3c375887cdc19b05ac4d27584da113fe714db882",
+    "reference": "scans/neewer-macro-slide-GM-MP2.ply.gz",
+    "reference_sha256": "03ede3f56b9c5f395c370eba35e48542913392bf59b4b85a31fb8647f7675b74",
+    "reference_unit": "mm",
+    "reference_unit_source": "argument",
+    "alignment": "identity",
+    "acceptance_pose": {
+      "arca_detent": 0,
+      "carriage_position_mm": 70.0
+    }
+  },
+  "motion": {
+    "tested_builds": 12,
+    "detents": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "travel_positions_mm": [
+      0.0,
+      70.0,
+      140.0
+    ],
+    "attached_components": [
+      "fixed top Arca clamp",
+      "movable top Arca jaw",
+      "clamp knob"
+    ],
+    "method": "Compare each component's relative Location and full B-rep vertex set in the rotary-base frame against the same detent at 70 mm travel.",
+    "maximum_relative_transform_error_mm_or_deg": 0.0,
+    "maximum_relative_vertex_error_mm": 2.842170943040401e-14,
+    "rows": [
+      {
+        "parameters": {
+          "arca_detent": 0,
+          "carriage_position_mm": 0.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              -24.650000000000006,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 0,
+          "carriage_position_mm": 70.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              -24.650000000000006,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 0,
+          "carriage_position_mm": 140.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              -24.650000000000006,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -0.0
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 1,
+          "carriage_position_mm": 0.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              -5.473399511402023e-15,
+              -24.650000000000006,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 1,
+          "carriage_position_mm": 70.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              -5.473399511402023e-15,
+              -24.650000000000006,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 1,
+          "carriage_position_mm": 140.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              -5.473399511402023e-15,
+              -24.650000000000006,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              89.99999999999999
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 2,
+          "carriage_position_mm": 0.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              24.650000000000006,
+              -3.0187543598982263e-15,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 2,
+          "carriage_position_mm": 70.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              24.650000000000006,
+              -3.0187543598982263e-15,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 2,
+          "carriage_position_mm": 140.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              24.650000000000006,
+              -3.0187543598982263e-15,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              180.0
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 3,
+          "carriage_position_mm": 0.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              5.473399511402023e-15,
+              24.650000000000006,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 3,
+          "carriage_position_mm": 70.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              5.473399511402023e-15,
+              24.650000000000006,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ]
+        }
+      },
+      {
+        "parameters": {
+          "arca_detent": 3,
+          "carriage_position_mm": 140.0
+        },
+        "clearance_check_findings": [],
+        "attached_relative_locations": {
+          "fixed top Arca clamp": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ],
+          "movable top Arca jaw": [
+            [
+              5.473399511402023e-15,
+              24.650000000000006,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ],
+          "clamp knob": [
+            [
+              0.0,
+              0.0,
+              -28.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -90.00000000000001
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "outer_sleeve_fit": {
+    "declared_components": [
+      "large focus knob",
+      "exact outer focus sleeve"
+    ],
+    "declared_minimum_mm": 0.05,
+    "actual_minimum_distance_mm": 0.08901384376188623,
+    "positive_volume_intersection": false,
+    "check_findings": [],
+    "scope": "CAD-to-CAD regression only; physical fit and manufactured clearance remain unverified."
+  },
+  "arca_sections": {
+    "tolerance_mm": 0.75,
+    "method": "Sample exact analytic contact-flank requirements, assert they lie on the current CAD where present (or remain absent in folded-foot bays), and measure each sample to an independent X-normal section of the declared PLY.GZ reference.",
+    "acceptance": {
+      "bottom_present": [
+        {
+          "x_mm": 5.0,
+          "side": "left",
+          "scan_distance": {
+            "p50_mm": 0.14752246572241773,
+            "p95_mm": 0.22271482701519874,
+            "max_mm": 0.25747268241547844
+          },
+          "maximum_cad_requirement_error_mm": 4.440892098500626e-16,
+          "accepted": true
+        },
+        {
+          "x_mm": 5.0,
+          "side": "right",
+          "scan_distance": {
+            "p50_mm": 0.10607111981038768,
+            "p95_mm": 0.22609211056495399,
+            "max_mm": 0.2544811288114379
+          },
+          "maximum_cad_requirement_error_mm": 8.62265274246159e-15,
+          "accepted": true
+        },
+        {
+          "x_mm": 40.0,
+          "side": "left",
+          "scan_distance": {
+            "p50_mm": 0.12390216590276774,
+            "p95_mm": 0.21303049609816158,
+            "max_mm": 0.23361360920249913
+          },
+          "maximum_cad_requirement_error_mm": 4.440892098500626e-16,
+          "accepted": true
+        },
+        {
+          "x_mm": 40.0,
+          "side": "right",
+          "scan_distance": {
+            "p50_mm": 0.10585017369069265,
+            "p95_mm": 0.18701120397445536,
+            "max_mm": 0.21113754379897517
+          },
+          "maximum_cad_requirement_error_mm": 8.62265274246159e-15,
+          "accepted": true
+        },
+        {
+          "x_mm": 100.0,
+          "side": "left",
+          "scan_distance": {
+            "p50_mm": 0.11661341251925719,
+            "p95_mm": 0.20335904795857468,
+            "max_mm": 0.22419185986500384
+          },
+          "maximum_cad_requirement_error_mm": 4.440892098500626e-16,
+          "accepted": true
+        },
+        {
+          "x_mm": 100.0,
+          "side": "right",
+          "scan_distance": {
+            "p50_mm": 0.09630436517525393,
+            "p95_mm": 0.20833856263151498,
+            "max_mm": 0.23614237058936544
+          },
+          "maximum_cad_requirement_error_mm": 8.62265274246159e-15,
+          "accepted": true
+        },
+        {
+          "x_mm": 202.0,
+          "side": "left",
+          "scan_distance": {
+            "p50_mm": 0.09691659399398418,
+            "p95_mm": 0.17807974121090384,
+            "max_mm": 0.1964212464768521
+          },
+          "maximum_cad_requirement_error_mm": 4.440892098500626e-16,
+          "accepted": true
+        },
+        {
+          "x_mm": 202.0,
+          "side": "right",
+          "scan_distance": {
+            "p50_mm": 0.10822917039150277,
+            "p95_mm": 0.18013646950993328,
+            "max_mm": 0.21572846944703797
+          },
+          "maximum_cad_requirement_error_mm": 8.62265274246159e-15,
+          "accepted": true
+        }
+      ],
+      "bottom_bays": [
+        {
+          "x_mm": 20.0,
+          "side": "left",
+          "scan_distance_to_absent_flank": {
+            "p50_mm": 1.0908964166145705,
+            "p95_mm": 1.9701774948319102,
+            "max_mm": 2.0687464570496803
+          },
+          "minimum_cad_distance_to_absent_flank_mm": 0.9100000000000006,
+          "accepted": true
+        },
+        {
+          "x_mm": 20.0,
+          "side": "right",
+          "scan_distance_to_absent_flank": {
+            "p50_mm": 1.160502608512877,
+            "p95_mm": 2.0588185205980767,
+            "max_mm": 2.156344087100706
+          },
+          "minimum_cad_distance_to_absent_flank_mm": 0.9100000000000006,
+          "accepted": true
+        },
+        {
+          "x_mm": 185.0,
+          "side": "left",
+          "scan_distance_to_absent_flank": {
+            "p50_mm": 1.1136879672686864,
+            "p95_mm": 1.9801330892732958,
+            "max_mm": 2.078161410980232
+          },
+          "minimum_cad_distance_to_absent_flank_mm": 0.9100000000000006,
+          "accepted": true
+        },
+        {
+          "x_mm": 185.0,
+          "side": "right",
+          "scan_distance_to_absent_flank": {
+            "p50_mm": 1.1323608316377616,
+            "p95_mm": 1.986721134297483,
+            "max_mm": 2.088421352330124
+          },
+          "minimum_cad_distance_to_absent_flank_mm": 0.9100000000000006,
+          "accepted": true
+        }
+      ],
+      "bottom_bay_transitions": [
+        {
+          "nominal_x_mm": 10.0,
+          "retained_x_mm": 9.74,
+          "bay_x_mm": 10.26,
+          "uncertainty_mm": 0.25,
+          "side": "left",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        },
+        {
+          "nominal_x_mm": 10.0,
+          "retained_x_mm": 9.74,
+          "bay_x_mm": 10.26,
+          "uncertainty_mm": 0.25,
+          "side": "right",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        },
+        {
+          "nominal_x_mm": 31.75,
+          "retained_x_mm": 32.01,
+          "bay_x_mm": 31.49,
+          "uncertainty_mm": 0.25,
+          "side": "left",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        },
+        {
+          "nominal_x_mm": 31.75,
+          "retained_x_mm": 32.01,
+          "bay_x_mm": 31.49,
+          "uncertainty_mm": 0.25,
+          "side": "right",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        },
+        {
+          "nominal_x_mm": 175.25,
+          "retained_x_mm": 174.99,
+          "bay_x_mm": 175.51,
+          "uncertainty_mm": 0.25,
+          "side": "left",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        },
+        {
+          "nominal_x_mm": 175.25,
+          "retained_x_mm": 174.99,
+          "bay_x_mm": 175.51,
+          "uncertainty_mm": 0.25,
+          "side": "right",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        },
+        {
+          "nominal_x_mm": 197.5,
+          "retained_x_mm": 197.76,
+          "bay_x_mm": 197.24,
+          "uncertainty_mm": 0.25,
+          "side": "left",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        },
+        {
+          "nominal_x_mm": 197.5,
+          "retained_x_mm": 197.76,
+          "bay_x_mm": 197.24,
+          "uncertainty_mm": 0.25,
+          "side": "right",
+          "retained_outside_uncertainty_band": true,
+          "absent_inside_uncertainty_band": true,
+          "accepted": true
+        }
+      ],
+      "top_clamp": [
+        {
+          "x_mm": 103.4,
+          "jaw": "fixed",
+          "scan_distance": {
+            "p50_mm": 0.28459853201658203,
+            "p95_mm": 0.6128079170819816,
+            "max_mm": 0.6448280568060791
+          },
+          "maximum_cad_requirement_error_mm": 2.6645352591003757e-15,
+          "accepted": true
+        },
+        {
+          "x_mm": 103.4,
+          "jaw": "movable",
+          "scan_distance": {
+            "p50_mm": 0.22799435848000418,
+            "p95_mm": 0.5518107404271048,
+            "max_mm": 0.570199425734437
+          },
+          "maximum_cad_requirement_error_mm": 7.105427357601002e-15,
+          "accepted": true
+        }
+      ]
+    },
+    "svg": "neewer-arca-sections.svg",
+    "limitations": [
+      "This is feature-local one-directional CAD requirement to scan evidence, not whole-model coverage.",
+      "The scan contains omitted feet, threads, markings, rubber pads, fasteners, and texture, so those are excluded from these acceptance regions.",
+      "Reference sections are mesh intersections; physical mating remains unverified."
+    ]
+  },
+  "exports": {
+    "source_step_sha256": "4a728a81c9fade6462fb3bf33810119583feb4f9a06c6169fa7fbdc3c36c8e26",
+    "source_step_reopened_valid": true,
+    "stl_reopened_watertight": true,
+    "stl_triangles": 2936,
+    "three_mf_unit": "millimeter",
+    "three_mf_vertices": 1468,
+    "three_mf_triangles": 2936,
+    "scope": "The exact sleeve is the only separately printable part placed by this assembly; the generated rail reconstruction is context geometry and is not exported as one printable object."
+  },
+  "verification_classes": {
+    "geometry_validity": "12 assembly poses built successfully",
+    "reconstruction_agreement": "accepted only for the recorded local Arca flanks and interrupted lower dovetail",
+    "assembly_fit": "declared sleeve clearance passes in CAD",
+    "printability": "separate nurb check result; assembly context is not exported as one printable object",
+    "physical_verification": "not performed"
+  }
+}

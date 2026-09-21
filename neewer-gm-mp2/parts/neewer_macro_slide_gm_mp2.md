@@ -51,14 +51,17 @@ The manufacturer specifies 140 mm carriage travel, four 90-degree rotation locks
 ## Design notes
 
 - The bottom Arca plate, end blocks, rods, lead screw, focus knob, carriage, rotary base, fixed top Arca clamp, movable top Arca jaw, and clamp knob remain separately selectable components.
+- The carriage, rotary base, fixed jaw, movable jaw, and clamp knob are built in one fixed mid-travel local frame. The complete top assembly is then translated by `carriage_position_mm` and rotated by `arca_detent`, so every attached component follows the carriage throughout the 140 mm range.
 - The bottom mounting interface follows repeated scan sections. Its upper side-rail shells remain continuous from x=0.75 to 206.0 mm. The lower dovetail tongue and return occupy x=0.75..10.0, 31.75..175.25, and 197.5..206.0 mm, and are absent in the folded-foot bays at x=10.0..31.75 and 175.25..197.5 mm. The interval transitions have an estimated uncertainty of ±0.25 mm. The remaining 46-degree engagement flanks stay sharp and the open centre is preserved.
 - The top clamp follows the scanned 49.1 by 54.25 mm footprint. Its fixed and movable jaws form a 37.9 mm upper opening and 42.8 mm seat opening with approximately 50-degree flanks, and the twin seat pockets retain the measured 36.95 mm floor and 15 mm centre bridge.
 - `references/neewer-outer-focus-sleeve.step` is preserved as exact B-rep geometry and placed on the scan-derived large-knob axis. Its outer cylinder is 22 mm diameter and 5 mm wide; its eightfold opening is the authoritative tight-fit interface.
 - Fitting that opening to the scan gave 0.097 mm median radial clearance (about 0.19 mm diametral) and 0.093 mm RMS residual. Tiny negative patches remain, so these scan-derived fit values stay provisional.
+- The assembly declares the modeled large-knob/sleeve pair with a 0.05 mm CAD clearance requirement. The current exact shapes have a 0.089 mm minimum gap and no positive-volume intersection. This continuously protects the CAD relationship; it does not certify manufactured clearance.
 - Scan-derived values in `measurements.toml` remain provisional. The CAD uses analytic primitives and intentionally omits triangle noise, branding, scale markings, rubber texture, fastener threads, and cosmetic knurling.
 - The supplied scan captures the top Arca clamp in its longitudinal 0-degree detent. The four named variants expose all quarter-turn locks: `arca_0_deg`, `arca_90_deg`, `arca_180_deg`, and `arca_270_deg`. The 90-degree variant is the product-photo and default pose.
 - The stored `.ply.gz` is a deterministic geometry-only binary PLY conversion of the supplied `neewer-macro-slide-GM-MP2.stl`. It preserves all 126,072 vertices, 252,204 faces, bounds, and area from the repaired watertight STL; the source STL SHA-256 is `1d134187bd303830bd58c082fa5f4268afb295ea5a70fbf575cf312dcc17f5c7`.
-- A 3,000-sample bidirectional comparison of the earlier continuous-rail `arca_0_deg` geometry at the declared 0.75 mm tolerance estimated 54.5% CAD-to-reference coverage with 7.96 mm p95, and 66.5% reference-to-CAD coverage with 7.59 mm p95. The scan-derived folded-foot bay correction supersedes that baseline. Remaining residuals include the simplified carriage and omitted feet, threads, markings, rubber pads, fasteners, and texture. These figures describe a useful editable reconstruction, not a surface-accurate replica.
+- `references/neewer-arca-sections.svg` shows current CAD and reference sections at a solid bottom-plate station, a folded-foot bay, and the top clamp in the scan pose. `references/neewer-current-acceptance.json` binds the results to model, generated-geometry, source STEP, and PLY.GZ hashes plus the exact parameters. Present bottom contact flanks have 0.17 to 0.23 mm scan-distance p95, the top jaw flanks have 0.55 to 0.61 mm p95, and bay-centre sections independently show the lower flank missing. These are feature-local results at the declared 0.75 mm band; omitted detail makes whole-model coverage inappropriate.
+- Run `python references/validate_reconstruction.py` after changing the model. It builds all 12 combinations of four detents and minimum/middle/maximum travel, compares each attached component's full B-rep vertex set and Location in the rotary-base frame, checks the static sleeve fit, reproduces the Arca evidence, and reopens the printable sleeve's STEP source plus temporary STL and 3MF exports.
 
 ## Don't
 
@@ -68,5 +71,6 @@ The manufacturer specifies 140 mm carriage travel, four 90-degree rotation locks
 
 ## Changelog
 
+- 2026-09-22: Fixed the clamp attachment to follow carriage travel, declared the exact sleeve fit, and added revision-specific motion and Arca-section acceptance evidence.
 - 2026-09-21: Corrected the bottom Arca lower dovetail around the measured folded-foot bays and exposed named 0, 90, 180, and 270-degree top-clamp variants.
 - 2026-09-21: Rebuilt the scan as a parametric named-component assembly with the exact STEP sleeve, scan-section-derived bottom Arca plate and top clamp, 90-degree Arca detents, and saved scan pose.

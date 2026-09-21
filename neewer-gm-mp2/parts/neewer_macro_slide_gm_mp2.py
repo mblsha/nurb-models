@@ -193,8 +193,14 @@ def neewer_macro_slide_gm_mp2(
     # In the scanned detent the upper clamp spans x=78.85..127.95 and
     # y=-2.55..51.70. Its dovetail opening is 37.9 mm at the jaw tips and 42.8 mm
     # at the seat, giving the measured 50-degree clamping flanks.
-    clamp_x_min = 78.85 - carriage_x
-    clamp_x_max = 127.95 - carriage_x
+    # All scan coordinates below were measured with the carriage at 70 mm travel.
+    # Convert them once into that fixed local frame, then pose the complete top
+    # assembly from the live carriage position. Subtracting the live carriage_x here
+    # would cancel its later translation and leave the clamp behind as the carriage
+    # moves.
+    scan_carriage_x = 33.5 + 70.0
+    clamp_x_min = 78.85 - scan_carriage_x
+    clamp_x_max = 127.95 - scan_carriage_x
     clamp_length = clamp_x_max - clamp_x_min
     clamp_y_min = -2.55 - frame_y
     fixed_flank_low_y = 3.40 - frame_y
@@ -220,8 +226,8 @@ def neewer_macro_slide_gm_mp2(
     pocket_y_center = ((17.0 + 27.5) / 2.0) - frame_y
     pocket_width = 27.5 - 17.0
     for pocket_global_x_min, pocket_global_x_max in ((79.0, 96.0), (111.0, 128.0)):
-        pocket_x_min = pocket_global_x_min - carriage_x
-        pocket_x_max = pocket_global_x_max - carriage_x
+        pocket_x_min = pocket_global_x_min - scan_carriage_x
+        pocket_x_max = pocket_global_x_max - scan_carriage_x
         fixed_clamp_local -= Pos(
             (pocket_x_min + pocket_x_max) / 2.0,
             pocket_y_center,
@@ -257,17 +263,27 @@ def neewer_macro_slide_gm_mp2(
     clamp_shaft_local = _cylinder_y(
         4.52,
         18.0,
-        (103.30 - carriage_x, 34.9, 35.5),
+        (103.30 - scan_carriage_x, 34.9, 35.5),
     )
     clamp_knob_local = _cylinder_y(
         7.85,
         16.0,
-        (103.30 - carriage_x, 69.8 - frame_y, 35.5),
+        (103.30 - scan_carriage_x, 69.8 - frame_y, 35.5),
     )
     clamp_knob = Pos(carriage_x, frame_y, 0.0) * Rot(0, 0, top_rotation) * (
         clamp_shaft_local + clamp_knob_local
     )
     clamp_knob = component(clamp_knob, "clamp knob")
+
+    # This is a tight modeled CAD-to-CAD fit around the large focus knob. The
+    # 0.05 mm lower bound protects the current 0.089 mm minimum gap from either
+    # overlap or an accidental closing of the interface. It is not a claim about
+    # manufactured clearance.
+    clearance(
+        focus_knob,
+        sleeve,
+        minimum=measured("outer_sleeve_cad_clearance_minimum"),
+    )
 
     return (
         bottom_arca,
