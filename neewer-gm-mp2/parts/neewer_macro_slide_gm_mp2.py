@@ -39,19 +39,15 @@ def _large_focus_knob(center, length=19.5):
 
 @assembly
 def neewer_macro_slide_gm_mp2(
-    feet_open_deg=55.0,
     arca_detent=1,
     carriage_position_mm=70.0,
     draft=False,
 ):
     """Editable reconstruction of the Neewer GM-MP2 macro focusing rail.
 
-    feet_open_deg: how far the two support feet swing down from their folded position
     arca_detent: quarter-turn position of the rotating top Arca assembly, from 0 to 3
     carriage_position_mm: carriage travel from the left end of the published 140 mm range
     """
-    if feet_open_deg < 0.0 or feet_open_deg > 65.0:
-        reject("support feet move from 0 to 65 degrees", "feet_open_deg")
     if arca_detent not in (0, 1, 2, 3):
         reject("Arca mount locks only at quarter turns 0, 1, 2, or 3", "arca_detent")
     if carriage_position_mm < 0.0 or carriage_position_mm > measured("slider_range"):
@@ -68,27 +64,57 @@ def neewer_macro_slide_gm_mp2(
     frame_y = (rod_y_front + rod_y_back) / 2.0
     frame_width = 46.0
 
-    # The rail extrusions are centred on the guide rods. Keeping them on the scan's
-    # measured 0..44 mm envelope avoids the broad false side faces produced by a
-    # symmetric 46 mm guess. The shallow centre web is visible in clear sections away
-    # from the carriage; it ties the scale bed together below the lead screw.
-    front_rail = _rounded_box(201.0, 9.0, 8.0, (106.5, rod_y_front, 4.0), 1.2)
-    rear_rail = _rounded_box(201.0, 9.0, 8.0, (106.5, rod_y_back, 4.0), 1.2)
-    centre_web = _rounded_box(181.0, 22.0, 3.6, (103.0, frame_y, 1.8), 0.8)
-    # The folded feet sit flush in two pockets rather than occupying the web. The
-    # extra half millimetre around each outline leaves their declared sweep clear.
-    centre_web -= Pos(27.5, frame_y, 2.0) * Box(
-        30.0, 12.0, 5.0, align=(Align.CENTER, Align.CENTER, Align.CENTER)
+    # Repeated X-normal scan sections expose the two rails as the male halves of a
+    # continuous Arca-Swiss plate. The 46-degree engagement flanks are kept sharp;
+    # rounding them would change the mounting interface.
+    bottom_arca_left_profile = Plane.YZ * Polygon(
+        (0.05, 5.25),
+        (0.05, 11.05),
+        (0.45, 11.75),
+        (1.05, 12.13),
+        (7.05, 12.13),
+        (7.70, 11.85),
+        (8.08, 11.15),
+        (8.08, 0.50),
+        (7.60, 0.06),
+        (3.55, 0.06),
+        (3.15, 0.50),
+        (3.15, 1.75),
+        (5.10, 3.85),
+        (4.70, 4.50),
+        (0.55, 4.53),
+        (0.15, 4.90),
+        align=None,
     )
-    centre_web -= Pos(179.0, frame_y, 2.0) * Box(
-        30.0, 12.0, 5.0, align=(Align.CENTER, Align.CENTER, Align.CENTER)
+    bottom_arca_right_profile = Plane.YZ * Polygon(
+        *((44.20 - y, z) for y, z in reversed((
+            (0.05, 5.25),
+            (0.05, 11.05),
+            (0.45, 11.75),
+            (1.05, 12.13),
+            (7.05, 12.13),
+            (7.70, 11.85),
+            (8.08, 11.15),
+            (8.08, 0.50),
+            (7.60, 0.06),
+            (3.55, 0.06),
+            (3.15, 0.50),
+            (3.15, 1.75),
+            (5.10, 3.85),
+            (4.70, 4.50),
+            (0.55, 4.53),
+            (0.15, 4.90),
+        ))),
+        align=None,
     )
+    bottom_arca = Pos(203.0, 0.0, 0.0) * (
+        extrude(bottom_arca_left_profile, 199.0)
+        + extrude(bottom_arca_right_profile, 199.0)
+    )
+    bottom_arca = component(bottom_arca, "bottom Arca plate")
     left_end = _rounded_box(13.0, 44.5, 23.0, (left_end_x, frame_y, 11.5), 2.3)
     right_end = _rounded_box(13.0, 44.5, 23.0, (right_end_x, frame_y, 11.5), 2.3)
-    frame = component(
-        front_rail + rear_rail + centre_web + left_end + right_end,
-        "frame and end blocks",
-    )
+    end_blocks = component(left_end + right_end, "end blocks")
 
     front_rod = component(
         _cylinder_x(rod_radius, 194.5, (103.25, rod_y_front, drive_z)),
@@ -143,46 +169,88 @@ def neewer_macro_slide_gm_mp2(
     )
 
     top_rotation = float(arca_detent) * 90.0
-    # The scanned upper body's envelope is x=78.85..128 and y=-2.6..51.9 in
-    # the sideways reference detent. Keep both clamp layers on that measured
-    # footprint; the earlier narrow, over-long plate missed its far edge.
-    arca_clamp_local = _rounded_box(49.2, 54.5, 9.0, (0.0, 2.55, 34.0), 2.0)
-    arca_clamp = Pos(carriage_x, frame_y, 0.0) * Rot(0, 0, top_rotation) * arca_clamp_local
-    arca_clamp = component(arca_clamp, "rotating Arca clamp")
+    # In the scanned detent the upper clamp spans x=78.85..127.95 and
+    # y=-2.55..51.70. Its dovetail opening is 37.9 mm at the jaw tips and 42.8 mm
+    # at the seat, giving the measured 50-degree clamping flanks.
+    clamp_x_min = 78.85 - carriage_x
+    clamp_x_max = 127.95 - carriage_x
+    clamp_length = clamp_x_max - clamp_x_min
+    clamp_y_min = -2.55 - frame_y
+    fixed_flank_low_y = 3.40 - frame_y
+    fixed_tip_y = 5.60 - frame_y
+    movable_tip_y = 43.50 - frame_y
+    movable_flank_low_y = 46.20 - frame_y
+    clamp_y_max = 51.70 - frame_y
 
-    arca_plate_local = _rounded_box(49.2, 54.5, 7.0, (0.0, 2.55, 42.0), 2.3)
-    arca_plate_local -= Pos(0.0, 0.0, 37.0) * Cylinder(3.2, 10.0)
-    arca_plate = Pos(carriage_x, frame_y, 0.0) * Rot(0, 0, top_rotation) * arca_plate_local
-    arca_plate = component(arca_plate, "top Arca plate")
+    fixed_profile = Plane.YZ * Polygon(
+        (clamp_y_min, 31.20),
+        (movable_tip_y, 31.20),
+        (movable_tip_y, 39.90),
+        (fixed_flank_low_y, 39.90),
+        (fixed_tip_y, 44.40),
+        (clamp_y_min, 44.40),
+        align=None,
+    )
+    fixed_clamp_local = Pos(clamp_x_min, 0.0, 0.0) * extrude(
+        fixed_profile, clamp_length
+    )
+    # Twin top pockets match the scan while the central 15 mm bridge retains the
+    # pivot load path. Their floor is measured at z=36.95 mm.
+    pocket_y_center = ((17.0 + 27.5) / 2.0) - frame_y
+    pocket_width = 27.5 - 17.0
+    for pocket_global_x_min, pocket_global_x_max in ((79.0, 96.0), (111.0, 128.0)):
+        pocket_x_min = pocket_global_x_min - carriage_x
+        pocket_x_max = pocket_global_x_max - carriage_x
+        fixed_clamp_local -= Pos(
+            (pocket_x_min + pocket_x_max) / 2.0,
+            pocket_y_center,
+            (36.95 + 45.0) / 2.0,
+        ) * Box(
+            pocket_x_max - pocket_x_min,
+            pocket_width,
+            45.0 - 36.95,
+            align=(Align.CENTER, Align.CENTER, Align.CENTER),
+        )
+    fixed_clamp = Pos(carriage_x, frame_y, 0.0) * Rot(
+        0, 0, top_rotation
+    ) * fixed_clamp_local
+    fixed_clamp = component(fixed_clamp, "fixed top Arca clamp")
 
-    clamp_shaft_local = _cylinder_y(4.52, 18.0, (0.0, 34.9, 35.5))
-    clamp_knob_local = _cylinder_y(7.85, 16.8, (0.0, 47.3, 35.5))
+    movable_profile = Plane.YZ * Polygon(
+        (movable_tip_y, 31.20),
+        (clamp_y_max, 31.20),
+        (clamp_y_max, 44.40),
+        (movable_tip_y, 44.40),
+        (movable_flank_low_y, 39.90),
+        (movable_tip_y, 39.90),
+        align=None,
+    )
+    movable_jaw_local = Pos(clamp_x_min, 0.0, 0.0) * extrude(
+        movable_profile, clamp_length
+    )
+    movable_jaw = Pos(carriage_x, frame_y, 0.0) * Rot(
+        0, 0, top_rotation
+    ) * movable_jaw_local
+    movable_jaw = component(movable_jaw, "movable top Arca jaw")
+
+    clamp_shaft_local = _cylinder_y(
+        4.52,
+        18.0,
+        (103.30 - carriage_x, 34.9, 35.5),
+    )
+    clamp_knob_local = _cylinder_y(
+        7.85,
+        16.0,
+        (103.30 - carriage_x, 69.8 - frame_y, 35.5),
+    )
     clamp_knob = Pos(carriage_x, frame_y, 0.0) * Rot(0, 0, top_rotation) * (
         clamp_shaft_local + clamp_knob_local
     )
-    clamp_knob = component(clamp_knob, "Arca clamp knob")
-
-    left_foot = hinge(
-        _rounded_box(29.0, 11.0, 4.0, (27.5, frame_y, -1.0), 1.0),
-        Axis((13.0, frame_y, -3.0), (0.0, 1.0, 0.0)),
-        through=(0.0, 65.0),
-        at=feet_open_deg,
-        name="left support foot",
-        step=5.0,
-    )
-    left_foot = component(left_foot, "left support foot")
-    right_foot = hinge(
-        _rounded_box(29.0, 11.0, 4.0, (179.0, frame_y, -1.0), 1.0),
-        Axis((193.5, frame_y, -3.0), (0.0, -1.0, 0.0)),
-        through=(0.0, 65.0),
-        at=feet_open_deg,
-        name="right support foot",
-        step=5.0,
-    )
-    right_foot = component(right_foot, "right support foot")
+    clamp_knob = component(clamp_knob, "clamp knob")
 
     return (
-        frame,
+        bottom_arca,
+        end_blocks,
         front_rod,
         rear_rod,
         lead_screw,
@@ -190,9 +258,7 @@ def neewer_macro_slide_gm_mp2(
         sleeve,
         carriage,
         rotary_base,
-        arca_clamp,
-        arca_plate,
+        fixed_clamp,
+        movable_jaw,
         clamp_knob,
-        left_foot,
-        right_foot,
     )
