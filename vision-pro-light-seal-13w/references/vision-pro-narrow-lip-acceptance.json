@@ -1,0 +1,75 @@
+{
+  "status": "Accepted for the corrected small narrow-edge retaining-profile scope. Spurious cap/join bulbs removed; measured small lip and undercut preserved. Physical fit is unverified.",
+  "actual_cad_tested": {
+    "path": "build/vision_pro_light_seal_13w.step",
+    "sha256": "e6851a0f7eb3a1b5d77207efa74f9021d3db039faa1073fe539a8f881e2a2c83",
+    "bytes": 744688,
+    "method": "Imported final revised STEP solid; exact OCP BRepAlgoAPI_Section intersection at four recorded tangent-normal planes; sampled B-rep section edges at approximately0.04mm. No guide-only comparison and no STL dependence."
+  },
+  "bands": {
+    "neck_depth_mm": [
+      0.2,
+      2.2
+    ],
+    "tiny_base_and_undercut_depth_mm": [
+      2.2,
+      4.2
+    ],
+    "wall_join_depth_mm": [
+      4.2,
+      5.5
+    ],
+    "complete_small_lip_depth_mm": [
+      0,
+      5.5
+    ]
+  },
+  "checks": {
+    "0": {
+      "full_profile_cad_to_scan_p95_mm": 0.1277875535374063,
+      "full_profile_scan_to_cad_p95_mm": 0.1337640045346281,
+      "base_and_undercut_cad_to_scan_p95_mm": 0.06903840559386855,
+      "base_and_undercut_scan_to_cad_p95_mm": 0.07553709337609638,
+      "neck_width_mm_at_depth1_6": 1.8212782598799566,
+      "rim_width_mm_at_depth3": 3.6492395374207875,
+      "outer_projection_mm": 0.44851579597784164,
+      "wall_width_at15mm": 2.3294176332471515
+    },
+    "5": {
+      "full_profile_cad_to_scan_p95_mm": 0.21059009564128245,
+      "full_profile_scan_to_cad_p95_mm": 0.23825640541274412,
+      "base_and_undercut_cad_to_scan_p95_mm": 0.21088450646346296,
+      "base_and_undercut_scan_to_cad_p95_mm": 0.22966881554017665,
+      "neck_width_mm_at_depth1_6": 2.1013742166652345,
+      "rim_width_mm_at_depth3": 4.126667582650902,
+      "outer_projection_mm": 0.3678122186022431,
+      "wall_width_at15mm": 3.118385774032665
+    },
+    "8": {
+      "full_profile_cad_to_scan_p95_mm": 0.15330768553865884,
+      "full_profile_scan_to_cad_p95_mm": 0.18728407157811192,
+      "base_and_undercut_cad_to_scan_p95_mm": 0.1426448334145955,
+      "base_and_undercut_scan_to_cad_p95_mm": 0.18748975673452883,
+      "neck_width_mm_at_depth1_6": 2.128239698808776,
+      "rim_width_mm_at_depth3": 3.7020367663271188,
+      "outer_projection_mm": 0.25713580816468906,
+      "wall_width_at15mm": 1.9651337536128115
+    },
+    "11": {
+      "full_profile_cad_to_scan_p95_mm": 0.06311767578935326,
+      "full_profile_scan_to_cad_p95_mm": 0.06597944517046773,
+      "base_and_undercut_cad_to_scan_p95_mm": 0.07438107085024162,
+      "base_and_undercut_scan_to_cad_p95_mm": 0.08385377792485924,
+      "neck_width_mm_at_depth1_6": 1.8334543738228075,
+      "rim_width_mm_at_depth3": 3.3513722184889705,
+      "outer_projection_mm": 0.5500891084791872,
+      "wall_width_at15mm": 2.1837995004246924
+    }
+  },
+  "limitations": [
+    "Native scan triangle edge median approximately0.45mm; numerical residuals quantify agreement with interpolated scan geometry, not physical fit precision.",
+    "Mirror-side boundary disagreement reaches0.75mm p95 at some stations; CAD is intentionally symmetric.",
+    "The deep broad shoulder was excluded; sampled CAD thickness at15mm is2.0\u20133.1mm rather than the7\u20139mm adjacent scan shoulder.",
+    "This audit covers the narrow VisionPro retaining edge. Face-cushion pockets require their separate evidence and review."
+  ]
+}

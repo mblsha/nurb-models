@@ -11,7 +11,7 @@ This repository contains independent nurb projects. Open a project subdirectory 
 | [maixcam2](maixcam2/) | MaixCAM2 enclosure, radiator grille, camera stack, and PMOD sockets | [Binary PLY reference](maixcam2/scans/Maixcam2.ply) and [camera adapter STEP](maixcam2/references/maixcam2-camera-mount.step) |
 | [neewer-gm-mp2](neewer-gm-mp2/) | Neewer GM-MP2 macro focusing rail, carriage, quarter-turn Arca mount, retractable feet, and focus controls | [Compressed binary PLY reference](neewer-gm-mp2/scans/neewer-macro-slide-GM-MP2.ply.gz) and [exact outer focus sleeve STEP](neewer-gm-mp2/references/neewer-outer-focus-sleeve.step) |
 | [utility-blade-holder](utility-blade-holder/) | Parametric EDC utility blade holder reconstruction | [Source STL](utility-blade-holder/scans/Utility_Blade_Holder.STL), from [Thingiverse 3713857](https://www.thingiverse.com/thing:3713857) |
-| [vision-pro-light-seal-13w](vision-pro-light-seal-13w/) | Symmetric Vision Pro Light Seal 13W shell with a scan-fitted inverse-T headset interface and smooth cushion rim | [Textured reference GLB](vision-pro-light-seal-13w/scans/vision-pro-light-seal-13w-reference.glb) and original PLY/PNG under `references/source/` |
+| [vision-pro-light-seal-13w](vision-pro-light-seal-13w/) | Symmetric Vision Pro Light Seal 13W shell with a small retaining lip on the narrow Vision Pro rim and eight cushion attachment recesses | [Textured reference GLB](vision-pro-light-seal-13w/scans/vision-pro-light-seal-13w-reference.glb) and original PLY/PNG under `references/source/` |
 
 Each project contains its own `parts/` Python models and Markdown cards, plus `scans/` comparison targets. Target paths in the cards are relative to that project's root.
 

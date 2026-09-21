@@ -1,0 +1,226 @@
+{
+  "mesh": "build/vision_pro_light_seal_13w.stl",
+  "watertight": true,
+  "euler_number": 0,
+  "body_count": 1,
+  "bounds_mm": [
+    161.4256134033203,
+    96.06341934204102,
+    84.98320579528809
+  ],
+  "mirror_nearest_vertex_mm": {
+    "max": 4.147487467344149,
+    "p95": 0.6622236158341248,
+    "median": 0.10695142314722272
+  },
+  "pockets": [
+    {
+      "id": "P1",
+      "side": "positive_X",
+      "expected_floor_center_mm": [
+        43.59,
+        39.525,
+        0.327
+      ],
+      "faces_near_floor": 2,
+      "local_centroid_normal_median": [
+        -0.4673167827833635,
+        0.2647099275389731,
+        -0.8435304848026051
+      ],
+      "floor_normal_alignment": 0.9999638143452293,
+      "closest_surface_point_mm": [
+        43.590000065662586,
+        39.52499996280566,
+        0.3270001185242984
+      ],
+      "floor_center_to_surface_mm": 1.4050979693247695e-07,
+      "closest_face_normal": [
+        -0.46731677342478795,
+        0.26470993583332636,
+        -0.843530487384399
+      ]
+    },
+    {
+      "id": "P1",
+      "side": "negative_X",
+      "expected_floor_center_mm": [
+        -43.59,
+        39.525,
+        0.327
+      ],
+      "faces_near_floor": 2,
+      "local_centroid_normal_median": [
+        0.4673167827833635,
+        0.2647099275389731,
+        -0.8435304848026051
+      ],
+      "floor_normal_alignment": 0.9999638143452293,
+      "closest_surface_point_mm": [
+        -43.590000065662586,
+        39.52499996280566,
+        0.32700011852429833
+      ],
+      "floor_center_to_surface_mm": 1.405097968856516e-07,
+      "closest_face_normal": [
+        0.46731677342478795,
+        0.26470993583332636,
+        -0.843530487384399
+      ]
+    },
+    {
+      "id": "P2",
+      "side": "positive_X",
+      "expected_floor_center_mm": [
+        71.922,
+        15.416,
+        -23.122
+      ],
+      "faces_near_floor": 0,
+      "local_centroid_normal_median": null,
+      "floor_normal_alignment": null,
+      "closest_surface_point_mm": [
+        71.92200036217037,
+        15.415999962475773,
+        -23.12199943323153
+      ],
+      "floor_center_to_surface_mm": 6.736482334031874e-07,
+      "closest_face_normal": [
+        -0.5376253607515085,
+        0.05570299859340807,
+        -0.8413418730958974
+      ]
+    },
+    {
+      "id": "P2",
+      "side": "negative_X",
+      "expected_floor_center_mm": [
+        -71.922,
+        15.416,
+        -23.122
+      ],
+      "faces_near_floor": 0,
+      "local_centroid_normal_median": null,
+      "floor_normal_alignment": null,
+      "closest_surface_point_mm": [
+        -71.92199925956582,
+        15.416000076716715,
+        -23.122001158721435
+      ],
+      "floor_center_to_surface_mm": 1.3772304039148644e-06,
+      "closest_face_normal": [
+        0.5376254941798749,
+        0.05570361578025061,
+        -0.8413417469713788
+      ]
+    },
+    {
+      "id": "P3",
+      "side": "positive_X",
+      "expected_floor_center_mm": [
+        61.744,
+        -24.935,
+        -11.414
+      ],
+      "faces_near_floor": 2,
+      "local_centroid_normal_median": [
+        -0.6968228370392673,
+        0.10290293276200985,
+        -0.7098231612234156
+      ],
+      "floor_normal_alignment": 0.9999673444665526,
+      "closest_surface_point_mm": [
+        61.7439997611983,
+        -24.934999964735173,
+        -11.414000243257156
+      ],
+      "floor_center_to_surface_mm": 3.42700893649205e-07,
+      "closest_face_normal": [
+        -0.696822514311867,
+        0.10290263685523518,
+        -0.7098235209376537
+      ]
+    },
+    {
+      "id": "P3",
+      "side": "negative_X",
+      "expected_floor_center_mm": [
+        -61.744,
+        -24.935,
+        -11.414
+      ],
+      "faces_near_floor": 2,
+      "local_centroid_normal_median": [
+        0.6968228370391186,
+        0.10290293276189164,
+        -0.7098231612235786
+      ],
+      "floor_normal_alignment": 0.9999673444665526,
+      "closest_surface_point_mm": [
+        -61.7440006873341,
+        -24.935000101501142,
+        -11.413999299842477
+      ],
+      "floor_center_to_surface_mm": 9.8638288980012e-07,
+      "closest_face_normal": [
+        0.6968228134676502,
+        0.10290237618963374,
+        -0.709823265049516
+      ]
+    },
+    {
+      "id": "P4",
+      "side": "positive_X",
+      "expected_floor_center_mm": [
+        23.48,
+        -37.476,
+        13.518
+      ],
+      "faces_near_floor": 2,
+      "local_centroid_normal_median": [
+        -0.3000897552190574,
+        0.29308995553608386,
+        -0.9077689225658774
+      ],
+      "floor_normal_alignment": 1.0000342294141689,
+      "closest_surface_point_mm": [
+        23.480000064188637,
+        -37.47600006269136,
+        13.518000194170021
+      ],
+      "floor_center_to_surface_mm": 2.1389807141969513e-07,
+      "closest_face_normal": [
+        -0.30008982293491987,
+        0.293089889867686,
+        -0.9077689213826592
+      ]
+    },
+    {
+      "id": "P4",
+      "side": "negative_X",
+      "expected_floor_center_mm": [
+        -23.48,
+        -37.476,
+        13.518
+      ],
+      "faces_near_floor": 2,
+      "local_centroid_normal_median": [
+        0.3000897552190574,
+        0.29308995553608386,
+        -0.9077689225658774
+      ],
+      "floor_normal_alignment": 1.0000342294141689,
+      "closest_surface_point_mm": [
+        -23.480000064188637,
+        -37.47600006269136,
+        13.518000194170021
+      ],
+      "floor_center_to_surface_mm": 2.1389807141969513e-07,
+      "closest_face_normal": [
+        0.30008982293491987,
+        0.293089889867686,
+        -0.9077689213826592
+      ]
+    }
+  ]
+}

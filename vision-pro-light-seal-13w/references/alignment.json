@@ -90,7 +90,7 @@
     "orthogonality_max_error": 2.220446049250313e-16
   },
   "symmetrized_existing_curves": {
-    "HEADSET_RIM": [
+    "FACE_CUSHION_WIDE_RIM": [
       [
         0.0,
         -47.99413039331689,
@@ -202,7 +202,7 @@
         8.65189453189441
       ]
     ],
-    "CUSHION_RIM": [
+    "VISION_PRO_NARROW_RIM": [
       [
         0.0,
         -35.29721371605393,
@@ -426,5 +426,6 @@
         23.25145801777625
       ]
     ]
-  }
+  },
+  "interface_semantics": "Wide low-W rim is face/cushion. Narrow high-W rim is Vision Pro. Legacy labels were corrected without changing the rigid transform."
 }

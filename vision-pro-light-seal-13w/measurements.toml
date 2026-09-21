@@ -11,8 +11,8 @@ units = "mm"
 u = [0.99844165, 0.03435446, 0.04397764]
 v = [-0.01550981, -0.58617662, 0.81003483]
 w = [0.05360697, -0.80945460, -0.58473032]
-w_low = "Vision Pro interface"
-w_high = "soft cushion interface"
+w_low = "broad face-cushion interface"
+w_high = "narrow Vision Pro interface"
 
 [reference_bounds]
 u = [-81.2548, 80.2151]
@@ -39,21 +39,23 @@ after_reflection_p95_mm = 0.4986683877656814
 after_reflection_rms_mm = 1.0301721963845798
 
 [reconstruction]
-method = "symmetric periodic cubic profiles with sewn shell, stem, and asymmetric contact flange"
-source_guide_half_landmarks = 12
+method = "smooth exactly mirrored shell, shape-preserving small narrow-edge lip, and eight mirrored blind cushion pockets"
 connected_solids = 1
-faces = 6
-perimeter_continuity = "C2"
+faces = 62
 nominal_mid_wall_mm = 1.8
-cushion_rim_width_mm = 3.2
-adaptive_volume_mm3 = 62247.780411209664
-exported_mesh_extents_mm = [161.42487335205078, 96.0515365600586, 85.26064109802246]
+adaptive_volume_mm3 = 71024.80321419679
+exported_mesh_extents_mm = [161.4256134033203, 96.06341934204102, 84.98320579528809]
+absolute_mesh_deflection_mm = 0.04
+physical_fit_verified = false
+excluded = "black nose cloth; broad interior shoulders; fine ribs, magnets, and decorative details"
 
 [symmetry_validation]
 plane = "X=0"
-method = "reflect actual B-rep surface samples and compare corresponding surface parameters"
-samples_per_face = 405
-maximum_brep_reflection_error_mm = 1.4215294913627869e-13
+method = "reflect points on actual trimmed faces and trim edges onto the final boundary shell"
+edge_samples = 994
+trimmed_face_samples = 2333
+maximum_edge_reflection_error_mm = 5.422075153370624e-07
+maximum_trimmed_face_reflection_error_mm = 3.7955159323700054e-13
 
 [export_validation]
 step = "build/vision_pro_light_seal_13w.step"
@@ -62,73 +64,82 @@ three_mf = "build/vision_pro_light_seal_13w.3mf"
 step_reopened_valid_solids = 1
 stl_watertight_components = 1
 three_mf_watertight_components = 1
-stl_triangles = 64854
+stl_triangles = 115320
 
-[guide_fit_method]
-reference_mesh = "scans/vision-pro-light-seal-13w-reference.glb"
-measured_geometry = "supplemental smooth reference guide curves, not complete mating surfaces"
-samples_per_guide = 1000
-nearest_triangle_candidates = 64
-exhaustive_validation_samples_per_guide = 8
-maximum_acceleration_error_mm = 0.0
-physical_fit_verified = false
-uncertain_headset_region = "abs(X)<30 and Y>0; hard nose saddle obscured by cloth"
+[vision_pro_narrow_lip]
+side = "narrow high-W end"
+modeled_depth_below_tip_mm = 5.8
+validated_depth_mm = [0.0, 5.5]
+retaining_band_depth_mm = [2.2, 4.2]
+plot = "references/vision-pro-narrow-lip-sections.png"
+metrics = "references/vision-pro-narrow-lip-metrics.json"
+method = "exact STEP B-rep sections at four recorded tangent planes; both aligned scan sides; section curves sampled at approximately 0.04 mm"
+native_scan_triangle_edge_median_mm = 0.45
+limitation = "mesh interpolation agreement is not physical mating precision; scan sides differ; broad deep shoulder excluded"
 
-[headset_observable_guide]
-samples = 849
-median_mm = 0.2356979895862285
-p95_mm = 0.6219829964640998
-max_mm = 0.8280545764497412
-within_1mm_fraction = 1.0
+[vision_pro_narrow_lip.forehead]
+complete_cad_to_scan_p95_mm = 0.1277875535374063
+complete_scan_to_cad_p95_mm = 0.1337640045346281
+retaining_band_cad_to_scan_p95_mm = 0.06903840559386855
+retaining_band_scan_to_cad_p95_mm = 0.07553709337609638
+outer_projection_mm = 0.44851579597784164
 
-[headset_obscured_saddle]
-samples = 151
-median_mm = 1.5655869112498537
-p95_mm = 6.122685548509132
-max_mm = 6.567482233928406
-within_1mm_fraction = 0.3443708609271523
+[vision_pro_narrow_lip.temple]
+complete_cad_to_scan_p95_mm = 0.21059009564128245
+complete_scan_to_cad_p95_mm = 0.23825640541274412
+retaining_band_cad_to_scan_p95_mm = 0.21088450646346296
+retaining_band_scan_to_cad_p95_mm = 0.22966881554017665
+outer_projection_mm = 0.3678122186022431
 
-[cushion_guide]
-samples = 1000
-median_mm = 0.2201205662206162
-p95_mm = 1.1006784912366165
-max_mm = 1.6559183143986282
-within_1mm_fraction = 0.936
+[vision_pro_narrow_lip.cheek]
+complete_cad_to_scan_p95_mm = 0.15330768553865884
+complete_scan_to_cad_p95_mm = 0.18728407157811192
+retaining_band_cad_to_scan_p95_mm = 0.1426448334145955
+retaining_band_scan_to_cad_p95_mm = 0.18748975673452883
+outer_projection_mm = 0.25713580816468906
 
-[actual_contact_face]
-samples = 720
-median_mm = 0.08537950649133769
-p95_mm = 0.21777411766405816
-max_mm = 0.6317315735722729
-within_1mm_fraction = 1.0
-sampling = "actual B-rep seating face, 80 points across 3\u201397% of the contact span at each visible guide 0\u20138"
-exhaustive_validation_worst_samples = 8
-maximum_acceleration_error_mm = 0.0
+[vision_pro_narrow_lip.nose]
+complete_cad_to_scan_p95_mm = 0.06311767578935326
+complete_scan_to_cad_p95_mm = 0.06597944517046773
+retaining_band_cad_to_scan_p95_mm = 0.07438107085024162
+retaining_band_scan_to_cad_p95_mm = 0.08385377792485924
+outer_projection_mm = 0.5500891084791872
 
-[profile_section_method]
-plot = "references/headset-section-comparison.png"
-metrics = "references/headset-section-metrics.json"
-contours = "references/headset-section-contours.json"
-coordinates = "measured transverse seating coordinate and normal toward cushion, millimetres"
-profile_normal_range_mm = [-2.0, 8.0]
-profile_transverse_margin_mm = 2.0
-forehead_reverse_limit = "excluded inner contour near 8mm depth dominates scan-to-CAD profile tail"
-temple_limit = "paired return contours differ visibly between scan sides"
+[face_cushion_wide_pockets]
+side = "broad low-W end"
+count = 8
+mirrored_pairs = 4
+type = "shallow closed obround recesses, not through bores"
+inventory = "references/face-cushion-wide-pockets.json"
+map = "references/face-cushion-wide-pocket-map.png"
+length_range_mm = [8.21, 8.84]
+width_range_mm = [2.47, 4.58]
+measured_depth_range_mm = [0.86, 1.02]
+opening_dimension_uncertainty_mm = [0.4, 0.5]
+depth_uncertainty_mm = [0.15, 0.25]
+maximum_floor_center_boundary_error_mm = 2.5680492922932105e-14
 
-[profile_sections.forehead]
-contact_cad_to_scan_p95_mm = 0.15077808800073772
-contact_scan_to_cad_p95_mm = 0.16868476238503588
-profile_cad_to_scan_p95_mm = 0.3045940052109782
-profile_scan_to_cad_p95_mm = 2.1928610887614823
+[fit_offset_validation]
+parameters = ["headset_fit_offset_mm", "cushion_fit_offset_mm"]
+values_tested_separately_mm = [-0.2, 0.2]
+all_valid_single_solids = true
 
-[profile_sections.temple]
-contact_cad_to_scan_p95_mm = 0.18984732685781464
-contact_scan_to_cad_p95_mm = 0.24890984794050117
-profile_cad_to_scan_p95_mm = 0.9115600427792923
-profile_scan_to_cad_p95_mm = 1.1196537406852762
+[evidence_correction]
+previous_labels = "Prior HEADSET low-W data described the broad face-cushion side; prior CUSHION high-W data described the narrow Vision Pro side."
+superseded_claims = "Earlier broad seating-face residuals do not establish narrow Vision Pro fit; use the new actual narrow STEP-section evidence."
 
-[profile_sections.cheek]
-contact_cad_to_scan_p95_mm = 0.1577016124976409
-contact_scan_to_cad_p95_mm = 0.4721840456706296
-profile_cad_to_scan_p95_mm = 0.3454521976471731
-profile_scan_to_cad_p95_mm = 0.47253608642069717
+[pocket_floor_validation]
+review = "references/face-cushion-wide-pocket-review.json"
+thickness = "references/face-cushion-wide-pocket-thickness.json"
+plot = "references/face-cushion-wide-final-cad.png"
+method = "floor center and four representative near-edge ray samples along inward floor normal per pocket"
+minimum_sampled_remaining_material_mm_by_pair = [3.229, 6.850, 6.088, 8.871]
+all_eight_closed = true
+limitation = "sampled remaining floor thickness, not global minimum wall thickness"
+
+[printability]
+orientation = "inspection datum; no print orientation chosen"
+findings = "overhang and stability findings; small retaining-lip min-wall warning"
+min_wall_warning_mm = 0.19
+min_wall_warning_position_mm = [60.1, 33.5, 23.4]
+min_wall_location = "narrow Vision Pro retaining lip, not a cushion pocket floor"

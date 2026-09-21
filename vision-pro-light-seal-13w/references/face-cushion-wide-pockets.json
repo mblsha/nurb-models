@@ -1,0 +1,319 @@
+{
+  "reference": "scans/vision-pro-light-seal-13w-reference.glb",
+  "source": "references/source/Light seal.ply + exact source texture",
+  "reference_frame": "symmetric CAD frame; X left/right, Y vertical in face view, W=Z depth; broad low-W side is FACE/CUSHION side",
+  "old_glb_to_symmetric_cad": [
+    [
+      0.9998502805779668,
+      -0.016453468760646264,
+      -0.005357218859038693,
+      0.24252042023653497
+    ],
+    [
+      0.016453468760646264,
+      0.9998646315492281,
+      -4.407571606593663e-05,
+      0.0
+    ],
+    [
+      0.005357218859038693,
+      -4.407571606593663e-05,
+      0.9999856490287387,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "method": {
+    "surface_selection": "camera-facing triangles with transformed face-normal W < -0.05; nearest projected layer retained within 0.35 mm",
+    "baseline": "local robust quadratic surface fit using 5.2-8.5 mm annulus around each pocket",
+    "footprint": "connected recessed-floor component at residual depth >0.22 mm; tangent-plane robust 2.5-97.5 percentile extents",
+    "pairing": "left measured geometry reflected across X=0, aligned in axis sign, then averaged with right measurement",
+    "interpretation": "geometry-visible closed recesses; no corresponding boundary loops, so they are not through holes"
+  },
+  "features": [
+    {
+      "id": "P1",
+      "label": "upper_inner",
+      "side": "canonical_positive_X",
+      "floor_center_mm": [
+        43.59,
+        39.525,
+        0.327
+      ],
+      "support_surface_center_mm": [
+        43.111,
+        39.796,
+        -0.537
+      ],
+      "mirrored_floor_center_mm": [
+        -43.59,
+        39.525,
+        0.327
+      ],
+      "mirrored_support_surface_center_mm": [
+        -43.111,
+        39.796,
+        -0.537
+      ],
+      "outward_normal_low_W": [
+        -0.4673,
+        0.2647,
+        -0.8435
+      ],
+      "mirrored_outward_normal_low_W": [
+        0.4673,
+        0.2647,
+        -0.8435
+      ],
+      "major_axis": [
+        0.8636,
+        -0.0677,
+        -0.4996
+      ],
+      "mirrored_major_axis": [
+        -0.8636,
+        -0.0677,
+        -0.4996
+      ],
+      "minor_axis": [
+        -0.1893,
+        -0.962,
+        -0.1969
+      ],
+      "shape": "closed shallow rounded-rectangle/obround recess with softened edge",
+      "through": false,
+      "depressed_floor_length_mm": 8.36,
+      "depressed_floor_width_mm": 4.08,
+      "median_depth_mm": 1.02,
+      "mean_pair_p95_depth_mm": 1.12,
+      "recommended_symmetric_cut_depth_mm": 1.02,
+      "dimension_uncertainty_mm": 0.4,
+      "depth_uncertainty_mm": 0.15,
+      "pair_center_half_difference_mm": [
+        0.323,
+        0.126,
+        0.031
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "upper_lateral_temple",
+      "side": "canonical_positive_X",
+      "floor_center_mm": [
+        71.922,
+        15.416,
+        -23.122
+      ],
+      "support_surface_center_mm": [
+        71.4,
+        15.471,
+        -23.939
+      ],
+      "mirrored_floor_center_mm": [
+        -71.922,
+        15.416,
+        -23.122
+      ],
+      "mirrored_support_surface_center_mm": [
+        -71.4,
+        15.471,
+        -23.939
+      ],
+      "outward_normal_low_W": [
+        -0.5376,
+        0.0557,
+        -0.8413
+      ],
+      "mirrored_outward_normal_low_W": [
+        0.5376,
+        0.0557,
+        -0.8413
+      ],
+      "major_axis": [
+        -0.2072,
+        0.9585,
+        0.1959
+      ],
+      "mirrored_major_axis": [
+        0.2072,
+        0.9585,
+        0.1959
+      ],
+      "minor_axis": [
+        0.8173,
+        0.2797,
+        -0.5038
+      ],
+      "shape": "closed shallow rounded-rectangle/obround recess with softened edge",
+      "through": false,
+      "depressed_floor_length_mm": 8.84,
+      "depressed_floor_width_mm": 2.47,
+      "median_depth_mm": 0.97,
+      "mean_pair_p95_depth_mm": 1.07,
+      "recommended_symmetric_cut_depth_mm": 0.97,
+      "dimension_uncertainty_mm": 0.4,
+      "depth_uncertainty_mm": 0.15,
+      "pair_center_half_difference_mm": [
+        0.132,
+        0.087,
+        0.021
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "lower_lateral",
+      "side": "canonical_positive_X",
+      "floor_center_mm": [
+        61.744,
+        -24.935,
+        -11.414
+      ],
+      "support_surface_center_mm": [
+        61.056,
+        -24.834,
+        -12.115
+      ],
+      "mirrored_floor_center_mm": [
+        -61.744,
+        -24.935,
+        -11.414
+      ],
+      "mirrored_support_surface_center_mm": [
+        -61.056,
+        -24.834,
+        -12.115
+      ],
+      "outward_normal_low_W": [
+        -0.6968,
+        0.1029,
+        -0.7098
+      ],
+      "mirrored_outward_normal_low_W": [
+        0.6968,
+        0.1029,
+        -0.7098
+      ],
+      "major_axis": [
+        0.6336,
+        0.5521,
+        -0.542
+      ],
+      "mirrored_major_axis": [
+        -0.6336,
+        0.5521,
+        -0.542
+      ],
+      "minor_axis": [
+        0.3361,
+        -0.8274,
+        -0.4499
+      ],
+      "shape": "closed shallow rounded-rectangle/obround recess with softened edge",
+      "through": false,
+      "depressed_floor_length_mm": 8.21,
+      "depressed_floor_width_mm": 2.58,
+      "median_depth_mm": 0.99,
+      "mean_pair_p95_depth_mm": 1.12,
+      "recommended_symmetric_cut_depth_mm": 0.99,
+      "dimension_uncertainty_mm": 0.5,
+      "depth_uncertainty_mm": 0.25,
+      "pair_center_half_difference_mm": [
+        0.329,
+        0.019,
+        0.338
+      ]
+    },
+    {
+      "id": "P4",
+      "label": "lower_inner_forehead",
+      "side": "canonical_positive_X",
+      "floor_center_mm": [
+        23.48,
+        -37.476,
+        13.518
+      ],
+      "support_surface_center_mm": [
+        23.223,
+        -37.224,
+        12.738
+      ],
+      "mirrored_floor_center_mm": [
+        -23.48,
+        -37.476,
+        13.518
+      ],
+      "mirrored_support_surface_center_mm": [
+        -23.223,
+        -37.224,
+        12.738
+      ],
+      "outward_normal_low_W": [
+        -0.3001,
+        0.2931,
+        -0.9078
+      ],
+      "mirrored_outward_normal_low_W": [
+        0.3001,
+        0.2931,
+        -0.9078
+      ],
+      "major_axis": [
+        0.9533,
+        0.1259,
+        -0.2745
+      ],
+      "mirrored_major_axis": [
+        -0.9533,
+        0.1259,
+        -0.2745
+      ],
+      "minor_axis": [
+        0.0338,
+        -0.9478,
+        -0.3172
+      ],
+      "shape": "closed shallow rounded-rectangle/obround recess with softened edge",
+      "through": false,
+      "depressed_floor_length_mm": 8.31,
+      "depressed_floor_width_mm": 4.58,
+      "median_depth_mm": 0.86,
+      "mean_pair_p95_depth_mm": 0.96,
+      "recommended_symmetric_cut_depth_mm": 0.86,
+      "dimension_uncertainty_mm": 0.4,
+      "depth_uncertainty_mm": 0.15,
+      "pair_center_half_difference_mm": [
+        0.207,
+        0.015,
+        0.205
+      ]
+    }
+  ],
+  "excluded_observations": [
+    {
+      "region": "central low-W dark area near X=0",
+      "classification": "texture/printing only",
+      "reason": "no matching local geometric depression; do not cut"
+    },
+    {
+      "region": "central nose cloth and interior",
+      "classification": "out of scope",
+      "reason": "user explicitly excludes black nose cloth and interior intricacies"
+    }
+  ],
+  "evidence": [
+    "05-wide-lowW-shaded-1.png",
+    "07-wide-side-pocket-map.png",
+    "08-pocket-measurement-summary.png"
+  ],
+  "through_hole_audit": {
+    "mesh_boundary_edges": 106,
+    "boundary_components": 15,
+    "largest_boundary_component_length_mm": 6.91,
+    "result": "No boundary component is centered at any P1-P4 pocket; all pocket floors are closed in the scan."
+  }
+}

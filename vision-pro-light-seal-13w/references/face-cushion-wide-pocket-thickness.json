@@ -1,0 +1,111 @@
+{
+  "method": "Ray from each planar pocket floor along inward direction (-outward normal) to the next exported watertight STL surface. Samples at center, 80% of straight-slot half-span, and 30% of half-width. Floor self-hit excluded by 0.02 mm threshold.",
+  "mesh_watertight": true,
+  "measurements": [
+    {
+      "id": "P1",
+      "side": "positive_X",
+      "samples_mm": {
+        "center": 7.566115000337219,
+        "major_minus": 7.5310905740117935,
+        "major_plus": 7.578335183255458,
+        "minor_minus": 7.628064180189545,
+        "minor_plus": 3.228972334213357
+      },
+      "minimum_mm": 3.228972334213357,
+      "maximum_mm": 7.628064180189545
+    },
+    {
+      "id": "P1",
+      "side": "negative_X",
+      "samples_mm": {
+        "center": 7.561212007842387,
+        "major_minus": 7.527986019867365,
+        "major_plus": 7.587798164269324,
+        "minor_minus": 3.2323215856378513,
+        "minor_plus": 7.618838722824329
+      },
+      "minimum_mm": 3.2323215856378513,
+      "maximum_mm": 7.618838722824329
+    },
+    {
+      "id": "P2",
+      "side": "positive_X",
+      "samples_mm": {
+        "center": 7.4773559472910245,
+        "major_minus": 7.285551577391733,
+        "major_plus": 7.547160542456487,
+        "minor_minus": 7.8733356380303015,
+        "minor_plus": 6.849760711201118
+      },
+      "minimum_mm": 6.849760711201118,
+      "maximum_mm": 7.8733356380303015
+    },
+    {
+      "id": "P2",
+      "side": "negative_X",
+      "samples_mm": {
+        "center": 7.472413452396482,
+        "major_minus": 7.28863925382556,
+        "major_plus": 7.544594875185372,
+        "minor_minus": 6.851679234663901,
+        "minor_plus": 7.87168915029465
+      },
+      "minimum_mm": 6.851679234663901,
+      "maximum_mm": 7.87168915029465
+    },
+    {
+      "id": "P3",
+      "side": "positive_X",
+      "samples_mm": {
+        "center": 6.521299541608152,
+        "major_minus": 6.856185246581722,
+        "major_plus": 6.121688779761453,
+        "minor_minus": 6.974977506371265,
+        "minor_plus": 6.094435716960239
+      },
+      "minimum_mm": 6.094435716960239,
+      "maximum_mm": 6.974977506371265
+    },
+    {
+      "id": "P3",
+      "side": "negative_X",
+      "samples_mm": {
+        "center": 6.5179886188351635,
+        "major_minus": 6.861237887277662,
+        "major_plus": 6.108025251134329,
+        "minor_minus": 6.08784278442574,
+        "minor_plus": 6.981046472328336
+      },
+      "minimum_mm": 6.08784278442574,
+      "maximum_mm": 6.981046472328336
+    },
+    {
+      "id": "P4",
+      "side": "positive_X",
+      "samples_mm": {
+        "center": 12.140766109546314,
+        "major_minus": 12.194764474630594,
+        "major_plus": 12.017968876763584,
+        "minor_minus": 8.890795617042372,
+        "minor_plus": 10.64077903607271
+      },
+      "minimum_mm": 8.890795617042372,
+      "maximum_mm": 12.194764474630594
+    },
+    {
+      "id": "P4",
+      "side": "negative_X",
+      "samples_mm": {
+        "center": 12.148144095460582,
+        "major_minus": 12.197863337123339,
+        "major_plus": 12.056230081552235,
+        "minor_minus": 10.633370117919899,
+        "minor_plus": 8.871442596932502
+      },
+      "minimum_mm": 8.871442596932502,
+      "maximum_mm": 12.197863337123339
+    }
+  ],
+  "global_pocket_floor_minimum_mm": 3.228972334213357
+}
