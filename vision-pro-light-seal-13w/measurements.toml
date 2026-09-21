@@ -20,16 +20,40 @@ v = [-48.8915, 47.4379]
 w = [-31.3645, 53.6715]
 extents = [161.4699, 96.3293, 85.0361]
 
+[alignment]
+method = "rigid bilateral mirror-plane fit, no scaling or warping"
+transform_convention = "row-major original reference GLB millimetres to symmetric CAD millimetres"
+scan_to_cad_transform = [0.9998502805779668, -0.016453468760646264, -0.005357218859038693, 0.24252042023653497, 0.016453468760646264, 0.9998646315492281, -4.407571606593663e-05, 0.0, 0.005357218859038693, -4.407571606593663e-05, 0.9999856490287387, 0.0, 0.0, 0.0, 0.0, 1.0]
+plane_normal_in_original_glb = [0.9998502805779667, -0.016453468760646264, -0.005357218859038693]
+plane_offset_in_original_glb_mm = -0.24252042023653497
+mask = "face texture luminance > threshold; positive triangle area; exclude abs(X)<30,Y>8,Z<35 black nose region in original GLB datum; original PLY faces, exact converter DATUM; 12000 area-weighted source samples against all selected face centroids"
+fit_samples = 12000
+texture_luminance_min = 110
+before_reflection_median_mm = 0.5620715746449384
+before_reflection_p90_mm = 1.3118476540789563
+before_reflection_p95_mm = 1.6213747625342356
+before_reflection_rms_mm = 1.2811329476144708
+after_reflection_median_mm = 0.194906550070767
+after_reflection_p90_mm = 0.3764595355736387
+after_reflection_p95_mm = 0.4986683877656814
+after_reflection_rms_mm = 1.0301721963845798
+
 [reconstruction]
-method = "three sparse periodic spline profiles sewn into four smooth surfaces"
-profile_landmarks_each = 22
+method = "symmetric periodic cubic profiles with sewn shell, stem, and asymmetric contact flange"
+source_guide_half_landmarks = 12
 connected_solids = 1
-faces = 4
+faces = 6
 perimeter_continuity = "C2"
 nominal_mid_wall_mm = 1.8
-mating_rim_width_mm = 3.2
-adaptive_volume_mm3 = 37452.320164
-exported_mesh_extents_mm = [161.18624114990234, 95.5733528137207, 85.45969200134277]
+cushion_rim_width_mm = 3.2
+adaptive_volume_mm3 = 62247.780411209664
+exported_mesh_extents_mm = [161.42487335205078, 96.0515365600586, 85.26064109802246]
+
+[symmetry_validation]
+plane = "X=0"
+method = "reflect actual B-rep surface samples and compare corresponding surface parameters"
+samples_per_face = 405
+maximum_brep_reflection_error_mm = 1.4215294913627869e-13
 
 [export_validation]
 step = "build/vision_pro_light_seal_13w.step"
@@ -38,35 +62,73 @@ three_mf = "build/vision_pro_light_seal_13w.3mf"
 step_reopened_valid_solids = 1
 stl_watertight_components = 1
 three_mf_watertight_components = 1
-stl_triangles = 2678
+stl_triangles = 64854
 
-[fit_method]
+[guide_fit_method]
 reference_mesh = "scans/vision-pro-light-seal-13w-reference.glb"
-measured_geometry = "smooth mating rim centerlines"
-samples_per_rim = 1000
+measured_geometry = "supplemental smooth reference guide curves, not complete mating surfaces"
+samples_per_guide = 1000
 nearest_triangle_candidates = 64
-exhaustive_validation_samples_per_rim = 8
+exhaustive_validation_samples_per_guide = 8
 maximum_acceleration_error_mm = 0.0
 physical_fit_verified = false
 uncertain_headset_region = "abs(X)<30 and Y>0; hard nose saddle obscured by cloth"
 
-[headset_observable_rim]
-samples = 850
-median_mm = 0.2979320017105275
-p95_mm = 0.8939748150445456
-max_mm = 1.0355102139755876
-within_1mm_fraction = 0.9752941176470589
+[headset_observable_guide]
+samples = 849
+median_mm = 0.2356979895862285
+p95_mm = 0.6219829964640998
+max_mm = 0.8280545764497412
+within_1mm_fraction = 1.0
 
 [headset_obscured_saddle]
-samples = 150
-median_mm = 1.5845185674423337
-p95_mm = 6.143737089524007
-max_mm = 6.659049758129288
-within_1mm_fraction = 0.3333333333333333
+samples = 151
+median_mm = 1.5655869112498537
+p95_mm = 6.122685548509132
+max_mm = 6.567482233928406
+within_1mm_fraction = 0.3443708609271523
 
-[cushion_rim]
+[cushion_guide]
 samples = 1000
-median_mm = 0.279895185335039
-p95_mm = 1.2169733518392913
-max_mm = 1.7271130297883677
-within_1mm_fraction = 0.917
+median_mm = 0.2201205662206162
+p95_mm = 1.1006784912366165
+max_mm = 1.6559183143986282
+within_1mm_fraction = 0.936
+
+[actual_contact_face]
+samples = 720
+median_mm = 0.08537950649133769
+p95_mm = 0.21777411766405816
+max_mm = 0.6317315735722729
+within_1mm_fraction = 1.0
+sampling = "actual B-rep seating face, 80 points across 3\u201397% of the contact span at each visible guide 0\u20138"
+exhaustive_validation_worst_samples = 8
+maximum_acceleration_error_mm = 0.0
+
+[profile_section_method]
+plot = "references/headset-section-comparison.png"
+metrics = "references/headset-section-metrics.json"
+contours = "references/headset-section-contours.json"
+coordinates = "measured transverse seating coordinate and normal toward cushion, millimetres"
+profile_normal_range_mm = [-2.0, 8.0]
+profile_transverse_margin_mm = 2.0
+forehead_reverse_limit = "excluded inner contour near 8mm depth dominates scan-to-CAD profile tail"
+temple_limit = "paired return contours differ visibly between scan sides"
+
+[profile_sections.forehead]
+contact_cad_to_scan_p95_mm = 0.15077808800073772
+contact_scan_to_cad_p95_mm = 0.16868476238503588
+profile_cad_to_scan_p95_mm = 0.3045940052109782
+profile_scan_to_cad_p95_mm = 2.1928610887614823
+
+[profile_sections.temple]
+contact_cad_to_scan_p95_mm = 0.18984732685781464
+contact_scan_to_cad_p95_mm = 0.24890984794050117
+profile_cad_to_scan_p95_mm = 0.9115600427792923
+profile_scan_to_cad_p95_mm = 1.1196537406852762
+
+[profile_sections.cheek]
+contact_cad_to_scan_p95_mm = 0.1577016124976409
+contact_scan_to_cad_p95_mm = 0.4721840456706296
+profile_cad_to_scan_p95_mm = 0.3454521976471731
+profile_scan_to_cad_p95_mm = 0.47253608642069717

@@ -1,31 +1,45 @@
 # Vision Pro Light Seal 13W
 
-A fresh reconstruction of the external shell using two smooth mating loops and a single broad intermediate shape. The part is one connected solid with four continuous surfaces. The black nose cloth and interior details are outside its scope.
+A smooth, exactly bilateral reconstruction of the rigid shell with the headset-facing inverse-T interface and the cushion mating rim. The black nose cloth and interior intricacies are outside its scope.
 
 ```toml
-target = { file = "scans/vision-pro-light-seal-13w-reference.glb", units = "mm", tolerance_mm = 1.0, transform = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0] }
+target = { file = "scans/vision-pro-light-seal-13w-reference.glb", units = "mm", tolerance_mm = 1.0, transform = [0.9998502805779668, -0.016453468760646264, -0.005357218859038693, 0.24252042023653497, 0.016453468760646264, 0.9998646315492281, -4.407571606593663e-05, 0.0, 0.005357218859038693, -4.407571606593663e-05, 0.9999856490287387, 0.0, 0.0, 0.0, 0.0, 1.0] }
 ```
 
 ## Geometry
 
-The headset and cushion interfaces are closed periodic splines through sparse regularized scan landmarks. A smooth outside surface joins the interfaces; a plain inside surface supplies the wall. The two integral end faces provide the mating rims. The broad hard nose saddle remains, while the cloth that crosses the opening is omitted.
+The headset interface has a broad, asymmetric seated foot, a narrow raked stem, and overhang on both sides of the stem. Its flat contact face follows measured local seating planes, with transverse contact runs of approximately 17.2 mm at the forehead, 15.0 mm at the temple, and 13.0 mm at the cheek. The orientation changes around the rim; it is not a uniform section swept in a global plane. The foot tapers into the narrow hard nose region, where cloth obscures some of the original geometry. The rounded return caps and stem shoulders follow paired hard scan contours through the first 8 mm of seating-normal depth, using seven regularized anchors on each side. Internal ribs and recesses remain omitted.
 
-## Evidence and limitations
+One half of every guide and seating frame defines the model; the opposite half is its exact reflection about X = 0. Explicit periodic cubic B-splines avoid the asymmetric seam tangent chosen by the kernel's automatic interpolator. The shell and interface are sewn into one solid with six smooth faces. The cushion retains its previous smooth shape after symmetric alignment and pairing. `wall_mm` controls the nominal middle wall; the two fit offsets provide small calibration adjustments to the mating loops.
 
-The observable mating rims are fitted to the supplied textured scan in its established datum. The headset interface near the nose is partly obscured by cloth; this section uses a broad smooth interpolation. The scan establishes the overall geometry, not a guaranteed physical fit tolerance.
+## Scan alignment
 
-## Dimensions and verification
+The original textured scan stays unchanged. A rigid transform aligns its fitted bilateral plane with model X = 0, without scaling or warping. The fit uses stable hard shell and rim surfaces, selected by texture luminance and excluding the cloth-obscured nose region. Only the mirror-plane normal and offset were optimized. The plane correction is approximately 0.99° with a 0.243 mm X translation. Reflected-surface residual improved from a 0.562 mm median and 1.621 mm 95th percentile to 0.195 mm and 0.499 mm. The canonical matrix is stored in this card and `measurements.toml`.
 
-The default shell is approximately 161.2 × 95.7 × 85.5 mm in the scan datum. It is one valid solid with four B-spline faces, each C2-continuous around the perimeter. Nominal middle-wall thickness is 1.8 mm, with 3.2 mm transverse mating rims. STEP reopens as one valid solid; STL and 3MF each reopen as one watertight connected mesh. The exports use the canonical `vision_pro_light_seal_13w` name. Adaptive OCCT volume is 37,452.3 mm³; the kernel's default non-adaptive mass calculation overestimates these broad spline surfaces.
+## Verification and fit evidence
 
-Observed headset-rim centerline deviation has a 0.30 mm median and 0.89 mm 95th percentile; 97.5% lies within 1 mm of the scan. Cushion-rim centerline deviation has a 0.28 mm median and 1.22 mm 95th percentile; 91.7% lies within 1 mm. These are centerline-to-scan measurements, not a proof of mating-face tolerance or physical fit. The rear nose zone at |X| < 30 mm and Y > 0 is reported separately because cloth obscures the rigid interface: its regularized curve reaches 6.66 mm from the visible scan. This uncertain portion needs a physical test fit rather than following the cloth surface.
+The default part is approximately 161.43 × 96.06 × 85.27 mm. STEP reopens as one valid solid; STL and 3MF each reopen as one watertight connected mesh. The complete B-rep has 1.42e-13 mm maximum reflected-surface deviation across 2,430 samples. Display/export triangulations approximate these exact symmetric surfaces and can use different triangles on opposite sides.
 
-`references/validate_reconstruction.py` reproduces the export checks and 1,000 samples along each mating loop. It measures exact closest points among 64 nearby triangles and checks eight samples per loop against exhaustive triangle search, with zero observed acceleration error. Detailed evidence is in `measurements.toml`; fresh validation writes `build/reconstruction_validation.json`.
+The actual B-rep contact face was sampled at 720 points across nine observable sections: median deviation is 0.085 mm, the 95th percentile is 0.218 mm, and the maximum is 0.632 mm. All samples lie within 1 mm of the aligned scan. The eight worst accelerated results match exhaustive triangle search exactly.
+
+The local section comparison distinguishes the contact face from the complete hard flange profile. Values below are 95th-percentile contour distances in millimetres; the profile region covers the measured seating span plus 2 mm at either end and seating-normal depth from -2 to 8 mm.
+
+| Section | Contact CAD→scan | Contact scan→CAD | Profile CAD→scan | Profile scan→CAD |
+| --- | ---: | ---: | ---: | ---: |
+| Forehead | 0.15 | 0.17 | 0.30 | 2.19 |
+| Temple | 0.19 | 0.25 | 0.91 | 1.12 |
+| Cheek | 0.16 | 0.47 | 0.35 | 0.47 |
+
+The forehead reverse-profile outlier comes from the intentionally omitted inner contour near 8 mm depth, beyond the narrow mating return. The temple return differs between the two scan sides; the symmetric reconstruction uses their smooth paired contour. The plain interior beyond the mating profile remains simplified. `references/headset-section-comparison.png` shows the final CAD against both scan sides and the earlier flat rim; its numeric evidence is in `references/headset-section-metrics.json`.
+
+The headset's observable guide curve has 0.236 mm median and 0.622 mm 95th-percentile deviation from the aligned scan. The cushion guide has 0.220 mm median and 1.101 mm 95th-percentile deviation. These guide statistics supplement the local profile comparison; they are not measurements of physical mating tolerance. The rear nose guide is reported separately because the rigid saddle is obscured: its regularized curve reaches 6.57 mm from visible scan geometry. Physical fit remains unverified.
+
+`references/validate_reconstruction.py` reopens exports, applies the saved rigid alignment, checks actual B-rep symmetry, and measures the mating guide curves. Detailed evidence is in `measurements.toml`; fresh validation writes `build/reconstruction_validation.json`.
 
 ## Source and texture
 
-The original `references/source/Light seal.ply` and `Light seal.png` remain byte-for-byte preserved. `references/source/convert_reference.py` retains the original UV atlas, removes only detached scan specks, and embeds the unchanged texture into `scans/vision-pro-light-seal-13w-reference.glb`. Both scan and reconstruction use the same U/V/W datum: U runs left to right, V follows the face opening, and W runs from headset toward cushion. The card explicitly preserves identity alignment.
+The original `references/source/Light seal.ply` and `Light seal.png` remain byte-for-byte preserved. `references/source/convert_reference.py` retains the original UV atlas, removes only detached scan specks, and embeds the unchanged texture into `scans/vision-pro-light-seal-13w-reference.glb`. The source GLB uses the original U/V/W datum. The card transform maps that reference into the symmetric CAD frame.
 
-## Printing
+## Printing and omissions
 
-The model remains in reference alignment for inspection. Its curved lower edge and unsupported surfaces require a chosen print orientation and supports. The default wall passes the current thin-wall check; the orientation-related overhang and bed-stability findings remain. Black nose-guard cloth, internal ribs, magnets, recess details, texture relief, and cosmetic seams are intentionally absent.
+The model remains in inspection alignment. Its curved base and unsupported surfaces require a chosen print orientation and supports; the current thin-wall check passes. Black nose-guard cloth, fine internal ribs, magnets, recess details, texture relief, and cosmetic seams are intentionally absent.
