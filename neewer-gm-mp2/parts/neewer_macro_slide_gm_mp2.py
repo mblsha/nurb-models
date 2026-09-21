@@ -45,7 +45,7 @@ def neewer_macro_slide_gm_mp2(
 ):
     """Editable reconstruction of the Neewer GM-MP2 macro focusing rail.
 
-    arca_detent: quarter-turn position of the rotating top Arca assembly, from 0 to 3
+    arca_detent: top Arca position: 0=scan/longitudinal, 1=90° product photo, 2=180°, 3=270°
     carriage_position_mm: carriage travel from the left end of the published 140 mm range
     """
     if arca_detent not in (0, 1, 2, 3):
@@ -64,9 +64,10 @@ def neewer_macro_slide_gm_mp2(
     frame_y = (rod_y_front + rod_y_back) / 2.0
     frame_width = 46.0
 
-    # Repeated X-normal scan sections expose the two rails as the male halves of a
-    # continuous Arca-Swiss plate. The 46-degree engagement flanks are kept sharp;
-    # rounding them would change the mounting interface.
+    # Repeated X-normal scan sections expose the two rails as the male halves of an
+    # Arca-Swiss plate. The upper rail shell is continuous, while the lower tongue
+    # and return stop at the folded-foot bays. The 46-degree engagement flanks are
+    # kept sharp; rounding them would change the mounting interface.
     bottom_arca_left_profile = Plane.YZ * Polygon(
         (0.05, 5.25),
         (0.05, 11.05),
@@ -107,10 +108,30 @@ def neewer_macro_slide_gm_mp2(
         ))),
         align=None,
     )
-    bottom_arca = Pos(203.0, 0.0, 0.0) * (
-        extrude(bottom_arca_left_profile, 199.0)
-        + extrude(bottom_arca_right_profile, 199.0)
+    bottom_arca = Pos(206.0, 0.0, 0.0) * (
+        extrude(bottom_arca_left_profile, 205.25)
+        + extrude(bottom_arca_right_profile, 205.25)
     )
+    # The lower dovetail is absent where the collapsible feet fold against the
+    # rail. Scan-section transitions are repeatable to about ±0.25 mm. Limit the
+    # cuts to z < 4.55 mm so the upper side-rail ledges remain continuous from
+    # x=0.75 through x=206.0 mm.
+    for bay_x_min, bay_x_max in ((10.0, 31.75), (175.25, 197.5)):
+        bay_length = bay_x_max - bay_x_min
+        bay_center_x = (bay_x_min + bay_x_max) / 2.0
+        left_lower_gap = Pos(bay_center_x, 5.6, 2.225) * Box(
+            bay_length,
+            5.2,
+            4.65,
+            align=(Align.CENTER, Align.CENTER, Align.CENTER),
+        )
+        right_lower_gap = Pos(bay_center_x, 38.6, 2.225) * Box(
+            bay_length,
+            5.2,
+            4.65,
+            align=(Align.CENTER, Align.CENTER, Align.CENTER),
+        )
+        bottom_arca -= left_lower_gap + right_lower_gap
     bottom_arca = component(bottom_arca, "bottom Arca plate")
     left_end = _rounded_box(13.0, 44.5, 23.0, (left_end_x, frame_y, 11.5), 2.3)
     right_end = _rounded_box(13.0, 44.5, 23.0, (right_end_x, frame_y, 11.5), 2.3)
