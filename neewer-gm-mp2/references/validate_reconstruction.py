@@ -1,8 +1,10 @@
 """Reproduce the GM-MP2 motion, fit, and local Arca-interface acceptance checks."""
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+import sys
 import tempfile
 import zipfile
 import xml.etree.ElementTree as ET
@@ -15,6 +17,8 @@ from nurb import builder, checks, scan
 
 
 ROOT = Path(__file__).resolve().parents[1]
+VALIDATOR = Path(__file__).resolve()
+MEASUREMENTS = ROOT / "measurements.toml"
 PART = ROOT / "parts" / "neewer_macro_slide_gm_mp2.py"
 SLEEVE_PART = ROOT / "parts" / "neewer_outer_focus_sleeve.py"
 REFERENCE = ROOT / "scans" / "neewer-macro-slide-GM-MP2.ply.gz"
@@ -37,6 +41,37 @@ TOP_FLANKS = {
 }
 BOTTOM_PRESENT_X = (5.0, 40.0, 100.0, 202.0)
 BOTTOM_BAY_X = (20.0, 185.0)
+TRANSITION_CHECKS = (
+    {"nominal_x_mm": 10.0, "retained_x_mm": 9.74, "bay_x_mm": 10.26},
+    {"nominal_x_mm": 31.75, "retained_x_mm": 32.01, "bay_x_mm": 31.49},
+    {"nominal_x_mm": 175.25, "retained_x_mm": 174.99, "bay_x_mm": 175.51},
+    {"nominal_x_mm": 197.5, "retained_x_mm": 197.76, "bay_x_mm": 197.24},
+)
+MOTION_ERROR_LIMIT = 1e-7
+CAD_REQUIREMENT_ERROR_LIMIT_MM = 1e-6
+
+
+def json_hash(value):
+    encoded = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def acceptance_specification():
+    return {
+        "pose": POSE,
+        "travels_mm": list(TRAVELS),
+        "detents": list(DETENTS),
+        "attached_components": list(ATTACHED),
+        "motion_error_limit": MOTION_ERROR_LIMIT,
+        "arca_tolerance_mm": TOLERANCE_MM,
+        "cad_requirement_error_limit_mm": CAD_REQUIREMENT_ERROR_LIMIT_MM,
+        "bottom_flanks": BOTTOM_FLANKS,
+        "top_flanks": TOP_FLANKS,
+        "bottom_present_x_mm": list(BOTTOM_PRESENT_X),
+        "bottom_bay_x_mm": list(BOTTOM_BAY_X),
+        "bottom_bay_transition_checks": TRANSITION_CHECKS,
+        "bottom_bay_transition_uncertainty_mm": 0.25,
+    }
 
 
 def sha256(path):
@@ -194,10 +229,14 @@ def verify_sleeve_exports(sleeve):
         namespace = {"m": "http://schemas.microsoft.com/3dmanufacturing/core/2015/02"}
         vertices = document.findall(".//m:vertex", namespace)
         triangles = document.findall(".//m:triangle", namespace)
-        assert stl_mesh.is_watertight and float(stl_mesh.volume) > 0
-        assert document.get("unit") == "millimeter"
-        assert vertices and triangles
+        if not stl_mesh.is_watertight or float(stl_mesh.volume) <= 0:
+            raise RuntimeError("the temporary sleeve STL is not one positive-volume watertight mesh")
+        if document.get("unit") != "millimeter":
+            raise RuntimeError("the temporary sleeve 3MF is not declared in millimetres")
+        if not vertices or not triangles:
+            raise RuntimeError("the temporary sleeve 3MF contains no mesh")
         return {
+            "accepted": True,
             "source_step_sha256": sha256(SLEEVE_STEP),
             "source_step_reopened_valid": import_step(SLEEVE_STEP).is_valid,
             "stl_reopened_watertight": True,
@@ -209,10 +248,50 @@ def verify_sleeve_exports(sleeve):
         }
 
 
-def main():
+def finding_record(finding):
+    return {
+        "rule": finding.rule,
+        "severity": finding.severity,
+        "message": finding.message,
+        "value": finding.value,
+        "where": list(finding.where) if finding.where is not None else None,
+        "components": list(finding.components) if finding.components is not None else None,
+        "measurements": finding.measurements,
+    }
+
+
+def current_source_identity():
+    specification = json.loads(json.dumps(acceptance_specification()))
+    return {
+        "model_source": str(PART.relative_to(ROOT)),
+        "model_source_sha256": sha256(PART),
+        "sleeve_model_source": str(SLEEVE_PART.relative_to(ROOT)),
+        "sleeve_model_source_sha256": sha256(SLEEVE_PART),
+        "validator": str(VALIDATOR.relative_to(ROOT)),
+        "validator_sha256": sha256(VALIDATOR),
+        "measurements": str(MEASUREMENTS.relative_to(ROOT)),
+        "measurements_sha256": sha256(MEASUREMENTS),
+        "reference": str(REFERENCE.relative_to(ROOT)),
+        "reference_sha256": sha256(REFERENCE),
+        "sleeve_source_step": str(SLEEVE_STEP.relative_to(ROOT)),
+        "sleeve_source_step_sha256": sha256(SLEEVE_STEP),
+        "acceptance_specification": specification,
+        "acceptance_specification_sha256": json_hash(specification),
+        "parameters_sha256": json_hash(POSE),
+        "acceptance_pose": POSE,
+    }
+
+
+def add_failure(failures, code, message, **evidence):
+    failures.append({"code": code, "message": message, "evidence": evidence})
+
+
+def validate(write=True):
     reference_mesh, unit, unit_source = scan.load(REFERENCE, units="mm")
     printable_sleeve, _, _ = builder.build(SLEEVE_PART)
-    assert unit == "mm"
+    failures = []
+    if unit != "mm":
+        add_failure(failures, "reference.units", "reference did not load in millimetres", actual=unit)
     rows = []
     maximum_relative_vertex_error = 0.0
     maximum_relative_transform_error = 0.0
@@ -230,7 +309,9 @@ def main():
             base = found["rotary base"]
             base_origin = vector_list(base.bounding_box().center())
             findings = checks.run(shape)
-            assert findings == []
+            serialized_findings = [finding_record(finding) for finding in findings]
+            for finding in serialized_findings:
+                add_failure(failures, "pose.check", finding["message"], parameters=parameters, finding=finding)
             current = {}
             for name in ATTACHED:
                 relative_location = base.location.inverse() * found[name].location
@@ -242,20 +323,33 @@ def main():
             if travel == 70.0:
                 baseline_by_detent[detent] = current
             baseline = baseline_by_detent.get(detent)
+            attachment_checks = []
             if baseline is not None:
                 for name in ATTACHED:
-                    assert current[name]["relative_vertices"].shape == baseline[name]["relative_vertices"].shape
+                    same_vertex_count = current[name]["relative_vertices"].shape == baseline[name]["relative_vertices"].shape
                     vertex_error = vertex_set_error(current[name]["relative_vertices"], baseline[name]["relative_vertices"])
                     location_error = float(np.max(np.abs(np.asarray(current[name]["relative_location"]) - np.asarray(baseline[name]["relative_location"]))))
                     volume_error = abs(current[name]["volume_mm3"] - baseline[name]["volume_mm3"])
-                    assert vertex_error < 1e-7 and location_error < 1e-7 and volume_error < 1e-7
+                    accepted = same_vertex_count and vertex_error < MOTION_ERROR_LIMIT and location_error < MOTION_ERROR_LIMIT and volume_error < MOTION_ERROR_LIMIT
+                    attachment_checks.append({
+                        "component": name,
+                        "same_vertex_count": same_vertex_count,
+                        "relative_vertex_error_mm": vertex_error,
+                        "relative_location_error_mm_or_deg": location_error,
+                        "volume_error_mm3": volume_error,
+                        "accepted": accepted,
+                    })
+                    if not accepted:
+                        add_failure(failures, "motion.relative_geometry", f"{name} moved relative to the rotary base", parameters=parameters, check=attachment_checks[-1])
                     maximum_relative_vertex_error = max(maximum_relative_vertex_error, vertex_error)
                     maximum_relative_transform_error = max(maximum_relative_transform_error, location_error)
             rows.append(
                 {
                     "parameters": parameters,
-                    "clearance_check_findings": [],
+                    "clearance_check_findings": serialized_findings,
                     "attached_relative_locations": {name: current[name]["relative_location"] for name in ATTACHED},
+                    "attachment_checks": attachment_checks,
+                    "accepted": not serialized_findings and all(check["accepted"] for check in attachment_checks),
                 }
             )
             if parameters == POSE:
@@ -263,23 +357,49 @@ def main():
                 scan_pose_shape = shape
                 geometry_hash = geometry_fingerprint(found)
                 sleeve = found["exact outer focus sleeve"]
-    assert scan_pose_components is not None and scan_pose_shape is not None and sleeve is not None
+    if scan_pose_components is None or scan_pose_shape is None or sleeve is None:
+        raise RuntimeError("the declared scan pose was not built")
     rows.sort(key=lambda row: (row["parameters"]["arca_detent"], row["parameters"]["carriage_position_mm"]))
 
     fixed_bounds = scan_pose_components["fixed top Arca clamp"].bounding_box()
     movable_bounds = scan_pose_components["movable top Arca jaw"].bounding_box()
-    assert np.allclose(vector_list(fixed_bounds.min), (78.85, -2.55, 31.20), atol=1e-6)
-    assert np.allclose(vector_list(fixed_bounds.max), (127.95, 43.50, 44.40), atol=1e-6)
-    assert np.allclose(vector_list(movable_bounds.min), (78.85, 43.50, 31.20), atol=1e-6)
-    assert np.allclose(vector_list(movable_bounds.max), (127.95, 51.70, 44.40), atol=1e-6)
+    expected_bounds = {
+        "fixed_min": (78.85, -2.55, 31.20), "fixed_max": (127.95, 43.50, 44.40),
+        "movable_min": (78.85, 43.50, 31.20), "movable_max": (127.95, 51.70, 44.40),
+    }
+    actual_bounds = {
+        "fixed_min": vector_list(fixed_bounds.min), "fixed_max": vector_list(fixed_bounds.max),
+        "movable_min": vector_list(movable_bounds.min), "movable_max": vector_list(movable_bounds.max),
+    }
+    bounds_accepted = all(np.allclose(actual_bounds[key], expected, atol=CAD_REQUIREMENT_ERROR_LIMIT_MM) for key, expected in expected_bounds.items())
+    if not bounds_accepted:
+        add_failure(failures, "motion.default_geometry", "default top-clamp bounds changed", expected=expected_bounds, actual=actual_bounds)
 
     sleeve_gap = float(scan_pose_components["large focus knob"].distance_to(sleeve))
     sleeve_overlap = scan_pose_components["large focus knob"].intersect(sleeve)
     declarations = scan_pose_shape._nurb_scene.clearances
-    assert len(declarations) == 1
-    declaration = declarations[0]
-    assert {declaration.first.label, declaration.second.label} == {"large focus knob", "exact outer focus sleeve"}
-    assert declaration.minimum == 0.05 and sleeve_gap >= declaration.minimum and sleeve_overlap is None
+    declaration = declarations[0] if len(declarations) == 1 else None
+    declared_components = [] if declaration is None else [declaration.first.label, declaration.second.label]
+    declared_minimum = None if declaration is None else float(declaration.minimum)
+    expected_pair = {"large focus knob", "exact outer focus sleeve"}
+    overlap_volume = 0.0 if sleeve_overlap is None else float(sleeve_overlap.volume)
+    sleeve_accepted = (
+        declaration is not None
+        and set(declared_components) == expected_pair
+        and sleeve_gap >= declared_minimum
+        and overlap_volume <= 1e-9
+    )
+    if not sleeve_accepted:
+        add_failure(
+            failures,
+            "assembly.outer_sleeve_clearance",
+            "the declared outer-sleeve CAD clearance failed",
+            declaration_count=len(declarations),
+            declared_components=declared_components,
+            declared_minimum_mm=declared_minimum,
+            actual_minimum_distance_mm=sleeve_gap,
+            overlap_mm3=overlap_volume,
+        )
 
     bottom_shape = scan_pose_components["bottom Arca plate"]
     section_acceptance = {
@@ -295,11 +415,12 @@ def main():
             scan_distances = nearest_distances(samples, reference_points)
             cad_distances = np.array([Vertex(*point).distance_to(bottom_shape) for point in samples])
             scan_metrics = percentiles(scan_distances)
-            assert scan_metrics["p95_mm"] <= TOLERANCE_MM
-            assert float(np.max(cad_distances)) < 1e-6
-            section_acceptance["bottom_present"].append(
-                {"x_mm": station, "side": side, "scan_distance": scan_metrics, "maximum_cad_requirement_error_mm": float(np.max(cad_distances)), "accepted": True}
-            )
+            cad_error = float(np.max(cad_distances))
+            accepted = scan_metrics["p95_mm"] <= TOLERANCE_MM and cad_error < CAD_REQUIREMENT_ERROR_LIMIT_MM
+            record = {"x_mm": station, "side": side, "scan_distance": scan_metrics, "maximum_cad_requirement_error_mm": cad_error, "accepted": accepted}
+            section_acceptance["bottom_present"].append(record)
+            if not accepted:
+                add_failure(failures, "arca.bottom_present", "a retained bottom Arca flank failed", **record)
     for station in BOTTOM_BAY_X:
         reference_points = section_points(reference_mesh, station)
         for side, endpoints in BOTTOM_FLANKS.items():
@@ -309,28 +430,24 @@ def main():
             scan_distances = nearest_distances(samples, reference_points)
             cad_distances = np.array([Vertex(*point).distance_to(bottom_shape) for point in samples])
             scan_metrics = percentiles(scan_distances)
-            assert scan_metrics["p50_mm"] >= TOLERANCE_MM
-            assert float(np.min(cad_distances)) >= TOLERANCE_MM
-            section_acceptance["bottom_bays"].append(
-                {"x_mm": station, "side": side, "scan_distance_to_absent_flank": scan_metrics, "minimum_cad_distance_to_absent_flank_mm": float(np.min(cad_distances)), "accepted": True}
-            )
+            cad_distance = float(np.min(cad_distances))
+            accepted = scan_metrics["p50_mm"] >= TOLERANCE_MM and cad_distance >= TOLERANCE_MM
+            record = {"x_mm": station, "side": side, "scan_distance_to_absent_flank": scan_metrics, "minimum_cad_distance_to_absent_flank_mm": cad_distance, "accepted": accepted}
+            section_acceptance["bottom_bays"].append(record)
+            if not accepted:
+                add_failure(failures, "arca.bottom_bay", "a folded-foot bay still contains the excluded lower flank", **record)
     # The scan-derived transitions are documented to ±0.25 mm. Test material
     # immediately outside that band and absence immediately inside it instead of
     # treating an uncertain boundary section as exact.
-    transition_checks = (
-        {"nominal_x_mm": 10.0, "retained_x_mm": 9.74, "bay_x_mm": 10.26},
-        {"nominal_x_mm": 31.75, "retained_x_mm": 32.01, "bay_x_mm": 31.49},
-        {"nominal_x_mm": 175.25, "retained_x_mm": 174.99, "bay_x_mm": 175.51},
-        {"nominal_x_mm": 197.5, "retained_x_mm": 197.76, "bay_x_mm": 197.24},
-    )
-    for transition in transition_checks:
+    for transition in TRANSITION_CHECKS:
         for side, y in (("left", 4.0), ("right", 40.2)):
             retained = bottom_shape.is_inside(Vector(transition["retained_x_mm"], y, 2.0))
             absent = not bottom_shape.is_inside(Vector(transition["bay_x_mm"], y, 2.0))
-            assert retained and absent
-            section_acceptance["bottom_bay_transitions"].append(
-                {**transition, "uncertainty_mm": 0.25, "side": side, "retained_outside_uncertainty_band": retained, "absent_inside_uncertainty_band": absent, "accepted": True}
-            )
+            accepted = retained and absent
+            record = {**transition, "uncertainty_mm": 0.25, "side": side, "retained_outside_uncertainty_band": retained, "absent_inside_uncertainty_band": absent, "accepted": accepted}
+            section_acceptance["bottom_bay_transitions"].append(record)
+            if not accepted:
+                add_failure(failures, "arca.bottom_bay_transition", "a folded-foot bay transition failed outside its uncertainty band", **record)
     top_reference = section_points(reference_mesh, 103.4)
     top_shapes = {
         "fixed": scan_pose_components["fixed top Arca clamp"],
@@ -341,28 +458,33 @@ def main():
         scan_distances = nearest_distances(samples, top_reference)
         cad_distances = np.array([Vertex(*point).distance_to(top_shapes[name]) for point in samples])
         scan_metrics = percentiles(scan_distances)
-        assert scan_metrics["p95_mm"] <= TOLERANCE_MM
-        assert float(np.max(cad_distances)) < 1e-6
-        section_acceptance["top_clamp"].append(
-            {"x_mm": 103.4, "jaw": name, "scan_distance": scan_metrics, "maximum_cad_requirement_error_mm": float(np.max(cad_distances)), "accepted": True}
-        )
+        cad_error = float(np.max(cad_distances))
+        accepted = scan_metrics["p95_mm"] <= TOLERANCE_MM and cad_error < CAD_REQUIREMENT_ERROR_LIMIT_MM
+        record = {"x_mm": 103.4, "jaw": name, "scan_distance": scan_metrics, "maximum_cad_requirement_error_mm": cad_error, "accepted": accepted}
+        section_acceptance["top_clamp"].append(record)
+        if not accepted:
+            add_failure(failures, "arca.top_clamp", "a top-clamp Arca flank failed", **record)
+
+    exports = verify_sleeve_exports(printable_sleeve)
+    motion_accepted = bounds_accepted and all(row["accepted"] for row in rows)
+    arca_accepted = all(record["accepted"] for records in section_acceptance.values() for record in records)
+    accepted = not failures and motion_accepted and sleeve_accepted and arca_accepted and exports["accepted"]
+    source_identity = current_source_identity()
 
     result = {
-        "status": "accepted_for_current_modeled_CAD_scope",
+        "status": "accepted_for_current_modeled_CAD_scope" if accepted else "failed",
+        "accepted": accepted,
+        "findings": failures,
         "identity": {
-            "model_source": str(PART.relative_to(ROOT)),
-            "model_source_sha256": sha256(PART),
+            **source_identity,
             "model_geometry_sha256": geometry_hash,
             "pose_geometry_sha256": geometry_hash,
-            "parameters_sha256": hashlib.sha256(json.dumps(POSE, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
-            "reference": str(REFERENCE.relative_to(ROOT)),
-            "reference_sha256": sha256(REFERENCE),
             "reference_unit": unit,
             "reference_unit_source": unit_source,
             "alignment": "identity",
-            "acceptance_pose": POSE,
         },
         "motion": {
+            "accepted": motion_accepted,
             "tested_builds": len(rows),
             "detents": list(DETENTS),
             "travel_positions_mm": list(TRAVELS),
@@ -373,16 +495,19 @@ def main():
             "rows": rows,
         },
         "outer_sleeve_fit": {
-            "declared_components": [declaration.first.label, declaration.second.label],
-            "declared_minimum_mm": declaration.minimum,
+            "accepted": sleeve_accepted,
+            "declared_components": declared_components,
+            "declared_minimum_mm": declared_minimum,
             "actual_minimum_distance_mm": sleeve_gap,
-            "positive_volume_intersection": False,
-            "check_findings": [],
+            "positive_volume_intersection": overlap_volume > 1e-9,
+            "overlap_mm3": overlap_volume,
+            "check_findings": next(row["clearance_check_findings"] for row in rows if row["parameters"] == POSE),
             "scope": "CAD-to-CAD regression only; physical fit and manufactured clearance remain unverified.",
         },
         "arca_sections": {
+            "accepted": arca_accepted,
             "tolerance_mm": TOLERANCE_MM,
-            "method": "Sample exact analytic contact-flank requirements, assert they lie on the current CAD where present (or remain absent in folded-foot bays), and measure each sample to an independent X-normal section of the declared PLY.GZ reference.",
+            "method": "Sample exact analytic contact-flank requirements, verify they lie on the current CAD where present (or remain absent in folded-foot bays), and measure each sample to an independent X-normal section of the declared PLY.GZ reference.",
             "acceptance": section_acceptance,
             "svg": "neewer-arca-sections.svg",
             "limitations": [
@@ -391,20 +516,50 @@ def main():
                 "Reference sections are mesh intersections; physical mating remains unverified.",
             ],
         },
-        "exports": verify_sleeve_exports(printable_sleeve),
+        "exports": exports,
         "verification_classes": {
-            "geometry_validity": "12 assembly poses built successfully",
-            "reconstruction_agreement": "accepted only for the recorded local Arca flanks and interrupted lower dovetail",
-            "assembly_fit": "declared sleeve clearance passes in CAD",
+            "geometry_validity": ("accepted: 12 assembly poses built successfully" if motion_accepted else "failed: at least one pose or attached relative geometry check failed"),
+            "reconstruction_agreement": ("accepted only for the recorded local Arca flanks and interrupted lower dovetail" if arca_accepted else "failed: at least one local Arca requirement exceeded its threshold"),
+            "assembly_fit": ("accepted: declared sleeve clearance passes in CAD" if sleeve_accepted else "failed: declared sleeve clearance or component identity did not pass"),
             "printability": "separate nurb check result; assembly context is not exported as one printable object",
             "physical_verification": "not performed",
         },
     }
-    output = ROOT / "references" / "neewer-current-acceptance.json"
-    output.write_text(json.dumps(result, indent=2) + "\n")
-    write_section_svg(reference_mesh, scan_pose_components, ROOT / "references" / "neewer-arca-sections.svg")
+    if accepted and write:
+        output = ROOT / "references" / "neewer-current-acceptance.json"
+        output.write_text(json.dumps(result, indent=2) + "\n")
+        write_section_svg(reference_mesh, scan_pose_components, ROOT / "references" / "neewer-arca-sections.svg")
+    return result
+
+
+def check_report(path):
+    report = json.loads(Path(path).read_text())
+    recorded = report.get("identity", {})
+    current = current_source_identity()
+    changed = {key: {"recorded": recorded.get(key), "current": value} for key, value in current.items() if recorded.get(key) != value}
+    return {
+        "status": "current" if report.get("accepted") is True and not changed else "stale",
+        "report": str(Path(path)),
+        "changed": changed,
+        "identity": current,
+    }
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check-report", nargs="?", const=str(ROOT / "references" / "neewer-current-acceptance.json"), help="check an existing report without rebuilding or writing evidence")
+    args = parser.parse_args(argv)
+    if args.check_report:
+        result = check_report(args.check_report)
+        print(json.dumps(result, indent=2))
+        return 0 if result["status"] == "current" else 1
+    try:
+        result = validate(write=True)
+    except Exception as exc:
+        result = {"status": "failed", "accepted": False, "findings": [{"code": "validation.error", "message": f"{type(exc).__name__}: {exc}"}]}
     print(json.dumps(result, indent=2))
+    return 0 if result.get("accepted") is True else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

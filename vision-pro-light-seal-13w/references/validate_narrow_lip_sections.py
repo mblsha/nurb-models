@@ -45,4 +45,5 @@ for key in ['0','5','8','11']:
  if a and b and vals:
   dd=np.array([q[0] for q in vals]);uu=np.array([q[1] for q in vals]);base=a[0]+(b[0]-a[0])*(dd-2)/2;ix=np.argmax(base-uu);checks['small_outer_projection_mm']=float((base-uu)[ix]);checks['projection_depth_mm']=float(dd[ix])
  results[key]={'station':int(key),'paths':paths,'metrics':metrics,'section_widths':checks};print(key,json.dumps({'metrics':metrics,'widths':checks}),flush=True)
-(OUT/'vision-pro-narrow-lip-contours.json').write_text(json.dumps(results));(OUT/'vision-pro-narrow-lip-metrics.json').write_text(json.dumps({k:{'metrics':v['metrics'],'section_widths':v['section_widths']} for k,v in results.items()},indent=2))
+metadata={'status':'superseded_visualization_only','acceptance_evidence':False,'pooled_scan_sides':True,'superseded_by':'interface-validation.json#/narrow_vision_pro_interface','warning':'Nearest distances pool right and left scan samples. Use the side-labelled canonical interface validation for acceptance.'}
+(OUT/'vision-pro-narrow-lip-contours.json').write_text(json.dumps({**metadata,'stations':results}));(OUT/'vision-pro-narrow-lip-metrics.json').write_text(json.dumps({**metadata,'stations':{k:{'metrics':v['metrics'],'section_widths':v['section_widths']} for k,v in results.items()}},indent=2))

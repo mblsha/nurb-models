@@ -4,7 +4,9 @@
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
     "validator": "references/validate_interfaces.py",
-    "validator_sha256": "e3ac6499a5f298116f4a5a78ab9ebcab0de26fb41278b6de0ac56ffa1a5e6c08",
+    "validator_sha256": "998a4b2cacb536ae39a80a9517780b444e33d9ee930beb199859d30c18f769ea",
+    "measurements": "measurements.toml",
+    "measurements_sha256": "88a91f8ab34c32fb970a7a5b1bc84b762acd55f1cf5bb463af5c76cfd0fa1b2a",
     "step": "build/vision_pro_light_seal_13w.step",
     "step_canonical_sha256": "25bd3f21c83a8baf1670e3782cf33e3c69c2351c02778ee2c6a1417ed1a532f6",
     "stl_sha256": "f66089f872ce9e0b508214171e4051985c8835f5e5e3af9752777f6e57368747",
@@ -23,7 +25,21 @@
       "headset_fit_offset_mm": 0.0,
       "cushion_fit_offset_mm": 0.0
     },
-    "parameters_sha256": "30f9ca2cebd20942e69898370bdb5ee87e31579de914e3f7325c9100ba9c6a28"
+    "parameters_sha256": "30f9ca2cebd20942e69898370bdb5ee87e31579de914e3f7325c9100ba9c6a28",
+    "acceptance_thresholds": {
+      "symmetry_plane_angle_deg": 0.05,
+      "symmetry_plane_offset_mm": 0.05,
+      "reference_reflection_p95_mm": 1.0,
+      "trimmed_cad_reflection_max_mm": 1e-05,
+      "narrow_complete_p95_mm": 0.35,
+      "narrow_lip_p95_mm": 0.3,
+      "narrow_projection_min_mm": 0.2,
+      "narrow_projection_max_mm": 0.65,
+      "narrow_shoulder_gain_min_mm": 1.0,
+      "cushion_opening_p95_mm": 0.05,
+      "cushion_pair_mirror_p95_mm": 0.025
+    },
+    "acceptance_thresholds_sha256": "8221c34427d50efbea10daf76c74733e20acc6cacfee51a3084600f5ef502447"
   },
   "validation": {
     "method": "Intersect the final exported STEP with the four retained local planes. Compare the exact B-rep contour independently with each available aligned scan-side contour; no nearest-side pooling is allowed.",
@@ -86,7 +102,8 @@
             },
             "accepted": true
           }
-        ]
+        ],
+        "accepted": true
       },
       {
         "station": 5,
@@ -177,7 +194,8 @@
             },
             "accepted": true
           }
-        ]
+        ],
+        "accepted": true
       },
       {
         "station": 8,
@@ -268,7 +286,8 @@
             },
             "accepted": true
           }
-        ]
+        ],
+        "accepted": true
       },
       {
         "station": 11,
@@ -319,7 +338,8 @@
             },
             "accepted": true
           }
-        ]
+        ],
+        "accepted": true
       }
     ],
     "accepted": true

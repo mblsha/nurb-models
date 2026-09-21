@@ -5,6 +5,7 @@ import ast
 import hashlib
 import json
 import re
+import sys
 import zipfile
 from pathlib import Path
 
@@ -20,6 +21,7 @@ from nurb import scan
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCES = ROOT / "references"
+MEASUREMENTS = ROOT / "measurements.toml"
 PART = ROOT / "parts" / "vision_pro_light_seal_13w.py"
 VALIDATOR = Path(__file__).resolve()
 STEP = ROOT / "build" / "vision_pro_light_seal_13w.step"
@@ -58,7 +60,8 @@ def sha256(path):
 def canonical_step_sha256(path):
     text = Path(path).read_text()
     text, count = re.subn(r"'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}'", "'<generated>'", text, count=1)
-    assert count == 1
+    if count != 1:
+        raise RuntimeError("the STEP generation timestamp could not be normalized")
     return hashlib.sha256(text.encode()).hexdigest()
 
 
@@ -151,7 +154,6 @@ def verify_reference_symmetry_plane(reference_mesh, alignment):
         and stored_metrics["p95_mm"] <= THRESHOLDS["reference_reflection_p95_mm"]
         and fitted_metrics["p95_mm"] <= THRESHOLDS["reference_reflection_p95_mm"]
     )
-    assert accepted
     return {
         "method": "Geometry-only verification fit from deterministic area-weighted reference samples. The cloth/nose mask is excluded, positive-X samples are reflected with the stored plane, nearest opposite-side face centroids establish correspondences, and one robust paired-plane fit is compared with the stored plane.",
         "mask": "Exclude abs(CAD X)<30, CAD Y>8, CAD Z<35; no texture threshold is used by this independent verification.",
@@ -274,13 +276,14 @@ def validate_narrow_interface(body, narrow_data, profile_data):
         neck = section_widths(cad_paths, 1.6)
         rim = section_widths(cad_paths, 3.0)
         projection = projection_from_section(cad_paths)
-        assert neck and rim and projection is not None
+        if not neck or not rim or projection is None:
+            stations.append({"station": int(station), "label": label, "accepted": False, "error": "the final STEP section does not contain the required neck, rim, and outer projection", "scan_sides": []})
+            continue
         shoulder_gain = (rim[1] - rim[0]) - (neck[1] - neck[0])
         shape_accepted = (
             THRESHOLDS["narrow_projection_min_mm"] <= projection <= THRESHOLDS["narrow_projection_max_mm"]
             and shoulder_gain >= THRESHOLDS["narrow_shoulder_gain_min_mm"]
         )
-        assert shape_accepted
         sides = []
         for side in ("right", "left"):
             scan_paths = narrow_side_paths(narrow_data, profile_data, station, side)
@@ -295,10 +298,8 @@ def validate_narrow_interface(body, narrow_data, profile_data):
                 and lip["cad_to_scan"]["p95_mm"] <= THRESHOLDS["narrow_lip_p95_mm"]
                 and lip["scan_to_cad"]["p95_mm"] <= THRESHOLDS["narrow_lip_p95_mm"]
             )
-            assert accepted
             sides.append({"scan_side": side, "complete_profile": complete, "inverse_t_lip": lip, "accepted": accepted})
-        stations.append(
-            {
+        station_result = {
                 "station": int(station),
                 "label": label,
                 "cad_neck_width_mm_at_depth_1_6": neck[1] - neck[0],
@@ -307,8 +308,9 @@ def validate_narrow_interface(body, narrow_data, profile_data):
                 "cad_outer_projection_mm": projection,
                 "inverse_t_shape_accepted": shape_accepted,
                 "scan_sides": sides,
+                "accepted": shape_accepted and bool(sides) and all(side["accepted"] for side in sides),
             }
-        )
+        stations.append(station_result)
     return {
         "method": "Intersect the final exported STEP with the four retained local planes. Compare the exact B-rep contour independently with each available aligned scan-side contour; no nearest-side pooling is allowed.",
         "thresholds": {
@@ -318,7 +320,7 @@ def validate_narrow_interface(body, narrow_data, profile_data):
             "minimum_shoulder_gain_mm": THRESHOLDS["narrow_shoulder_gain_min_mm"],
         },
         "stations": stations,
-        "accepted": True,
+        "accepted": bool(stations) and all(station.get("accepted") is True for station in stations),
     }
 
 
@@ -375,7 +377,7 @@ def finished_opening(edge_samples, feature, side):
             selected_uv.append(np.column_stack((u, v)))
             selected_edges += 1
     if not selected_xyz:
-        raise AssertionError(f"No finished opening trim found for {feature['id']} {side}")
+        raise RuntimeError(f"No finished opening trim found for {feature['id']} {side}")
     return np.vstack(selected_xyz), np.vstack(selected_uv), selected_edges
 
 
@@ -398,7 +400,6 @@ def validate_cushion_openings(body, pocket_data):
                 cad_to_measured["p95_mm"] <= THRESHOLDS["cushion_opening_p95_mm"]
                 and measured_to_cad["p95_mm"] <= THRESHOLDS["cushion_opening_p95_mm"]
             )
-            assert accepted
             sides.append(
                 {
                     "side": side,
@@ -421,9 +422,7 @@ def validate_cushion_openings(body, pocket_data):
         )
         pair_offset = float(np.linalg.norm(feature["pair_center_half_difference_mm"]))
         pair_offset_accepted = pair_offset <= float(feature["dimension_uncertainty_mm"])
-        assert mirror_accepted and pair_offset_accepted
-        features.append(
-            {
+        feature_result = {
                 "id": feature["id"],
                 "label": feature["label"],
                 "sides": sides,
@@ -436,8 +435,9 @@ def validate_cushion_openings(body, pocket_data):
                 "separate_scan_side_center_offset_norm_mm": pair_offset,
                 "scan_dimension_uncertainty_mm": feature["dimension_uncertainty_mm"],
                 "scan_side_center_offset_accepted": pair_offset_accepted,
+                "accepted": all(side["accepted"] for side in sides) and mirror_accepted and pair_offset_accepted,
             }
-        )
+        features.append(feature_result)
     return {
         "method": "Extract the actual support-surface trim edges from the final STEP on each side and compare them bidirectionally in the measured pocket frame with the paired scan-derived obround contour. Separately enforce the recorded left/right scan-center disagreement against each feature's measurement uncertainty and compare the two finished trim loops after reflection.",
         "thresholds": {
@@ -446,7 +446,7 @@ def validate_cushion_openings(body, pocket_data):
             "scan_side_center_offset": "Feature-specific dimension_uncertainty_mm from face-cushion-wide-pockets.json",
         },
         "features": features,
-        "accepted": True,
+        "accepted": bool(features) and all(feature["accepted"] for feature in features),
         "limitation": "The retained source measurement stores pair-averaged opening length and width plus separate side-center disagreement, not two independent raw opening polylines. Contour agreement therefore validates the final trimmed CAD against the scan-derived pair measurement; only the center offset is independently side-specific.",
     }
 
@@ -469,7 +469,6 @@ def validate_trimmed_symmetry(body):
     edge_max = max(edge_errors)
     face_max = max(face_errors)
     accepted = max(edge_max, face_max) <= THRESHOLDS["trimmed_cad_reflection_max_mm"]
-    assert accepted
     return {
         "plane": "CAD X=0",
         "method": "Reflect samples from every final trim edge and every trimmed face interior, then measure to the final exported STEP boundary shell. Pocket holes are included because this samples the post-boolean body.",
@@ -536,8 +535,40 @@ def write_markdown(result):
     (REFERENCES / "interface-validation.md").write_text("\n".join(lines))
 
 
+def collect_findings(geometry, plane, trimmed, narrow, cushion):
+    findings = []
+    if not geometry["accepted"]:
+        findings.append({"code": "geometry.final_step", "message": "the final STEP is not one valid solid", "evidence": geometry})
+    if not plane["accepted"]:
+        findings.append({"code": "reference.symmetry_plane", "message": "the independently fitted reference plane exceeded its thresholds", "evidence": {"angle_difference_deg": plane["angle_difference_deg"], "offset_difference_mm": plane["offset_difference_mm"], "stored_plane_reflection_p95_mm": plane["stored_plane_reflection"]["p95_mm"], "verification_fit_reflection_p95_mm": plane["verification_fit_reflection"]["p95_mm"]}})
+    if not trimmed["accepted"]:
+        findings.append({"code": "cad.trimmed_symmetry", "message": "the finished trimmed CAD exceeded its reflection threshold", "evidence": {"maximum_edge_reflection_error_mm": trimmed["maximum_edge_reflection_error_mm"], "maximum_trimmed_face_reflection_error_mm": trimmed["maximum_trimmed_face_reflection_error_mm"], "threshold_mm": trimmed["threshold_mm"]}})
+    for station in narrow["stations"]:
+        if station.get("accepted") is True:
+            continue
+        if "error" in station:
+            findings.append({"code": "interface.narrow_section", "message": station["error"], "evidence": {"station": station["station"], "label": station["label"]}})
+            continue
+        if not station["inverse_t_shape_accepted"]:
+            findings.append({"code": "interface.inverse_t_shape", "message": "the final inverse-T section did not satisfy its analytic shape thresholds", "evidence": {"station": station["station"], "label": station["label"], "projection_mm": station["cad_outer_projection_mm"], "shoulder_gain_mm": station["cad_shoulder_gain_mm"]}})
+        for side in station["scan_sides"]:
+            if not side["accepted"]:
+                findings.append({"code": "interface.narrow_scan_side", "message": "one retained narrow-interface scan side exceeded its thresholds", "evidence": {"station": station["station"], "label": station["label"], **side}})
+    for feature in cushion["features"]:
+        if feature["accepted"]:
+            continue
+        for side in feature["sides"]:
+            if not side["accepted"]:
+                findings.append({"code": "interface.cushion_opening", "message": "a finished cushion-opening contour exceeded its threshold", "evidence": {"feature": feature["id"], **side}})
+        if not feature["finished_trim_mirror"]["accepted"]:
+            findings.append({"code": "interface.cushion_mirror", "message": "a finished cushion-opening pair exceeded its mirror threshold", "evidence": {"feature": feature["id"], **feature["finished_trim_mirror"]}})
+        if not feature["scan_side_center_offset_accepted"]:
+            findings.append({"code": "reference.cushion_side_centers", "message": "the retained scan-side center disagreement exceeds its measurement uncertainty", "evidence": {"feature": feature["id"], "offset_mm": feature["separate_scan_side_center_offset_norm_mm"], "uncertainty_mm": feature["scan_dimension_uncertainty_mm"]}})
+    return findings
+
+
 def validate(write=True):
-    for path in (PART, STEP, STL, THREE_MF, REFERENCE, ALIGNMENT, NARROW_SECTIONS, NARROW_SAMPLES, POCKETS):
+    for path in (PART, MEASUREMENTS, STEP, STL, THREE_MF, REFERENCE, ALIGNMENT, NARROW_SECTIONS, NARROW_SAMPLES, POCKETS):
         if not path.is_file():
             raise FileNotFoundError(path)
     alignment = json.loads(ALIGNMENT.read_text())
@@ -546,16 +577,25 @@ def validate(write=True):
     pocket_data = json.loads(POCKETS.read_text())
     parameters = default_parameters(PART)
     reference_mesh, unit, unit_source = scan.load(REFERENCE, units="mm")
-    assert unit == "mm"
     body = import_step(STEP)
-    assert body.is_valid and len(body.solids()) == 1
+    geometry = {"accepted": unit == "mm" and body.is_valid and len(body.solids()) == 1, "reference_unit": unit, "step_valid": bool(body.is_valid), "step_solids": len(body.solids())}
+    plane = verify_reference_symmetry_plane(reference_mesh, alignment)
+    trimmed = validate_trimmed_symmetry(body)
+    narrow = validate_narrow_interface(body, narrow_data, profile_data)
+    cushion = validate_cushion_openings(body, pocket_data)
+    findings = collect_findings(geometry, plane, trimmed, narrow, cushion)
+    accepted = not findings and all(result["accepted"] for result in (geometry, plane, trimmed, narrow, cushion))
     result = {
-        "status": "accepted",
+        "status": "accepted" if accepted else "failed",
+        "accepted": accepted,
+        "findings": findings,
         "identity": {
             "model_source": str(PART.relative_to(ROOT)),
             "model_source_sha256": sha256(PART),
             "validator": str(VALIDATOR.relative_to(ROOT)),
             "validator_sha256": sha256(VALIDATOR),
+            "measurements": str(MEASUREMENTS.relative_to(ROOT)),
+            "measurements_sha256": sha256(MEASUREMENTS),
             "step": str(STEP.relative_to(ROOT)),
             "step_canonical_sha256": canonical_step_sha256(STEP),
             "stl_sha256": sha256(STL),
@@ -571,16 +611,19 @@ def validate(write=True):
             "pocket_measurements_sha256": sha256(POCKETS),
             "parameters": parameters,
             "parameters_sha256": json_hash(parameters),
+            "acceptance_thresholds": THRESHOLDS,
+            "acceptance_thresholds_sha256": json_hash(THRESHOLDS),
         },
-        "reference_symmetry_plane": verify_reference_symmetry_plane(reference_mesh, alignment),
-        "finished_trimmed_cad_symmetry": validate_trimmed_symmetry(body),
-        "narrow_vision_pro_interface": validate_narrow_interface(body, narrow_data, profile_data),
-        "face_cushion_openings": validate_cushion_openings(body, pocket_data),
+        "geometry_validity": geometry,
+        "reference_symmetry_plane": plane,
+        "finished_trimmed_cad_symmetry": trimmed,
+        "narrow_vision_pro_interface": narrow,
+        "face_cushion_openings": cushion,
         "verification_classes": {
-            "geometry_validity": "Final STEP is one valid solid; export topology remains checked by validate_reconstruction.py.",
-            "reference_alignment": "Stored symmetry plane independently verified from reference geometry.",
-            "reconstruction_agreement": "Narrow scan sides evaluated separately; cushion openings tied to the scan-derived pair measurement and side-center uncertainty.",
-            "finished_geometry_symmetry": "Post-boolean STEP trim edges and trimmed face interiors checked.",
+            "geometry_validity": ("accepted: final STEP is one valid solid; export topology remains checked by validate_reconstruction.py" if geometry["accepted"] else "failed: final STEP is not one valid solid"),
+            "reference_alignment": ("accepted: stored symmetry plane independently verified from reference geometry" if plane["accepted"] else "failed: independent reference-plane verification exceeded its thresholds"),
+            "reconstruction_agreement": ("accepted: narrow scan sides evaluated separately; cushion openings tied to the scan-derived pair measurement and side-center uncertainty" if narrow["accepted"] and cushion["accepted"] else "failed: at least one interface requirement exceeded its threshold"),
+            "finished_geometry_symmetry": ("accepted: post-boolean STEP trim edges and trimmed face interiors checked" if trimmed["accepted"] else "failed: finished STEP symmetry exceeded its threshold"),
             "physical_fit": "not verified",
         },
         "scope": {
@@ -588,10 +631,10 @@ def validate(write=True):
             "excluded": "black nose-guard cloth, light-seal interior intricacies, deep lining shoulders, magnets, ribs, cosmetic seams, texture relief",
         },
     }
-    if write:
+    if accepted and write:
         (REFERENCES / "interface-validation.json").write_text(json.dumps(result, indent=2) + "\n")
         narrow_acceptance = {
-            "status": result["narrow_vision_pro_interface"]["accepted"] and "accepted" or "failed",
+            "status": "accepted",
             "identity": result["identity"],
             "validation": result["narrow_vision_pro_interface"],
             "finished_trimmed_cad_symmetry": result["finished_trimmed_cad_symmetry"],
@@ -603,9 +646,13 @@ def validate(write=True):
 
 
 def main():
-    result = validate(write=True)
+    try:
+        result = validate(write=True)
+    except Exception as exc:
+        result = {"status": "failed", "accepted": False, "findings": [{"code": "validation.error", "message": f"{type(exc).__name__}: {exc}"}]}
     print(json.dumps(result, indent=2))
+    return 0 if result.get("accepted") is True else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

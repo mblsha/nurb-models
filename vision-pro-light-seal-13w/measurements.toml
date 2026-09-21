@@ -71,34 +71,43 @@ side = "narrow high-W end"
 modeled_depth_below_tip_mm = 5.8
 validated_depth_mm = [0.0, 5.5]
 retaining_band_depth_mm = [2.2, 4.2]
-plot = "references/vision-pro-narrow-lip-sections.png"
-metrics = "references/vision-pro-narrow-lip-metrics.json"
-method = "exact STEP B-rep sections at four recorded tangent planes; both aligned scan sides; section curves sampled at approximately 0.04 mm"
+acceptance = "references/interface-validation.json"
+acceptance_json_pointer = "/narrow_vision_pro_interface"
+acceptance_scan_sides = ["right", "left"]
+retained_scan_sides_by_station = ["forehead:right", "temple:right", "temple:left", "cheek:right", "cheek:left", "nose:right"]
+side_labelled_sections = "references/vision-pro-narrow-reference-sections.json"
+side_labelled_profile_samples = "references/vision-pro-narrow-profile-samples.json"
+acceptance_method = "exact STEP B-rep sections at four recorded tangent planes; every retained right and left scan contour evaluated independently; section curves sampled at approximately 0.04 mm"
+visualization_plot = "references/vision-pro-narrow-lip-sections.png"
+visualization_metrics = "references/vision-pro-narrow-lip-metrics.json"
+visualization_contours = "references/vision-pro-narrow-lip-contours.json"
+visualization_status = "superseded_visualization_only"
+visualization_warning = "Legacy nearest-distance values pool right and left scan samples and are not acceptance evidence."
 native_scan_triangle_edge_median_mm = 0.45
 limitation = "mesh interpolation agreement is not physical mating precision; scan sides differ; broad deep shoulder excluded"
 
-[vision_pro_narrow_lip.forehead]
+[vision_pro_narrow_lip.visualization_pooled.forehead]
 complete_cad_to_scan_p95_mm = 0.1277875535374063
 complete_scan_to_cad_p95_mm = 0.1337640045346281
 retaining_band_cad_to_scan_p95_mm = 0.06903840559386855
 retaining_band_scan_to_cad_p95_mm = 0.07553709337609638
 outer_projection_mm = 0.44851579597784164
 
-[vision_pro_narrow_lip.temple]
+[vision_pro_narrow_lip.visualization_pooled.temple]
 complete_cad_to_scan_p95_mm = 0.21059009564128245
 complete_scan_to_cad_p95_mm = 0.23825640541274412
 retaining_band_cad_to_scan_p95_mm = 0.21088450646346296
 retaining_band_scan_to_cad_p95_mm = 0.22966881554017665
 outer_projection_mm = 0.3678122186022431
 
-[vision_pro_narrow_lip.cheek]
+[vision_pro_narrow_lip.visualization_pooled.cheek]
 complete_cad_to_scan_p95_mm = 0.15330768553865884
 complete_scan_to_cad_p95_mm = 0.18728407157811192
 retaining_band_cad_to_scan_p95_mm = 0.1426448334145955
 retaining_band_scan_to_cad_p95_mm = 0.18748975673452883
 outer_projection_mm = 0.25713580816468906
 
-[vision_pro_narrow_lip.nose]
+[vision_pro_narrow_lip.visualization_pooled.nose]
 complete_cad_to_scan_p95_mm = 0.06311767578935326
 complete_scan_to_cad_p95_mm = 0.06597944517046773
 retaining_band_cad_to_scan_p95_mm = 0.07438107085024162

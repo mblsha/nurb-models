@@ -1,6 +1,6 @@
 # Revision-bound Light Seal interface validation
 
-Status: **accepted**. Model source `95819604928f`, validator `e3ac6499a5f2`, canonical STEP `25bd3f21c83a`, reference GLB `f26fc3c4e320`, default parameters `30f9ca2cebd2`.
+Status: **accepted**. Model source `95819604928f`, validator `998a4b2cacb5`, canonical STEP `25bd3f21c83a`, reference GLB `f26fc3c4e320`, default parameters `30f9ca2cebd2`.
 
 ## Symmetry
 
