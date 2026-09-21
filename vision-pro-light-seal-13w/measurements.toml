@@ -1,0 +1,68 @@
+[reference]
+source = "references/source/Light seal.ply"
+texture = "references/source/Light seal.png"
+clean_textured_mesh = "scans/vision-pro-light-seal-13w-reference.glb"
+dominant_vertices = 246692
+dominant_triangles = 493477
+removed_speck_vertices = 234
+units = "mm"
+
+[datum]
+u = [0.99844165, 0.03435446, 0.04397764]
+v = [-0.01550981, -0.58617662, 0.81003483]
+w = [0.05360697, -0.80945460, -0.58473032]
+w_low = "Vision Pro interface"
+w_high = "soft cushion interface"
+
+[reference_bounds]
+u = [-81.2548, 80.2151]
+v = [-48.8915, 47.4379]
+w = [-31.3645, 53.6715]
+extents = [161.4699, 96.3293, 85.0361]
+
+[fit_evidence]
+tolerance_mm = 1.0
+vision_station_median_mm = 0.20561
+vision_station_p95_mm = 0.32462
+cushion_station_median_mm = 0.50788
+cushion_station_p95_mm = 1.66593
+cad_to_scan_coverage = 0.808667
+scan_to_cad_coverage = 0.786
+cad_to_scan_median_mm = 0.344216
+scan_to_cad_median_mm = 0.334862
+cad_to_scan_p95_mm = 2.003741
+scan_to_cad_p95_mm = 2.411199
+cad_to_scan_max_mm = 3.928026
+scan_to_cad_max_mm = 6.171193
+vision_component_coverage = 0.784667
+vision_component_median_mm = 0.513018
+vision_component_p95_mm = 1.59229
+vision_component_max_mm = 3.5903
+cushion_component_coverage = 0.715333
+cushion_component_median_mm = 0.701888
+cushion_component_p95_mm = 1.550174
+cushion_component_max_mm = 2.123187
+
+[fit_evidence.surface_sampling]
+cad_mesh = "build/vision_pro_light_seal_13w_geometry.stl"
+cad_triangles = 121430
+cad_watertight_components = 6
+reference_mesh = "scans/vision-pro-light-seal-13w-reference.glb"
+reference_triangles = 493477
+fixed_seed = 20260921
+samples_per_result = 1500
+nearest_triangle_candidates = 64
+exhaustive_validation_samples = 8
+maximum_acceleration_error_mm = 0.0
+
+[curve_validation]
+curve_type = "closed piecewise cubic Bezier"
+vision_segments = 52
+cushion_segments = 36
+vision_connected_solids = 1
+cushion_connected_solids = 1
+maximum_station_interpolation_error_mm = 3.6e-15
+maximum_tangent_discontinuity_degrees = 0.0
+vision_flange_volume_mm3 = 1461.594
+cushion_rail_volume_mm3 = 4216.389
+vision_flange_x_bounds_mm = [-81.2196, 80.4196]
