@@ -83,11 +83,26 @@ def main():
             variant = module.vision_pro_light_seal_13w(**{parameter: value})
             assert variant.is_valid and len(variant.solids()) == 1
             variants.append({"parameter": parameter, "value_mm": value, "valid_single_solid": True})
+    interface_spec = importlib.util.spec_from_file_location("validate_interfaces", ROOT / "references" / "validate_interfaces.py")
+    interface_validator = importlib.util.module_from_spec(interface_spec)
+    interface_spec.loader.exec_module(interface_validator)
+    interface_result = interface_validator.validate(write=True)
     result = {
         "geometry": {"valid": True, "connected_solids": 1, "faces": len(body.faces()), "adaptive_volume_mm3": exact_volume, "exported_mesh_bounds_mm": mesh.bounds.tolist(), "exported_mesh_extents_mm": mesh.extents.tolist(), "stl_triangles": len(mesh.faces), "stl_watertight_components": 1, "step_reopened_valid": True, "three_mf_reopened_watertight": True},
         "symmetry": {"plane": "X=0", "method": "reflect samples on all final trim edges and trimmed face interiors, then measure distance to final boundary shell", "edge_samples": len(edge_errors), "trimmed_face_samples": len(face_errors), "maximum_edge_reflection_error_mm": max(edge_errors), "maximum_trimmed_face_reflection_error_mm": max(face_errors), "scan_to_cad_transform": transform.tolist()},
         "face_cushion_pockets": {"count": len(floors), "type": "closed shallow obround recesses", "maximum_floor_center_boundary_error_mm": max(floors), "cutters_exactly_mirrored": True},
         "fit_parameter_sanity_builds": variants,
+        "interface_evidence": {
+            "report": "references/interface-validation.json",
+            "model_source_sha256": interface_result["identity"]["model_source_sha256"],
+            "step_canonical_sha256": interface_result["identity"]["step_canonical_sha256"],
+            "reference_sha256": interface_result["identity"]["reference_sha256"],
+            "parameters_sha256": interface_result["identity"]["parameters_sha256"],
+            "reference_symmetry_plane_accepted": interface_result["reference_symmetry_plane"]["accepted"],
+            "finished_trimmed_cad_symmetry_accepted": interface_result["finished_trimmed_cad_symmetry"]["accepted"],
+            "narrow_vision_pro_interface_accepted": interface_result["narrow_vision_pro_interface"]["accepted"],
+            "face_cushion_openings_accepted": interface_result["face_cushion_openings"]["accepted"],
+        },
         "scope": {"vision_pro": "narrow high-W rim, tiny retaining lip only", "face_cushion": "wide low-W contact, eight shallow closed recesses", "excluded": "nose cloth and deep interior details", "physical_fit_verified": False},
     }
     output = ROOT / "build" / "reconstruction_validation.json"
