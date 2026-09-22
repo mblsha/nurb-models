@@ -12,11 +12,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CANONICAL = (
-    Path("references/interface-validation.json"),
-    Path("references/interface-validation.md"),
-    Path("references/vision-pro-narrow-lip-acceptance.json"),
-)
+HISTORICAL = tuple(path.relative_to(ROOT) for path in (ROOT / "references/historical").glob("*"))
 
 
 class ValidatorFailureRegression(unittest.TestCase):
@@ -30,7 +26,7 @@ class ValidatorFailureRegression(unittest.TestCase):
                 for point in path["local"]:
                     point[0] += 2.0
             sections.write_text(json.dumps(data, indent=2) + "\n")
-            before = {path: (project / path).read_bytes() for path in CANONICAL}
+            before = {path: (project / path).read_bytes() for path in HISTORICAL}
             environment = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}
             command = [sys.executable]
             if optimized:
@@ -48,6 +44,16 @@ class ValidatorFailureRegression(unittest.TestCase):
             self.assertTrue(any(finding["code"] == "interface.narrow_scan_side" for finding in result["findings"]))
             for path, contents in before.items():
                 self.assertEqual((project / path).read_bytes(), contents, f"failed validation rewrote {path}")
+            import tomllib
+            settings = tomllib.loads((project / "measurements.toml").read_text())["vision_pro_narrow_lip"]
+            self.assertEqual(settings["acceptance_json_pointer"], "/accepted")
+            declared = json.loads((project / settings["acceptance"]).read_text())
+            self.assertFalse(declared["accepted"])
+            self.assertEqual(declared["status"], "failed")
+            for path in ("interface-validation.json", "vision-pro-narrow-lip-acceptance.json"):
+                current = json.loads((project / "references" / path).read_text())
+                self.assertFalse(current["accepted"])
+                self.assertEqual(current["status"], "failed")
 
     def test_bad_scan_side_fails_in_normal_python(self):
         self.run_failure(optimized=False)

@@ -60371,27 +60371,36 @@
   "independence": "Per-side reference contours are never mirrored, pair-averaged, generated from ideal slots, or fitted to CAD. Between-station rim planes were not construction planes; broad planes independently check retained construction sections. Neighborhood frames are retained measurements, not newly independent registration.",
   "source_sha256": "f26fc3c4e32088b57fd4a8d0da727061448159138239da0fbd78c7f509d835e9",
   "identity": {
-    "export_manifest_sha256": "fa677026542d559c15f0e1719526298f31a28926c4da555f661e4e15ee61acda",
+    "export_manifest_sha256": "d8765307a0f97ba5a55e59d33e5fc749bb86cbd5d037166dee172d5dbf6370fb",
     "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
     "export_inputs": {
       "files": {
         "parts/vision_pro_light_seal_13w.py": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
-        "measurements.toml": "88a91f8ab34c32fb970a7a5b1bc84b762acd55f1cf5bb463af5c76cfd0fa1b2a",
-        "references/export_identity.py": "aa3e847388949c2a3d1c9cf3d30a33c5f7855f7925ab99c7d393cef377f5ac61"
+        "measurements.toml": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
+        "references/export_identity.py": "82ee2821e7ca9e8368d4c3dff44b8211ead1862164c81c280aade9284646b567"
       },
       "runtime_versions": {
         "nurb": "0.26.0",
         "build123d": "0.11.1",
         "cadquery-ocp": "unavailable",
-        "trimesh": "4.12.2"
-      }
+        "cadquery-ocp-novtk": "7.9.3.1.1",
+        "cadquery-ocp-proxy": "7.9.3.1.1",
+        "trimesh": "4.12.2",
+        "numpy": "2.5.1",
+        "scipy": "1.18.0",
+        "lib3mf": "2.5.0",
+        "python": "3.13.5",
+        "OCP_module": "7.9.3.1"
+      },
+      "nurb_source_sha256": "5e28d98c7601b39968fc7eae79c09ebcabdf7e57aa59ecb4a076f08b8b5663bb"
     },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
+    "card_sha256": "46d88ed6a0e24fdc398586641ec422256b5f3a6d07b6666afc8ae7899bee9ed6",
     "validator": "references/validate_interfaces.py",
-    "validator_sha256": "9cf847ca2d61397e72c26cd7c1caeb64d200ec8f8329285a7e449a3af2104654",
+    "validator_sha256": "7056a15b10aaf588b5086ccb5cb0d75649678c7ff07fe1c9bcf74da11f1e5783",
     "measurements": "measurements.toml",
-    "measurements_sha256": "88a91f8ab34c32fb970a7a5b1bc84b762acd55f1cf5bb463af5c76cfd0fa1b2a",
+    "measurements_sha256": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
     "step": "build/vision_pro_light_seal_13w.step",
     "step_canonical_sha256": "25bd3f21c83a8baf1670e3782cf33e3c69c2351c02778ee2c6a1417ed1a532f6",
     "stl_sha256": "22ef36f3899113e0ee4cb7b0df21ccbe25aba67c46e56003c4e2209aac6ee3cf",

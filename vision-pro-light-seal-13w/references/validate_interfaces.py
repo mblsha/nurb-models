@@ -17,13 +17,14 @@ from OCP.BRepAlgoAPI import BRepAlgoAPI_Section
 from OCP.gp import gp_Dir, gp_Pln, gp_Pnt
 from scipy.spatial import cKDTree
 
-from nurb import scan
+from nurb import scan, checks, compare
 
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCES = ROOT / "references"
 MEASUREMENTS = ROOT / "measurements.toml"
 PART = ROOT / "parts" / "vision_pro_light_seal_13w.py"
+CARD = PART.with_suffix(".md")
 VALIDATOR = Path(__file__).resolve()
 STEP = ROOT / "build" / "vision_pro_light_seal_13w.step"
 STL = ROOT / "build" / "vision_pro_light_seal_13w.stl"
@@ -100,6 +101,27 @@ def reflect(points, normal, offset):
     points = np.asarray(points, dtype=float)
     normal = np.asarray(normal, dtype=float)
     return points - 2.0 * ((points @ normal - offset)[:, None]) * normal
+
+
+def validate_alignment(alignment, card_transform):
+    """Both evidence extraction and the viewer must use one proper rigid datum."""
+    matrix = np.asarray(alignment.get("old_glb_to_symmetric_cad"), dtype=float)
+    if matrix.shape != (4, 4) or not np.isfinite(matrix).all():
+        raise ValueError("alignment must be a finite 4 by 4 transform")
+    if not np.array_equal(matrix[3], [0, 0, 0, 1]):
+        raise ValueError("alignment must have homogeneous last row 0,0,0,1")
+    rotation = matrix[:3, :3]
+    if not np.allclose(rotation.T @ rotation, np.eye(3), atol=1e-9, rtol=0) or abs(np.linalg.det(rotation)-1) > 1e-9:
+        raise ValueError("alignment must be rigid and proper, without scale, shear or reflection")
+    card = np.asarray(card_transform, dtype=float)
+    if card.size != 16 or not np.isfinite(card).all() or not np.array_equal(matrix, card.reshape(4,4)):
+        raise ValueError("alignment must exactly match the part card transform")
+    return matrix
+
+
+def require_unchanged_inputs(snapshot):
+    if any(sha256(path) != digest for path, digest in snapshot.items()):
+        raise RuntimeError("validation inputs changed while inspecting; repeat validation")
 
 
 def verify_reference_symmetry_plane(reference_mesh, alignment):
@@ -572,10 +594,10 @@ def collect_findings(geometry, plane, trimmed, narrow, cushion):
 
 
 def validate(write=True):
-    watched = (PART, MEASUREMENTS, STEP, STL, THREE_MF, REFERENCE, ALIGNMENT,
+    watched = (PART, CARD, MEASUREMENTS, STEP, STL, THREE_MF, REFERENCE, ALIGNMENT,
                NARROW_SECTIONS, NARROW_SAMPLES, POCKETS, VALIDATOR,
                REFERENCES / "export_identity.py", REFERENCES / "independent_scan_evidence.py",
-               REFERENCES / "face-cushion-wide-seating-measurements.json")
+               REFERENCES / "face-cushion-wide-seating-measurements.json", ROOT / "build/export-manifest.json")
     started_with = {path: sha256(path) for path in watched}
     spec = importlib.util.spec_from_file_location("lightseal_export_identity", REFERENCES / "export_identity.py")
     exports = importlib.util.module_from_spec(spec)
@@ -587,6 +609,10 @@ def validate(write=True):
         if not path.is_file():
             raise FileNotFoundError(path)
     alignment = json.loads(ALIGNMENT.read_text())
+    target = compare.setting(checks.settings(PART))
+    if not target:
+        raise ValueError("part card must declare the aligned reference")
+    validate_alignment(alignment, target["transform"])
     narrow_data = json.loads(NARROW_SECTIONS.read_text())
     profile_data = json.loads(NARROW_SAMPLES.read_text())
     pocket_data = json.loads(POCKETS.read_text())
@@ -595,6 +621,7 @@ def validate(write=True):
     body = import_step(STEP)
     geometry = {"accepted": unit == "mm" and body.is_valid and len(body.solids()) == 1, "reference_unit": unit, "step_valid": bool(body.is_valid), "step_solids": len(body.solids())}
     plane = verify_reference_symmetry_plane(reference_mesh, alignment)
+    require_unchanged_inputs(started_with)
     trimmed = validate_trimmed_symmetry(body)
     narrow = validate_narrow_interface(body, narrow_data, profile_data)
     cushion = validate_cushion_openings(body, pocket_data)
@@ -610,8 +637,7 @@ def validate(write=True):
     if construction_accepted and raw_scan["status"] != "within_scan_uncertainty":
         findings.append({"code": "reference.independent_scan_review", "message": "new independent per-side or between-station evidence is outside the declared uncertainty or unresolved; inspect independent-scan-validation.json"})
     accepted = not findings and all(result["accepted"] for result in (geometry, plane, trimmed, narrow, cushion))
-    if any(sha256(path) != digest for path, digest in started_with.items()):
-        raise RuntimeError("validation inputs changed while inspecting; repeat validation")
+    require_unchanged_inputs(started_with)
     result = {
         "status": "accepted" if accepted else "failed",
         "accepted": accepted,
@@ -622,6 +648,7 @@ def validate(write=True):
             "export_inputs": manifest["inputs"],
             "model_source": str(PART.relative_to(ROOT)),
             "model_source_sha256": sha256(PART),
+            "card_sha256": sha256(CARD),
             "validator": str(VALIDATOR.relative_to(ROOT)),
             "validator_sha256": sha256(VALIDATOR),
             "measurements": str(MEASUREMENTS.relative_to(ROOT)),
@@ -672,19 +699,29 @@ def validate(write=True):
             raw_scan["identity"] = result["identity"]
             (REFERENCES / "independent-scan-validation.json").write_text(json.dumps(raw_scan, indent=2) + "\n")
             independent.write_summary(raw_scan)
-        (REFERENCES / "interface-validation-latest.json").write_text(json.dumps(result, indent=2) + "\n")
-    if accepted and write:
-        (REFERENCES / "interface-validation.json").write_text(json.dumps(result, indent=2) + "\n")
-        narrow_acceptance = {
-            "status": "accepted",
-            "identity": result["identity"],
-            "validation": result["narrow_vision_pro_interface"],
-            "finished_trimmed_cad_symmetry": result["finished_trimmed_cad_symmetry"],
-            "physical_fit_verified": False,
-        }
-        (REFERENCES / "vision-pro-narrow-lip-acceptance.json").write_text(json.dumps(narrow_acceptance, indent=2) + "\n")
-        write_markdown(result)
+        publish_current(result)
     return result
+
+
+def publish_current(result):
+    """Every discoverable current path reflects failure immediately; history is separate."""
+    encoded = json.dumps(result, indent=2) + "\n"
+    for name in ("interface-validation-latest.json", "interface-validation.json"):
+        path = REFERENCES / name
+        temporary = path.with_suffix(".tmp")
+        temporary.write_text(encoded)
+        temporary.replace(path)
+    narrow = {"status": result["status"], "accepted": result.get("accepted") is True,
+              "current_report": "interface-validation-latest.json",
+              "identity": result.get("identity"), "validation": result.get("narrow_vision_pro_interface"),
+              "scope": "Overall expanded acceptance gates this compatibility path; historical limited acceptance is archived in historical/."}
+    (REFERENCES / "vision-pro-narrow-lip-acceptance.json").write_text(json.dumps(narrow, indent=2)+"\n")
+    messages = "\n".join("- " + finding["message"] for finding in result.get("findings", []))
+    summary = ("# Current Light Seal interface evidence\n\n"
+               f"Overall status: **{result['status']}**. Accepted: **{str(result.get('accepted') is True).lower()}**. The canonical machine-readable result is `interface-validation-latest.json`; `interface-validation.json` is its compatibility alias.\n\n"
+               "Independent raw-scan measurements and overlays are described in `independent-scan-validation.md`. Their identity must match the current report before reuse. Historical limited acceptance lives only in `historical/` and does not establish current acceptance.\n\n"
+               + messages + "\n")
+    (REFERENCES / "interface-validation.md").write_text(summary)
 
 
 def main():
@@ -692,6 +729,7 @@ def main():
         result = validate(write=True)
     except Exception as exc:
         result = {"status": "failed", "accepted": False, "findings": [{"code": "validation.error", "message": f"{type(exc).__name__}: {exc}"}]}
+        publish_current(result)
     print(json.dumps(result, indent=2))
     return 0 if result.get("accepted") is True else 1
 

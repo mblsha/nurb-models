@@ -8,6 +8,7 @@ import export_identity
 ROOT = Path(__file__).resolve().parents[1]
 FILES = {
     "model_source_sha256": "parts/vision_pro_light_seal_13w.py",
+    "card_sha256": "parts/vision_pro_light_seal_13w.md",
     "validator_sha256": "references/validate_interfaces.py",
     "measurements_sha256": "measurements.toml",
     "reference_sha256": "scans/vision-pro-light-seal-13w-reference.glb",

@@ -35,6 +35,7 @@ def main():
     export_spec = importlib.util.spec_from_file_location("lightseal_export_identity", ROOT / "references" / "export_identity.py")
     export_identity = importlib.util.module_from_spec(export_spec)
     export_spec.loader.exec_module(export_identity)
+    export_snapshot = export_identity.export_snapshot()
     body, export_manifest = export_identity.verify()
     spec = importlib.util.spec_from_file_location(NAME, ROOT / "parts" / f"{NAME}.py")
     module = importlib.util.module_from_spec(spec)
@@ -43,6 +44,7 @@ def main():
     mesh = trimesh.load_mesh(ROOT / "build" / f"{NAME}.stl")
     with zipfile.ZipFile(ROOT / "build" / f"{NAME}.3mf") as package:
         document = ET.fromstring(package.read("3D/3dmodel.model"))
+    export_identity.require_unchanged_exports(export_snapshot)
     require(document.get("unit") == "millimeter", "the 3MF is not declared in millimetres")
     ns = {"m": "http://schemas.microsoft.com/3dmanufacturing/core/2015/02"}
     vertices = [[float(node.get(axis)) for axis in ("x", "y", "z")] for node in document.findall(".//m:vertex", ns)]
@@ -96,6 +98,7 @@ def main():
     interface_validator = importlib.util.module_from_spec(interface_spec)
     interface_spec.loader.exec_module(interface_validator)
     interface_result = interface_validator.validate(write=True)
+    export_identity.require_unchanged_exports(export_snapshot)
     require(interface_result.get("accepted") is True, "interface validation failed: " + "; ".join(finding["message"] for finding in interface_result.get("findings", [])))
     result = {
         "geometry": {"valid": True, "connected_solids": 1, "faces": len(body.faces()), "adaptive_volume_mm3": exact_volume, "exported_mesh_bounds_mm": mesh.bounds.tolist(), "exported_mesh_extents_mm": mesh.extents.tolist(), "stl_triangles": len(mesh.faces), "stl_watertight_components": 1, "step_reopened_valid": True, "three_mf_reopened_watertight": True},
@@ -125,5 +128,13 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as exc:
-        print(json.dumps({"status": "failed", "accepted": False, "findings": [{"code": "validation.error", "message": f"{type(exc).__name__}: {exc}"}]}, indent=2))
+        result = {"status": "failed", "accepted": False, "findings": [{"code": "validation.error", "message": f"{type(exc).__name__}: {exc}"}]}
+        # Preserve the detailed current interface report when that gate already
+        # published its failure; earlier failures must also invalidate discovery.
+        if "interface validation failed:" not in str(exc):
+            spec = importlib.util.spec_from_file_location("failed_interface_report", ROOT / "references/validate_interfaces.py")
+            validator = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(validator)
+            validator.publish_current(result)
+        print(json.dumps(result, indent=2))
         sys.exit(1)

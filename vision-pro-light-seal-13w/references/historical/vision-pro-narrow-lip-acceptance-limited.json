@@ -1,42 +1,19 @@
 {
-  "status": "failed",
+  "status": "historical_superseded",
   "accepted": false,
-  "current_report": "interface-validation-latest.json",
+  "historical_accepted": true,
+  "superseded_by": "../interface-validation-latest.json",
   "identity": {
-    "export_manifest_sha256": "d8765307a0f97ba5a55e59d33e5fc749bb86cbd5d037166dee172d5dbf6370fb",
-    "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
-    "export_inputs": {
-      "files": {
-        "parts/vision_pro_light_seal_13w.py": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
-        "measurements.toml": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
-        "references/export_identity.py": "82ee2821e7ca9e8368d4c3dff44b8211ead1862164c81c280aade9284646b567"
-      },
-      "runtime_versions": {
-        "nurb": "0.26.0",
-        "build123d": "0.11.1",
-        "cadquery-ocp": "unavailable",
-        "cadquery-ocp-novtk": "7.9.3.1.1",
-        "cadquery-ocp-proxy": "7.9.3.1.1",
-        "trimesh": "4.12.2",
-        "numpy": "2.5.1",
-        "scipy": "1.18.0",
-        "lib3mf": "2.5.0",
-        "python": "3.13.5",
-        "OCP_module": "7.9.3.1"
-      },
-      "nurb_source_sha256": "5e28d98c7601b39968fc7eae79c09ebcabdf7e57aa59ecb4a076f08b8b5663bb"
-    },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
-    "card_sha256": "46d88ed6a0e24fdc398586641ec422256b5f3a6d07b6666afc8ae7899bee9ed6",
     "validator": "references/validate_interfaces.py",
-    "validator_sha256": "7056a15b10aaf588b5086ccb5cb0d75649678c7ff07fe1c9bcf74da11f1e5783",
+    "validator_sha256": "998a4b2cacb536ae39a80a9517780b444e33d9ee930beb199859d30c18f769ea",
     "measurements": "measurements.toml",
-    "measurements_sha256": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
+    "measurements_sha256": "88a91f8ab34c32fb970a7a5b1bc84b762acd55f1cf5bb463af5c76cfd0fa1b2a",
     "step": "build/vision_pro_light_seal_13w.step",
     "step_canonical_sha256": "25bd3f21c83a8baf1670e3782cf33e3c69c2351c02778ee2c6a1417ed1a532f6",
-    "stl_sha256": "22ef36f3899113e0ee4cb7b0df21ccbe25aba67c46e56003c4e2209aac6ee3cf",
-    "three_mf_canonical_sha256": "0b4a2ff892ef47b0c6ac5a3060592ef5375d7b0f84dcb76c9f393cea7c1a70ad",
+    "stl_sha256": "f66089f872ce9e0b508214171e4051985c8835f5e5e3af9752777f6e57368747",
+    "three_mf_canonical_sha256": "f01ef90490e295f0f4684b4c012bbefda3f08526f12a80ce2e1d820120776780",
     "export_hash_normalization": "STEP generation timestamp and 3MF production UUIDs are normalized; STL is hashed byte-for-byte.",
     "reference": "scans/vision-pro-light-seal-13w-reference.glb",
     "reference_sha256": "f26fc3c4e32088b57fd4a8d0da727061448159138239da0fbd78c7f509d835e9",
@@ -46,7 +23,6 @@
     "narrow_sections_sha256": "ede9639baa040bd60711999f2fb52714a7866b3cc62dbfea210fef1b977bbecd",
     "narrow_samples_sha256": "e70b33ac26971debf6aadbd819b79ce87472667b8577e43b391ec9d83465ebe1",
     "pocket_measurements_sha256": "e10e198fd77458c271a5b4d764163706a422ca09573b4eec5999b4c8393db3f9",
-    "broad_seating_measurements_sha256": "2f967aca47f6b3dac865e3b3185239755e6718a8668a3ddaf1e1b2cce58f83ed",
     "parameters": {
       "wall_mm": 1.8,
       "headset_fit_offset_mm": 0.0,
@@ -66,8 +42,7 @@
       "cushion_opening_p95_mm": 0.05,
       "cushion_pair_mirror_p95_mm": 0.025
     },
-    "acceptance_thresholds_sha256": "8221c34427d50efbea10daf76c74733e20acc6cacfee51a3084600f5ef502447",
-    "independent_scan_evaluator_sha256": "864de853b11053712ca1b325d571d22f60710d7323419ad309e0884000606e61"
+    "acceptance_thresholds_sha256": "8221c34427d50efbea10daf76c74733e20acc6cacfee51a3084600f5ef502447"
   },
   "validation": {
     "method": "Intersect the final exported STEP with the four retained local planes. Compare the exact B-rep contour independently with each available aligned scan-side contour; no nearest-side pooling is allowed.",
@@ -372,5 +347,15 @@
     ],
     "accepted": true
   },
-  "scope": "Overall expanded acceptance gates this compatibility path; historical limited acceptance is archived in historical/."
+  "finished_trimmed_cad_symmetry": {
+    "plane": "CAD X=0",
+    "method": "Reflect samples from every final trim edge and every trimmed face interior, then measure to the final exported STEP boundary shell. Pocket holes are included because this samples the post-boolean body.",
+    "edge_samples": 994,
+    "trimmed_face_samples": 2334,
+    "maximum_edge_reflection_error_mm": 5.422133191303748e-07,
+    "maximum_trimmed_face_reflection_error_mm": 1.7425176648966536e-11,
+    "threshold_mm": 1e-05,
+    "accepted": true
+  },
+  "physical_fit_verified": false
 }

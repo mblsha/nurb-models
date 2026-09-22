@@ -4,7 +4,7 @@
   "id": "5c92349b11934ba8cc2f67d32afa2fe5",
   "name": "Broad cushion seat right",
   "part": "vision_pro_light_seal_13w",
-  "created_at": "2026-09-22T01:19:55.125526+00:00",
+  "created_at": "2026-09-22T01:50:50.426370+00:00",
   "view": {
     "camera": {
       "position_mm": [
@@ -64,11 +64,13 @@
     "deviation_auto": false,
     "deviation_through": true,
     "pins": false,
-    "symmetry_plane": false
+    "symmetry_plane": false,
+    "section_source": "preview",
+    "verification_policy": null
   },
   "identity": {
     "geometry": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
-    "source_revision": "cde276827ce7c2c155a938ebe8cbd504e1b20367d5950e8e51f0dab1ed35a9c7",
+    "source_revision": "e5bab52680b90e5a9b3ddd405303a7addf11e15adaa7149a6edcec409fb7ff79",
     "reference": {
       "file": "scans/vision-pro-light-seal-13w-reference.glb",
       "content": "a7dc334a3ea19e47ecfef9150c2e09b5205cbbb03690181bc88191669595f8b3",
@@ -241,7 +243,7 @@
       }
     },
     "draft": false,
-    "token": "58607fdcea492c24a35f72e48dc1b6f318d24fa9e94483ceb8a6bc11df37de7d"
+    "token": "06fa7f01aebe65cafe48d99d9161ccf467e64882ba48412031d8785e3eafe6d8"
   },
   "configuration": {
     "name": "default",

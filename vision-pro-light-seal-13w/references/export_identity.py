@@ -5,11 +5,13 @@ import hashlib
 import importlib.metadata
 import json
 import re
+import sys
 import tempfile
 import zipfile
 from pathlib import Path
 
 import lib3mf
+import OCP
 import trimesh
 from build123d import Mesher, export_step, import_step
 from nurb import builder, feature_evidence
@@ -40,12 +42,39 @@ def export_digest(path):
 def inputs():
     files = [PART, ROOT / "measurements.toml", Path(__file__).resolve()]
     versions = {}
-    for package in ("nurb", "build123d", "cadquery-ocp", "trimesh"):
+    for package in ("nurb", "build123d", "cadquery-ocp", "cadquery-ocp-novtk", "cadquery-ocp-proxy", "trimesh", "numpy", "scipy", "lib3mf"):
         try:
             versions[package] = importlib.metadata.version(package)
         except importlib.metadata.PackageNotFoundError:
             versions[package] = "unavailable"
-    return {"files": {str(path.relative_to(ROOT)): digest(path) for path in files}, "runtime_versions": versions}
+    versions["python"] = sys.version.split()[0]
+    versions["OCP_module"] = getattr(OCP, "__version__", "unavailable")
+    return {"files": {str(path.relative_to(ROOT)): digest(path) for path in files},
+            "runtime_versions": versions, "nurb_source_sha256": nurb_source_digest()}
+
+
+def nurb_source_digest(root=None):
+    """Versions alone cannot identify an editable engine installation."""
+    root = Path(root) if root is not None else Path(builder.__file__).resolve().parent
+    content = hashlib.sha256()
+    for path in sorted(root.rglob("*")):
+        if path.is_file() and path.suffix in (".py", ".toml") and "__pycache__" not in path.parts:
+            content.update(path.relative_to(root).as_posix().encode())
+            content.update(b"\0")
+            content.update(path.read_bytes())
+            content.update(b"\0")
+    return content.hexdigest()
+
+
+def export_snapshot():
+    """Raw byte identities detect replacements even when normalized geometry agrees."""
+    paths = [MANIFEST, *(ROOT / "build" / (NAME + suffix) for suffix in (".step", ".stl", ".3mf"))]
+    return {str(path.relative_to(ROOT)): digest(path) for path in paths}
+
+
+def require_unchanged_exports(snapshot):
+    if export_snapshot() != snapshot:
+        raise RuntimeError("manifest or exports changed during validation; repeat validation")
 
 
 def build_current():
@@ -97,6 +126,7 @@ def prepare():
 def verify():
     if not MANIFEST.is_file():
         raise RuntimeError("exports have no build manifest; run python references/export_identity.py")
+    snapshot = export_snapshot()
     manifest = json.loads(MANIFEST.read_text())
     started_with = inputs()
     if manifest.get("schema_version") != 1 or manifest.get("inputs") != started_with:
@@ -110,6 +140,7 @@ def verify():
         raise RuntimeError("fresh source geometry differs from the exported geometry; regenerate exports")
     if inputs() != started_with:
         raise RuntimeError("source changed during validation; repeat validation")
+    require_unchanged_exports(snapshot)
     return body, manifest
 
 
