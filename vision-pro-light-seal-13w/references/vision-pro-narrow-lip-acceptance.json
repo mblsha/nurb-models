@@ -1,9 +1,10 @@
 {
+  "kind": "nurb_validator_evidence",
   "status": "failed",
   "accepted": false,
   "current_report": "interface-validation-latest.json",
   "identity": {
-    "export_manifest_sha256": "5b65fcaeb58e5f3eb30501be1ce0c4ae95b6691851b4f3d2e179ce3e15c78596",
+    "export_manifest_sha256": "f6574bdb0e70befd757da45940f0948113907c0f39f9ab94db6e3aa4a58f362f",
     "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
     "export_inputs": {
       "files": {
@@ -24,13 +25,13 @@
         "python": "3.13.5",
         "OCP_module": "7.9.3.1"
       },
-      "nurb_source_sha256": "6a3f778a6759525a7de389b03c5239c666d427ad39c6874da95568659bbc0671"
+      "nurb_source_sha256": "7eb1350ba8e10f582e7a0f4a5e870d5bcf8042e006aec0520fa06936e225c1a4"
     },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
     "card_sha256": "94823a0b9adb0740f3f96b3fff727f7c3cd86e3247f1f1dcd96f211b4618481a",
     "validator": "references/validate_interfaces.py",
-    "validator_sha256": "9e2252feb3fb6cea124517e935c846032b9a8ca8dea63039b3d6d04bd797ee59",
+    "validator_sha256": "ce4609880d779479109d10db4e448b3a14d2f4efc1ec4c6e907ef357945a4273",
     "measurements": "measurements.toml",
     "measurements_sha256": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
     "step": "build/vision_pro_light_seal_13w.step",

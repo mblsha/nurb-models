@@ -639,6 +639,7 @@ def validate(write=True):
     accepted = not findings and all(result["accepted"] for result in (geometry, plane, trimmed, narrow, cushion))
     require_unchanged_inputs(started_with)
     result = {
+        "kind": "nurb_validator_evidence",
         "status": "accepted" if accepted else "failed",
         "accepted": accepted,
         "findings": findings,
@@ -702,6 +703,7 @@ def validate(write=True):
     }
     if write:
         if construction_accepted:
+            raw_scan["kind"] = "nurb_validator_evidence"
             raw_scan["identity"] = result["identity"]
             (REFERENCES / "independent-scan-validation.json").write_text(json.dumps(raw_scan, indent=2) + "\n")
             independent.write_summary(raw_scan)
@@ -711,13 +713,14 @@ def validate(write=True):
 
 def publish_current(result):
     """Every discoverable current path reflects failure immediately; history is separate."""
+    result = {"kind": "nurb_validator_evidence", **result}
     encoded = json.dumps(result, indent=2) + "\n"
     for name in ("interface-validation-latest.json", "interface-validation.json"):
         path = REFERENCES / name
         temporary = path.with_suffix(".tmp")
         temporary.write_text(encoded)
         temporary.replace(path)
-    narrow = {"status": result["status"], "accepted": result.get("accepted") is True,
+    narrow = {"kind": "nurb_validator_evidence", "status": result["status"], "accepted": result.get("accepted") is True,
               "current_report": "interface-validation-latest.json",
               "identity": result.get("identity"), "validation": result.get("narrow_vision_pro_interface"),
               "scope": "Overall expanded acceptance gates this compatibility path; historical limited acceptance is archived in historical/."}

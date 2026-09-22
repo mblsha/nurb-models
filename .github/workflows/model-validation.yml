@@ -90,6 +90,7 @@ jobs:
           for project, part, expected_count in (("neewer-gm-mp2", "neewer_macro_slide_gm_mp2", 7), (root, "vision_pro_light_seal_13w", 12)):
               listed = subprocess.run([python, "-m", "nurb.cli", "inspection", part, "--list", "--json"], cwd=project, check=True, text=True, stdout=subprocess.PIPE)
               setups = json.loads(listed.stdout)["setups"]
-              if len(setups) != expected_count or any(item["status"] != "current" or item["changed"] for item in setups):
-                  raise SystemExit(f"{project} saved inspections are missing or stale")
+              stale = [item for item in setups if item["status"] != "current" or item["changed"]]
+              if len(setups) != expected_count or stale:
+                  raise SystemExit(f"{project} saved inspections are missing or stale: {json.dumps(stale, sort_keys=True)}")
           PY
