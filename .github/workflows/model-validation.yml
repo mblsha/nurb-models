@@ -24,7 +24,9 @@ jobs:
         with:
           enable-cache: true
 
-      - run: uv sync --project .nurb-engine --locked --all-extras --dev
+      - run: uv python install 3.13.5
+
+      - run: uv sync --project .nurb-engine --python 3.13.5 --locked --all-extras --dev
 
       - name: Run evidence mutation suites
         env:
@@ -54,7 +56,9 @@ jobs:
         with:
           enable-cache: true
 
-      - run: uv sync --project .nurb-engine --locked --all-extras --dev
+      - run: uv python install 3.13.5
+
+      - run: uv sync --project .nurb-engine --python 3.13.5 --locked --all-extras --dev
 
       - name: Require accepted Neewer reconstruction
         working-directory: neewer-gm-mp2
