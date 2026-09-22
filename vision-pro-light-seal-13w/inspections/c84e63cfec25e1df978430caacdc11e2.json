@@ -69,8 +69,8 @@
     "verification_policy": null
   },
   "identity": {
-    "geometry": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
-    "source_revision": "7593b19f1059402606a6770e7f055c85e56221606fb7b2e6a8c01da6853cd4cb",
+    "geometry": "7581882947de80e3a6ae85a4196ac570be3189beb0e651261669f5a4f2339e28",
+    "source_revision": "e1780128bbd4536fbb2e42c88061151b6cd95fb8c0f9f01699fd19633fae549c",
     "reference": {
       "file": "scans/vision-pro-light-seal-13w-reference.glb",
       "content": "a7dc334a3ea19e47ecfef9150c2e09b5205cbbb03690181bc88191669595f8b3",
@@ -176,7 +176,7 @@
       }
     },
     "draft": false,
-    "token": "324bd9649b8edf608b5fe258e4ca6839439f20fdc8a187d69919f478271b635a"
+    "token": "1d3e7de6fe1b972c8f4748ccbd65366a332410b3a4556ce268f090a807955aba"
   },
   "configuration": {
     "name": "default",

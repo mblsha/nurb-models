@@ -28,6 +28,9 @@ jobs:
 
       - run: uv sync --project .nurb-engine --python 3.13.5 --locked --all-extras --dev
 
+      - name: Prepare Light Seal export fixtures
+        run: "$GITHUB_WORKSPACE/.nurb-engine/.venv/bin/python vision-pro-light-seal-13w/references/export_identity.py > /tmp/light-seal-export-manifest.json"
+
       - name: Run evidence mutation suites
         env:
           OPTIMIZE: ${{ matrix.optimize }}

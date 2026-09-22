@@ -8,7 +8,7 @@
     }
   ],
   "identity": {
-    "export_manifest_sha256": "1134689b870f00ac68b5673dd0cf08170005317aeaf103808c114a3534846c85",
+    "export_manifest_sha256": "5b65fcaeb58e5f3eb30501be1ce0c4ae95b6691851b4f3d2e179ce3e15c78596",
     "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
     "export_inputs": {
       "files": {
@@ -29,7 +29,7 @@
         "python": "3.13.5",
         "OCP_module": "7.9.3.1"
       },
-      "nurb_source_sha256": "429ec92c106a3834a67da5d06fcdcce49bab8a4e2c996f6f4b67c683ea010cfe"
+      "nurb_source_sha256": "6a3f778a6759525a7de389b03c5239c666d427ad39c6874da95568659bbc0671"
     },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
@@ -96,9 +96,9 @@
         "parts/vision_pro_light_seal_13w.py": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
         "parts/vision_pro_light_seal_13w.md": "94823a0b9adb0740f3f96b3fff727f7c3cd86e3247f1f1dcd96f211b4618481a",
         "measurements.toml": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
-        "build/vision_pro_light_seal_13w.step": "951497a52103c9ccccdee49f5284415598021dadc441181351c1ca75347c2635",
+        "build/vision_pro_light_seal_13w.step": "1dc89e703efce405f3cec78e4c7fbb31c4f71dca24a69f940823b48ef37bd4db",
         "build/vision_pro_light_seal_13w.stl": "22ef36f3899113e0ee4cb7b0df21ccbe25aba67c46e56003c4e2209aac6ee3cf",
-        "build/vision_pro_light_seal_13w.3mf": "792c8470c2431df2129a08912e90de75f6844ac134409af9547dc91c9a583e93",
+        "build/vision_pro_light_seal_13w.3mf": "257a8eb36b26e88bf15e76a0b88a4ec4eeb6e252a6fed87f561d556e69a7535f",
         "scans/vision-pro-light-seal-13w-reference.glb": "f26fc3c4e32088b57fd4a8d0da727061448159138239da0fbd78c7f509d835e9",
         "references/alignment.json": "440888d55426c632fcb04b4f69c2940fcecb7daa9e416bbcdc3013eb3738faff",
         "references/vision-pro-narrow-reference-sections.json": "ede9639baa040bd60711999f2fb52714a7866b3cc62dbfea210fef1b977bbecd",
@@ -108,7 +108,7 @@
         "references/export_identity.py": "82ee2821e7ca9e8368d4c3dff44b8211ead1862164c81c280aade9284646b567",
         "references/independent_scan_evidence.py": "864de853b11053712ca1b325d571d22f60710d7323419ad309e0884000606e61",
         "references/face-cushion-wide-seating-measurements.json": "2f967aca47f6b3dac865e3b3185239755e6718a8668a3ddaf1e1b2cce58f83ed",
-        "build/export-manifest.json": "1134689b870f00ac68b5673dd0cf08170005317aeaf103808c114a3534846c85"
+        "build/export-manifest.json": "5b65fcaeb58e5f3eb30501be1ce0c4ae95b6691851b4f3d2e179ce3e15c78596"
       },
       "runtime_versions": {
         "OCP_module": "7.9.3.1",
@@ -123,7 +123,7 @@
         "scipy": "1.18.0",
         "trimesh": "4.12.2"
       },
-      "nurb_source_sha256": "429ec92c106a3834a67da5d06fcdcce49bab8a4e2c996f6f4b67c683ea010cfe"
+      "nurb_source_sha256": "6a3f778a6759525a7de389b03c5239c666d427ad39c6874da95568659bbc0671"
     }
   },
   "geometry_validity": {
