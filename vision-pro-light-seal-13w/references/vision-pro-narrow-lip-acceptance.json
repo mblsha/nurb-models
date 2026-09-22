@@ -3,7 +3,7 @@
   "accepted": false,
   "current_report": "interface-validation-latest.json",
   "identity": {
-    "export_manifest_sha256": "487bb9c156a7882ea28bfb0f892ba3956bf7e99fabc82be9af62df21f64d7a94",
+    "export_manifest_sha256": "3b961c376353eb565682a6dfd44699abaecade22ddba0e104e6d2caa067b7c73",
     "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
     "export_inputs": {
       "files": {
@@ -24,7 +24,7 @@
         "python": "3.13.5",
         "OCP_module": "7.9.3.1"
       },
-      "nurb_source_sha256": "bae4708fb79becfa67ab1e8030ebb4ebf3469ca88cf641547d35cb40487fccc3"
+      "nurb_source_sha256": "eeb83e2ab07a9c4b128ecb72d3b694362c5dc29b676a47113c6e28d65546581b"
     },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",

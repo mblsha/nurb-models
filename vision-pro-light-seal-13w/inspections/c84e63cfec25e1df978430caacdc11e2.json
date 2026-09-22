@@ -4,7 +4,7 @@
   "id": "c84e63cfec25e1df978430caacdc11e2",
   "name": "P1 cushion opening right",
   "part": "vision_pro_light_seal_13w",
-  "created_at": "2026-09-22T02:55:38.515611+00:00",
+  "created_at": "2026-09-22T03:01:44.678635+00:00",
   "view": {
     "camera": {
       "position_mm": [
@@ -70,7 +70,7 @@
   },
   "identity": {
     "geometry": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
-    "source_revision": "ddb11a06fa4e6cddd7dd84b3036bde31091e03523d72b64b8206d5181b33725d",
+    "source_revision": "a56a6344fde4aaffae3aa083771a505941ffd41fb1393d2b70d3464e60f56bc7",
     "reference": {
       "file": "scans/vision-pro-light-seal-13w-reference.glb",
       "content": "a7dc334a3ea19e47ecfef9150c2e09b5205cbbb03690181bc88191669595f8b3",
@@ -176,7 +176,7 @@
       }
     },
     "draft": false,
-    "token": "465af226f12c83fb6aad01cec763e5ec33722c5a71bf24f1830e292b5ef76c27"
+    "token": "4e074a83c8ba5085cae6d8ea02f1140eedf9b4f54f1c5125badb9e6e97ba36a7"
   },
   "configuration": {
     "name": "default",
