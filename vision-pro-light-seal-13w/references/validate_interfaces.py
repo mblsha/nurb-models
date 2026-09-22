@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import ast
+import importlib.util
 import hashlib
 import json
 import re
@@ -47,6 +48,7 @@ THRESHOLDS = {
     "cushion_pair_mirror_p95_mm": 0.025,
 }
 STATION_LABELS = {"0": "forehead", "5": "temple", "8": "cheek", "11": "nose"}
+REQUIRED_SCAN_SIDES = {"0": ("right",), "5": ("right", "left"), "8": ("right", "left"), "11": ("right",)}
 
 
 def sha256(path):
@@ -288,6 +290,8 @@ def validate_narrow_interface(body, narrow_data, profile_data):
         for side in ("right", "left"):
             scan_paths = narrow_side_paths(narrow_data, profile_data, station, side)
             if scan_paths is None:
+                if side in REQUIRED_SCAN_SIDES[station]:
+                    sides.append({"scan_side": side, "accepted": False, "error": "required retained scan side is missing"})
                 continue
             scan_points = sample_paths(scan_paths)
             complete = masked_bidirectional(cad_points, scan_points, 0.0, 5.5)
@@ -568,6 +572,17 @@ def collect_findings(geometry, plane, trimmed, narrow, cushion):
 
 
 def validate(write=True):
+    watched = (PART, MEASUREMENTS, STEP, STL, THREE_MF, REFERENCE, ALIGNMENT,
+               NARROW_SECTIONS, NARROW_SAMPLES, POCKETS, VALIDATOR,
+               REFERENCES / "export_identity.py", REFERENCES / "independent_scan_evidence.py",
+               REFERENCES / "face-cushion-wide-seating-measurements.json")
+    started_with = {path: sha256(path) for path in watched}
+    spec = importlib.util.spec_from_file_location("lightseal_export_identity", REFERENCES / "export_identity.py")
+    exports = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(exports)
+    if exports.PART.resolve() != PART.resolve() or exports.ROOT.resolve() != ROOT.resolve():
+        raise RuntimeError("interface source and export-manifest project disagree")
+    current_body, manifest = exports.verify()
     for path in (PART, MEASUREMENTS, STEP, STL, THREE_MF, REFERENCE, ALIGNMENT, NARROW_SECTIONS, NARROW_SAMPLES, POCKETS):
         if not path.is_file():
             raise FileNotFoundError(path)
@@ -583,13 +598,28 @@ def validate(write=True):
     trimmed = validate_trimmed_symmetry(body)
     narrow = validate_narrow_interface(body, narrow_data, profile_data)
     cushion = validate_cushion_openings(body, pocket_data)
+    scan_spec = importlib.util.spec_from_file_location("lightseal_independent_scan", REFERENCES / "independent_scan_evidence.py")
+    independent = importlib.util.module_from_spec(scan_spec)
+    scan_spec.loader.exec_module(independent)
+    aligned_mesh = reference_mesh.copy()
+    aligned_mesh.apply_transform(np.asarray(alignment["old_glb_to_symmetric_cad"]))
     findings = collect_findings(geometry, plane, trimmed, narrow, cushion)
+    construction_accepted = not findings and all(result["accepted"] for result in (geometry, plane, trimmed, narrow, cushion))
+    raw_scan = (independent.evaluate(body, aligned_mesh, pocket_data, narrow_data, profile_data, finished_opening)
+                if construction_accepted else {"status": "not_evaluated", "reason": "Earlier geometry or retained-interface requirement failed."})
+    if construction_accepted and raw_scan["status"] != "within_scan_uncertainty":
+        findings.append({"code": "reference.independent_scan_review", "message": "new independent per-side or between-station evidence is outside the declared uncertainty or unresolved; inspect independent-scan-validation.json"})
     accepted = not findings and all(result["accepted"] for result in (geometry, plane, trimmed, narrow, cushion))
+    if any(sha256(path) != digest for path, digest in started_with.items()):
+        raise RuntimeError("validation inputs changed while inspecting; repeat validation")
     result = {
         "status": "accepted" if accepted else "failed",
         "accepted": accepted,
         "findings": findings,
         "identity": {
+            "export_manifest_sha256": sha256(exports.MANIFEST),
+            "fresh_built_geometry_sha256": manifest["built_geometry_sha256"],
+            "export_inputs": manifest["inputs"],
             "model_source": str(PART.relative_to(ROOT)),
             "model_source_sha256": sha256(PART),
             "validator": str(VALIDATOR.relative_to(ROOT)),
@@ -609,20 +639,26 @@ def validate(write=True):
             "narrow_sections_sha256": sha256(NARROW_SECTIONS),
             "narrow_samples_sha256": sha256(NARROW_SAMPLES),
             "pocket_measurements_sha256": sha256(POCKETS),
+            "broad_seating_measurements_sha256": sha256(REFERENCES / "face-cushion-wide-seating-measurements.json"),
             "parameters": parameters,
             "parameters_sha256": json_hash(parameters),
             "acceptance_thresholds": THRESHOLDS,
             "acceptance_thresholds_sha256": json_hash(THRESHOLDS),
+            "independent_scan_evaluator_sha256": sha256(REFERENCES / "independent_scan_evidence.py"),
         },
         "geometry_validity": geometry,
+        "source_export_binding": {"accepted": True, "method": manifest["binding"]},
         "reference_symmetry_plane": plane,
         "finished_trimmed_cad_symmetry": trimmed,
         "narrow_vision_pro_interface": narrow,
         "face_cushion_openings": cushion,
+        "independent_scan_evidence": {"status": raw_scan["status"], "report": "references/independent-scan-validation.json"},
         "verification_classes": {
+            "construction_regression": "accepted" if construction_accepted else "failed",
+            "independent_scan_agreement": raw_scan["status"],
             "geometry_validity": ("accepted: final STEP is one valid solid; export topology remains checked by validate_reconstruction.py" if geometry["accepted"] else "failed: final STEP is not one valid solid"),
             "reference_alignment": ("accepted: stored symmetry plane independently verified from reference geometry" if plane["accepted"] else "failed: independent reference-plane verification exceeded its thresholds"),
-            "reconstruction_agreement": ("accepted: narrow scan sides evaluated separately; cushion openings tied to the scan-derived pair measurement and side-center uncertainty" if narrow["accepted"] and cushion["accepted"] else "failed: at least one interface requirement exceeded its threshold"),
+            "reconstruction_agreement": ("accepted: retained and independently re-extracted interfaces satisfy their requirements" if accepted else "not accepted: inspect current findings and independent scan evidence"),
             "finished_geometry_symmetry": ("accepted: post-boolean STEP trim edges and trimmed face interiors checked" if trimmed["accepted"] else "failed: finished STEP symmetry exceeded its threshold"),
             "physical_fit": "not verified",
         },
@@ -631,6 +667,12 @@ def validate(write=True):
             "excluded": "black nose-guard cloth, light-seal interior intricacies, deep lining shoulders, magnets, ribs, cosmetic seams, texture relief",
         },
     }
+    if write:
+        if construction_accepted:
+            raw_scan["identity"] = result["identity"]
+            (REFERENCES / "independent-scan-validation.json").write_text(json.dumps(raw_scan, indent=2) + "\n")
+            independent.write_summary(raw_scan)
+        (REFERENCES / "interface-validation-latest.json").write_text(json.dumps(result, indent=2) + "\n")
     if accepted and write:
         (REFERENCES / "interface-validation.json").write_text(json.dumps(result, indent=2) + "\n")
         narrow_acceptance = {

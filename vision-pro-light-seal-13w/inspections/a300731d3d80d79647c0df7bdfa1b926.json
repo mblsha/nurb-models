@@ -1,0 +1,271 @@
+{
+  "kind": "nurb_inspection_setup",
+  "schema_version": 1,
+  "id": "a300731d3d80d79647c0df7bdfa1b926",
+  "name": "P2 cushion opening left",
+  "part": "vision_pro_light_seal_13w",
+  "created_at": "2026-09-22T01:19:55.512446+00:00",
+  "view": {
+    "camera": {
+      "position_mm": [
+        -71.922,
+        -94.584,
+        -133.122
+      ],
+      "target_mm": [
+        -71.922,
+        15.416,
+        -23.122
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "zoom": 1.0,
+      "height_mm": 35.0
+    },
+    "viewport": [
+      1200,
+      900
+    ],
+    "mode": "overlay",
+    "hidden_components": [],
+    "section": {
+      "enabled": false,
+      "axis": "z",
+      "position_mm": null,
+      "fraction": 0.5,
+      "sign": 1
+    },
+    "alignment": [
+      0.9998502805779668,
+      -0.016453468760646264,
+      -0.005357218859038693,
+      0.24252042023653497,
+      0.016453468760646264,
+      0.9998646315492281,
+      -4.407571606593663e-05,
+      0.0,
+      0.005357218859038693,
+      -4.407571606593663e-05,
+      0.9999856490287387,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 1.0,
+    "region": "P2 cushion opening left",
+    "station": 0,
+    "deviation_scale_mm": 1.0,
+    "deviation_map": "both",
+    "deviation_auto": false,
+    "deviation_through": true,
+    "pins": false,
+    "symmetry_plane": false
+  },
+  "identity": {
+    "geometry": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
+    "source_revision": "cde276827ce7c2c155a938ebe8cbd504e1b20367d5950e8e51f0dab1ed35a9c7",
+    "reference": {
+      "file": "scans/vision-pro-light-seal-13w-reference.glb",
+      "content": "a7dc334a3ea19e47ecfef9150c2e09b5205cbbb03690181bc88191669595f8b3",
+      "units": "mm",
+      "display_scale": 1.0
+    },
+    "configuration": {
+      "name": "default",
+      "parameters": {
+        "wall_mm": 1.8,
+        "headset_fit_offset_mm": 0.0,
+        "cushion_fit_offset_mm": 0.0
+      }
+    },
+    "alignment": [
+      0.9998502805779668,
+      -0.016453468760646264,
+      -0.005357218859038693,
+      0.24252042023653497,
+      0.016453468760646264,
+      0.9998646315492281,
+      -4.407571606593663e-05,
+      0.0,
+      0.005357218859038693,
+      -4.407571606593663e-05,
+      0.9999856490287387,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 1.0,
+    "region": {
+      "name": "P2 cushion opening left",
+      "bounds_mm": {
+        "min": [
+          -80.922,
+          6.416,
+          -28.122
+        ],
+        "max": [
+          -62.922,
+          24.416,
+          -18.122
+        ]
+      },
+      "feature": {
+        "id": "cushion-p2-left",
+        "role": "shallow closed cushion attachment recess",
+        "configuration": "scan pose",
+        "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+        "symmetry_group": "cushion-p2",
+        "center_mm": [
+          -71.922,
+          15.416,
+          -23.122
+        ],
+        "reference_point_mm": [
+          -72.02393892999248,
+          16.60228896103116,
+          -22.735746518332594
+        ],
+        "required": [
+          "shallow closed cushion attachment recess"
+        ],
+        "excluded": [
+          "cosmetic texture",
+          "unobserved interior details"
+        ],
+        "links": [
+          "references/evidence.md"
+        ],
+        "uncertainty_mm": 0.4,
+        "feature_size_mm": 0.97,
+        "sections": [
+          {
+            "name": "floor_and_opening",
+            "origin_mm": [
+              -71.922,
+              15.416,
+              -23.122
+            ],
+            "normal": [
+              0.5376263604666963,
+              0.05570273117186567,
+              -0.8413412519729012
+            ],
+            "x_direction": [
+              0.20721373473609173,
+              0.9584869466887053,
+              0.195870470372856
+            ],
+            "offsets_mm": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "tolerance_mm": 0.0,
+            "expected": "Review source and CAD contours at the recorded uncertainty."
+          }
+        ]
+      }
+    },
+    "draft": false,
+    "token": "6c443ffa013b0e5052f6df7081797facee8261b04260146a9f99f00f67b66dab"
+  },
+  "configuration": {
+    "name": "default",
+    "parameters": {
+      "wall_mm": 1.8,
+      "headset_fit_offset_mm": 0.0,
+      "cushion_fit_offset_mm": 0.0
+    }
+  },
+  "region": {
+    "name": "P2 cushion opening left",
+    "bounds_mm": {
+      "min": [
+        -80.922,
+        6.416,
+        -28.122
+      ],
+      "max": [
+        -62.922,
+        24.416,
+        -18.122
+      ]
+    },
+    "feature": {
+      "id": "cushion-p2-left",
+      "role": "shallow closed cushion attachment recess",
+      "configuration": "scan pose",
+      "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+      "symmetry_group": "cushion-p2",
+      "center_mm": [
+        -71.922,
+        15.416,
+        -23.122
+      ],
+      "reference_point_mm": [
+        -72.02393892999248,
+        16.60228896103116,
+        -22.735746518332594
+      ],
+      "required": [
+        "shallow closed cushion attachment recess"
+      ],
+      "excluded": [
+        "cosmetic texture",
+        "unobserved interior details"
+      ],
+      "links": [
+        "references/evidence.md"
+      ],
+      "uncertainty_mm": 0.4,
+      "feature_size_mm": 0.97,
+      "sections": [
+        {
+          "name": "floor_and_opening",
+          "origin_mm": [
+            -71.922,
+            15.416,
+            -23.122
+          ],
+          "normal": [
+            0.5376263604666963,
+            0.05570273117186567,
+            -0.8413412519729012
+          ],
+          "x_direction": [
+            0.20721373473609173,
+            0.9584869466887053,
+            0.195870470372856
+          ],
+          "offsets_mm": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "tolerance_mm": 0.0,
+          "expected": "Review source and CAD contours at the recorded uncertainty."
+        }
+      ]
+    }
+  },
+  "verification": {
+    "comparison": {
+      "status": "unknown",
+      "reason": "No measurements for this view alignment and tolerance."
+    },
+    "precise": {},
+    "symmetry": {},
+    "features": [],
+    "printability": {
+      "findings": null,
+      "separate_from_reconstruction": true
+    }
+  }
+}

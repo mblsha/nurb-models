@@ -1,0 +1,405 @@
+{
+  "kind": "nurb_inspection_setup",
+  "schema_version": 1,
+  "id": "213e8ef2eac7c7295cdfb9bf11d00f5c",
+  "name": "Broad cushion seat left",
+  "part": "vision_pro_light_seal_13w",
+  "created_at": "2026-09-22T01:19:55.414312+00:00",
+  "view": {
+    "camera": {
+      "position_mm": [
+        -76.78049358295513,
+        -118.47515184832046,
+        -139.63323422960676
+      ],
+      "target_mm": [
+        -76.78049358295513,
+        -8.475151848320461,
+        -29.63323422960675
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "zoom": 1.0,
+      "height_mm": 35.0
+    },
+    "viewport": [
+      1200,
+      900
+    ],
+    "mode": "overlay",
+    "hidden_components": [],
+    "section": {
+      "enabled": false,
+      "axis": "z",
+      "position_mm": null,
+      "fraction": 0.5,
+      "sign": 1
+    },
+    "alignment": [
+      0.9998502805779668,
+      -0.016453468760646264,
+      -0.005357218859038693,
+      0.24252042023653497,
+      0.016453468760646264,
+      0.9998646315492281,
+      -4.407571606593663e-05,
+      0.0,
+      0.005357218859038693,
+      -4.407571606593663e-05,
+      0.9999856490287387,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 1.0,
+    "region": "Broad cushion seat left",
+    "station": 0,
+    "deviation_scale_mm": 1.0,
+    "deviation_map": "both",
+    "deviation_auto": false,
+    "deviation_through": true,
+    "pins": false,
+    "symmetry_plane": false
+  },
+  "identity": {
+    "geometry": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
+    "source_revision": "cde276827ce7c2c155a938ebe8cbd504e1b20367d5950e8e51f0dab1ed35a9c7",
+    "reference": {
+      "file": "scans/vision-pro-light-seal-13w-reference.glb",
+      "content": "a7dc334a3ea19e47ecfef9150c2e09b5205cbbb03690181bc88191669595f8b3",
+      "units": "mm",
+      "display_scale": 1.0
+    },
+    "configuration": {
+      "name": "default",
+      "parameters": {
+        "wall_mm": 1.8,
+        "headset_fit_offset_mm": 0.0,
+        "cushion_fit_offset_mm": 0.0
+      }
+    },
+    "alignment": [
+      0.9998502805779668,
+      -0.016453468760646264,
+      -0.005357218859038693,
+      0.24252042023653497,
+      0.016453468760646264,
+      0.9998646315492281,
+      -4.407571606593663e-05,
+      0.0,
+      0.005357218859038693,
+      -4.407571606593663e-05,
+      0.9999856490287387,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 1.0,
+    "region": {
+      "name": "Broad cushion seat left",
+      "bounds_mm": {
+        "min": [
+          -90.0,
+          -60.0,
+          -35.0
+        ],
+        "max": [
+          -0.001,
+          60.0,
+          25.0
+        ]
+      },
+      "feature": {
+        "id": "cushion-seat-left",
+        "role": "broad face-cushion seating surface",
+        "configuration": "scan pose",
+        "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+        "symmetry_group": "cushion-seat",
+        "center_mm": [
+          -76.78049358295513,
+          -8.475151848320461,
+          -29.63323422960675
+        ],
+        "reference_point_mm": [
+          -77.30967952949908,
+          -7.2054027193743435,
+          -29.219806272329556
+        ],
+        "required": [
+          "broad face-cushion seating surface"
+        ],
+        "excluded": [
+          "cosmetic texture",
+          "unobserved interior details"
+        ],
+        "links": [
+          "references/evidence.md"
+        ],
+        "uncertainty_mm": 0.75,
+        "feature_size_mm": 1.0,
+        "sections": [
+          {
+            "name": "seating_2",
+            "origin_mm": [
+              -54.7241800843544,
+              -37.81834908368992,
+              -7.769898454610021
+            ],
+            "normal": [
+              0.6941132751184002,
+              -0.3788206907256572,
+              0.6121287818609281
+            ],
+            "x_direction": [
+              0.1412854861708963,
+              0.9054888071419414,
+              0.40016050721943747
+            ],
+            "offsets_mm": [
+              0.0
+            ],
+            "tolerance_mm": 0.0,
+            "expected": "Review source and CAD contours at the recorded uncertainty."
+          },
+          {
+            "name": "seating_4",
+            "origin_mm": [
+              -76.78049358295513,
+              -8.475151848320461,
+              -29.63323422960675
+            ],
+            "normal": [
+              0.31749641778858756,
+              -0.9094260875475123,
+              0.268589307269369
+            ],
+            "x_direction": [
+              0.6064450946125913,
+              0.41248233232946335,
+              0.6797666310847948
+            ],
+            "offsets_mm": [
+              0.0
+            ],
+            "tolerance_mm": 0.0,
+            "expected": "Review source and CAD contours at the recorded uncertainty."
+          },
+          {
+            "name": "seating_6",
+            "origin_mm": [
+              -71.59915409605908,
+              22.49279338122959,
+              -23.381087010740508
+            ],
+            "normal": [
+              -0.5103349631641267,
+              -0.7303137733461589,
+              -0.4540925212257576
+            ],
+            "x_direction": [
+              0.5775070497286566,
+              -0.6822917051272003,
+              0.44828967936850933
+            ],
+            "offsets_mm": [
+              0.0
+            ],
+            "tolerance_mm": 0.0,
+            "expected": "Review source and CAD contours at the recorded uncertainty."
+          },
+          {
+            "name": "seating_8",
+            "origin_mm": [
+              -37.72490946217029,
+              35.10159632108494,
+              0.5678439182199853
+            ],
+            "normal": [
+              -0.9071841535877675,
+              -0.05298289997668995,
+              -0.41738438373914516
+            ],
+            "x_direction": [
+              0.1912401521915032,
+              -0.9355628845641362,
+              -0.2968994665131678
+            ],
+            "offsets_mm": [
+              0.0
+            ],
+            "tolerance_mm": 0.0,
+            "expected": "Review source and CAD contours at the recorded uncertainty."
+          }
+        ]
+      }
+    },
+    "draft": false,
+    "token": "c1fcecad7c90e867b19ef5d8b1c767d2fc1817434bf37070d09571c18d174e59"
+  },
+  "configuration": {
+    "name": "default",
+    "parameters": {
+      "wall_mm": 1.8,
+      "headset_fit_offset_mm": 0.0,
+      "cushion_fit_offset_mm": 0.0
+    }
+  },
+  "region": {
+    "name": "Broad cushion seat left",
+    "bounds_mm": {
+      "min": [
+        -90.0,
+        -60.0,
+        -35.0
+      ],
+      "max": [
+        -0.001,
+        60.0,
+        25.0
+      ]
+    },
+    "feature": {
+      "id": "cushion-seat-left",
+      "role": "broad face-cushion seating surface",
+      "configuration": "scan pose",
+      "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+      "symmetry_group": "cushion-seat",
+      "center_mm": [
+        -76.78049358295513,
+        -8.475151848320461,
+        -29.63323422960675
+      ],
+      "reference_point_mm": [
+        -77.30967952949908,
+        -7.2054027193743435,
+        -29.219806272329556
+      ],
+      "required": [
+        "broad face-cushion seating surface"
+      ],
+      "excluded": [
+        "cosmetic texture",
+        "unobserved interior details"
+      ],
+      "links": [
+        "references/evidence.md"
+      ],
+      "uncertainty_mm": 0.75,
+      "feature_size_mm": 1.0,
+      "sections": [
+        {
+          "name": "seating_2",
+          "origin_mm": [
+            -54.7241800843544,
+            -37.81834908368992,
+            -7.769898454610021
+          ],
+          "normal": [
+            0.6941132751184002,
+            -0.3788206907256572,
+            0.6121287818609281
+          ],
+          "x_direction": [
+            0.1412854861708963,
+            0.9054888071419414,
+            0.40016050721943747
+          ],
+          "offsets_mm": [
+            0.0
+          ],
+          "tolerance_mm": 0.0,
+          "expected": "Review source and CAD contours at the recorded uncertainty."
+        },
+        {
+          "name": "seating_4",
+          "origin_mm": [
+            -76.78049358295513,
+            -8.475151848320461,
+            -29.63323422960675
+          ],
+          "normal": [
+            0.31749641778858756,
+            -0.9094260875475123,
+            0.268589307269369
+          ],
+          "x_direction": [
+            0.6064450946125913,
+            0.41248233232946335,
+            0.6797666310847948
+          ],
+          "offsets_mm": [
+            0.0
+          ],
+          "tolerance_mm": 0.0,
+          "expected": "Review source and CAD contours at the recorded uncertainty."
+        },
+        {
+          "name": "seating_6",
+          "origin_mm": [
+            -71.59915409605908,
+            22.49279338122959,
+            -23.381087010740508
+          ],
+          "normal": [
+            -0.5103349631641267,
+            -0.7303137733461589,
+            -0.4540925212257576
+          ],
+          "x_direction": [
+            0.5775070497286566,
+            -0.6822917051272003,
+            0.44828967936850933
+          ],
+          "offsets_mm": [
+            0.0
+          ],
+          "tolerance_mm": 0.0,
+          "expected": "Review source and CAD contours at the recorded uncertainty."
+        },
+        {
+          "name": "seating_8",
+          "origin_mm": [
+            -37.72490946217029,
+            35.10159632108494,
+            0.5678439182199853
+          ],
+          "normal": [
+            -0.9071841535877675,
+            -0.05298289997668995,
+            -0.41738438373914516
+          ],
+          "x_direction": [
+            0.1912401521915032,
+            -0.9355628845641362,
+            -0.2968994665131678
+          ],
+          "offsets_mm": [
+            0.0
+          ],
+          "tolerance_mm": 0.0,
+          "expected": "Review source and CAD contours at the recorded uncertainty."
+        }
+      ]
+    }
+  },
+  "verification": {
+    "comparison": {
+      "status": "unknown",
+      "reason": "No measurements for this view alignment and tolerance."
+    },
+    "precise": {},
+    "symmetry": {},
+    "features": [],
+    "printability": {
+      "findings": null,
+      "separate_from_reconstruction": true
+    }
+  }
+}

@@ -32,10 +32,13 @@ def volume(shape):
 
 
 def main():
+    export_spec = importlib.util.spec_from_file_location("lightseal_export_identity", ROOT / "references" / "export_identity.py")
+    export_identity = importlib.util.module_from_spec(export_spec)
+    export_spec.loader.exec_module(export_identity)
+    body, export_manifest = export_identity.verify()
     spec = importlib.util.spec_from_file_location(NAME, ROOT / "parts" / f"{NAME}.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    body = module.vision_pro_light_seal_13w()
     step = import_step(ROOT / "build" / f"{NAME}.step")
     mesh = trimesh.load_mesh(ROOT / "build" / f"{NAME}.stl")
     with zipfile.ZipFile(ROOT / "build" / f"{NAME}.3mf") as package:
@@ -96,6 +99,7 @@ def main():
     require(interface_result.get("accepted") is True, "interface validation failed: " + "; ".join(finding["message"] for finding in interface_result.get("findings", [])))
     result = {
         "geometry": {"valid": True, "connected_solids": 1, "faces": len(body.faces()), "adaptive_volume_mm3": exact_volume, "exported_mesh_bounds_mm": mesh.bounds.tolist(), "exported_mesh_extents_mm": mesh.extents.tolist(), "stl_triangles": len(mesh.faces), "stl_watertight_components": 1, "step_reopened_valid": True, "three_mf_reopened_watertight": True},
+        "source_export_binding": {"accepted": True, "fresh_built_geometry_sha256": export_manifest["built_geometry_sha256"], "method": export_manifest["binding"]},
         "symmetry": {"plane": "X=0", "method": "reflect samples on all final trim edges and trimmed face interiors, then measure distance to final boundary shell", "edge_samples": len(edge_errors), "trimmed_face_samples": len(face_errors), "maximum_edge_reflection_error_mm": max(edge_errors), "maximum_trimmed_face_reflection_error_mm": max(face_errors), "scan_to_cad_transform": transform.tolist()},
         "face_cushion_pockets": {"count": len(floors), "type": "closed shallow obround recesses", "maximum_floor_center_boundary_error_mm": max(floors), "cutters_exactly_mirrored": True},
         "fit_parameter_sanity_builds": variants,

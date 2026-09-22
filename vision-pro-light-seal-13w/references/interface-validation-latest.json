@@ -1,0 +1,783 @@
+{
+  "status": "failed",
+  "accepted": false,
+  "findings": [
+    {
+      "code": "reference.independent_scan_review",
+      "message": "new independent per-side or between-station evidence is outside the declared uncertainty or unresolved; inspect independent-scan-validation.json"
+    }
+  ],
+  "identity": {
+    "export_manifest_sha256": "fa677026542d559c15f0e1719526298f31a28926c4da555f661e4e15ee61acda",
+    "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
+    "export_inputs": {
+      "files": {
+        "parts/vision_pro_light_seal_13w.py": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
+        "measurements.toml": "88a91f8ab34c32fb970a7a5b1bc84b762acd55f1cf5bb463af5c76cfd0fa1b2a",
+        "references/export_identity.py": "aa3e847388949c2a3d1c9cf3d30a33c5f7855f7925ab99c7d393cef377f5ac61"
+      },
+      "runtime_versions": {
+        "nurb": "0.26.0",
+        "build123d": "0.11.1",
+        "cadquery-ocp": "unavailable",
+        "trimesh": "4.12.2"
+      }
+    },
+    "model_source": "parts/vision_pro_light_seal_13w.py",
+    "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
+    "validator": "references/validate_interfaces.py",
+    "validator_sha256": "9cf847ca2d61397e72c26cd7c1caeb64d200ec8f8329285a7e449a3af2104654",
+    "measurements": "measurements.toml",
+    "measurements_sha256": "88a91f8ab34c32fb970a7a5b1bc84b762acd55f1cf5bb463af5c76cfd0fa1b2a",
+    "step": "build/vision_pro_light_seal_13w.step",
+    "step_canonical_sha256": "25bd3f21c83a8baf1670e3782cf33e3c69c2351c02778ee2c6a1417ed1a532f6",
+    "stl_sha256": "22ef36f3899113e0ee4cb7b0df21ccbe25aba67c46e56003c4e2209aac6ee3cf",
+    "three_mf_canonical_sha256": "0b4a2ff892ef47b0c6ac5a3060592ef5375d7b0f84dcb76c9f393cea7c1a70ad",
+    "export_hash_normalization": "STEP generation timestamp and 3MF production UUIDs are normalized; STL is hashed byte-for-byte.",
+    "reference": "scans/vision-pro-light-seal-13w-reference.glb",
+    "reference_sha256": "f26fc3c4e32088b57fd4a8d0da727061448159138239da0fbd78c7f509d835e9",
+    "reference_unit": "mm",
+    "reference_unit_source": "argument",
+    "alignment_sha256": "440888d55426c632fcb04b4f69c2940fcecb7daa9e416bbcdc3013eb3738faff",
+    "narrow_sections_sha256": "ede9639baa040bd60711999f2fb52714a7866b3cc62dbfea210fef1b977bbecd",
+    "narrow_samples_sha256": "e70b33ac26971debf6aadbd819b79ce87472667b8577e43b391ec9d83465ebe1",
+    "pocket_measurements_sha256": "e10e198fd77458c271a5b4d764163706a422ca09573b4eec5999b4c8393db3f9",
+    "broad_seating_measurements_sha256": "2f967aca47f6b3dac865e3b3185239755e6718a8668a3ddaf1e1b2cce58f83ed",
+    "parameters": {
+      "wall_mm": 1.8,
+      "headset_fit_offset_mm": 0.0,
+      "cushion_fit_offset_mm": 0.0
+    },
+    "parameters_sha256": "30f9ca2cebd20942e69898370bdb5ee87e31579de914e3f7325c9100ba9c6a28",
+    "acceptance_thresholds": {
+      "symmetry_plane_angle_deg": 0.05,
+      "symmetry_plane_offset_mm": 0.05,
+      "reference_reflection_p95_mm": 1.0,
+      "trimmed_cad_reflection_max_mm": 1e-05,
+      "narrow_complete_p95_mm": 0.35,
+      "narrow_lip_p95_mm": 0.3,
+      "narrow_projection_min_mm": 0.2,
+      "narrow_projection_max_mm": 0.65,
+      "narrow_shoulder_gain_min_mm": 1.0,
+      "cushion_opening_p95_mm": 0.05,
+      "cushion_pair_mirror_p95_mm": 0.025
+    },
+    "acceptance_thresholds_sha256": "8221c34427d50efbea10daf76c74733e20acc6cacfee51a3084600f5ef502447",
+    "independent_scan_evaluator_sha256": "864de853b11053712ca1b325d571d22f60710d7323419ad309e0884000606e61"
+  },
+  "geometry_validity": {
+    "accepted": true,
+    "reference_unit": "mm",
+    "step_valid": true,
+    "step_solids": 1
+  },
+  "source_export_binding": {
+    "accepted": true,
+    "method": "All exports were generated from this single fresh body. Every validation rebuilds current source and compares exact B-rep identity before accepting any export."
+  },
+  "reference_symmetry_plane": {
+    "method": "Geometry-only verification fit from deterministic area-weighted reference samples. The cloth/nose mask is excluded, positive-X samples are reflected with the stored plane, nearest opposite-side face centroids establish correspondences, and one robust paired-plane fit is compared with the stored plane.",
+    "mask": "Exclude abs(CAD X)<30, CAD Y>8, CAD Z<35; no texture threshold is used by this independent verification.",
+    "reference_faces_in_mask": 406873,
+    "positive_side_samples": 7368,
+    "paired_fit_samples": 5894,
+    "stored_plane": {
+      "normal_glb": [
+        0.9998502805779668,
+        -0.016453468760646267,
+        -0.005357218859038694
+      ],
+      "offset_glb_mm": -0.24252042023653497
+    },
+    "verification_fit": {
+      "normal_glb": [
+        0.9998508931607479,
+        -0.016439922828129894,
+        -0.005283974172874731
+      ],
+      "offset_glb_mm": -0.23655503816586082
+    },
+    "angle_difference_deg": 0.0042679208652621385,
+    "offset_difference_mm": 0.005965382070674152,
+    "stored_plane_reflection": {
+      "count": 7368,
+      "median_mm": 0.2181835991294771,
+      "p95_mm": 0.7779962984949144,
+      "max_mm": 3.7007566769154567
+    },
+    "verification_fit_reflection": {
+      "count": 7368,
+      "median_mm": 0.2182092630216145,
+      "p95_mm": 0.7708934649292218,
+      "max_mm": 3.7031733789942547
+    },
+    "thresholds": {
+      "maximum_angle_difference_deg": 0.05,
+      "maximum_offset_difference_mm": 0.05,
+      "maximum_reflection_p95_mm": 1.0
+    },
+    "accepted": true
+  },
+  "finished_trimmed_cad_symmetry": {
+    "plane": "CAD X=0",
+    "method": "Reflect samples from every final trim edge and every trimmed face interior, then measure to the final exported STEP boundary shell. Pocket holes are included because this samples the post-boolean body.",
+    "edge_samples": 994,
+    "trimmed_face_samples": 2334,
+    "maximum_edge_reflection_error_mm": 5.422133191303748e-07,
+    "maximum_trimmed_face_reflection_error_mm": 1.7425176648966536e-11,
+    "threshold_mm": 1e-05,
+    "accepted": true
+  },
+  "narrow_vision_pro_interface": {
+    "method": "Intersect the final exported STEP with the four retained local planes. Compare the exact B-rep contour independently with each available aligned scan-side contour; no nearest-side pooling is allowed.",
+    "thresholds": {
+      "complete_profile_bidirectional_p95_mm": 0.35,
+      "inverse_t_lip_bidirectional_p95_mm": 0.3,
+      "outer_projection_mm": [
+        0.2,
+        0.65
+      ],
+      "minimum_shoulder_gain_mm": 1.0
+    },
+    "stations": [
+      {
+        "station": 0,
+        "label": "forehead",
+        "cad_neck_width_mm_at_depth_1_6": 1.8212782598799566,
+        "cad_rim_width_mm_at_depth_3": 3.6492395374207875,
+        "cad_shoulder_gain_mm": 1.827961277540831,
+        "cad_outer_projection_mm": 0.44851579597784164,
+        "inverse_t_shape_accepted": true,
+        "scan_sides": [
+          {
+            "scan_side": "right",
+            "complete_profile": {
+              "depth_mm": [
+                0.0,
+                5.5
+              ],
+              "cad_to_scan": {
+                "count": 339,
+                "median_mm": 0.016754044856523046,
+                "p95_mm": 0.1277875535374063,
+                "max_mm": 0.16306560251176838
+              },
+              "scan_to_cad": {
+                "count": 366,
+                "median_mm": 0.01733391245921117,
+                "p95_mm": 0.1337640045346281,
+                "max_mm": 0.16345477461663596
+              }
+            },
+            "inverse_t_lip": {
+              "depth_mm": [
+                2.2,
+                4.2
+              ],
+              "cad_to_scan": {
+                "count": 125,
+                "median_mm": 0.025572052218846075,
+                "p95_mm": 0.06903840559386855,
+                "max_mm": 0.10886078552538503
+              },
+              "scan_to_cad": {
+                "count": 133,
+                "median_mm": 0.02595041906392333,
+                "p95_mm": 0.07553709337609638,
+                "max_mm": 0.11987847711263552
+              }
+            },
+            "accepted": true
+          }
+        ],
+        "accepted": true
+      },
+      {
+        "station": 5,
+        "label": "temple",
+        "cad_neck_width_mm_at_depth_1_6": 2.1013742166652345,
+        "cad_rim_width_mm_at_depth_3": 4.126667582650902,
+        "cad_shoulder_gain_mm": 2.0252933659856676,
+        "cad_outer_projection_mm": 0.3678122186022431,
+        "inverse_t_shape_accepted": true,
+        "scan_sides": [
+          {
+            "scan_side": "right",
+            "complete_profile": {
+              "depth_mm": [
+                0.0,
+                5.5
+              ],
+              "cad_to_scan": {
+                "count": 350,
+                "median_mm": 0.1060923040131248,
+                "p95_mm": 0.2534375141354807,
+                "max_mm": 0.5060219496564463
+              },
+              "scan_to_cad": {
+                "count": 354,
+                "median_mm": 0.09753552379670084,
+                "p95_mm": 0.22813597839693459,
+                "max_mm": 0.270384438897156
+              }
+            },
+            "inverse_t_lip": {
+              "depth_mm": [
+                2.2,
+                4.2
+              ],
+              "cad_to_scan": {
+                "count": 123,
+                "median_mm": 0.09470406328246733,
+                "p95_mm": 0.231730695122148,
+                "max_mm": 0.28479093887648665
+              },
+              "scan_to_cad": {
+                "count": 132,
+                "median_mm": 0.09228075896784656,
+                "p95_mm": 0.2181166453915489,
+                "max_mm": 0.24164464644752934
+              }
+            },
+            "accepted": true
+          },
+          {
+            "scan_side": "left",
+            "complete_profile": {
+              "depth_mm": [
+                0.0,
+                5.5
+              ],
+              "cad_to_scan": {
+                "count": 350,
+                "median_mm": 0.10784011188312767,
+                "p95_mm": 0.2703362485701954,
+                "max_mm": 0.3758018822229956
+              },
+              "scan_to_cad": {
+                "count": 357,
+                "median_mm": 0.10247780577538329,
+                "p95_mm": 0.24796641949570059,
+                "max_mm": 0.28997454830351804
+              }
+            },
+            "inverse_t_lip": {
+              "depth_mm": [
+                2.2,
+                4.2
+              ],
+              "cad_to_scan": {
+                "count": 123,
+                "median_mm": 0.10283453735161134,
+                "p95_mm": 0.21533845092985154,
+                "max_mm": 0.24971413866766912
+              },
+              "scan_to_cad": {
+                "count": 139,
+                "median_mm": 0.11196195000111551,
+                "p95_mm": 0.24976129870083236,
+                "max_mm": 0.27477407183038405
+              }
+            },
+            "accepted": true
+          }
+        ],
+        "accepted": true
+      },
+      {
+        "station": 8,
+        "label": "cheek",
+        "cad_neck_width_mm_at_depth_1_6": 2.128239698808776,
+        "cad_rim_width_mm_at_depth_3": 3.7020367663271188,
+        "cad_shoulder_gain_mm": 1.5737970675183428,
+        "cad_outer_projection_mm": 0.25713580816468906,
+        "inverse_t_shape_accepted": true,
+        "scan_sides": [
+          {
+            "scan_side": "right",
+            "complete_profile": {
+              "depth_mm": [
+                0.0,
+                5.5
+              ],
+              "cad_to_scan": {
+                "count": 335,
+                "median_mm": 0.08939271036998353,
+                "p95_mm": 0.2249955121556151,
+                "max_mm": 0.4571045227169568
+              },
+              "scan_to_cad": {
+                "count": 353,
+                "median_mm": 0.08868047373144472,
+                "p95_mm": 0.18946207563864428,
+                "max_mm": 0.2638590816935841
+              }
+            },
+            "inverse_t_lip": {
+              "depth_mm": [
+                2.2,
+                4.2
+              ],
+              "cad_to_scan": {
+                "count": 120,
+                "median_mm": 0.10745597674224416,
+                "p95_mm": 0.18915220383743273,
+                "max_mm": 0.27009594422389593
+              },
+              "scan_to_cad": {
+                "count": 132,
+                "median_mm": 0.11307298145511885,
+                "p95_mm": 0.1880658325850746,
+                "max_mm": 0.22501119577814263
+              }
+            },
+            "accepted": true
+          },
+          {
+            "scan_side": "left",
+            "complete_profile": {
+              "depth_mm": [
+                0.0,
+                5.5
+              ],
+              "cad_to_scan": {
+                "count": 335,
+                "median_mm": 0.08072936713043814,
+                "p95_mm": 0.17733707267661444,
+                "max_mm": 0.21297540514442037
+              },
+              "scan_to_cad": {
+                "count": 365,
+                "median_mm": 0.08094532310703598,
+                "p95_mm": 0.1801255011758004,
+                "max_mm": 0.2285539070326208
+              }
+            },
+            "inverse_t_lip": {
+              "depth_mm": [
+                2.2,
+                4.2
+              ],
+              "cad_to_scan": {
+                "count": 120,
+                "median_mm": 0.0971993329647803,
+                "p95_mm": 0.17685646591517573,
+                "max_mm": 0.1799078040318466
+              },
+              "scan_to_cad": {
+                "count": 140,
+                "median_mm": 0.10668547552443589,
+                "p95_mm": 0.19148464830594103,
+                "max_mm": 0.24533871648216424
+              }
+            },
+            "accepted": true
+          }
+        ],
+        "accepted": true
+      },
+      {
+        "station": 11,
+        "label": "nose",
+        "cad_neck_width_mm_at_depth_1_6": 1.8334543738228075,
+        "cad_rim_width_mm_at_depth_3": 3.3513722184889705,
+        "cad_shoulder_gain_mm": 1.517917844666163,
+        "cad_outer_projection_mm": 0.5500891084791872,
+        "inverse_t_shape_accepted": true,
+        "scan_sides": [
+          {
+            "scan_side": "right",
+            "complete_profile": {
+              "depth_mm": [
+                0.0,
+                5.5
+              ],
+              "cad_to_scan": {
+                "count": 342,
+                "median_mm": 0.019544097705538305,
+                "p95_mm": 0.06311767578935326,
+                "max_mm": 0.11689919520951993
+              },
+              "scan_to_cad": {
+                "count": 370,
+                "median_mm": 0.019843029665525945,
+                "p95_mm": 0.06597944517046773,
+                "max_mm": 0.13597113300760927
+              }
+            },
+            "inverse_t_lip": {
+              "depth_mm": [
+                2.2,
+                4.2
+              ],
+              "cad_to_scan": {
+                "count": 120,
+                "median_mm": 0.027600000546047734,
+                "p95_mm": 0.07438107085024162,
+                "max_mm": 0.11689919520951993
+              },
+              "scan_to_cad": {
+                "count": 133,
+                "median_mm": 0.029065281627112048,
+                "p95_mm": 0.08385377792485924,
+                "max_mm": 0.13597113300760927
+              }
+            },
+            "accepted": true
+          }
+        ],
+        "accepted": true
+      }
+    ],
+    "accepted": true
+  },
+  "face_cushion_openings": {
+    "method": "Extract the actual support-surface trim edges from the final STEP on each side and compare them bidirectionally in the measured pocket frame with the paired scan-derived obround contour. Separately enforce the recorded left/right scan-center disagreement against each feature's measurement uncertainty and compare the two finished trim loops after reflection.",
+    "thresholds": {
+      "opening_contour_bidirectional_p95_mm": 0.05,
+      "finished_pair_mirror_p95_mm": 0.025,
+      "scan_side_center_offset": "Feature-specific dimension_uncertainty_mm from face-cushion-wide-pockets.json"
+    },
+    "features": [
+      {
+        "id": "P1",
+        "label": "upper_inner",
+        "sides": [
+          {
+            "side": "positive_X",
+            "finished_trim_edges": 4,
+            "finished_bounds_mm": [
+              8.359862335635919,
+              4.080000000000286
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.36,
+              4.08
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 542,
+              "median_mm": 0.008907297043374496,
+              "p95_mm": 0.019734631533366905,
+              "max_mm": 0.021431144202648758
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009908312875899161,
+              "p95_mm": 0.018813282798251146,
+              "max_mm": 0.01989035444294678
+            },
+            "accepted": true
+          },
+          {
+            "side": "negative_X",
+            "finished_trim_edges": 4,
+            "finished_bounds_mm": [
+              8.359862335384097,
+              4.080000000001179
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.36,
+              4.08
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 542,
+              "median_mm": 0.008907297115259453,
+              "p95_mm": 0.0197346300480352,
+              "max_mm": 0.02143114438676987
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009908314707986365,
+              "p95_mm": 0.018813282845681734,
+              "max_mm": 0.019890354333071035
+            },
+            "accepted": true
+          }
+        ],
+        "finished_trim_mirror": {
+          "positive_to_negative": {
+            "count": 542,
+            "median_mm": 8.224590377521556e-09,
+            "p95_mm": 1.2859718430665346e-07,
+            "max_mm": 1.8265036871150275e-07
+          },
+          "negative_to_positive": {
+            "count": 542,
+            "median_mm": 8.224590377521556e-09,
+            "p95_mm": 1.2859718430665346e-07,
+            "max_mm": 1.8265036871150275e-07
+          },
+          "accepted": true
+        },
+        "separate_scan_side_center_half_difference_mm": [
+          0.323,
+          0.126,
+          0.031
+        ],
+        "separate_scan_side_center_offset_norm_mm": 0.3480890690613539,
+        "scan_dimension_uncertainty_mm": 0.4,
+        "scan_side_center_offset_accepted": true,
+        "accepted": true
+      },
+      {
+        "id": "P2",
+        "label": "upper_lateral_temple",
+        "sides": [
+          {
+            "side": "positive_X",
+            "finished_trim_edges": 4,
+            "finished_bounds_mm": [
+              8.839995425240875,
+              2.470000000001612
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.84,
+              2.47
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 520,
+              "median_mm": 0.00857030480484311,
+              "p95_mm": 0.019517314864728557,
+              "max_mm": 0.02136350366146328
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009907688326211361,
+              "p95_mm": 0.018794997995019123,
+              "max_mm": 0.01978136280369025
+            },
+            "accepted": true
+          },
+          {
+            "side": "negative_X",
+            "finished_trim_edges": 4,
+            "finished_bounds_mm": [
+              8.83999541554407,
+              2.4700000000000433
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.84,
+              2.47
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 520,
+              "median_mm": 0.00857030259821645,
+              "p95_mm": 0.019517317061787137,
+              "max_mm": 0.021363508893326166
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009907686391532167,
+              "p95_mm": 0.018794996530752138,
+              "max_mm": 0.01978136410715703
+            },
+            "accepted": true
+          }
+        ],
+        "finished_trim_mirror": {
+          "positive_to_negative": {
+            "count": 520,
+            "median_mm": 4.303087508685392e-08,
+            "p95_mm": 5.298922518168315e-07,
+            "max_mm": 6.28473630864613e-07
+          },
+          "negative_to_positive": {
+            "count": 520,
+            "median_mm": 4.303087508685392e-08,
+            "p95_mm": 5.298922518168315e-07,
+            "max_mm": 6.28473630864613e-07
+          },
+          "accepted": true
+        },
+        "separate_scan_side_center_half_difference_mm": [
+          0.132,
+          0.087,
+          0.021
+        ],
+        "separate_scan_side_center_offset_norm_mm": 0.15948040632002417,
+        "scan_dimension_uncertainty_mm": 0.4,
+        "scan_side_center_offset_accepted": true,
+        "accepted": true
+      },
+      {
+        "id": "P3",
+        "label": "lower_lateral",
+        "sides": [
+          {
+            "side": "positive_X",
+            "finished_trim_edges": 5,
+            "finished_bounds_mm": [
+              8.2099420779847,
+              2.5800000000050964
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.21,
+              2.58
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 493,
+              "median_mm": 0.008038534425714759,
+              "p95_mm": 0.017306832258260515,
+              "max_mm": 0.01885630167023944
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009926522770874122,
+              "p95_mm": 0.01885648644480841,
+              "max_mm": 0.019878148209494014
+            },
+            "accepted": true
+          },
+          {
+            "side": "negative_X",
+            "finished_trim_edges": 5,
+            "finished_bounds_mm": [
+              8.209856303983155,
+              2.5800000000050716
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.21,
+              2.58
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 496,
+              "median_mm": 0.008058290450821355,
+              "p95_mm": 0.01728721634606753,
+              "max_mm": 0.01885633815412424
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009844828212580925,
+              "p95_mm": 0.018795669156971083,
+              "max_mm": 0.019848894471382383
+            },
+            "accepted": true
+          }
+        ],
+        "finished_trim_mirror": {
+          "positive_to_negative": {
+            "count": 493,
+            "median_mm": 2.737291303510032e-07,
+            "p95_mm": 0.016992590825023485,
+            "max_mm": 0.01985139483389219
+          },
+          "negative_to_positive": {
+            "count": 496,
+            "median_mm": 2.7531261800282874e-07,
+            "p95_mm": 0.017117308454858073,
+            "max_mm": 0.01988693130901478
+          },
+          "accepted": true
+        },
+        "separate_scan_side_center_half_difference_mm": [
+          0.329,
+          0.019,
+          0.338
+        ],
+        "separate_scan_side_center_offset_norm_mm": 0.472065673397251,
+        "scan_dimension_uncertainty_mm": 0.5,
+        "scan_side_center_offset_accepted": true,
+        "accepted": true
+      },
+      {
+        "id": "P4",
+        "label": "lower_inner_forehead",
+        "sides": [
+          {
+            "side": "positive_X",
+            "finished_trim_edges": 4,
+            "finished_bounds_mm": [
+              8.309999719055055,
+              4.580000000006979
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.31,
+              4.58
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 552,
+              "median_mm": 0.009041686454948584,
+              "p95_mm": 0.022116384349119285,
+              "max_mm": 0.02413302804973696
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009914743332467878,
+              "p95_mm": 0.018856632999972412,
+              "max_mm": 0.01989618896393018
+            },
+            "accepted": true
+          },
+          {
+            "side": "negative_X",
+            "finished_trim_edges": 4,
+            "finished_bounds_mm": [
+              8.309999717339688,
+              4.580000000007148
+            ],
+            "scan_derived_measured_bounds_mm": [
+              8.31,
+              4.58
+            ],
+            "cad_to_scan_derived_contour": {
+              "count": 552,
+              "median_mm": 0.009041685287314355,
+              "p95_mm": 0.022116384233319866,
+              "max_mm": 0.024133027888992752
+            },
+            "scan_derived_contour_to_cad": {
+              "count": 600,
+              "median_mm": 0.009914743483684402,
+              "p95_mm": 0.018856634314091004,
+              "max_mm": 0.019896188614050767
+            },
+            "accepted": true
+          }
+        ],
+        "finished_trim_mirror": {
+          "positive_to_negative": {
+            "count": 552,
+            "median_mm": 2.2925704896656337e-09,
+            "p95_mm": 1.4334830879986835e-07,
+            "max_mm": 1.7296184013182052e-07
+          },
+          "negative_to_positive": {
+            "count": 552,
+            "median_mm": 2.2925704896656337e-09,
+            "p95_mm": 1.4334830879986835e-07,
+            "max_mm": 1.7296184013182052e-07
+          },
+          "accepted": true
+        },
+        "separate_scan_side_center_half_difference_mm": [
+          0.207,
+          0.015,
+          0.205
+        ],
+        "separate_scan_side_center_offset_norm_mm": 0.29171732893333574,
+        "scan_dimension_uncertainty_mm": 0.4,
+        "scan_side_center_offset_accepted": true,
+        "accepted": true
+      }
+    ],
+    "accepted": true,
+    "limitation": "The retained source measurement stores pair-averaged opening length and width plus separate side-center disagreement, not two independent raw opening polylines. Contour agreement therefore validates the final trimmed CAD against the scan-derived pair measurement; only the center offset is independently side-specific."
+  },
+  "independent_scan_evidence": {
+    "status": "needs_review",
+    "report": "references/independent-scan-validation.json"
+  },
+  "verification_classes": {
+    "construction_regression": "accepted",
+    "independent_scan_agreement": "needs_review",
+    "geometry_validity": "accepted: final STEP is one valid solid; export topology remains checked by validate_reconstruction.py",
+    "reference_alignment": "accepted: stored symmetry plane independently verified from reference geometry",
+    "reconstruction_agreement": "not accepted: inspect current findings and independent scan evidence",
+    "finished_geometry_symmetry": "accepted: post-boolean STEP trim edges and trimmed face interiors checked",
+    "physical_fit": "not verified"
+  },
+  "scope": {
+    "included": "small narrow Vision Pro inverse-T retaining lip; broad face-cushion seating side and eight shallow attachment openings",
+    "excluded": "black nose-guard cloth, light-seal interior intricacies, deep lining shoulders, magnets, ribs, cosmetic seams, texture relief"
+  }
+}
