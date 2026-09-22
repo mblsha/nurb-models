@@ -1,0 +1,259 @@
+{
+  "kind": "nurb_inspection_setup",
+  "schema_version": 1,
+  "id": "509f28f1723b8da52a54af2c4a0e2a4d",
+  "name": "bottom Arca plate",
+  "part": "neewer_macro_slide_gm_mp2",
+  "created_at": "2026-09-22T01:18:10.957850+00:00",
+  "view": {
+    "camera": {
+      "position_mm": [
+        178.375,
+        -87.9,
+        106.095
+      ],
+      "target_mm": [
+        103.375,
+        22.1,
+        6.095
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "zoom": 1.0,
+      "height_mm": 70.0
+    },
+    "viewport": [
+      1200,
+      900
+    ],
+    "mode": "overlay",
+    "hidden_components": [],
+    "section": {
+      "enabled": false,
+      "axis": "z",
+      "position_mm": null,
+      "fraction": 0.5,
+      "sign": 1
+    },
+    "alignment": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 0.75,
+    "region": "bottom Arca plate",
+    "station": 0,
+    "deviation_scale_mm": 1.0,
+    "deviation_map": "both",
+    "deviation_auto": false,
+    "deviation_through": true,
+    "pins": false,
+    "symmetry_plane": false
+  },
+  "identity": {
+    "geometry": "6981423178c2c1130af508a68d900fd672c8c08fe94b3f09dea4d2828f94ee3c",
+    "source_revision": "407d9b228c29d600c9aaf888a707d8fd0cb5608e0bdeab9716c5e86278b119bd",
+    "reference": {
+      "file": "scans/neewer-macro-slide-GM-MP2.ply.gz",
+      "content": "7875cab67bd5ff1ac9eb0976228970938f3f707a137d1675122555c925314838",
+      "units": "mm",
+      "display_scale": 1.0
+    },
+    "configuration": {
+      "name": "arca_0_deg",
+      "parameters": {
+        "arca_detent": 0,
+        "carriage_position_mm": 70.0
+      }
+    },
+    "alignment": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 0.75,
+    "region": {
+      "name": "bottom Arca plate",
+      "component": "bottom Arca plate",
+      "feature": {
+        "id": "bottom-plate",
+        "role": "male Arca contact flanks interrupted at folded-foot bays",
+        "configuration": "scan pose",
+        "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+        "center_mm": [
+          103.375,
+          22.1,
+          6.095
+        ],
+        "reference_point_mm": [
+          103.375,
+          22.1,
+          6.095
+        ],
+        "required": [
+          "male Arca contact flanks interrupted at folded-foot bays"
+        ],
+        "excluded": [
+          "cosmetic texture",
+          "unobserved interior details"
+        ],
+        "links": [
+          "references/evidence.md"
+        ],
+        "uncertainty_mm": 0.25,
+        "feature_size_mm": 0.5,
+        "sections": [
+          {
+            "name": "rail_stations",
+            "origin_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "x_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "offsets_mm": [
+              5.0,
+              10.0,
+              20.0,
+              31.75,
+              40.0,
+              100.0,
+              175.25,
+              185.0,
+              197.5,
+              202.0
+            ],
+            "tolerance_mm": 0.0,
+            "expected": "Review source and CAD contours at the recorded uncertainty."
+          }
+        ]
+      }
+    },
+    "draft": false,
+    "token": "20d32d6ddfe6b2071bbc7d5f123bc7de98fabbee1e6dda81050f43a31122026d"
+  },
+  "configuration": {
+    "name": "arca_0_deg",
+    "parameters": {
+      "arca_detent": 0,
+      "carriage_position_mm": 70.0
+    }
+  },
+  "region": {
+    "name": "bottom Arca plate",
+    "component": "bottom Arca plate",
+    "feature": {
+      "id": "bottom-plate",
+      "role": "male Arca contact flanks interrupted at folded-foot bays",
+      "configuration": "scan pose",
+      "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+      "center_mm": [
+        103.375,
+        22.1,
+        6.095
+      ],
+      "reference_point_mm": [
+        103.375,
+        22.1,
+        6.095
+      ],
+      "required": [
+        "male Arca contact flanks interrupted at folded-foot bays"
+      ],
+      "excluded": [
+        "cosmetic texture",
+        "unobserved interior details"
+      ],
+      "links": [
+        "references/evidence.md"
+      ],
+      "uncertainty_mm": 0.25,
+      "feature_size_mm": 0.5,
+      "sections": [
+        {
+          "name": "rail_stations",
+          "origin_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "x_direction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "offsets_mm": [
+            5.0,
+            10.0,
+            20.0,
+            31.75,
+            40.0,
+            100.0,
+            175.25,
+            185.0,
+            197.5,
+            202.0
+          ],
+          "tolerance_mm": 0.0,
+          "expected": "Review source and CAD contours at the recorded uncertainty."
+        }
+      ]
+    }
+  },
+  "verification": {
+    "comparison": {
+      "status": "unknown",
+      "reason": "No measurements for this view alignment and tolerance."
+    },
+    "precise": {},
+    "symmetry": {},
+    "features": [],
+    "printability": {
+      "findings": null,
+      "separate_from_reconstruction": true
+    }
+  }
+}

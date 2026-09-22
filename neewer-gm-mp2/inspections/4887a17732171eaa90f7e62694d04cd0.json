@@ -1,0 +1,245 @@
+{
+  "kind": "nurb_inspection_setup",
+  "schema_version": 1,
+  "id": "4887a17732171eaa90f7e62694d04cd0",
+  "name": "fixed top Arca clamp",
+  "part": "neewer_macro_slide_gm_mp2",
+  "created_at": "2026-09-22T01:18:10.988987+00:00",
+  "view": {
+    "camera": {
+      "position_mm": [
+        178.4,
+        -89.525,
+        137.8
+      ],
+      "target_mm": [
+        103.4,
+        20.475,
+        37.8
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "zoom": 1.0,
+      "height_mm": 70.0
+    },
+    "viewport": [
+      1200,
+      900
+    ],
+    "mode": "overlay",
+    "hidden_components": [],
+    "section": {
+      "enabled": false,
+      "axis": "z",
+      "position_mm": null,
+      "fraction": 0.5,
+      "sign": 1
+    },
+    "alignment": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 0.75,
+    "region": "fixed top Arca clamp",
+    "station": 0,
+    "deviation_scale_mm": 1.0,
+    "deviation_map": "both",
+    "deviation_auto": false,
+    "deviation_through": true,
+    "pins": false,
+    "symmetry_plane": false
+  },
+  "identity": {
+    "geometry": "6981423178c2c1130af508a68d900fd672c8c08fe94b3f09dea4d2828f94ee3c",
+    "source_revision": "407d9b228c29d600c9aaf888a707d8fd0cb5608e0bdeab9716c5e86278b119bd",
+    "reference": {
+      "file": "scans/neewer-macro-slide-GM-MP2.ply.gz",
+      "content": "7875cab67bd5ff1ac9eb0976228970938f3f707a137d1675122555c925314838",
+      "units": "mm",
+      "display_scale": 1.0
+    },
+    "configuration": {
+      "name": "arca_0_deg",
+      "parameters": {
+        "arca_detent": 0,
+        "carriage_position_mm": 70.0
+      }
+    },
+    "alignment": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 0.75,
+    "region": {
+      "name": "fixed top Arca clamp",
+      "component": "fixed top Arca clamp",
+      "feature": {
+        "id": "fixed-jaw",
+        "role": "fixed female Arca engagement flank",
+        "configuration": "scan pose",
+        "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+        "center_mm": [
+          103.4,
+          20.475,
+          37.8
+        ],
+        "reference_point_mm": [
+          103.4,
+          20.475,
+          37.8
+        ],
+        "required": [
+          "fixed female Arca engagement flank"
+        ],
+        "excluded": [
+          "cosmetic texture",
+          "unobserved interior details"
+        ],
+        "links": [
+          "references/evidence.md"
+        ],
+        "uncertainty_mm": 0.75,
+        "feature_size_mm": 0.5,
+        "sections": [
+          {
+            "name": "jaw_stations",
+            "origin_mm": [
+              103.4,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "x_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "offsets_mm": [
+              -18.0,
+              0.0,
+              18.0
+            ],
+            "tolerance_mm": 0.0,
+            "expected": "Review source and CAD contours at the recorded uncertainty."
+          }
+        ]
+      }
+    },
+    "draft": false,
+    "token": "e4c5962174dc098ca39f2555a79736c1eba915f7a46e1443f9d46e028c478c03"
+  },
+  "configuration": {
+    "name": "arca_0_deg",
+    "parameters": {
+      "arca_detent": 0,
+      "carriage_position_mm": 70.0
+    }
+  },
+  "region": {
+    "name": "fixed top Arca clamp",
+    "component": "fixed top Arca clamp",
+    "feature": {
+      "id": "fixed-jaw",
+      "role": "fixed female Arca engagement flank",
+      "configuration": "scan pose",
+      "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+      "center_mm": [
+        103.4,
+        20.475,
+        37.8
+      ],
+      "reference_point_mm": [
+        103.4,
+        20.475,
+        37.8
+      ],
+      "required": [
+        "fixed female Arca engagement flank"
+      ],
+      "excluded": [
+        "cosmetic texture",
+        "unobserved interior details"
+      ],
+      "links": [
+        "references/evidence.md"
+      ],
+      "uncertainty_mm": 0.75,
+      "feature_size_mm": 0.5,
+      "sections": [
+        {
+          "name": "jaw_stations",
+          "origin_mm": [
+            103.4,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "x_direction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "offsets_mm": [
+            -18.0,
+            0.0,
+            18.0
+          ],
+          "tolerance_mm": 0.0,
+          "expected": "Review source and CAD contours at the recorded uncertainty."
+        }
+      ]
+    }
+  },
+  "verification": {
+    "comparison": {
+      "status": "unknown",
+      "reason": "No measurements for this view alignment and tolerance."
+    },
+    "precise": {},
+    "symmetry": {},
+    "features": [],
+    "printability": {
+      "findings": null,
+      "separate_from_reconstruction": true
+    }
+  }
+}

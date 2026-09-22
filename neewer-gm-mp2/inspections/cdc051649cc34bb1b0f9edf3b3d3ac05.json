@@ -1,0 +1,193 @@
+{
+  "kind": "nurb_inspection_setup",
+  "schema_version": 1,
+  "id": "cdc051649cc34bb1b0f9edf3b3d3ac05",
+  "name": "large focus knob",
+  "part": "neewer_macro_slide_gm_mp2",
+  "created_at": "2026-09-22T01:18:11.046955+00:00",
+  "view": {
+    "camera": {
+      "position_mm": [
+        62.25,
+        -87.8045,
+        117.3643
+      ],
+      "target_mm": [
+        -12.75,
+        22.195499999999996,
+        17.3643
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "zoom": 1.0,
+      "height_mm": 70.0
+    },
+    "viewport": [
+      1200,
+      900
+    ],
+    "mode": "overlay",
+    "hidden_components": [],
+    "section": {
+      "enabled": false,
+      "axis": "z",
+      "position_mm": null,
+      "fraction": 0.5,
+      "sign": 1
+    },
+    "alignment": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 0.75,
+    "region": "large focus knob",
+    "station": 0,
+    "deviation_scale_mm": 1.0,
+    "deviation_map": "both",
+    "deviation_auto": false,
+    "deviation_through": true,
+    "pins": false,
+    "symmetry_plane": false
+  },
+  "identity": {
+    "geometry": "6981423178c2c1130af508a68d900fd672c8c08fe94b3f09dea4d2828f94ee3c",
+    "source_revision": "407d9b228c29d600c9aaf888a707d8fd0cb5608e0bdeab9716c5e86278b119bd",
+    "reference": {
+      "file": "scans/neewer-macro-slide-GM-MP2.ply.gz",
+      "content": "7875cab67bd5ff1ac9eb0976228970938f3f707a137d1675122555c925314838",
+      "units": "mm",
+      "display_scale": 1.0
+    },
+    "configuration": {
+      "name": "arca_0_deg",
+      "parameters": {
+        "arca_detent": 0,
+        "carriage_position_mm": 70.0
+      }
+    },
+    "alignment": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "tolerance_mm": 0.75,
+    "region": {
+      "name": "large focus knob",
+      "component": "large focus knob",
+      "feature": {
+        "id": "drive-knob",
+        "role": "large focus knob mating envelope",
+        "configuration": "scan pose",
+        "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+        "center_mm": [
+          -12.75,
+          22.195499999999996,
+          17.3643
+        ],
+        "reference_point_mm": [
+          -12.75,
+          22.195499999999996,
+          17.3643
+        ],
+        "required": [
+          "large focus knob mating envelope"
+        ],
+        "excluded": [
+          "cosmetic texture",
+          "unobserved interior details"
+        ],
+        "links": [
+          "references/evidence.md"
+        ],
+        "uncertainty_mm": 0.5,
+        "feature_size_mm": 0.5,
+        "sections": []
+      }
+    },
+    "draft": false,
+    "token": "d7f810eef81045476d1db38af294a8497c7fa537a183888a85f33af2b32785ad"
+  },
+  "configuration": {
+    "name": "arca_0_deg",
+    "parameters": {
+      "arca_detent": 0,
+      "carriage_position_mm": 70.0
+    }
+  },
+  "region": {
+    "name": "large focus knob",
+    "component": "large focus knob",
+    "feature": {
+      "id": "drive-knob",
+      "role": "large focus knob mating envelope",
+      "configuration": "scan pose",
+      "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
+      "center_mm": [
+        -12.75,
+        22.195499999999996,
+        17.3643
+      ],
+      "reference_point_mm": [
+        -12.75,
+        22.195499999999996,
+        17.3643
+      ],
+      "required": [
+        "large focus knob mating envelope"
+      ],
+      "excluded": [
+        "cosmetic texture",
+        "unobserved interior details"
+      ],
+      "links": [
+        "references/evidence.md"
+      ],
+      "uncertainty_mm": 0.5,
+      "feature_size_mm": 0.5,
+      "sections": []
+    }
+  },
+  "verification": {
+    "comparison": {
+      "status": "unknown",
+      "reason": "No measurements for this view alignment and tolerance."
+    },
+    "precise": {},
+    "symmetry": {},
+    "features": [],
+    "printability": {
+      "findings": null,
+      "separate_from_reconstruction": true
+    }
+  }
+}

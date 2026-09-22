@@ -49,6 +49,10 @@ TRANSITION_CHECKS = (
 )
 MOTION_ERROR_LIMIT = 1e-7
 CAD_REQUIREMENT_ERROR_LIMIT_MM = 1e-6
+# Independently recorded scan datum: carriage at 70 mm and the midpoint between
+# the two measured rod axes. These are acceptance data, not model expressions.
+SCAN_PIVOT_MM = (103.5, 22.10675, 28.0)
+TRANSLATING = ("sliding carriage", "rotary base")
 
 
 def json_hash(value):
@@ -63,6 +67,8 @@ def acceptance_specification():
         "detents": list(DETENTS),
         "attached_components": list(ATTACHED),
         "motion_error_limit": MOTION_ERROR_LIMIT,
+        "scan_pivot_mm": SCAN_PIVOT_MM,
+        "commanded_rotation_deg": [0, 90, 180, 270],
         "arca_tolerance_mm": TOLERANCE_MM,
         "cad_requirement_error_limit_mm": CAD_REQUIREMENT_ERROR_LIMIT_MM,
         "bottom_flanks": BOTTOM_FLANKS,
@@ -286,7 +292,39 @@ def add_failure(failures, code, message, **evidence):
     failures.append({"code": code, "message": message, "evidence": evidence})
 
 
+def commanded_pose_check(found, baseline, detent, travel):
+    """Check requested world motion against one fixed scan-pose oracle."""
+    angle = np.radians(90.0 * detent)
+    rotation = np.array([[np.cos(angle), -np.sin(angle), 0.0],
+                         [np.sin(angle), np.cos(angle), 0.0], [0.0, 0.0, 1.0]])
+    pivot = np.asarray(SCAN_PIVOT_MM)
+    shift = np.array([travel - 70.0, 0.0, 0.0])
+    rows = []
+    for name, original in baseline.items():
+        expected = relative_vertices(original, (0, 0, 0))
+        if name in ATTACHED:
+            expected = (expected - pivot) @ rotation.T + pivot + shift
+            requirement = "quarter turn about scan pivot, then commanded travel"
+        elif name in TRANSLATING:
+            expected = expected + shift
+            requirement = "commanded travel without rotation"
+        else:
+            requirement = "stationary rail and drive component"
+        actual = relative_vertices(found[name], (0, 0, 0))
+        error = vertex_set_error(actual, expected)
+        accepted = actual.shape == expected.shape and error < MOTION_ERROR_LIMIT
+        rows.append({"component": name, "requirement": requirement,
+                     "maximum_world_vertex_error_mm": error, "accepted": accepted})
+    expected_pivot = pivot + shift
+    actual_pivot = np.asarray(vector_list(found["rotary base"].bounding_box().center()))
+    pivot_error = float(np.linalg.norm(actual_pivot - expected_pivot))
+    return {"expected_pivot_mm": expected_pivot.tolist(), "actual_pivot_mm": actual_pivot.tolist(),
+            "pivot_error_mm": pivot_error, "components": rows,
+            "accepted": pivot_error < MOTION_ERROR_LIMIT and all(row["accepted"] for row in rows)}
+
+
 def validate(write=True):
+    started_with = current_source_identity()
     reference_mesh, unit, unit_source = scan.load(REFERENCE, units="mm")
     printable_sleeve, _, _ = builder.build(SLEEVE_PART)
     failures = []
@@ -300,12 +338,17 @@ def validate(write=True):
     scan_pose_components = None
     scan_pose_shape = None
     sleeve = None
+    oracle_shape, _, _ = builder.build(PART, overrides=POSE)
+    oracle = components(oracle_shape)
     for detent in DETENTS:
         # Establish the fixed mid-travel baseline first, then compare both ends.
         for travel in (70.0, 0.0, 140.0):
             parameters = {"arca_detent": detent, "carriage_position_mm": travel}
             shape, _, _ = builder.build(PART, overrides=parameters)
             found = components(shape)
+            commanded = commanded_pose_check(found, oracle, detent, travel)
+            if not commanded["accepted"]:
+                add_failure(failures, "motion.commanded_pose", "geometry does not implement the requested travel and detent", parameters=parameters, check=commanded)
             base = found["rotary base"]
             base_origin = vector_list(base.bounding_box().center())
             findings = checks.run(shape)
@@ -349,7 +392,8 @@ def validate(write=True):
                     "clearance_check_findings": serialized_findings,
                     "attached_relative_locations": {name: current[name]["relative_location"] for name in ATTACHED},
                     "attachment_checks": attachment_checks,
-                    "accepted": not serialized_findings and all(check["accepted"] for check in attachment_checks),
+                    "commanded_pose": commanded,
+                    "accepted": commanded["accepted"] and not serialized_findings and all(check["accepted"] for check in attachment_checks),
                 }
             )
             if parameters == POSE:
@@ -470,6 +514,8 @@ def validate(write=True):
     arca_accepted = all(record["accepted"] for records in section_acceptance.values() for record in records)
     accepted = not failures and motion_accepted and sleeve_accepted and arca_accepted and exports["accepted"]
     source_identity = current_source_identity()
+    if source_identity != started_with:
+        raise RuntimeError("validation inputs changed while inspecting; repeat validation")
 
     result = {
         "status": "accepted_for_current_modeled_CAD_scope" if accepted else "failed",
@@ -489,7 +535,7 @@ def validate(write=True):
             "detents": list(DETENTS),
             "travel_positions_mm": list(TRAVELS),
             "attached_components": list(ATTACHED),
-            "method": "Compare each component's relative Location and full B-rep vertex set in the rotary-base frame against the same detent at 70 mm travel.",
+            "method": "Require world-space travel, quarter-turn rotation about the independently recorded scan pivot, and immobility of every rail/drive component against one scan-pose oracle; additionally verify relative attachment against each detent's mid-travel baseline.",
             "maximum_relative_transform_error_mm_or_deg": maximum_relative_transform_error,
             "maximum_relative_vertex_error_mm": maximum_relative_vertex_error,
             "rows": rows,

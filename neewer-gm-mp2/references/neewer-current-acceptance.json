@@ -8,7 +8,7 @@
     "sleeve_model_source": "parts/neewer_outer_focus_sleeve.py",
     "sleeve_model_source_sha256": "a54a702a55949c0ea927bf4f7822fe8952fe794c3dcb8e795f7bb38fc9b6ff70",
     "validator": "references/validate_reconstruction.py",
-    "validator_sha256": "c02dd43f15ca726c6f3a3023d913a04f09cf616b94c0339af0c518dd5ecde3c1",
+    "validator_sha256": "5614fc352c031715a7cdd46368b3f4fdb1916cd192afe4a701e2d8cbbef4b39c",
     "measurements": "measurements.toml",
     "measurements_sha256": "3fdc2eae198f915aaad847e6af95806e38dc1826b2f3cb9b27a7a32c96059ed2",
     "reference": "scans/neewer-macro-slide-GM-MP2.ply.gz",
@@ -37,6 +37,17 @@
         "clamp knob"
       ],
       "motion_error_limit": 1e-07,
+      "scan_pivot_mm": [
+        103.5,
+        22.10675,
+        28.0
+      ],
+      "commanded_rotation_deg": [
+        0,
+        90,
+        180,
+        270
+      ],
       "arca_tolerance_mm": 0.75,
       "cad_requirement_error_limit_mm": 1e-06,
       "bottom_flanks": {
@@ -117,7 +128,7 @@
       ],
       "bottom_bay_transition_uncertainty_mm": 0.25
     },
-    "acceptance_specification_sha256": "176ef49f6ee437090ba5d8f428fb8eead6cbbfb3ed58eb4fc12347d6831fc7ad",
+    "acceptance_specification_sha256": "b7f9ef437022f237f84c4be0536b5c7f7717ed2ff94cbaac276309e7c61974d7",
     "parameters_sha256": "521678b651920b741382c54d3c375887cdc19b05ac4d27584da113fe714db882",
     "acceptance_pose": {
       "arca_detent": 0,
@@ -148,7 +159,7 @@
       "movable top Arca jaw",
       "clamp knob"
     ],
-    "method": "Compare each component's relative Location and full B-rep vertex set in the rotary-base frame against the same detent at 70 mm travel.",
+    "method": "Require world-space travel, quarter-turn rotation about the independently recorded scan pivot, and immobility of every rail/drive component against one scan-pose oracle; additionally verify relative attachment against each detent's mid-travel baseline.",
     "maximum_relative_transform_error_mm_or_deg": 0.0,
     "maximum_relative_vertex_error_mm": 2.842170943040401e-14,
     "rows": [
@@ -222,6 +233,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            33.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            33.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 2.5437429940211587e-12,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 7.105427357601002e-15,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -294,6 +393,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            103.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            103.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -366,6 +553,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            173.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            173.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 1.0189182830799837e-11,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 2.842170943040401e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -438,6 +713,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            33.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            33.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 2.5437429940211587e-12,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 2.2469334198890888e-14,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.1916163935586911e-14,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.4210854715202004e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -510,6 +873,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            103.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            103.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 2.929642751054232e-14,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.5888218580782548e-14,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.5888218580782548e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -582,6 +1033,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            173.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            173.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 1.0189182830799837e-11,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 7.105427357601002e-15,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 7.105427357601002e-15,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 2.929642751054232e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -654,6 +1193,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            33.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            33.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 2.5437429940211587e-12,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 3.552713678800501e-15,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 7.105427357601002e-15,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.1234667099445444e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -726,6 +1353,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            103.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            103.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 3.552713678800501e-15,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.4210854715202004e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -798,6 +1513,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            173.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            173.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 1.0189182830799837e-11,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 3.552713678800501e-15,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 2.864289338439558e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -870,6 +1673,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            33.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            33.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 2.5437429940211587e-12,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.4210854715202004e-14,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.4762209355896038e-14,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.517719948885615e-14,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -942,6 +1833,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            103.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            103.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 1.5888218580782548e-14,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 2.870135885767504e-14,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 7.105427357601002e-15,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       },
       {
@@ -1014,6 +1993,94 @@
             "accepted": true
           }
         ],
+        "commanded_pose": {
+          "expected_pivot_mm": [
+            173.5,
+            22.10675,
+            28.0
+          ],
+          "actual_pivot_mm": [
+            173.5,
+            22.106750000000005,
+            28.0
+          ],
+          "pivot_error_mm": 3.552713678800501e-15,
+          "components": [
+            {
+              "component": "bottom Arca plate",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "end blocks",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "front guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "rear guide rod",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "lead screw",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "large focus knob",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "exact outer focus sleeve",
+              "requirement": "stationary rail and drive component",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "sliding carriage",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 1.0189182830799837e-11,
+              "accepted": true
+            },
+            {
+              "component": "rotary base",
+              "requirement": "commanded travel without rotation",
+              "maximum_world_vertex_error_mm": 0.0,
+              "accepted": true
+            },
+            {
+              "component": "fixed top Arca clamp",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 2.842170943040401e-14,
+              "accepted": true
+            },
+            {
+              "component": "movable top Arca jaw",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 7.105427357601002e-15,
+              "accepted": true
+            },
+            {
+              "component": "clamp knob",
+              "requirement": "quarter turn about scan pivot, then commanded travel",
+              "maximum_world_vertex_error_mm": 7.105427357601002e-15,
+              "accepted": true
+            }
+          ],
+          "accepted": true
+        },
         "accepted": true
       }
     ]
