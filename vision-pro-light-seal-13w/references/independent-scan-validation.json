@@ -60371,7 +60371,7 @@
   "independence": "Per-side reference contours are never mirrored, pair-averaged, generated from ideal slots, or fitted to CAD. Between-station rim planes were not construction planes; broad planes independently check retained construction sections. Neighborhood frames are retained measurements, not newly independent registration.",
   "source_sha256": "f26fc3c4e32088b57fd4a8d0da727061448159138239da0fbd78c7f509d835e9",
   "identity": {
-    "export_manifest_sha256": "d8765307a0f97ba5a55e59d33e5fc749bb86cbd5d037166dee172d5dbf6370fb",
+    "export_manifest_sha256": "487bb9c156a7882ea28bfb0f892ba3956bf7e99fabc82be9af62df21f64d7a94",
     "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
     "export_inputs": {
       "files": {
@@ -60392,7 +60392,7 @@
         "python": "3.13.5",
         "OCP_module": "7.9.3.1"
       },
-      "nurb_source_sha256": "5e28d98c7601b39968fc7eae79c09ebcabdf7e57aa59ecb4a076f08b8b5663bb"
+      "nurb_source_sha256": "bae4708fb79becfa67ab1e8030ebb4ebf3469ca88cf641547d35cb40487fccc3"
     },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
