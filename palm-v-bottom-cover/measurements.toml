@@ -1,0 +1,141 @@
+[source_back_points]
+value = 2083708
+unit = "points"
+how = "Measured rows in frozen MAF THREE group 1 `back`; source SHA-256 a5ce15c73eaf8eb19f5bebc330d2de8243d138e092c0d2ac9d66dbbbd95cc073"
+
+[reference_points]
+value = 495454
+unit = "points"
+how = "One measured source row per occupied 0.17 mm XYZ voxel in scans/palm-v-bottom-cover-back-observed.ply.gz"
+
+[reference_voxel_size]
+value = 0.17
+unit = "mm"
+how = "Deterministic floor-quantized voxel selection; chosen to retain no more than 500,000 observed samples"
+
+[observed_min_x]
+value = -40.382753
+unit = "mm"
+how = "Minimum of the full-resolution authoritative back group after the frozen bilateral-frame transform"
+provisional = true
+
+[observed_max_x]
+value = 40.576062
+unit = "mm"
+how = "Maximum of the full-resolution authoritative back group after the frozen bilateral-frame transform"
+provisional = true
+
+[observed_min_y]
+value = -56.626177
+unit = "mm"
+how = "Minimum of the full-resolution authoritative back group after the frozen bilateral-frame transform"
+provisional = true
+
+[observed_max_y]
+value = 56.514867
+unit = "mm"
+how = "Maximum of the full-resolution authoritative back group after the frozen bilateral-frame transform"
+provisional = true
+
+[observed_min_z]
+value = -1.133765
+unit = "mm"
+how = "Minimum of the full-resolution authoritative back group after the frozen bilateral-frame transform"
+provisional = true
+
+[observed_max_z]
+value = 1.971206
+unit = "mm"
+how = "Maximum of the full-resolution authoritative back group after the frozen bilateral-frame transform"
+provisional = true
+
+[observed_extent_x]
+value = 80.958815
+unit = "mm"
+how = "Full-resolution authoritative back-group bounds in the fitted bilateral frame; includes scan-edge uncertainty and is not yet a nominal CAD width"
+provisional = true
+
+[observed_extent_y]
+value = 113.141044
+unit = "mm"
+how = "Full-resolution authoritative back-group bounds in the fitted bilateral frame; includes scan-edge uncertainty and is not yet a nominal CAD length"
+provisional = true
+
+[observed_extent_z]
+value = 3.104970
+unit = "mm"
+how = "Full-resolution authoritative back-group bounds in the fitted bilateral frame; describes the bent exterior envelope, not sheet thickness"
+provisional = true
+
+[symmetry_plane_x]
+value = 0.0
+unit = "mm"
+how = "Definition of the fitted bilateral frame; the reset hole is an intentional symmetry exception"
+
+[reflection_residual_median]
+value = 0.0916
+unit = "mm"
+how = "Nearest-neighbour residual after reflecting the clean back observation across x=0; frame-fit evidence only"
+
+[reflection_residual_p90]
+value = 0.1929
+unit = "mm"
+how = "90th percentile nearest-neighbour residual after reflecting the clean back observation across x=0; frame-fit evidence only"
+
+[reflection_residual_p95]
+value = 0.2349
+unit = "mm"
+how = "95th percentile nearest-neighbour residual after reflecting the clean back observation across x=0; frame-fit evidence only"
+
+[reflection_within_0_25_mm]
+value = 96.1167
+unit = "percent"
+how = "Clean back observations whose reflected nearest neighbour lies within 0.25 mm; frame-fit evidence only"
+
+[nominal_sheet_gauge]
+value = 0.65
+unit = "mm"
+how = "Paired clean exterior/interior patches support roughly 0.65–0.70 mm; see references/thickness-evidence.json. This is an inferred nominal value, not a caliper measurement."
+provisional = true
+
+[central_slot_width]
+value = 7.2
+unit = "mm"
+how = "Boundary of the symmetric central opening in original observed triangles; see references/original-triangle-provenance.json."
+provisional = true
+
+[central_slot_height]
+value = 2.7
+unit = "mm"
+how = "Boundary of the symmetric central opening in original observed triangles."
+provisional = true
+
+[central_slot_center_y]
+value = 15.3
+unit = "mm"
+how = "Nominal center of the observed crest opening in the fixed bilateral frame."
+provisional = true
+
+[reset_hole_diameter]
+value = 1.8
+unit = "mm"
+how = "Nominal bore fit to observed Reset boundary; scan boundaries are incomplete and biased by occlusion."
+provisional = true
+
+[reset_hole_center_x]
+value = 12.8
+unit = "mm"
+how = "Observed offset Reset location; retained as the intentional symmetry exception."
+provisional = true
+
+[reset_hole_center_y]
+value = 19.16
+unit = "mm"
+how = "Observed Reset location in the frozen bilateral frame."
+provisional = true
+
+[observed_longitudinal_bow]
+value = 0.31
+unit = "mm"
+how = "Common quadratic from clean mirrored side strips; midspan departure from an 88 mm chord. Independent strip choices give 0.30–0.35 mm; see references/straightening-support.json. Removed in the nominal default at the user's request."
+provisional = true

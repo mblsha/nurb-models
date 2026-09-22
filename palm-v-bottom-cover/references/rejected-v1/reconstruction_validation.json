@@ -1,0 +1,68 @@
+{
+  "accepted": true,
+  "geometry": {
+    "valid_single_solid": true,
+    "faces": 10,
+    "volume_mm3": 2568.2279794496053,
+    "bounds_mm": [
+      [
+        -40.17703716396736,
+        -56.3166483808602,
+        -1.1000001000000001
+      ],
+      [
+        40.17848582383164,
+        56.0114785511133,
+        0.6188696019956886
+      ]
+    ]
+  },
+  "pre_hole_symmetry": {
+    "plane": "X=0",
+    "samples": 893,
+    "maximum_reflection_error_mm": 0.0051302378877956575,
+    "tolerance_mm": 0.01
+  },
+  "final_asymmetry": {
+    "only_exception": "Reset hole",
+    "removed_volume_mm3": 0.8408634804146801,
+    "expected_reset_intersection_volume_mm3": 0.8408614928975794,
+    "outside_reset_cutter_volume_mm3": 0,
+    "reset_center_mm": [
+      12.8,
+      19.16
+    ],
+    "reset_diameter_mm": 1.8
+  },
+  "exports": {
+    "step_reopened_valid": true,
+    "stl_principal_component_watertight": true,
+    "stl_degenerate_artifact_triangles": 1,
+    "stl_raw_watertight": false,
+    "three_mf_watertight": true,
+    "mesh_bounds_mm": [
+      [
+        -40.176788330078125,
+        -56.3160285949707,
+        -1.100000023841858
+      ],
+      [
+        40.17753219604492,
+        56.01139450073242,
+        0.6185697913169861
+      ]
+    ]
+  },
+  "parameters": {
+    "sheet_thickness_mm": 0.4,
+    "crown_height_mm": 0.3,
+    "skirt_depth_mm": 1.1,
+    "return_width_mm": 1.35,
+    "reset_hole_diameter_mm": 1.8
+  },
+  "scope": {
+    "included": "formed aluminium sheet, perimeter skirt and return, end notch, Reset hole",
+    "excluded": "glue, clamp/support artifacts, cosmetic interior marks",
+    "physical_fit_verified": false
+  }
+}

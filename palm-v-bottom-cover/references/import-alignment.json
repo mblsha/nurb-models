@@ -1,0 +1,171 @@
+{
+  "schema": "palm-v-bottom-cover-reference/v1",
+  "units": "millimetres",
+  "source": {
+    "archive_sha256": "52900e9ad09d24b552cea788ea0dbb743e9fa22dde0095cad362bf95ddb1da3f",
+    "maf_dataset_id": "scan-018109effc1ab56b0920",
+    "maf_revision": "f6722ad291d3c3a3c1a7806de1b2234bea7e78cd5361351b62bcfa0133a0b7af",
+    "merge_manifest": {
+      "bytes": 4453,
+      "sha256": "c785daaacc7a19d83b24b62f5433644a470bf379acc7c8b695c54873b8192631"
+    },
+    "merged_observation": {
+      "points": 5434687,
+      "sha256": "dc2cb15fec9003020dcdf7be31cf66bea5a8bf57dcca5bf5801a65ea5eb389f5",
+      "use": "registration provenance only"
+    },
+    "geometry_authority": {
+      "group_id": 1,
+      "group_name": "back",
+      "points": 2083708,
+      "bytes": 81265010,
+      "sha256": "a5ce15c73eaf8eb19f5bebc330d2de8243d138e092c0d2ac9d66dbbbd95cc073",
+      "reason": "clean exterior observation; side groups are not admitted into reference geometry"
+    },
+    "excluded_groups": [
+      {
+        "group_id": 2,
+        "group_name": "side1",
+        "sha256": "0a17f6da68003d533267e3dda7c7cde0eca95ea5b46b7eedd63bde6c270b2239",
+        "reason": "excluded by group selection because interior glue and fixture/clamp observations are outside the exterior CAD reference"
+      },
+      {
+        "group_id": 3,
+        "group_name": "side2",
+        "sha256": "87006b10777db27b23a80b4185a3b79a3344957fa1d0796c6819c5ee6a406ea7",
+        "reason": "excluded by group selection because interior glue and fixture/clamp observations are outside the exterior CAD reference"
+      }
+    ]
+  },
+  "alignment": {
+    "frame": "exterior-derived bilateral world frame; existing THREE hierarchy registration retained without refinement",
+    "origin_in_prepared_group_mm": [
+      0.26349328494840996,
+      1.1827956451851473,
+      -1.7516604056513603
+    ],
+    "basis_rows": {
+      "x": [
+        -0.9921722997277009,
+        -0.09816707037842172,
+        0.07718389693688062
+      ],
+      "y": [
+        0.11743632027012417,
+        -0.5233330643547212,
+        0.8439971649445928
+      ],
+      "z": [
+        -0.042459843787487545,
+        0.8464548009471121,
+        0.5307649495013088
+      ]
+    },
+    "prepared_group_to_reference": [
+      [
+        -0.9921722997277009,
+        -0.09816707037842172,
+        0.07718389693688062,
+        0.5127422980524605
+      ],
+      [
+        0.11743632027012417,
+        -0.5233330643547212,
+        0.8439971649445928,
+        2.0664488040153772
+      ],
+      [
+        -0.042459843787487545,
+        0.8464548009471121,
+        0.5307649495013088,
+        -0.060275221939357124
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "reference_to_future_cad": "identity"
+  },
+  "downsampling": {
+    "method": "first measured source row in each floor-quantized XYZ voxel, retained in original row order",
+    "voxel_mm": 0.17,
+    "source_points": 2083708,
+    "output_points": 495454,
+    "maximum_points": 500000,
+    "preserves": [
+      "measured position",
+      "rotated measured normal",
+      "RGB",
+      "source group",
+      "source scan",
+      "source angle"
+    ],
+    "symmetrized": false,
+    "averaged": false,
+    "synthetic_points": 0
+  },
+  "symmetry_evidence": {
+    "operation": "reflect observed back points across reference x=0 and measure nearest-neighbour residual",
+    "median_mm": 0.0916,
+    "p90_mm": 0.1929,
+    "p95_mm": 0.2349,
+    "within_0_25_mm_percent": 96.1167,
+    "use": "frame-fit evidence only; observed coordinates remain asymmetric"
+  },
+  "source_bounds_in_reference_mm": {
+    "min": [
+      -40.38275292868057,
+      -56.62617697869501,
+      -1.1337647461943352
+    ],
+    "max": [
+      40.57606159681489,
+      56.5148670641269,
+      1.9712055049094845
+    ],
+    "extent": [
+      80.95881452549546,
+      113.1410440428219,
+      3.1049702511038197
+    ]
+  },
+  "output": {
+    "file": "palm-v-bottom-cover-back-observed.ply.gz",
+    "bytes": 12115117,
+    "sha256": "3d2f6e7b2fee4435c307a06cfda952d5827a797abcde3f3f9291baa8e470ed60",
+    "points": 495454,
+    "bounds_mm": {
+      "min": [
+        -40.38275146484375,
+        -56.62617874145508,
+        -1.1304399967193604
+      ],
+      "max": [
+        40.546592712402344,
+        56.51486587524414,
+        1.971205472946167
+      ],
+      "extent": [
+        80.9293441772461,
+        113.14104461669922,
+        3.1016454696655273
+      ]
+    }
+  },
+  "mesh": {
+    "generated": false,
+    "reason": "the authoritative source is an unorganized, vertex-only cloud over a thin folded shell; triangulation would choose unsupported connectivity, bridge the reset hole or scan gaps, and/or invent closure",
+    "comparison_authority": "palm-v-bottom-cover-back-observed.ply.gz"
+  },
+  "generator": {
+    "file": "references/generate_reference.py",
+    "sha256": "ee704ea9ffff66b2c2f9615c95ab09dc665aa262e41559aa878466c778b69e94",
+    "requirements": [
+      "Python 3.11 or newer",
+      "NumPy"
+    ]
+  }
+}
