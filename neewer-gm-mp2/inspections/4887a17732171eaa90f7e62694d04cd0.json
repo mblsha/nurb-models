@@ -69,7 +69,7 @@
     "verification_policy": null
   },
   "identity": {
-    "geometry": "b4afaa387fb74e8485a72a1b82650132e4cb7e4cdc82b6c5f0cb22a414a715f4",
+    "geometry": "c42d021cbc426b84d3a7d3bf8a55ef4498b264cc870d1522a7259ce39a4a767b",
     "source_revision": "33a050c1a57bd30302270447cdc16abbddd5650456ada71330506162f815702f",
     "reference": {
       "file": "scans/neewer-macro-slide-GM-MP2.ply.gz",
@@ -163,7 +163,7 @@
       }
     },
     "draft": false,
-    "token": "d60f940862c1777040b9c16ac236aa8985a984888733b9a627d9a3edfd747934"
+    "token": "bc42043807361a5afe433405a06ece3e6a222fe4f3dd37db86db9450362d53f8"
   },
   "configuration": {
     "name": "arca_90_deg",
