@@ -17,7 +17,7 @@ from OCP.BRepAlgoAPI import BRepAlgoAPI_Section
 from OCP.gp import gp_Dir, gp_Pln, gp_Pnt
 from scipy.spatial import cKDTree
 
-from nurb import scan, checks, compare
+from nurb import scan, checks, compare, validator_evidence
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -673,6 +673,12 @@ def validate(write=True):
             "acceptance_thresholds_sha256": json_hash(THRESHOLDS),
             "independent_scan_evaluator_sha256": sha256(REFERENCES / "independent_scan_evidence.py"),
         },
+        "viewer_evidence": validator_evidence.viewer_contract(
+            ROOT,
+            [region["feature"]["id"] for region in target.get("regions", []) if "feature" in region],
+            [str(path.relative_to(ROOT)) for path in watched],
+            environment=manifest["inputs"],
+        ),
         "geometry_validity": geometry,
         "source_export_binding": {"accepted": True, "method": manifest["binding"]},
         "reference_symmetry_plane": plane,

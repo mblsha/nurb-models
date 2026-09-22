@@ -8,7 +8,7 @@
     }
   ],
   "identity": {
-    "export_manifest_sha256": "3b961c376353eb565682a6dfd44699abaecade22ddba0e104e6d2caa067b7c73",
+    "export_manifest_sha256": "1134689b870f00ac68b5673dd0cf08170005317aeaf103808c114a3534846c85",
     "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
     "export_inputs": {
       "files": {
@@ -29,13 +29,13 @@
         "python": "3.13.5",
         "OCP_module": "7.9.3.1"
       },
-      "nurb_source_sha256": "eeb83e2ab07a9c4b128ecb72d3b694362c5dc29b676a47113c6e28d65546581b"
+      "nurb_source_sha256": "429ec92c106a3834a67da5d06fcdcce49bab8a4e2c996f6f4b67c683ea010cfe"
     },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
-    "card_sha256": "46d88ed6a0e24fdc398586641ec422256b5f3a6d07b6666afc8ae7899bee9ed6",
+    "card_sha256": "94823a0b9adb0740f3f96b3fff727f7c3cd86e3247f1f1dcd96f211b4618481a",
     "validator": "references/validate_interfaces.py",
-    "validator_sha256": "7056a15b10aaf588b5086ccb5cb0d75649678c7ff07fe1c9bcf74da11f1e5783",
+    "validator_sha256": "9e2252feb3fb6cea124517e935c846032b9a8ca8dea63039b3d6d04bd797ee59",
     "measurements": "measurements.toml",
     "measurements_sha256": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
     "step": "build/vision_pro_light_seal_13w.step",
@@ -73,6 +73,58 @@
     },
     "acceptance_thresholds_sha256": "8221c34427d50efbea10daf76c74733e20acc6cacfee51a3084600f5ef502447",
     "independent_scan_evaluator_sha256": "864de853b11053712ca1b325d571d22f60710d7323419ad309e0884000606e61"
+  },
+  "viewer_evidence": {
+    "schema_version": 1,
+    "kind": "nurb_feature_validation",
+    "feature_ids": [
+      "headset-rim-right",
+      "cushion-seat-right",
+      "cushion-p1-right",
+      "cushion-p2-right",
+      "cushion-p3-right",
+      "cushion-p4-right",
+      "headset-rim-left",
+      "cushion-seat-left",
+      "cushion-p1-left",
+      "cushion-p2-left",
+      "cushion-p3-left",
+      "cushion-p4-left"
+    ],
+    "inputs": {
+      "files": {
+        "parts/vision_pro_light_seal_13w.py": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
+        "parts/vision_pro_light_seal_13w.md": "94823a0b9adb0740f3f96b3fff727f7c3cd86e3247f1f1dcd96f211b4618481a",
+        "measurements.toml": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
+        "build/vision_pro_light_seal_13w.step": "951497a52103c9ccccdee49f5284415598021dadc441181351c1ca75347c2635",
+        "build/vision_pro_light_seal_13w.stl": "22ef36f3899113e0ee4cb7b0df21ccbe25aba67c46e56003c4e2209aac6ee3cf",
+        "build/vision_pro_light_seal_13w.3mf": "792c8470c2431df2129a08912e90de75f6844ac134409af9547dc91c9a583e93",
+        "scans/vision-pro-light-seal-13w-reference.glb": "f26fc3c4e32088b57fd4a8d0da727061448159138239da0fbd78c7f509d835e9",
+        "references/alignment.json": "440888d55426c632fcb04b4f69c2940fcecb7daa9e416bbcdc3013eb3738faff",
+        "references/vision-pro-narrow-reference-sections.json": "ede9639baa040bd60711999f2fb52714a7866b3cc62dbfea210fef1b977bbecd",
+        "references/vision-pro-narrow-profile-samples.json": "e70b33ac26971debf6aadbd819b79ce87472667b8577e43b391ec9d83465ebe1",
+        "references/face-cushion-wide-pockets.json": "e10e198fd77458c271a5b4d764163706a422ca09573b4eec5999b4c8393db3f9",
+        "references/validate_interfaces.py": "9e2252feb3fb6cea124517e935c846032b9a8ca8dea63039b3d6d04bd797ee59",
+        "references/export_identity.py": "82ee2821e7ca9e8368d4c3dff44b8211ead1862164c81c280aade9284646b567",
+        "references/independent_scan_evidence.py": "864de853b11053712ca1b325d571d22f60710d7323419ad309e0884000606e61",
+        "references/face-cushion-wide-seating-measurements.json": "2f967aca47f6b3dac865e3b3185239755e6718a8668a3ddaf1e1b2cce58f83ed",
+        "build/export-manifest.json": "1134689b870f00ac68b5673dd0cf08170005317aeaf103808c114a3534846c85"
+      },
+      "runtime_versions": {
+        "OCP_module": "7.9.3.1",
+        "build123d": "0.11.1",
+        "cadquery-ocp": "unavailable",
+        "cadquery-ocp-novtk": "7.9.3.1.1",
+        "cadquery-ocp-proxy": "7.9.3.1.1",
+        "lib3mf": "2.5.0",
+        "numpy": "2.5.1",
+        "nurb": "0.26.0",
+        "python": "3.13.5",
+        "scipy": "1.18.0",
+        "trimesh": "4.12.2"
+      },
+      "nurb_source_sha256": "429ec92c106a3834a67da5d06fcdcce49bab8a4e2c996f6f4b67c683ea010cfe"
+    }
   },
   "geometry_validity": {
     "accepted": true,

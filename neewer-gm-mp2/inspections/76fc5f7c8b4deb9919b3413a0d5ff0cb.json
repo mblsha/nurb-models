@@ -69,8 +69,8 @@
     "verification_policy": null
   },
   "identity": {
-    "geometry": "6981423178c2c1130af508a68d900fd672c8c08fe94b3f09dea4d2828f94ee3c",
-    "source_revision": "407d9b228c29d600c9aaf888a707d8fd0cb5608e0bdeab9716c5e86278b119bd",
+    "geometry": "e81dc11de1b289606dba6bbfe4e7471f561a7dee99c5483ace9c620153145843",
+    "source_revision": "336e0d245d5037a8c9e04f67817d2e49b8043c24c95ca596cbd13f4fb2e8a1ad",
     "reference": {
       "file": "scans/neewer-macro-slide-GM-MP2.ply.gz",
       "content": "7875cab67bd5ff1ac9eb0976228970938f3f707a137d1675122555c925314838",
@@ -78,9 +78,9 @@
       "display_scale": 1.0
     },
     "configuration": {
-      "name": "arca_0_deg",
+      "name": "arca_90_deg",
       "parameters": {
-        "arca_detent": 0,
+        "arca_detent": 1,
         "carriage_position_mm": 70.0
       }
     },
@@ -162,12 +162,12 @@
       }
     },
     "draft": false,
-    "token": "3f8b3d476382ddcb14485141d9d7565b0a04450461f335276d6b94fc49ddf7a7"
+    "token": "fc058c2343d3c9ac2232d06346c3355d6b694538b3845d8a35668a455db73d48"
   },
   "configuration": {
-    "name": "arca_0_deg",
+    "name": "arca_90_deg",
     "parameters": {
-      "arca_detent": 0,
+      "arca_detent": 1,
       "carriage_position_mm": 70.0
     }
   },

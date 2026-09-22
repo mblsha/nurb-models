@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 import trimesh
 from build123d import Mesher, Vector, Vertex, import_step
-from nurb import builder, checks, scan
+from nurb import builder, checks, scan, validator_evidence
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,6 +53,8 @@ CAD_REQUIREMENT_ERROR_LIMIT_MM = 1e-6
 # the two measured rod axes. These are acceptance data, not model expressions.
 SCAN_PIVOT_MM = (103.5, 22.10675, 28.0)
 TRANSLATING = ("sliding carriage", "rotary base")
+VIEWER_FEATURE_IDS = ("bottom-plate", "fixed-jaw", "moving-jaw", "drive-knob", "focus-sleeve", "front-rod", "rear-rod")
+VIEWER_INPUTS = (PART, SLEEVE_PART, VALIDATOR, MEASUREMENTS, REFERENCE, SLEEVE_STEP)
 
 
 def json_hash(value):
@@ -529,6 +531,15 @@ def validate(write=True):
             "reference_unit_source": unit_source,
             "alignment": "identity",
         },
+        "viewer_evidence": validator_evidence.viewer_contract(
+            ROOT,
+            list(VIEWER_FEATURE_IDS),
+            [str(path.relative_to(ROOT)) for path in VIEWER_INPUTS],
+            environment={
+                "runtime_versions": validator_evidence.runtime_versions(("python", "nurb", "build123d", "cadquery-ocp", "trimesh", "numpy", "scipy", "lib3mf")),
+                "nurb_source_sha256": validator_evidence.engine_source_digest(),
+            },
+        ),
         "motion": {
             "accepted": motion_accepted,
             "tested_builds": len(rows),
@@ -583,6 +594,13 @@ def check_report(path):
     recorded = report.get("identity", {})
     current = current_source_identity()
     changed = {key: {"recorded": recorded.get(key), "current": value} for key, value in current.items() if recorded.get(key) != value}
+    try:
+        relative = Path(path).resolve().relative_to(ROOT).as_posix()
+        viewer = validator_evidence.load_reports(ROOT, [{"file": relative, "label": "Neewer reconstruction"}])[0][0]
+        if viewer["freshness"] != "current":
+            changed["viewer_evidence"] = viewer["changed"]
+    except ValueError as exc:
+        changed["viewer_evidence"] = str(exc)
     return {
         "status": "current" if report.get("accepted") is True and not changed else "stale",
         "report": str(Path(path)),

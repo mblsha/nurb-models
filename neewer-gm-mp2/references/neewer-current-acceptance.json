@@ -8,7 +8,7 @@
     "sleeve_model_source": "parts/neewer_outer_focus_sleeve.py",
     "sleeve_model_source_sha256": "a54a702a55949c0ea927bf4f7822fe8952fe794c3dcb8e795f7bb38fc9b6ff70",
     "validator": "references/validate_reconstruction.py",
-    "validator_sha256": "5614fc352c031715a7cdd46368b3f4fdb1916cd192afe4a701e2d8cbbef4b39c",
+    "validator_sha256": "ec53594a0c2996fccecb7ba7daa7876754f91ffd44387e475aebab117a3e8099",
     "measurements": "measurements.toml",
     "measurements_sha256": "3fdc2eae198f915aaad847e6af95806e38dc1826b2f3cb9b27a7a32c96059ed2",
     "reference": "scans/neewer-macro-slide-GM-MP2.ply.gz",
@@ -139,6 +139,40 @@
     "reference_unit": "mm",
     "reference_unit_source": "argument",
     "alignment": "identity"
+  },
+  "viewer_evidence": {
+    "schema_version": 1,
+    "kind": "nurb_feature_validation",
+    "feature_ids": [
+      "bottom-plate",
+      "fixed-jaw",
+      "moving-jaw",
+      "drive-knob",
+      "focus-sleeve",
+      "front-rod",
+      "rear-rod"
+    ],
+    "inputs": {
+      "files": {
+        "parts/neewer_macro_slide_gm_mp2.py": "65fd1b3f7866f9b17545eca6167cd183ac9c8f4c03b95db2e6367620be81e704",
+        "parts/neewer_outer_focus_sleeve.py": "a54a702a55949c0ea927bf4f7822fe8952fe794c3dcb8e795f7bb38fc9b6ff70",
+        "references/validate_reconstruction.py": "ec53594a0c2996fccecb7ba7daa7876754f91ffd44387e475aebab117a3e8099",
+        "measurements.toml": "3fdc2eae198f915aaad847e6af95806e38dc1826b2f3cb9b27a7a32c96059ed2",
+        "scans/neewer-macro-slide-GM-MP2.ply.gz": "03ede3f56b9c5f395c370eba35e48542913392bf59b4b85a31fb8647f7675b74",
+        "references/neewer-outer-focus-sleeve.step": "4a728a81c9fade6462fb3bf33810119583feb4f9a06c6169fa7fbdc3c36c8e26"
+      },
+      "runtime_versions": {
+        "build123d": "0.11.1",
+        "cadquery-ocp": "unavailable",
+        "lib3mf": "2.5.0",
+        "numpy": "2.5.1",
+        "nurb": "0.26.0",
+        "python": "3.13.5",
+        "scipy": "1.18.0",
+        "trimesh": "4.12.2"
+      },
+      "nurb_source_sha256": "429ec92c106a3834a67da5d06fcdcce49bab8a4e2c996f6f4b67c683ea010cfe"
+    }
   },
   "motion": {
     "accepted": true,

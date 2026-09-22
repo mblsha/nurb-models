@@ -60371,7 +60371,7 @@
   "independence": "Per-side reference contours are never mirrored, pair-averaged, generated from ideal slots, or fitted to CAD. Between-station rim planes were not construction planes; broad planes independently check retained construction sections. Neighborhood frames are retained measurements, not newly independent registration.",
   "source_sha256": "f26fc3c4e32088b57fd4a8d0da727061448159138239da0fbd78c7f509d835e9",
   "identity": {
-    "export_manifest_sha256": "3b961c376353eb565682a6dfd44699abaecade22ddba0e104e6d2caa067b7c73",
+    "export_manifest_sha256": "1134689b870f00ac68b5673dd0cf08170005317aeaf103808c114a3534846c85",
     "fresh_built_geometry_sha256": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
     "export_inputs": {
       "files": {
@@ -60392,13 +60392,13 @@
         "python": "3.13.5",
         "OCP_module": "7.9.3.1"
       },
-      "nurb_source_sha256": "eeb83e2ab07a9c4b128ecb72d3b694362c5dc29b676a47113c6e28d65546581b"
+      "nurb_source_sha256": "429ec92c106a3834a67da5d06fcdcce49bab8a4e2c996f6f4b67c683ea010cfe"
     },
     "model_source": "parts/vision_pro_light_seal_13w.py",
     "model_source_sha256": "95819604928f037cd415fbe67ca957c68b85715165b0902374932738d995c6b4",
-    "card_sha256": "46d88ed6a0e24fdc398586641ec422256b5f3a6d07b6666afc8ae7899bee9ed6",
+    "card_sha256": "94823a0b9adb0740f3f96b3fff727f7c3cd86e3247f1f1dcd96f211b4618481a",
     "validator": "references/validate_interfaces.py",
-    "validator_sha256": "7056a15b10aaf588b5086ccb5cb0d75649678c7ff07fe1c9bcf74da11f1e5783",
+    "validator_sha256": "9e2252feb3fb6cea124517e935c846032b9a8ca8dea63039b3d6d04bd797ee59",
     "measurements": "measurements.toml",
     "measurements_sha256": "eaa92a8dfa71bc81911ea3217f8fe40431560a1cce5d62c75730cdd1b50075a2",
     "step": "build/vision_pro_light_seal_13w.step",

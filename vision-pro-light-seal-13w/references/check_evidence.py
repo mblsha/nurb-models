@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 import export_identity
+from nurb import validator_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = {
@@ -36,6 +37,9 @@ def check(path):
             changed.append(str(source.relative_to(ROOT)))
     if identity.get("export_inputs") != export_identity.inputs():
         changed.append("source/runtime export inputs")
+    viewer = validator_evidence.load_reports(ROOT, [{"file": str(Path(path).resolve().relative_to(ROOT)), "label": "Light Seal interfaces"}])[0][0]
+    if viewer["freshness"] != "current":
+        changed.extend(viewer["changed"])
     accepted = report.get("accepted") is True
     return {"status": "stale" if changed else "current_accepted" if accepted else "current_failed",
             "accepted": accepted and not changed, "changed": changed}
