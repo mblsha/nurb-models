@@ -1,4 +1,5 @@
 {
+  "kind": "nurb_validator_evidence",
   "status": "accepted_for_current_modeled_CAD_scope",
   "accepted": true,
   "findings": [],
@@ -8,7 +9,7 @@
     "sleeve_model_source": "parts/neewer_outer_focus_sleeve.py",
     "sleeve_model_source_sha256": "a54a702a55949c0ea927bf4f7822fe8952fe794c3dcb8e795f7bb38fc9b6ff70",
     "validator": "references/validate_reconstruction.py",
-    "validator_sha256": "ec53594a0c2996fccecb7ba7daa7876754f91ffd44387e475aebab117a3e8099",
+    "validator_sha256": "37723af2e134ef7a1bcc0dab800f0f0b3c1caee09a10832a29ebfe4e81adce0f",
     "measurements": "measurements.toml",
     "measurements_sha256": "3fdc2eae198f915aaad847e6af95806e38dc1826b2f3cb9b27a7a32c96059ed2",
     "reference": "scans/neewer-macro-slide-GM-MP2.ply.gz",
@@ -156,7 +157,7 @@
       "files": {
         "parts/neewer_macro_slide_gm_mp2.py": "65fd1b3f7866f9b17545eca6167cd183ac9c8f4c03b95db2e6367620be81e704",
         "parts/neewer_outer_focus_sleeve.py": "a54a702a55949c0ea927bf4f7822fe8952fe794c3dcb8e795f7bb38fc9b6ff70",
-        "references/validate_reconstruction.py": "ec53594a0c2996fccecb7ba7daa7876754f91ffd44387e475aebab117a3e8099",
+        "references/validate_reconstruction.py": "37723af2e134ef7a1bcc0dab800f0f0b3c1caee09a10832a29ebfe4e81adce0f",
         "measurements.toml": "3fdc2eae198f915aaad847e6af95806e38dc1826b2f3cb9b27a7a32c96059ed2",
         "scans/neewer-macro-slide-GM-MP2.ply.gz": "03ede3f56b9c5f395c370eba35e48542913392bf59b4b85a31fb8647f7675b74",
         "references/neewer-outer-focus-sleeve.step": "4a728a81c9fade6462fb3bf33810119583feb4f9a06c6169fa7fbdc3c36c8e26"
@@ -171,7 +172,7 @@
         "scipy": "1.18.0",
         "trimesh": "4.12.2"
       },
-      "nurb_source_sha256": "429ec92c106a3834a67da5d06fcdcce49bab8a4e2c996f6f4b67c683ea010cfe"
+      "nurb_source_sha256": "7eb1350ba8e10f582e7a0f4a5e870d5bcf8042e006aec0520fa06936e225c1a4"
     }
   },
   "motion": {

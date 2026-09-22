@@ -520,6 +520,7 @@ def validate(write=True):
         raise RuntimeError("validation inputs changed while inspecting; repeat validation")
 
     result = {
+        "kind": "nurb_validator_evidence",
         "status": "accepted_for_current_modeled_CAD_scope" if accepted else "failed",
         "accepted": accepted,
         "findings": failures,

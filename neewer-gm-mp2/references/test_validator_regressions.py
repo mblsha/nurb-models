@@ -11,6 +11,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from nurb import symmetry
+
 
 ROOT = Path(__file__).resolve().parents[1]
 ACCEPTANCE = Path("references/neewer-current-acceptance.json")
@@ -18,6 +20,22 @@ SVG = Path("references/neewer-arca-sections.svg")
 
 
 class ValidatorFailureRegression(unittest.TestCase):
+    def test_generated_acceptance_report_does_not_change_source_revision(self):
+        with tempfile.TemporaryDirectory(prefix="neewer-validator-freshness-") as directory:
+            project = Path(directory) / "project"
+            shutil.copytree(ROOT, project, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+            part = project / "parts/neewer_macro_slide_gm_mp2.py"
+            report = project / ACCEPTANCE
+            before = symmetry.source_revision(part)
+            contents = json.loads(report.read_text())
+            self.assertEqual(contents.get("kind"), "nurb_validator_evidence")
+            contents["status"] = "generated-on-another-platform"
+            report.write_text(json.dumps(contents, indent=2) + "\n")
+            self.assertEqual(symmetry.source_revision(part), before)
+            measurements = project / "measurements.toml"
+            measurements.write_text(measurements.read_text() + "\n# analytic input change\n")
+            self.assertNotEqual(symmetry.source_revision(part), before)
+
     def run_failure(self, optimized):
         with tempfile.TemporaryDirectory(prefix="neewer-validator-regression-") as directory:
             project = Path(directory) / "project"
