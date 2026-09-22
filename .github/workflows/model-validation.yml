@@ -1,0 +1,83 @@
+name: model validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  mutation-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        optimize: [normal, optimized]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: mblsha/nurb
+          path: .nurb-engine
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - run: uv sync --project .nurb-engine --locked --all-extras --dev
+
+      - name: Run evidence mutation suites
+        env:
+          OPTIMIZE: ${{ matrix.optimize }}
+        run: |
+          engine_python="$GITHUB_WORKSPACE/.nurb-engine/.venv/bin/python"
+          python_args=""
+          if [ "$OPTIMIZE" = optimized ]; then python_args="-O"; fi
+          "$engine_python" $python_args neewer-gm-mp2/references/test_commanded_motion.py
+          "$engine_python" $python_args neewer-gm-mp2/references/test_validator_regressions.py
+          "$engine_python" $python_args vision-pro-light-seal-13w/references/test_export_identity.py
+          "$engine_python" $python_args vision-pro-light-seal-13w/references/test_independent_scan_evidence.py
+          "$engine_python" $python_args vision-pro-light-seal-13w/references/test_validation_boundaries.py
+          "$engine_python" $python_args vision-pro-light-seal-13w/references/test_validator_regressions.py
+
+  current-verdicts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: mblsha/nurb
+          path: .nurb-engine
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - run: uv sync --project .nurb-engine --locked --all-extras --dev
+
+      - name: Require accepted Neewer reconstruction
+        working-directory: neewer-gm-mp2
+        run: "$GITHUB_WORKSPACE/.nurb-engine/.venv/bin/python references/validate_reconstruction.py > /tmp/neewer-validation.json"
+
+      - name: Require current Light Seal evidence to fail closed only on independent scan review
+        run: |
+          "$GITHUB_WORKSPACE/.nurb-engine/.venv/bin/python" - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = "vision-pro-light-seal-13w"
+          python = str(Path.cwd() / ".nurb-engine/.venv/bin/python")
+          subprocess.run([python, "references/export_identity.py"], cwd=root, check=True, stdout=subprocess.DEVNULL)
+          validation = subprocess.run([python, "references/validate_interfaces.py"], cwd=root, text=True, stdout=subprocess.PIPE)
+          report = json.loads(validation.stdout)
+          expected = [{"code": "reference.independent_scan_review", "message": "new independent per-side or between-station evidence is outside the declared uncertainty or unresolved; inspect independent-scan-validation.json"}]
+          if validation.returncode != 1 or report.get("findings") != expected or report.get("accepted") is not False:
+              raise SystemExit("Light Seal interface verdict changed unexpectedly")
+          freshness = subprocess.run([python, "references/check_evidence.py"], cwd=root, text=True, stdout=subprocess.PIPE)
+          status = json.loads(freshness.stdout)
+          if freshness.returncode != 1 or status != {"status": "current_failed", "accepted": False, "changed": []}:
+              raise SystemExit("Light Seal canonical evidence is stale or no longer fails closed")
+          PY
