@@ -4,7 +4,7 @@
   "id": "a300731d3d80d79647c0df7bdfa1b926",
   "name": "P2 cushion opening left",
   "part": "vision_pro_light_seal_13w",
-  "created_at": "2026-09-22T01:50:51.521907+00:00",
+  "created_at": "2026-09-22T02:55:38.866009+00:00",
   "view": {
     "camera": {
       "position_mm": [
@@ -70,7 +70,7 @@
   },
   "identity": {
     "geometry": "642e62df76f6d4e28396c9899c786595c1d2203697484e8d403464f269455831",
-    "source_revision": "e5bab52680b90e5a9b3ddd405303a7addf11e15adaa7149a6edcec409fb7ff79",
+    "source_revision": "ddb11a06fa4e6cddd7dd84b3036bde31091e03523d72b64b8206d5181b33725d",
     "reference": {
       "file": "scans/vision-pro-light-seal-13w-reference.glb",
       "content": "a7dc334a3ea19e47ecfef9150c2e09b5205cbbb03690181bc88191669595f8b3",
@@ -176,7 +176,7 @@
       }
     },
     "draft": false,
-    "token": "411005676af05ae7243bd5c46234de1c9910b5d84f174b24608f4fbf669f041f"
+    "token": "ee684d4ca673795141c70816a32a298a2db54efaa8d89c83b35c637d31c79917"
   },
   "configuration": {
     "name": "default",

@@ -4,7 +4,7 @@
   "id": "bdc38c35a489f916145eceb5d3f4d7a1",
   "name": "movable top Arca jaw",
   "part": "neewer_macro_slide_gm_mp2",
-  "created_at": "2026-09-22T01:18:11.018064+00:00",
+  "created_at": "2026-09-22T02:55:36.622112+00:00",
   "view": {
     "camera": {
       "position_mm": [
@@ -64,7 +64,9 @@
     "deviation_auto": false,
     "deviation_through": true,
     "pins": false,
-    "symmetry_plane": false
+    "symmetry_plane": false,
+    "section_source": "preview",
+    "verification_policy": null
   },
   "identity": {
     "geometry": "6981423178c2c1130af508a68d900fd672c8c08fe94b3f09dea4d2828f94ee3c",
