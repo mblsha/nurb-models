@@ -8,7 +8,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 import numpy as np
 import trimesh
-from build123d import export_step, export_stl
+from build123d import export_step, export_stl, import_step
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME = "palm_v_bottom_cover"
@@ -29,47 +29,32 @@ def main():
     stl = build / f"{NAME}.stl"
     three = build / f"{NAME}.3mf"
     export_step(solid, step)
-    export_stl(solid, stl)
+    # The compact far-end bend needs this finer relative setting to keep the
+    # mesh volume within the native STEP integration tolerance. Zero-area
+    # seam slivers are still discarded only after the checks below.
+    export_stl(import_step(step), stl, tolerance=0.0048, angular_tolerance=0.05)
     raw = trimesh.load_mesh(stl)
     components = raw.split(only_watertight=False, repair=False)
     physical = max(components, key=lambda p: len(p.faces))
     artifacts = [p for p in components if p is not physical]
-    if not all(
-        len(p.faces) <= 2 and p.area < 1e-8 and abs(p.volume) < 1e-10 for p in artifacts
-    ):
+    def negligible(mesh):
+        if mesh.area == 0.0:
+            return True
+        local = mesh.copy()
+        local.apply_translation(-mesh.bounds.mean(axis=0))
+        # Open degenerate triangles have origin-dependent divergence volumes;
+        # a local frame plus their enclosing box bounds the discarded material.
+        return (
+            mesh.extents.max() < 0.1
+            and mesh.area < 1e-7
+            and abs(local.volume) < 1e-10
+            and np.prod(mesh.extents) < 1e-10
+        )
+
+    if not all(negligible(p) for p in artifacts):
         raise RuntimeError(
             "Export contains a material disconnected component; refusing cleanup"
         )
-    welds = []
-    counts = np.bincount(physical.edges_unique_inverse)
-    bad_edges = physical.edges_unique[np.flatnonzero(counts > 2)].copy()
-    faces = physical.faces.copy()
-    for edge in bad_edges:
-        incident = np.flatnonzero(
-            np.any(np.sum(np.isin(physical.faces, edge), axis=1)[:, None] >= 2, axis=1)
-        )
-        length = float(
-            np.linalg.norm(physical.vertices[edge[0]] - physical.vertices[edge[1]])
-        )
-        if length >= 0.0005 or np.any(physical.area_faces[incident] >= 1e-8):
-            raise RuntimeError(
-                "Nonmanifold edge exceeds the strictly bounded submicron tessellation repair"
-            )
-        welds.append(
-            {
-                "edge_length_mm": length,
-                "incident_triangle_area_max_mm2": float(
-                    physical.area_faces[incident].max()
-                ),
-            }
-        )
-        faces[faces == edge[1]] = edge[0]
-    keep = (
-        (faces[:, 0] != faces[:, 1])
-        & (faces[:, 1] != faces[:, 2])
-        & (faces[:, 0] != faces[:, 2])
-    )
-    physical.faces = faces[keep]
     physical.remove_unreferenced_vertices()
     if not physical.is_watertight or not physical.is_winding_consistent:
         raise RuntimeError(
@@ -107,10 +92,14 @@ def main():
     report = {
         "source_sha256": sha(ROOT / "parts" / f"{NAME}.py"),
         "surface_fit_sha256": sha(ROOT / "references/surface-fit.json"),
+        "straight_rim_fit_sha256": sha(ROOT / "references/straight-rim-fit.json"),
         "artifacts_removed": len(artifacts),
-        "submicron_nonmanifold_edge_welds": welds,
+        "artifact_triangles_removed": sum(len(p.faces) for p in artifacts),
+        "tessellation_relative_linear_setting": 0.0048,
+        "tessellation_angular_tolerance_radians": 0.05,
+        "physical_surface_repairs": 0,
         "artifact_area_total_mm2": sum(p.area for p in artifacts),
-        "cleanup_rule": "Isolated at-most-two-triangle components with area below 1e-8 mm2 and volume below 1e-10 mm3; nonmanifold edges shorter than 0.0005 mm only when every incident triangle area is below 1e-8 mm2",
+        "cleanup_rule": "Only zero-area components or isolated components smaller than 0.1 mm in every direction with area below 1e-7 mm2, local-frame volume below 1e-10 mm3, and bounding-box volume below 1e-10 mm3. The physical component must be watertight without seam repair.",
         "mesh_watertight": physical.is_watertight,
         "mesh_winding_consistent": physical.is_winding_consistent,
         "mesh_faces": len(physical.faces),
