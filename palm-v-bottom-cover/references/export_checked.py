@@ -29,10 +29,9 @@ def main():
     stl = build / f"{NAME}.stl"
     three = build / f"{NAME}.3mf"
     export_step(solid, step)
-    # The compact far-end bend needs this finer relative setting to keep the
-    # mesh volume within the native STEP integration tolerance. Zero-area
-    # seam slivers are still discarded only after the checks below.
-    export_stl(import_step(step), stl, tolerance=0.0048, angular_tolerance=0.05)
+    # The level inner bend bands need finer native tessellation to close
+    # micrometre-scale seams. Zero-area slivers are still checked below.
+    export_stl(import_step(step), stl, tolerance=0.0024, angular_tolerance=0.025)
     raw = trimesh.load_mesh(stl)
     components = raw.split(only_watertight=False, repair=False)
     physical = max(components, key=lambda p: len(p.faces))
@@ -93,10 +92,11 @@ def main():
         "source_sha256": sha(ROOT / "parts" / f"{NAME}.py"),
         "surface_fit_sha256": sha(ROOT / "references/surface-fit.json"),
         "straight_rim_fit_sha256": sha(ROOT / "references/straight-rim-fit.json"),
+        "inner_rim_fit_sha256": sha(ROOT / "references/inner-rim-fit.json"),
         "artifacts_removed": len(artifacts),
         "artifact_triangles_removed": sum(len(p.faces) for p in artifacts),
-        "tessellation_relative_linear_setting": 0.0048,
-        "tessellation_angular_tolerance_radians": 0.05,
+        "tessellation_relative_linear_setting": 0.0024,
+        "tessellation_angular_tolerance_radians": 0.025,
         "physical_surface_repairs": 0,
         "artifact_area_total_mm2": sum(p.area for p in artifacts),
         "cleanup_rule": "Only zero-area components or isolated components smaller than 0.1 mm in every direction with area below 1e-7 mm2, local-frame volume below 1e-10 mm3, and bounding-box volume below 1e-10 mm3. The physical component must be watertight without seam repair.",

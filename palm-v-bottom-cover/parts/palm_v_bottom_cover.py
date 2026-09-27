@@ -77,7 +77,7 @@ def _arrays(knots):
     return a, b
 
 
-def exterior_surface(longitudinal_straightening=1.0, straight_rims=True, smooth_split_end=True):
+def exterior_surface(longitudinal_straightening=1.0, straight_rims=True, smooth_split_end=True, level_inner_rims=True):
     """Make the measured right-half surface, optionally removing longitudinal bow."""
     from OCP.Geom2d import Geom2d_BSplineCurve
     from OCP.TColgp import TColgp_Array1OfPnt2d
@@ -228,6 +228,24 @@ def exterior_surface(longitudinal_straightening=1.0, straight_rims=True, smooth_
             for side_i, sign in ((i, 1), (mirror, -1)):
                 pole = surf.Pole(side_i + 1, j + 1)
                 surf.SetPole(side_i + 1, j + 1, gp_Pnt(pole.X() + sign * dx, pole.Y(), pole.Z() + dz))
+    if straight_rims and level_inner_rims:
+        # These edits level the normal-offset inner crests without moving the
+        # exterior trims or changing the 0.65 mm normal sheet gauge.
+        inner_fit = json.loads(
+            (Path(__file__).resolve().parents[1] / "references/inner-rim-fit.json").read_text()
+        )
+        if inner_fit["straight_rim_fit_sha256"] != hashlib.sha256(
+            (Path(__file__).resolve().parents[1] / "references/straight-rim-fit.json").read_bytes()
+        ).hexdigest():
+            raise ValueError("The inner-rim fit is stale. Regenerate it with references/level_inner_rims.py.")
+        for knot in inner_fit["extra_v_knots"]:
+            surf.InsertVKnot(knot, 1, 1e-9)
+        if (surf.NbUPoles(), surf.NbVPoles()) != tuple(inner_fit["pole_grid"]):
+            raise ValueError("The inner-rim correction no longer matches the spline grid.")
+        for i, j, dz in inner_fit["symmetric_z_pole_corrections"]:
+            for side_i in ({i, surf.NbUPoles() - 1 - i}):
+                pole = surf.Pole(side_i + 1, j + 1)
+                surf.SetPole(side_i + 1, j + 1, gp_Pnt(pole.X(), pole.Y(), pole.Z() + dz))
     p = _uv(RIM_HALF)
 
     def spline_edge(points, start_tangent=None, end_tangent=None):

@@ -31,6 +31,7 @@ def main():
         "Reopened STEP is not one valid solid",
     )
     nominal_edges = {}
+    inner_edges = {}
     for sign in (-1, 1):
         side = [
             edge for edge in shape.edges()
@@ -46,6 +47,22 @@ def main():
         nominal_edges[f"long_side_{sign:+d}"] = {
             "height_span_mm": height_span,
             "physical_y_range_mm": [float(points[:, 1].min()), float(points[:, 1].max())],
+        }
+        inner_side = [
+            edge for edge in shape.edges()
+            if 94 < edge.length < 95
+            and sign * edge.center().X > 37
+            and 1.33 < edge.bounding_box().min.Z < 1.40
+        ]
+        require(len(inner_side) == 1, f"Expected one inner long crest on side {sign:+d}")
+        points = np.array([tuple(inner_side[0].position_at(t)) for t in np.linspace(0, 1, 2001)])
+        core = points[(points[:, 1] >= -35) & (points[:, 1] <= 40)]
+        core_span = float(np.ptp(core[:, 2]))
+        require(core_span < 0.01, f"Inner long core {sign:+d} is not level: {core_span:.5f} mm")
+        inner_edges[f"long_side_{sign:+d}"] = {
+            "core_y_range_mm": [-35, 40],
+            "core_height_span_mm": core_span,
+            "full_edge_height_span_including_corner_transitions_mm": float(np.ptp(points[:, 2])),
         }
         wall = [
             edge for edge in shape.edges()
@@ -64,6 +81,30 @@ def main():
             "maximum_x_error_from_nominal_mm": center_error,
             "physical_y_range_mm": [float(points[:, 1].min()), float(points[:, 1].max())],
         }
+        far_inner = [
+            edge for edge in shape.edges()
+            if abs(edge.length - 28) < 0.01
+            and sign * edge.center().X > 10
+            and 55.0 < edge.center().Y < 55.2
+            and edge.bounding_box().min.Z > 3.15
+        ]
+        require(len(far_inner) == 1, f"Expected one inner +Y crest on side {sign:+d}")
+        points = np.array([tuple(far_inner[0].position_at(t)) for t in np.linspace(0, 1, 1001)])
+        span = float(np.ptp(points[:, 2]))
+        require(span < 0.01, f"Inner +Y crest {sign:+d} is not level: {span:.5f} mm")
+        inner_edges[f"far_end_{sign:+d}"] = {"height_span_mm": span}
+        split_inner = [
+            edge for edge in shape.edges()
+            if 18.3 < edge.length < 18.5
+            and sign * edge.center().X > 20
+            and -56 < edge.center().Y < -54
+            and edge.bounding_box().min.Z > 4.7
+        ]
+        require(len(split_inner) == 1, f"Expected one inner -Y crest on side {sign:+d}")
+        points = np.array([tuple(split_inner[0].position_at(t)) for t in np.linspace(0, 1, 1001)])
+        span = float(np.ptp(points[:, 2]))
+        require(span < 0.01, f"Inner -Y crest {sign:+d} is not level: {span:.5f} mm")
+        inner_edges[f"split_end_{sign:+d}"] = {"height_span_mm": span}
     far_end_profiles = {}
     radius = 3.45
     crest_z, side_z, side_x = 3.12, 1.30, 37.721431
@@ -209,6 +250,7 @@ def main():
         ROOT / "parts" / f"{NAME}.py",
         ROOT / "references/surface-fit.json",
         ROOT / "references/straight-rim-fit.json",
+        ROOT / "references/inner-rim-fit.json",
         step,
         ROOT / "build" / f"{NAME}.stl",
         ROOT / "build" / f"{NAME}.3mf",
@@ -236,6 +278,7 @@ def main():
         "projected_side_profile": side_profile,
         "straight_horizontal_rim_runs": "all five physical core runs passed 0.01 mm straightness and level checks",
         "extended_nominal_edges": nominal_edges,
+        "inner_level_cores": inner_edges,
         "far_end_biarc_profiles": far_end_profiles,
         "rim_geometry_report": "rim-lines-validation.json",
         "physical_fit_verified": False,
