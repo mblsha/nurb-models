@@ -8,6 +8,7 @@ This repository contains independent nurb projects. Open a project subdirectory 
 
 | Project | Description | Reference |
 | --- | --- | --- |
+| [ipaq-h3800](ipaq-h3800/) | Registered iPAQ front, asymmetric back and PCB assembly, with a populated inspection model | Editable CAD and measured assembly registration; source scans retained locally |
 | [maixcam2](maixcam2/) | MaixCAM2 enclosure, radiator grille, camera stack, and PMOD sockets | [Binary PLY reference](maixcam2/scans/Maixcam2.ply) and [camera adapter STEP](maixcam2/references/maixcam2-camera-mount.step) |
 | [neewer-gm-mp2](neewer-gm-mp2/) | Neewer GM-MP2 macro focusing rail, carriage, quarter-turn Arca mount, retractable feet, and focus controls | [Compressed binary PLY reference](neewer-gm-mp2/scans/neewer-macro-slide-GM-MP2.ply.gz) and [exact outer focus sleeve STEP](neewer-gm-mp2/references/neewer-outer-focus-sleeve.step) |
 | [utility-blade-holder](utility-blade-holder/) | Parametric EDC utility blade holder reconstruction | [Source STL](utility-blade-holder/scans/Utility_Blade_Holder.STL), from [Thingiverse 3713857](https://www.thingiverse.com/thing:3713857) |
@@ -52,6 +53,13 @@ Or start the Vision Pro Light Seal project:
 
 ```bash
 cd vision-pro-light-seal-13w
+nurb dev
+```
+
+Open the iPAQ project and select `ipaq_case` for the front/back/PCB assembly:
+
+```bash
+cd ipaq-h3800
 nurb dev
 ```
 

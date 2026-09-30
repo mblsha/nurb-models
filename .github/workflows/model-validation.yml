@@ -94,3 +94,33 @@ jobs:
               if len(setups) != expected_count or stale:
                   raise SystemExit(f"{project} saved inspections are missing or stale: {json.dumps(stale, sort_keys=True)}")
           PY
+
+  ipaq-assembly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: mblsha/nurb
+          path: .nurb-engine
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - run: uv python install 3.13.5
+      - run: uv sync --project .nurb-engine --python 3.13.5 --locked --all-extras --dev
+
+      - name: Verify combined iPAQ CAD and STEP alignment
+        working-directory: ipaq-h3800
+        run: "$GITHUB_WORKSPACE/.nurb-engine/.venv/bin/python references/validate_assembly.py"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ipaq-case-assembly
+          path: |
+            ipaq-h3800/build/ipaq-case.step
+            ipaq-h3800/build/ipaq-case.glb
+            ipaq-h3800/build/assembly-validation.json

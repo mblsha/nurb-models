@@ -2,3 +2,11 @@
 __pycache__/
 *.py[cod]
 build/
+
+# The iPAQ publication contains CAD; user-provided scan inputs stay local.
+/ipaq-h3800/scans/
+/ipaq-h3800/references/source/
+/ipaq-h3800/references/shoulder-user-annotation.png
+/ipaq-h3800/references/source-provenance.json
+/ipaq-h3800/references/back-cleanup.json
+/ipaq-h3800/references/convert_front_reference.py

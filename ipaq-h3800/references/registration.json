@@ -1,0 +1,96 @@
+{
+  "units": "Scan coordinates interpreted as mm; no external scale calibration.",
+  "datum": "Display Z=0; +X speaker, -X navigation; +Z front outward.",
+  "method": "Four circular-bore centres for XY/yaw, exposed outer long rims for Z. PCB underside is not the case seam.",
+  "back_world_to_assembly": [
+    [
+      0.9952048710975212,
+      0.09406631102703565,
+      -0.026810327740084006,
+      3.320354162717696
+    ],
+    [
+      -0.07254286207738074,
+      0.5259671610696762,
+      -0.8474054983524278,
+      0.4108959191736276
+    ],
+    [
+      -0.06561095720524013,
+      0.8452869776626571,
+      0.530268920160839,
+      -13.787015431774936
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "back_canonical_pose": {
+    "translation_mm": [
+      4.1,
+      0.45,
+      -11.6
+    ],
+    "rotation_y_degrees": 180,
+    "yaw_degrees": -0.308
+  },
+  "rear_hole_centres_before_placement": [
+    [
+      53.409,
+      28.767
+    ],
+    [
+      53.549,
+      -26.76
+    ],
+    [
+      -49.86,
+      25.207
+    ],
+    [
+      -49.647,
+      -26.593
+    ]
+  ],
+  "front_visible_hole_centres": [
+    [
+      57.82,
+      28.62
+    ],
+    [
+      57.6,
+      -26.28
+    ],
+    [
+      -45.78,
+      25.7
+    ],
+    [
+      -45.78,
+      -25.65
+    ]
+  ],
+  "rigid_xy_fit_residuals_mm": [
+    0.3484,
+    0.329,
+    0.2763,
+    0.2417
+  ],
+  "outer_seam_z_mm": -4.3,
+  "nominal_front_wall_mm": 1.0,
+  "nominal_back_gauge_mm": 0.4,
+  "limits": "Bore circles have scan noise; hidden front mounts, internal returns, port edges and coarse electronics are reconstructed. This is not a proven manufactured fit.",
+  "mating_reconstruction": {
+    "shared_function": "case_profiles.rear_outline",
+    "nominal_pocket_clearance_mm": 0.2,
+    "navigation_corner_radius_mm": 12.0,
+    "front_return_thickness_mm": 1.0,
+    "pose_changed": false,
+    "details": "The back retains the scanned asymmetric flared shoulder. Its surface and outline also define the relieved lower front wrap. Nine asymmetric catches have corresponding receivers. The planar repaired navigation edge and four-bore registration remain fixed.",
+    "verification": "Run references/validate_assembly.py; current checks and exported geometry are written under build/.",
+    "shoulder_underlap_relief_mm": 0.25
+  }
+}

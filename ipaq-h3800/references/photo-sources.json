@@ -1,0 +1,33 @@
+{
+  "family": "Compaq iPAQ H3800, exact SKU unconfirmed",
+  "accessed": "2026-09-30",
+  "role": "Photographs guide feature interpretation and silhouette; dimensions remain tied to the user scans.",
+  "sources": [
+    {
+      "title": "iXBT iPAQ 3850 review",
+      "url": "https://www.ixbt.com/pda/compaq-ipaq3800.shtml",
+      "image": "https://www.ixbt.com/pda/pda/compaq/ipaq3800/picall.jpg",
+      "inspected": "Front, rear, long side and both short ends in the browser."
+    },
+    {
+      "title": "The Gadgeteer iPAQ 3835/3850 review",
+      "url": "https://the-gadgeteer.com/2001/11/02/compaq_ipaq_3835_3850_pocket_pc_review/",
+      "images": [
+        "https://the-gadgeteer.com/assets/compaq3850-5.jpg",
+        "https://the-gadgeteer.com/assets/compaq3850-10.jpg"
+      ],
+      "inspected": "Speaker cap close-up and stacked long-edge profiles in the browser."
+    },
+    {
+      "title": "Compaq H3800 QuickSpecs",
+      "url": "https://documents.cdn.ifixit.com/H3ZAqGkk2M5FJIoL.pdf",
+      "role": "Published dimensions 133 x 84 x 16 mm; sanity check only, not a rescaling of the scan."
+    }
+  ],
+  "observations": [
+    "Separate dark curved speaker/IR cap wraps over the upper short edge.",
+    "Flared asymmetric shoulder beside the stylus/recorder region.",
+    "Broad curved navigation end with shallow raised control area, domed round controls and elongated thumb control.",
+    "Rounded long rails and smoothly returning end surfaces."
+  ]
+}
