@@ -1,0 +1,90 @@
+{
+  "schema": "palm-v-frozen-exterior-review/v1",
+  "review_date": "2026-09-30",
+  "publication_date": "2026-10-01",
+  "project_root_from_review": "../..",
+  "audited_artifacts_sha256": {
+    "palm_v_complete.step": "35d9bf5f8865c8dff742bd7d8d4fc1f05ee45aab3674caa02fa7f7a9d89fbe50",
+    "palm_v_complete.glb": "f3d35c359dbc35862721e02f440216a2a0428a23542d2fd2bade2826b52ca4be",
+    "palm_v_complete.stl": "162b5842a3f167abb81e00b884d87a1ba6989643dd75c54056f8f398b094b309"
+  },
+  "reference": {
+    "file": "scans/palm-v-rough-observed.ply.gz",
+    "sha256": "f53be50195cc6595f9661c1c70c0f1f83331f287a46f8d85a414a8d951849fae"
+  },
+  "files": {
+    "audit.md": {
+      "bytes": 15684,
+      "sha256": "464432b0a8ca51c94e1a3f79c2f41edbca176d7f8e7c4edb61dbf8facaa36583"
+    },
+    "comparison.json": {
+      "bytes": 33382,
+      "sha256": "e104bdb78508a8024f2e6b35e6754d6dd6b0de303e4e37e2e928dfa9da488d41"
+    },
+    "evidence/alignment.json": {
+      "bytes": 1306,
+      "sha256": "cc2651fbe1a12338ceb530808c7683aea40b77acae9a1fdeaa52c67241bac684"
+    },
+    "evidence/canonical-front-rear-scan.png": {
+      "bytes": 754024,
+      "sha256": "32bb60490ed80a5ab9525d68ff4fdfea0aaca6434ed87237460a42648144133f"
+    },
+    "evidence/canonical-side-sections.png": {
+      "bytes": 26048,
+      "sha256": "41adfed73650697375c067cc7970e9a51d1419463130901ff2e9df0e71e8b44c"
+    },
+    "evidence/channel-mouth-section.png": {
+      "bytes": 17021,
+      "sha256": "e720605c827355f6102a0ec63cfa8dad82cfb5f9369f64965a08e62bc27200e1"
+    },
+    "evidence/closure-rays.json": {
+      "bytes": 8613,
+      "sha256": "ddaf71fd29db79cc1cd29a8f23337b65cb13385284f73bd6350d47dbf3759045"
+    },
+    "evidence/flare-check.json": {
+      "bytes": 850,
+      "sha256": "9f0b4aff95897649484f56127ab1714b17e6ab7d0fd30a0edb8c4f3b6022984a"
+    },
+    "evidence/input-identities.json": {
+      "bytes": 2863,
+      "sha256": "d56cbb46a8724c3ff101d1ac90d6bd75055fc8f95c7216c460e75955b17e2b9c"
+    },
+    "evidence/native-symmetry-check.json": {
+      "bytes": 1362,
+      "sha256": "f7103b2ca39d940eea88095a115d9cef5154ab29aea0d28e2e501ee963b9ceca"
+    },
+    "evidence/rocker-center-profiles.json": {
+      "bytes": 4444,
+      "sha256": "5c82d9858c4516f4ea86900c16e6e9b84369f90bfb4ee318deddecc74a3afee7"
+    },
+    "evidence/scan-feature-metrics.json": {
+      "bytes": 1484,
+      "sha256": "cbd9615111554ba8ceba7841161c709279ea6d3ed56e82c647473521b82b53ed"
+    },
+    "sheet.png": {
+      "bytes": 349777,
+      "sha256": "6bd4c4e1379177184a3f043181f05879be2262dcfd1be58e8edab6a633058f0c"
+    },
+    "validation.json": {
+      "bytes": 12864,
+      "sha256": "6075e4789c0aae0de8b3ba297a439fef4bfd57d54a8f001831e536da96405ce1"
+    }
+  },
+  "publication_changes": [
+    {
+      "file": "references/export_complete.py",
+      "audited_sha256": "eaec75a6eef65c316403b3edccafad7e6699bd974509621eed8bc5d6d6365ab8",
+      "prepublication_sha256": "eaec75a6eef65c316403b3edccafad7e6699bd974509621eed8bc5d6d6365ab8",
+      "publication_sha256": "b915a970aab403d88d312cfa0036fe857c0953488a10ad50ac39bc6b9789e7e5",
+      "change": "Create build/ before exporting; no geometry or tessellation changes. Frozen artifact identities and audit values remain unchanged."
+    }
+  ],
+  "omitted_generated_outputs": [
+    "build/palm_v_complete.step",
+    "build/palm_v_complete.stl",
+    "build/palm_v_complete.glb",
+    "build/palm_v_complete-comparison.npz",
+    "dense audit section arrays"
+  ],
+  "scope": "Concise frozen review proof, not a self-contained copy of the generated model or full audit workspace. The committed source, preserved scans and validator reproduce current build outputs; historical input-identities retain audited hashes."
+}

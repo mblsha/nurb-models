@@ -12,6 +12,7 @@ This repository contains independent nurb projects. Open a project subdirectory 
 | [maixcam2](maixcam2/) | MaixCAM2 enclosure, radiator grille, camera stack, and PMOD sockets | [Binary PLY reference](maixcam2/scans/Maixcam2.ply) and [camera adapter STEP](maixcam2/references/maixcam2-camera-mount.step) |
 | [neewer-gm-mp2](neewer-gm-mp2/) | Neewer GM-MP2 macro focusing rail, carriage, quarter-turn Arca mount, retractable feet, and focus controls | [Compressed binary PLY reference](neewer-gm-mp2/scans/neewer-macro-slide-GM-MP2.ply.gz) and [exact outer focus sleeve STEP](neewer-gm-mp2/references/neewer-outer-focus-sleeve.step) |
 | [palm-pilot-professional](palm-pilot-professional/) | US Robotics Palm Pilot Professional exterior with sliding rear covers, curved controls, paired dock sockets and fitted eight-groove stylus | [Textured body reference](palm-pilot-professional/scans/import-056f225059e4892abed2/reference-d498d06da15f734ccda2.glb), original PLY/PNG assets, and corrected stylus reference |
+| [palm-v-bottom-cover](palm-v-bottom-cover/) | Primary complete Palm V exterior with smooth symmetric main forms, plus the preserved six-part case study and historical assembly | [Project evidence and reproduction](palm-v-bottom-cover/README.md#evidence-and-reproduction) and [frozen complete-exterior review](palm-v-bottom-cover/references/complete-exterior-review/) |
 | [utility-blade-holder](utility-blade-holder/) | Parametric EDC utility blade holder reconstruction | [Source STL](utility-blade-holder/scans/Utility_Blade_Holder.STL), from [Thingiverse 3713857](https://www.thingiverse.com/thing:3713857) |
 | [vision-pro-light-seal-13w](vision-pro-light-seal-13w/) | Symmetric Vision Pro Light Seal 13W shell with a small retaining lip on the narrow Vision Pro rim and eight cushion attachment recesses | [Textured reference GLB](vision-pro-light-seal-13w/scans/vision-pro-light-seal-13w-reference.glb) and original PLY/PNG under `references/source/` |
 
@@ -63,6 +64,15 @@ Open the iPAQ project and select `ipaq_case` for the front/back/PCB assembly:
 cd ipaq-h3800
 nurb dev
 ```
+
+Or start the primary Palm V complete exterior viewer:
+
+```bash
+cd palm-v-bottom-cover
+python references/serve_complete.py .
+```
+
+Select `palm_v_complete` in the desktop app or standard `nurb dev`. The [Palm V project README](palm-v-bottom-cover/README.md) also documents its six preserved partial models and the historical body's current seating failure. Use `nurb build palm_v_complete` for a scoped build; building every Palm V part also attempts that failing historical body.
 
 Within a project, `nurb build` builds all its parts, `nurb check` reports findings, and `nurb compare <main-part>` compares its main model with the stored reference.
 

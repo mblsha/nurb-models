@@ -1,0 +1,1383 @@
+{
+  "model_sha256": "f3d35c359dbc35862721e02f440216a2a0428a23542d2fd2bade2826b52ca4be",
+  "reference_sha256": "f53be50195cc6595f9661c1c70c0f1f83331f287a46f8d85a414a8d951849fae",
+  "reference_frame": {
+    "source_label": "palm-v-whole-rough-observed",
+    "source_to_canonical": [
+      [
+        -0.10922572644686877,
+        0.6454672384636836,
+        -0.7559376857600234,
+        0.6376355473739272
+      ],
+      [
+        0.994016907224094,
+        0.0706513663750424,
+        -0.08329929520702148,
+        -0.24791964318279427
+      ],
+      [
+        -0.00035893564991422314,
+        -0.7605132664848164,
+        -0.6493222949089253,
+        3.870885865838079
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "extents_xyz": [
+      81.55268676518544,
+      115.88085412853458,
+      13.136619178539629
+    ],
+    "frame": "X=0 optimized outer-frame bilateral plane; Y toward top opposite connector/button end, Z front; Y/Z centered by robust end/face bounds, not mass centroid",
+    "orientation_status": "whole front identified by visible display/buttons; body front inferred from corresponding raw source orientation and must be verified from mating features",
+    "assembly_status": "independent rigid canonical pose only; no fit/congruence between front/back interfaces asserted",
+    "pca_initial_to_bilateral": [
+      [
+        0.9999994336372772,
+        -0.0005958415740026624,
+        0.0008818718406973816,
+        -0.046493355146022715
+      ],
+      [
+        0.0005958413423101517,
+        0.9999998224863935,
+        5.254559989053424e-07,
+        0.01753108072309928
+      ],
+      [
+        -0.0008818719972416602,
+        1.0587911840678754e-22,
+        0.9999996111508145,
+        -0.016202438191328383
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "alignment_method": "Robust reflected nearest-surface point-plane residual using outward side rails and paired end outline, excluding inner tabs and tiny disconnected components"
+  },
+  "validator_sha256": "3ab019ea1158089ddc88466ca5bfb491457241f2e5a24db7b2d2425bcb71ccaf",
+  "visibility_source_sha256": "c148849921113607d7a86f9cd4e9397443033d731199f2e5c831b57f3f715fe5",
+  "model": "build/palm_v_complete.glb",
+  "reference": "scans/palm-v-rough-observed.ply.gz",
+  "components": [
+    {
+      "name": "Rear locating nub right",
+      "geometry": "Rear locating nub right",
+      "faces": 2444,
+      "bounds": [
+        [
+          19.681617736816406,
+          -48.11838150024414,
+          -6.570000171661377
+        ],
+        [
+          21.31917381286621,
+          -46.48161697387695,
+          -4.929999828338623
+        ]
+      ]
+    },
+    {
+      "name": "Rear locating nub left",
+      "geometry": "Rear locating nub left",
+      "faces": 2444,
+      "bounds": [
+        [
+          -21.318382263183594,
+          -48.11838150024414,
+          -6.570000171661377
+        ],
+        [
+          -19.68082618713379,
+          -46.48161697387695,
+          -4.929999828338623
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 10",
+      "geometry": "Recessed dock contact 10",
+      "faces": 528,
+      "bounds": [
+        [
+          8.600000381469727,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          9.399999618530273,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 9",
+      "geometry": "Recessed dock contact 9",
+      "faces": 528,
+      "bounds": [
+        [
+          6.599999904632568,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          7.400000095367432,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 8",
+      "geometry": "Recessed dock contact 8",
+      "faces": 528,
+      "bounds": [
+        [
+          4.599999904632568,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          5.400000095367432,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 7",
+      "geometry": "Recessed dock contact 7",
+      "faces": 528,
+      "bounds": [
+        [
+          2.5999999046325684,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          3.4000000953674316,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 6",
+      "geometry": "Recessed dock contact 6",
+      "faces": 528,
+      "bounds": [
+        [
+          0.6000000238418579,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          1.399999976158142,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 5",
+      "geometry": "Recessed dock contact 5",
+      "faces": 528,
+      "bounds": [
+        [
+          -1.399999976158142,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          -0.6000000238418579,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 4",
+      "geometry": "Recessed dock contact 4",
+      "faces": 528,
+      "bounds": [
+        [
+          -3.4000000953674316,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          -2.5999999046325684,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 3",
+      "geometry": "Recessed dock contact 3",
+      "faces": 528,
+      "bounds": [
+        [
+          -5.400000095367432,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          -4.599999904632568,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 2",
+      "geometry": "Recessed dock contact 2",
+      "faces": 528,
+      "bounds": [
+        [
+          -7.400000095367432,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          -6.599999904632568,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Recessed dock contact 1",
+      "geometry": "Recessed dock contact 1",
+      "faces": 528,
+      "bounds": [
+        [
+          -9.399999618530273,
+          -53.849998474121094,
+          -5.4914140701293945
+        ],
+        [
+          -8.600000381469727,
+          -48.25,
+          -4.741894721984863
+        ]
+      ]
+    },
+    {
+      "name": "Right outer application key edge seat",
+      "geometry": "Right outer application key edge seat",
+      "faces": 276,
+      "bounds": [
+        [
+          22.420000076293945,
+          -45.77619552612305,
+          3.9000000953674316
+        ],
+        [
+          29.979999542236328,
+          -38.22380447387695,
+          4.449999809265137
+        ]
+      ]
+    },
+    {
+      "name": "Right outer application key",
+      "geometry": "Right outer application key",
+      "faces": 5316,
+      "bounds": [
+        [
+          22.649999618530273,
+          -45.546424865722656,
+          3.799999952316284
+        ],
+        [
+          29.75,
+          -38.453575134277344,
+          4.699999809265137
+        ]
+      ]
+    },
+    {
+      "name": "Right inner application key edge seat",
+      "geometry": "Right inner application key edge seat",
+      "faces": 276,
+      "bounds": [
+        [
+          9.220000267028809,
+          -47.77619552612305,
+          4.300000190734863
+        ],
+        [
+          16.780000686645508,
+          -40.22380447387695,
+          4.849999904632568
+        ]
+      ]
+    },
+    {
+      "name": "Right inner application key",
+      "geometry": "Right inner application key",
+      "faces": 5316,
+      "bounds": [
+        [
+          9.449999809265137,
+          -47.546424865722656,
+          4.199999809265137
+        ],
+        [
+          16.549999237060547,
+          -40.453575134277344,
+          5.099999904632568
+        ]
+      ]
+    },
+    {
+      "name": "Left inner application key edge seat",
+      "geometry": "Left inner application key edge seat",
+      "faces": 276,
+      "bounds": [
+        [
+          -16.780000686645508,
+          -47.77619552612305,
+          4.300000190734863
+        ],
+        [
+          -9.220000267028809,
+          -40.22380447387695,
+          4.849999904632568
+        ]
+      ]
+    },
+    {
+      "name": "Left inner application key",
+      "geometry": "Left inner application key",
+      "faces": 5316,
+      "bounds": [
+        [
+          -16.549999237060547,
+          -47.546424865722656,
+          4.199999809265137
+        ],
+        [
+          -9.449999809265137,
+          -40.453575134277344,
+          5.099999904632568
+        ]
+      ]
+    },
+    {
+      "name": "Left outer application key edge seat",
+      "geometry": "Left outer application key edge seat",
+      "faces": 276,
+      "bounds": [
+        [
+          -29.979999542236328,
+          -45.77619552612305,
+          3.9000000953674316
+        ],
+        [
+          -22.420000076293945,
+          -38.22380447387695,
+          4.449999809265137
+        ]
+      ]
+    },
+    {
+      "name": "Left outer application key",
+      "geometry": "Left outer application key",
+      "faces": 5316,
+      "bounds": [
+        [
+          -29.75,
+          -45.546424865722656,
+          3.799999952316284
+        ],
+        [
+          -22.649999618530273,
+          -38.453575134277344,
+          4.699999809265137
+        ]
+      ]
+    },
+    {
+      "name": "Contrast button",
+      "geometry": "Contrast button",
+      "faces": 300,
+      "bounds": [
+        [
+          -27.649999618530273,
+          49.525001525878906,
+          4.550000190734863
+        ],
+        [
+          -20.350000381469727,
+          52.07500076293945,
+          5.199999809265137
+        ]
+      ]
+    },
+    {
+      "name": "Power button",
+      "geometry": "Power button",
+      "faces": 340,
+      "bounds": [
+        [
+          20.200510025024414,
+          54.30440139770508,
+          3.859999895095825
+        ],
+        [
+          28.200000762939453,
+          57.49996566772461,
+          5.059999942779541
+        ]
+      ]
+    },
+    {
+      "name": "Rear dock housing",
+      "geometry": "Rear dock housing",
+      "faces": 5610,
+      "bounds": [
+        [
+          -15.899999618530273,
+          -56.20000076293945,
+          -6.156933307647705
+        ],
+        [
+          15.899999618530273,
+          -45.20000076293945,
+          -1.0167782306671143
+        ]
+      ]
+    },
+    {
+      "name": "Scroll recess backing",
+      "geometry": "Scroll recess backing",
+      "faces": 2620,
+      "bounds": [
+        [
+          -3.859999895095825,
+          -53.365478515625,
+          2.9057509899139404
+        ],
+        [
+          3.859999895095825,
+          -37.93452072143555,
+          6.337317943572998
+        ]
+      ]
+    },
+    {
+      "name": "Scroll rocker",
+      "geometry": "Scroll rocker",
+      "faces": 2342,
+      "bounds": [
+        [
+          -3.5999999046325684,
+          -53.09657669067383,
+          2.3295483589172363
+        ],
+        [
+          3.5999999046325684,
+          -38.203426361083984,
+          6.562075138092041
+        ]
+      ]
+    },
+    {
+      "name": "Display edge seat",
+      "geometry": "Display edge seat",
+      "faces": 688,
+      "bounds": [
+        [
+          -29.100000381469727,
+          -32.587646484375,
+          2.5
+        ],
+        [
+          29.100000381469727,
+          46.599998474121094,
+          4.25
+        ]
+      ]
+    },
+    {
+      "name": "Display and handwriting surface",
+      "geometry": "Display and handwriting surface",
+      "faces": 344,
+      "bounds": [
+        [
+          -28.350000381469727,
+          -31.850000381469727,
+          2.7929999828338623
+        ],
+        [
+          28.350000381469727,
+          45.849998474121094,
+          3.5929999351501465
+        ]
+      ]
+    },
+    {
+      "name": "Smooth paired stylus channels",
+      "geometry": "Smooth paired stylus channels",
+      "faces": 2724004,
+      "bounds": [
+        [
+          -40.82190704345703,
+          -57.98773956298828,
+          -4.25
+        ],
+        [
+          40.82190704345703,
+          57.83802032470703,
+          1.649999976158142
+        ]
+      ]
+    },
+    {
+      "name": "Front aluminium shell",
+      "geometry": "Front aluminium shell",
+      "faces": 32928,
+      "bounds": [
+        [
+          -40.201416015625,
+          -56.029319763183594,
+          0.9012683629989624
+        ],
+        [
+          40.201416015625,
+          57.27281951904297,
+          5.257013320922852
+        ]
+      ]
+    },
+    {
+      "name": "Rear aluminium shell",
+      "geometry": "Rear aluminium shell",
+      "faces": 82026,
+      "bounds": [
+        [
+          -40.827857971191406,
+          -56.46543502807617,
+          -6.546110153198242
+        ],
+        [
+          40.827857971191406,
+          57.270267486572266,
+          -1.0582703351974487
+        ]
+      ]
+    }
+  ],
+  "units": "mm",
+  "tolerance_mm": 0.5,
+  "model_bounds": [
+    [
+      -40.827857971191406,
+      -57.98773956298828,
+      -6.570000171661377
+    ],
+    [
+      40.827857971191406,
+      57.83802032470703,
+      6.562075138092041
+    ]
+  ],
+  "reference_bounds": [
+    [
+      -40.79407829332254,
+      -57.93132823284293,
+      -6.5938204479310185
+    ],
+    [
+      40.7586084718629,
+      57.94952589569165,
+      6.542798730608611
+    ]
+  ],
+  "method": "Exact unsigned point-to-triangle distances using nurb.compare. Area-uniform random samples; CAD exposure checked by unobstructed exact triangle rays in 26 directions. Buried CAD samples excluded. Any source sample with a buried nearest CAD match remains explicitly unresolved, not a successful exterior match. Limited directions can exclude exposed points seen only through a narrower aperture. Mesh metrics include tessellation error and are finite samples, not certified maxima.",
+  "cad_area_samples_total": 7000,
+  "cad_exposed_samples": 2715,
+  "source_samples": 3500,
+  "source_nearest_cad_match_buried": 369,
+  "regions": {
+    "global": {
+      "cad_to_scan": {
+        "samples": 2715,
+        "median_mm": 0.09903095595777567,
+        "p95_mm": 0.5196933901749509,
+        "p99_mm": 1.1542958087637845,
+        "sampled_max_mm": 2.8841313306477123,
+        "within_tolerance_fraction": 0.9469613259668508
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 3500,
+        "median_mm": 0.08732417232377199,
+        "p95_mm": 0.315785688739198,
+        "p99_mm": 0.6033106949755891,
+        "sampled_max_mm": 1.1105893950933226,
+        "within_tolerance_fraction": 0.984
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 3131,
+        "median_mm": 0.0800156990038621,
+        "p95_mm": 0.3129241768210955,
+        "p99_mm": 0.5989330234097903,
+        "sampled_max_mm": 1.1105893950933226,
+        "within_tolerance_fraction": 0.9837112743532418
+      },
+      "unresolved_buried_matches": 369
+    },
+    "front_skin": {
+      "cad_to_scan": {
+        "samples": 584,
+        "median_mm": 0.06079627476871148,
+        "p95_mm": 0.33417822230966315,
+        "p99_mm": 0.5468409493291618,
+        "sampled_max_mm": 2.8841313306477123,
+        "within_tolerance_fraction": 0.9863013698630136
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 770,
+        "median_mm": 0.05235455322311701,
+        "p95_mm": 0.26828510665223093,
+        "p99_mm": 0.45197236329412277,
+        "sampled_max_mm": 0.6460812989610608,
+        "within_tolerance_fraction": 0.9935064935064936
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 739,
+        "median_mm": 0.05207557834841215,
+        "p95_mm": 0.26000909334240946,
+        "p99_mm": 0.4404452410173434,
+        "sampled_max_mm": 0.6460812989610608,
+        "within_tolerance_fraction": 0.993234100135318
+      },
+      "unresolved_buried_matches": 31
+    },
+    "display": {
+      "cad_to_scan": {
+        "samples": 589,
+        "median_mm": 0.061392222817007104,
+        "p95_mm": 0.8847887531664317,
+        "p99_mm": 1.1735398892316249,
+        "sampled_max_mm": 1.187597854722636,
+        "within_tolerance_fraction": 0.9168081494057725
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 728,
+        "median_mm": 0.055550554479101955,
+        "p95_mm": 0.15316000206589425,
+        "p99_mm": 0.6079647814125947,
+        "sampled_max_mm": 0.7652343331080402,
+        "within_tolerance_fraction": 0.9876373626373627
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 727,
+        "median_mm": 0.05553870601627864,
+        "p95_mm": 0.1522099694200842,
+        "p99_mm": 0.6083858121581749,
+        "sampled_max_mm": 0.7652343331080402,
+        "within_tolerance_fraction": 0.9876203576341128
+      },
+      "unresolved_buried_matches": 1
+    },
+    "application_keys": {
+      "cad_to_scan": {
+        "samples": 41,
+        "median_mm": 0.18205021661118528,
+        "p95_mm": 0.4663890221182979,
+        "p99_mm": 0.6756080255069393,
+        "sampled_max_mm": 0.7514894032307784,
+        "within_tolerance_fraction": 0.9512195121951219
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 35,
+        "median_mm": 0.07314990753252062,
+        "p95_mm": 0.34059373001906174,
+        "p99_mm": 0.4379954491799977,
+        "sampled_max_mm": 0.44568027995872317,
+        "within_tolerance_fraction": 1.0
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 17,
+        "median_mm": 0.07314990753252062,
+        "p95_mm": 0.42759832518525176,
+        "p99_mm": 0.4420638890040289,
+        "sampled_max_mm": 0.44568027995872317,
+        "within_tolerance_fraction": 1.0
+      },
+      "unresolved_buried_matches": 18
+    },
+    "scroll_rocker": {
+      "cad_to_scan": {
+        "samples": 25,
+        "median_mm": 0.08492618118861774,
+        "p95_mm": 1.1898392578901564,
+        "p99_mm": 1.457828359519223,
+        "sampled_max_mm": 1.5003534266643956,
+        "within_tolerance_fraction": 0.84
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 36,
+        "median_mm": 0.05610613769816458,
+        "p95_mm": 0.33942127833912,
+        "p99_mm": 0.46376171377441666,
+        "sampled_max_mm": 0.5262745773490112,
+        "within_tolerance_fraction": 0.9722222222222222
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 34,
+        "median_mm": 0.048265846865680806,
+        "p95_mm": 0.34052062732154575,
+        "p99_mm": 0.4673338774072512,
+        "sampled_max_mm": 0.5262745773490112,
+        "within_tolerance_fraction": 0.9705882352941176
+      },
+      "unresolved_buried_matches": 2
+    },
+    "rear_skin": {
+      "cad_to_scan": {
+        "samples": 829,
+        "median_mm": 0.17114535868838374,
+        "p95_mm": 0.3953679737524497,
+        "p99_mm": 0.4734961339894281,
+        "sampled_max_mm": 0.8242269227674824,
+        "within_tolerance_fraction": 0.9963811821471653
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 1132,
+        "median_mm": 0.1679843578727529,
+        "p95_mm": 0.3130915429006666,
+        "p99_mm": 0.32311147325392103,
+        "sampled_max_mm": 1.026624269141765,
+        "within_tolerance_fraction": 0.9964664310954063
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 912,
+        "median_mm": 0.12820474981975094,
+        "p95_mm": 0.31066830677624346,
+        "p99_mm": 0.3221390929798029,
+        "sampled_max_mm": 1.026624269141765,
+        "within_tolerance_fraction": 0.9956140350877193
+      },
+      "unresolved_buried_matches": 220
+    },
+    "side_channels": {
+      "cad_to_scan": {
+        "samples": 263,
+        "median_mm": 0.1314398846468457,
+        "p95_mm": 0.44540535032622247,
+        "p99_mm": 0.6923112968837175,
+        "sampled_max_mm": 0.8133951047769188,
+        "within_tolerance_fraction": 0.9657794676806084
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 371,
+        "median_mm": 0.13508513331700892,
+        "p95_mm": 0.4719533949518488,
+        "p99_mm": 0.7877433872401168,
+        "sampled_max_mm": 1.0900515742382106,
+        "within_tolerance_fraction": 0.9595687331536388
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 359,
+        "median_mm": 0.12975715392995657,
+        "p95_mm": 0.4443931713937991,
+        "p99_mm": 0.7653864314826353,
+        "sampled_max_mm": 1.0900515742382106,
+        "within_tolerance_fraction": 0.9693593314763231
+      },
+      "unresolved_buried_matches": 12
+    },
+    "dock": {
+      "cad_to_scan": {
+        "samples": 106,
+        "median_mm": 0.24397149798277984,
+        "p95_mm": 1.4053491539784928,
+        "p99_mm": 1.442774312423648,
+        "sampled_max_mm": 1.506618154396673,
+        "within_tolerance_fraction": 0.6320754716981132
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 106,
+        "median_mm": 0.07289486551946642,
+        "p95_mm": 0.300784928059062,
+        "p99_mm": 0.6797673913258944,
+        "sampled_max_mm": 1.1105893950933226,
+        "within_tolerance_fraction": 0.9716981132075472
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 80,
+        "median_mm": 0.05681221158478347,
+        "p95_mm": 0.2658455112931183,
+        "p99_mm": 0.640243126041395,
+        "sampled_max_mm": 1.1105893950933226,
+        "within_tolerance_fraction": 0.975
+      },
+      "unresolved_buried_matches": 26
+    },
+    "top_controls": {
+      "cad_to_scan": {
+        "samples": 81,
+        "median_mm": 0.07449031463536072,
+        "p95_mm": 0.39982389999136836,
+        "p99_mm": 1.0126421543521873,
+        "sampled_max_mm": 2.8841313306477123,
+        "within_tolerance_fraction": 0.9753086419753086
+      },
+      "scan_to_cad_all_nearest": {
+        "samples": 82,
+        "median_mm": 0.0740030853121596,
+        "p95_mm": 0.5185159409487681,
+        "p99_mm": 0.5895558433441677,
+        "sampled_max_mm": 0.6460812989610608,
+        "within_tolerance_fraction": 0.926829268292683
+      },
+      "scan_to_exposed_cad_confirmed": {
+        "samples": 80,
+        "median_mm": 0.07305259527167945,
+        "p95_mm": 0.520111667197708,
+        "p99_mm": 0.5909515336063129,
+        "sampled_max_mm": 0.6460812989610608,
+        "within_tolerance_fraction": 0.925
+      },
+      "unresolved_buried_matches": 2
+    }
+  },
+  "symmetry": {
+    "samples": 2487,
+    "median_mm": 0.0,
+    "p95_mm": 0.001322575672095467,
+    "p99_mm": 0.005508881540111615,
+    "sampled_max_mm": 0.01652426933443505,
+    "within_tolerance_fraction": 1.0,
+    "scope": "Exposed sample reflections about saved X=0 datum, excluding both sides of top power/contrast region and rear reset/label region; nearest complete CAD triangle surface."
+  },
+  "worst_cad_to_scan": [
+    {
+      "point": [
+        30.58899858212103,
+        53.82495987775083,
+        1.649999976158142
+      ],
+      "distance_mm": 2.8841313306477123
+    },
+    {
+      "point": [
+        -1.8659325393443482,
+        -46.6733262789105,
+        -4.632025528470611
+      ],
+      "distance_mm": 1.506618154396673
+    },
+    {
+      "point": [
+        0.6788744015079089,
+        -42.02909024438507,
+        4.757592583889948
+      ],
+      "distance_mm": 1.5003534266643956
+    },
+    {
+      "point": [
+        -13.26071389662083,
+        -54.75165845676713,
+        -4.032995752029222
+      ],
+      "distance_mm": 1.4429775567111172
+    },
+    {
+      "point": [
+        13.1234862058142,
+        -54.88131309978967,
+        -4.599077540220522
+      ],
+      "distance_mm": 1.4389126709617341
+    },
+    {
+      "point": [
+        -4.6341548833743165,
+        -46.356785713346575,
+        -4.64091762979984
+      ],
+      "distance_mm": 1.4295078151018203
+    },
+    {
+      "point": [
+        1.077129966483538,
+        -46.07991287924954,
+        -4.644963111574219
+      ],
+      "distance_mm": 1.4209756883285565
+    },
+    {
+      "point": [
+        4.934620597582045,
+        -46.70278246230885,
+        -4.630949011703443
+      ],
+      "distance_mm": 1.4063265638174183
+    },
+    {
+      "point": [
+        14.86863991589413,
+        -49.343567777926495,
+        -4.466008286770025
+      ],
+      "distance_mm": 1.4024169244617168
+    },
+    {
+      "point": [
+        7.185369126106001,
+        -46.575974436544,
+        -4.635583385549547
+      ],
+      "distance_mm": 1.3594957446229443
+    },
+    {
+      "point": [
+        -11.689942611337498,
+        -47.32224816214268,
+        -4.604740290440047
+      ],
+      "distance_mm": 1.3312670403518343
+    },
+    {
+      "point": [
+        -3.294360405327935,
+        -42.292394205944184,
+        4.923774552929331
+      ],
+      "distance_mm": 1.3231656468928445
+    },
+    {
+      "point": [
+        -15.449141601346959,
+        -49.99774038019323,
+        -4.42399593038804
+      ],
+      "distance_mm": 1.2158034164958875
+    },
+    {
+      "point": [
+        -11.930917071032024,
+        -48.92658643596024,
+        -4.496086851574832
+      ],
+      "distance_mm": 1.1884380198353366
+    },
+    {
+      "point": [
+        0.5564523749680248,
+        24.957707271043844,
+        2.5
+      ],
+      "distance_mm": 1.187597854722636
+    },
+    {
+      "point": [
+        -8.495809030159005,
+        18.048108166572312,
+        2.5
+      ],
+      "distance_mm": 1.1814054496993724
+    },
+    {
+      "point": [
+        -6.123496967319703,
+        17.686127668465648,
+        2.5
+      ],
+      "distance_mm": 1.1784611700765177
+    },
+    {
+      "point": [
+        -8.472396706979382,
+        7.839635128186977,
+        2.5
+      ],
+      "distance_mm": 1.176331337291151
+    },
+    {
+      "point": [
+        -7.370362775870472,
+        9.765108450306784,
+        2.5
+      ],
+      "distance_mm": 1.1743691921879236
+    },
+    {
+      "point": [
+        -5.249219780751808,
+        7.390321975213951,
+        2.5
+      ],
+      "distance_mm": 1.174186644017726
+    },
+    {
+      "point": [
+        -7.312729130606343,
+        16.034377621227755,
+        2.5
+      ],
+      "distance_mm": 1.1734516953971565
+    },
+    {
+      "point": [
+        -8.6993365929719,
+        16.417171415790904,
+        2.5
+      ],
+      "distance_mm": 1.1698291449861504
+    },
+    {
+      "point": [
+        -9.582691827073102,
+        15.582328837881299,
+        2.5
+      ],
+      "distance_mm": 1.1669894775949838
+    },
+    {
+      "point": [
+        -2.4149369325678123,
+        7.328431467824153,
+        2.5
+      ],
+      "distance_mm": 1.1662187309832077
+    },
+    {
+      "point": [
+        -7.268773884294568,
+        -46.93855634914744,
+        -4.622332330478666
+      ],
+      "distance_mm": 1.1655594329673586
+    },
+    {
+      "point": [
+        8.760049627400356,
+        -47.15772126990294,
+        -4.6143226467807565
+      ],
+      "distance_mm": 1.164686821340302
+    },
+    {
+      "point": [
+        -8.793279746937735,
+        17.628429782892052,
+        2.5
+      ],
+      "distance_mm": 1.1607287877536752
+    },
+    {
+      "point": [
+        -0.7311726821491433,
+        8.693124989024987,
+        2.5
+      ],
+      "distance_mm": 1.1543446665594057
+    },
+    {
+      "point": [
+        10.000405113428162,
+        -48.925636780052336,
+        -4.496841903906178
+      ],
+      "distance_mm": 1.1539956823049673
+    },
+    {
+      "point": [
+        -13.399999618530273,
+        -54.26360479464923,
+        -3.7342902111090535
+      ],
+      "distance_mm": 1.1505441534497682
+    }
+  ],
+  "worst_scan_to_cad": [
+    {
+      "point": [
+        11.71058977656305,
+        -50.28107980759554,
+        -4.511299580360739
+      ],
+      "distance_mm": 1.1105893950933226,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -37.889199224588005,
+        -43.49711338753658,
+        -2.7870495602037253
+      ],
+      "distance_mm": 1.0900515742382106,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -0.5768434884049976,
+        17.045349967822627,
+        -5.062993502243195
+      ],
+      "distance_mm": 1.026624269141765,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        38.37694895763264,
+        -43.56544452699336,
+        0.4141847335438015
+      ],
+      "distance_mm": 0.9482184789580995,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -37.35326316966723,
+        -44.38965005956079,
+        0.758715916445193
+      ],
+      "distance_mm": 0.8912840597129491,
+      "nearest_exposed": false
+    },
+    {
+      "point": [
+        -38.317595278217865,
+        -42.98218810327879,
+        0.8345411879382247
+      ],
+      "distance_mm": 0.8117311571972905,
+      "nearest_exposed": false
+    },
+    {
+      "point": [
+        -39.437530032716964,
+        21.074350066839074,
+        -5.084160267977067
+      ],
+      "distance_mm": 0.8063268697826008,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        2.0327050693457553,
+        15.702696182576084,
+        -4.845532758124811
+      ],
+      "distance_mm": 0.7996129109911798,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        12.880106156387804,
+        20.516494932108227,
+        -5.5720285999965
+      ],
+      "distance_mm": 0.7969231659914308,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -36.819503098796304,
+        -39.70427162920338,
+        0.8723206510438685
+      ],
+      "distance_mm": 0.7774629144013275,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        36.36043418363891,
+        -38.51899224667617,
+        -3.4508395794540654
+      ],
+      "distance_mm": 0.773432163010882,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -37.09301188993894,
+        -44.13540993087803,
+        0.8829266162762253
+      ],
+      "distance_mm": 0.7670733598819168,
+      "nearest_exposed": false
+    },
+    {
+      "point": [
+        27.542211051342896,
+        0.5311952530506444,
+        4.358234268258187
+      ],
+      "distance_mm": 0.7652343331080402,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -38.84892748335987,
+        -44.37812383303085,
+        0.1961534625229347
+      ],
+      "distance_mm": 0.7595602121001114,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        27.74444501161174,
+        -16.235339544143226,
+        4.6905947338556535
+      ],
+      "distance_mm": 0.7488798471485096,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        34.318606428282585,
+        57.14227191742299,
+        -0.9491141370297951
+      ],
+      "distance_mm": 0.7240037684557138,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        27.690693798170145,
+        11.426346269682607,
+        4.543514229926799
+      ],
+      "distance_mm": 0.72168952739505,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        27.683013559648142,
+        17.06025637332585,
+        4.494169639230296
+      ],
+      "distance_mm": 0.7102747589528372,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -39.268563824473915,
+        15.54664093912892,
+        -5.224399536891433
+      ],
+      "distance_mm": 0.6968645403247058,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -39.408631018447494,
+        -41.42240403492536,
+        -2.4618229011297084
+      ],
+      "distance_mm": 0.6961144087095636,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        27.778377075223382,
+        19.272967038753702,
+        4.646555022363443
+      ],
+      "distance_mm": 0.6957076181886129,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -39.26960752956896,
+        16.62558728938209,
+        -5.264393630274033
+      ],
+      "distance_mm": 0.6951512790179,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -39.4022308282847,
+        8.804023221885563,
+        -4.830749427361387
+      ],
+      "distance_mm": 0.6911152912673273,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -40.399346698158105,
+        -50.62046659408596,
+        -0.2735848295759784
+      ],
+      "distance_mm": 0.6905424018660362,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -39.888663872327875,
+        -42.79861119250616,
+        -2.4084727748434274
+      ],
+      "distance_mm": 0.6885078660451014,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -14.509926669834377,
+        -53.9049144685668,
+        -3.103734778307313
+      ],
+      "distance_mm": 0.6884280766074166,
+      "nearest_exposed": false
+    },
+    {
+      "point": [
+        27.533666741077877,
+        -12.438750107184656,
+        4.279975511375878
+      ],
+      "distance_mm": 0.6869755762257315,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        -38.71980914606722,
+        -43.07777229864142,
+        0.6313195342390706
+      ],
+      "distance_mm": 0.679701608386202,
+      "nearest_exposed": false
+    },
+    {
+      "point": [
+        27.81248261253961,
+        39.243344981332164,
+        4.649913016059448
+      ],
+      "distance_mm": 0.6699669934626429,
+      "nearest_exposed": true
+    },
+    {
+      "point": [
+        24.397584517499492,
+        57.775018021534095,
+        1.0198335592723795
+      ],
+      "distance_mm": 0.6460812989610608,
+      "nearest_exposed": true
+    }
+  ]
+}

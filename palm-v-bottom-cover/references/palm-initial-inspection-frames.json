@@ -1,0 +1,76 @@
+{
+  "body": {
+    "source_label": "palm-v-black-body-observed",
+    "source_to_canonical": [
+      [
+        0.0028204087301188165,
+        0.5427575550970749,
+        -0.8398846835605711,
+        1.6364174254724533
+      ],
+      [
+        0.9993432996782459,
+        0.028811259554703483,
+        0.021974546891049895,
+        3.788115102057882
+      ],
+      [
+        0.036124986959035876,
+        -0.8393951082225326,
+        -0.5423198665080344,
+        1.7989608223220377
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "extents_xyz": [
+      83.25716642674547,
+      116.02137616568088,
+      10.576356599335206
+    ],
+    "frame": "X width, Y toward top opposite connector/button end, Z toward screen/front; centered on PCA oriented bounds",
+    "orientation_status": "whole front identified by visible display/buttons; body front inferred from corresponding raw source orientation and must be verified from mating features",
+    "assembly_status": "independent rigid canonical pose only; no fit/congruence between front/back interfaces asserted"
+  },
+  "whole": {
+    "source_label": "palm-v-whole-rough-observed",
+    "source_to_canonical": [
+      [
+        -0.1086330716819111,
+        0.6461796452533217,
+        -0.7554142716399023,
+        0.6805424342130637
+      ],
+      [
+        0.9940818120013357,
+        0.0702667576181302,
+        -0.082848861319732,
+        -0.2658583092268765
+      ],
+      [
+        -0.00045473629062868276,
+        -0.7599437142539743,
+        -0.6499887263489881,
+        3.887689967070152
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "extents_xyz": [
+      81.55380931511067,
+      115.89740580675428,
+      13.117787904359925
+    ],
+    "frame": "X width, Y toward top opposite connector/button end, Z toward screen/front; centered on PCA oriented bounds",
+    "orientation_status": "whole front identified by visible display/buttons; body front inferred from corresponding raw source orientation and must be verified from mating features",
+    "assembly_status": "independent rigid canonical pose only; no fit/congruence between front/back interfaces asserted"
+  }
+}

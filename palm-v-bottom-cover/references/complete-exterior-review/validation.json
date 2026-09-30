@@ -1,0 +1,387 @@
+{
+  "components": [
+    {
+      "name": "Rear aluminium shell",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 82026,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 5645.198705597839
+    },
+    {
+      "name": "Front aluminium shell",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 32928,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 3019.263422269156
+    },
+    {
+      "name": "Smooth paired stylus channels",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 2724004,
+      "angular_deflection_rad": 0.08,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 13352.235227512556
+    },
+    {
+      "name": "Display and handwriting surface",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 344,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 3479.082242513339
+    },
+    {
+      "name": "Display edge seat",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 688,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 1656.8867272192776
+    },
+    {
+      "name": "Scroll rocker",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 2342,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 121.90799305534956
+    },
+    {
+      "name": "Scroll recess backing",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 2620,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 33.93905086697131
+    },
+    {
+      "name": "Rear dock housing",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 5610,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 371.2761330103645
+    },
+    {
+      "name": "Power button",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 340,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 24.12743157956961
+    },
+    {
+      "name": "Contrast button",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 300,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 12.010475784475709
+    },
+    {
+      "name": "Left outer application key",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 5316,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 34.48579972956196
+    },
+    {
+      "name": "Left outer application key edge seat",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 276,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 24.688582859353822
+    },
+    {
+      "name": "Left inner application key",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 5316,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 34.48579972956196
+    },
+    {
+      "name": "Left inner application key edge seat",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 276,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 24.68858285935382
+    },
+    {
+      "name": "Right inner application key",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 5316,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 34.48579972956196
+    },
+    {
+      "name": "Right inner application key edge seat",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 276,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 24.688582859353815
+    },
+    {
+      "name": "Right outer application key",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 5316,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 34.48579972956196
+    },
+    {
+      "name": "Right outer application key edge seat",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 276,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 24.688582859353826
+    },
+    {
+      "name": "Recessed dock contact 1",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111443
+    },
+    {
+      "name": "Recessed dock contact 2",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111444
+    },
+    {
+      "name": "Recessed dock contact 3",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111443
+    },
+    {
+      "name": "Recessed dock contact 4",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111437
+    },
+    {
+      "name": "Recessed dock contact 5",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.35840022211114375
+    },
+    {
+      "name": "Recessed dock contact 6",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111438
+    },
+    {
+      "name": "Recessed dock contact 7",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111437
+    },
+    {
+      "name": "Recessed dock contact 8",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111443
+    },
+    {
+      "name": "Recessed dock contact 9",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111444
+    },
+    {
+      "name": "Recessed dock contact 10",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 528,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 0.3584002221111443
+    },
+    {
+      "name": "Rear locating nub left",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 2444,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 2.3095648776326616
+    },
+    {
+      "name": "Rear locating nub right",
+      "valid_brep": true,
+      "solids": 1,
+      "triangles": 2444,
+      "angular_deflection_rad": 0.18,
+      "float32_zero_area_triangles_removed": 0,
+      "welded_watertight": true,
+      "winding_consistent": true,
+      "volume_mm3": 2.3095648776326616
+    }
+  ],
+  "step_valid": true,
+  "step_solids": 30,
+  "glb_components": 30,
+  "stl_watertight": true,
+  "stl_winding_consistent": true,
+  "stl_bounds_mm": [
+    [
+      -40.827857971191406,
+      -57.98773956298828,
+      -6.570000171661377
+    ],
+    [
+      40.827857971191406,
+      57.83802032470703,
+      6.562075138092041
+    ]
+  ],
+  "artifact_sha256": {
+    "palm_v_complete.step": "35d9bf5f8865c8dff742bd7d8d4fc1f05ee45aab3674caa02fa7f7a9d89fbe50",
+    "palm_v_complete.glb": "f3d35c359dbc35862721e02f440216a2a0428a23542d2fd2bade2826b52ca4be",
+    "palm_v_complete.stl": "162b5842a3f167abb81e00b884d87a1ba6989643dd75c54056f8f398b094b309"
+  },
+  "source_sha256": {
+    "palm_front_geometry.py": "46d5de38fa22ba3ba2410d11ec7bdb380274fad1028ce142efbe64f8483b9893",
+    "palm_complete_geometry.py": "585232bcd9b27eb28567243775781b3b3b99c1001957e4ae0dd2c2665338e0b9",
+    "parts/palm_v.py": "479b975d810a2119fcbef3ed14e5356610bb951c405266c0e6d097fe2f0ea473",
+    "parts/palm_v_body.py": "ac23f91be3232048f67279a916cce78bec9332daf5116c7d61b224218413da6e",
+    "parts/palm_v_bottom_cover.py": "5f3df41c13ef5db76fd743a9efc483cf97c4861c8d68b7ed6d6d60c059d31ba8",
+    "parts/palm_v_button.py": "5d0b1e96b01cbac70b4b8367cdd6156ccac5c2546ea3009fd1b0503c3e9bda42",
+    "parts/palm_v_complete.py": "65bdfdfd62941ed97e08375f60cae3b51f6c16890e514f6244ced617578d56a4",
+    "parts/palm_v_complete_frame.py": "cc307d2e784bea8db1831fc51d62d1d131addad5f55e4e9a56d99a6f60bc42c1",
+    "parts/palm_v_complete_front.py": "604ed0f5df5c89d498d1c906c3b0f1f19d74f25668f5a91d603fadf9e8dacdc0",
+    "parts/palm_v_complete_scroll.py": "2942f1093be1968c30f888a77ec2a4cb56247da4664c2618b35ff7b5879d8b12",
+    "parts/palm_v_display.py": "f86b2b62e75c541d23b4b8b5241f842b67516971429ec35323b916b09e42fdd1",
+    "parts/palm_v_front_cover.py": "8ad4e9f126ffdc5d3e228d8ef4a679f298a640ad5ab8038d6a3b32bfc860933f",
+    "parts/palm_v_scroll_button.py": "8407332a9388992df8675d7f6e20742541770b902750b6972a0aad850074cad8",
+    "references/complete-frame-fit.json": "aecebc66311962998cc8d9e265d9ec766eabfa546d5a6cf4f5066bb8314f7dc8",
+    "references/front-fit.json": "fc43e9dc97bc6287238e66f24fd0fc541fb51530fe76a913c4960abcd859095a",
+    "references/palm-body-profile-fit.json": "54a59fad0a2bc1df22f21fe793e84e56d8872a307c964e26438167a1d7281987",
+    "references/straight-rim-fit.json": "e4b21990dee6f8ca905c980c8f36c1a29331d0fd15577a92e342586cdc65eabe",
+    "references/surface-fit.json": "cba87bf059da28e2544797fac841095397bb02e291b7fbf29556f56c3d498ee5",
+    "references/palm-assembly-poses.json": "a27db3030ebf58c0e256e478ff13e7affbde17dbf3f4d58537f31c17a7acb724",
+    "references/export_complete.py": "eaec75a6eef65c316403b3edccafad7e6699bd974509621eed8bc5d6d6365ab8"
+  },
+  "tessellation": {
+    "linear_deflection_mm": 0.025,
+    "relative": false,
+    "angular_deflection_rad": 0.18,
+    "frame_angular_deflection_rad": 0.08,
+    "normals": "Native surface UV derivatives, transformed and face-oriented"
+  },
+  "limits": "Exterior component assembly. Separate coincident or overlapping component solids remain separate in STL; no claim of a fused print-ready object or manufactured internal fit. Colors identify materials, not scanner color data. Exact bilateral main forms preserve intentional asymmetric power, contrast and reset controls.",
+  "elapsed_seconds": 72.76365089416504
+}

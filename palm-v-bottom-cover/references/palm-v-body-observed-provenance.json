@@ -1,0 +1,100 @@
+{
+  "schema": "palm-supplied-mesh-reference/v1",
+  "label": "palm-v-body-observed",
+  "archive": {
+    "file": "palm-v-body (1).zip",
+    "bytes": 4007215,
+    "sha256": "e2d944cec00f8590b2b0b7a9385ac4f058b8e41c15fd4734bcec92817486a33e"
+  },
+  "source_mesh": {
+    "file": "Palm v black body.ply",
+    "format": "ply",
+    "bytes": 6019287,
+    "sha256": "9e921d617bc63e06cec9454373d28bf25fa89ba3fba8f46c5bbe1874bfab092f"
+  },
+  "output": {
+    "file": "palm-v-body-observed.ply.gz",
+    "bytes": 3899152,
+    "sha256": "7524d7b59151450db4f76fb820f24da8fbcb4eea797c1508b2e978c45224fa59",
+    "decompressed_sha256": "9e921d617bc63e06cec9454373d28bf25fa89ba3fba8f46c5bbe1874bfab092f"
+  },
+  "coordinates": "Original source coordinates retained; no alignment or scale transform applied",
+  "units": {
+    "assumed": "millimetres",
+    "declared_by_source": false,
+    "basis": "Extent plausibility and comparison with measured Palm back cover; verify before manufacturing"
+  },
+  "topology": {
+    "vertices": 120379,
+    "triangles": 240766,
+    "watertight": true,
+    "winding_consistent": true,
+    "face_components": 2
+  },
+  "source_to_output": "Original PLY byte-for-byte decompressed",
+  "bounds_original": [
+    [
+      -61.82874298095703,
+      -24.813798904418945,
+      -32.808319091796875
+    ],
+    [
+      54.0192985534668,
+      27.911096572875977,
+      37.01795196533203
+    ]
+  ],
+  "extents_original": [
+    115.84804153442383,
+    52.72489547729492,
+    69.8262710571289
+  ],
+  "inspection_pca": {
+    "transform": [
+      [
+        -0.9993432996782459,
+        -0.028811259554703483,
+        -0.021974546891049895,
+        2.6865348730118206
+      ],
+      [
+        -0.0028204087301188165,
+        -0.5427575550970749,
+        0.8398846835605711,
+        -0.5628860259592672
+      ],
+      [
+        -0.036124986959035876,
+        0.8393951082225326,
+        0.5423198665080344,
+        -2.429108267684627
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "bounds": [
+      [
+        -51.536038107770736,
+        -40.55505181385955,
+        -5.9183257450301925
+      ],
+      [
+        64.48533805791014,
+        42.70211461288592,
+        4.6580308543050135
+      ]
+    ],
+    "extents": [
+      116.02137616568088,
+      83.25716642674547,
+      10.576356599335206
+    ],
+    "role": "Inspection only; axes not assigned anatomical meaning"
+  },
+  "textures": false,
+  "original_registration_metadata": false
+}

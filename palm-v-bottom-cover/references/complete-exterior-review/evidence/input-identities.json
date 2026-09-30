@@ -1,0 +1,34 @@
+{
+  "model_sha256": "f3d35c359dbc35862721e02f440216a2a0428a23542d2fd2bade2826b52ca4be",
+  "reference_sha256": "f53be50195cc6595f9661c1c70c0f1f83331f287a46f8d85a414a8d951849fae",
+  "original_stl_sha256": "1dcc44e532f4416eb654e1b8b46c7a9345e2a6d822f9e1acb3345afdcb120a2b",
+  "source_sha256": {
+    "palm_front_geometry.py": "46d5de38fa22ba3ba2410d11ec7bdb380274fad1028ce142efbe64f8483b9893",
+    "palm_complete_geometry.py": "585232bcd9b27eb28567243775781b3b3b99c1001957e4ae0dd2c2665338e0b9",
+    "parts/palm_v.py": "479b975d810a2119fcbef3ed14e5356610bb951c405266c0e6d097fe2f0ea473",
+    "parts/palm_v_body.py": "ac23f91be3232048f67279a916cce78bec9332daf5116c7d61b224218413da6e",
+    "parts/palm_v_bottom_cover.py": "5f3df41c13ef5db76fd743a9efc483cf97c4861c8d68b7ed6d6d60c059d31ba8",
+    "parts/palm_v_button.py": "5d0b1e96b01cbac70b4b8367cdd6156ccac5c2546ea3009fd1b0503c3e9bda42",
+    "parts/palm_v_complete.py": "65bdfdfd62941ed97e08375f60cae3b51f6c16890e514f6244ced617578d56a4",
+    "parts/palm_v_complete_frame.py": "cc307d2e784bea8db1831fc51d62d1d131addad5f55e4e9a56d99a6f60bc42c1",
+    "parts/palm_v_complete_front.py": "604ed0f5df5c89d498d1c906c3b0f1f19d74f25668f5a91d603fadf9e8dacdc0",
+    "parts/palm_v_complete_scroll.py": "2942f1093be1968c30f888a77ec2a4cb56247da4664c2618b35ff7b5879d8b12",
+    "parts/palm_v_display.py": "f86b2b62e75c541d23b4b8b5241f842b67516971429ec35323b916b09e42fdd1",
+    "parts/palm_v_front_cover.py": "8ad4e9f126ffdc5d3e228d8ef4a679f298a640ad5ab8038d6a3b32bfc860933f",
+    "parts/palm_v_scroll_button.py": "8407332a9388992df8675d7f6e20742541770b902750b6972a0aad850074cad8",
+    "references/complete-frame-fit.json": "aecebc66311962998cc8d9e265d9ec766eabfa546d5a6cf4f5066bb8314f7dc8",
+    "references/front-fit.json": "fc43e9dc97bc6287238e66f24fd0fc541fb51530fe76a913c4960abcd859095a",
+    "references/palm-body-profile-fit.json": "54a59fad0a2bc1df22f21fe793e84e56d8872a307c964e26438167a1d7281987",
+    "references/straight-rim-fit.json": "e4b21990dee6f8ca905c980c8f36c1a29331d0fd15577a92e342586cdc65eabe",
+    "references/surface-fit.json": "cba87bf059da28e2544797fac841095397bb02e291b7fbf29556f56c3d498ee5",
+    "references/palm-assembly-poses.json": "a27db3030ebf58c0e256e478ff13e7affbde17dbf3f4d58537f31c17a7acb724",
+    "references/export_complete.py": "eaec75a6eef65c316403b3edccafad7e6699bd974509621eed8bc5d6d6365ab8"
+  },
+  "artifact_sha256": {
+    "palm_v_complete.step": "35d9bf5f8865c8dff742bd7d8d4fc1f05ee45aab3674caa02fa7f7a9d89fbe50",
+    "palm_v_complete.glb": "f3d35c359dbc35862721e02f440216a2a0428a23542d2fd2bade2826b52ca4be",
+    "palm_v_complete.stl": "162b5842a3f167abb81e00b884d87a1ba6989643dd75c54056f8f398b094b309"
+  },
+  "validator_sha256": "3ab019ea1158089ddc88466ca5bfb491457241f2e5a24db7b2d2425bcb71ccaf",
+  "visibility_source_sha256": "c148849921113607d7a86f9cd4e9397443033d731199f2e5c831b57f3f715fe5"
+}

@@ -1,0 +1,35 @@
+# Palm V intermediate body
+
+```toml
+target = { file = "scans/palm-v-body-observed.ply.gz", units = "mm", tolerance_mm = 0.4, regions = [{ name = "right main rail", bounds_mm = { min = [34, -28, -5.3], max = [41, 38, 5.4] } }, { name = "left main rail", bounds_mm = { min = [-41, -28, -5.3], max = [-34, 38, 5.4] } }, { name = "front seating ledge", bounds_mm = { min = [-41, -40, 2.5], max = [41, 55, 5.5] } }, { name = "rear seating ledge", bounds_mm = { min = [-41, -40, -5.5], max = [41, 55, -2.5] } }, { name = "connector end", bounds_mm = { min = [-41, -59, -5.5], max = [41, -40, 3.5] } }, { name = "asymmetric internal tabs", bounds_mm = { min = [-35, -40, -5.5], max = [35, 48, 5.5] } }], transform = [-0.033203407806812295, 0.5397718848945809, -0.8411562553933517, 0.7594615662249915, 0.9987957298511324, 0.048336178728306235, -0.008408558561884737, 4.079007601817119, 0.036119575594930856, -0.8404224688234462, -0.5407267795805434, 1.7928884175454818, 0.0, 0.0, 0.0, 1.0] }
+```
+
+## Intended geometry
+
+A nominal manufactured intermediate chassis with a continuous smooth C-shaped rail swept around the rounded upper perimeter, smooth flared lower returns, a bowed front connector lip, rear connector platforms, two lower retaining hooks, six observed asymmetric internal tabs, an inward top rear ledge, and the left upper rear slot. The main exterior frame is exactly bilateral; deliberately asymmetric tabs and the slot are retained. Front and rear seating curves remain independent.
+
+## Shared mating geometry
+
+The rear seats are derived from a paired inner offset of the accepted aluminium back. The current back master has a nominal planar broad field at Z = -0.30 mm outside its center form and perimeter bends; regenerate the plastic body and both STEP artifacts together after changing that master. At the split end, the plastic uses a denser interpolation of the same nominal trim to keep the seat cut stable; the two exterior representations differ by less than 0.004 mm in the checked contact region. Both components use `rear_sheet_mm`; the body datum is fixed at Z=-0.8 mm in the assembled-device frame. Continuous side, top, and split-end contact bands have zero designed clearance. Plastic below those nominal seat surfaces and intersecting either metal shell is removed. The long-seat trimming clip extends far enough inboard to remove a small overlap found by independent occupancy rays. This is a requested nominal assembly correction to the measured body, not an independent claim that the scanned pieces already had perfect fit. `front_sheet_mm` controls the separate front-shell exclusion surface.
+
+The +Y corner seat extends under the newly faired inner metal edge, and the split-end seat uses a denser representation of the same nominal return so its cut remains stable. Check the first plastic surface against the actual inner metal edge with `python references/audit_rear_inner_edge_contact.py`: it casts symmetric rays 0.03, 0.15, and 0.30 mm inside that edge, excluding the free cut edge and upturned lip. This 105-contact check is distinct from the named seating-band audit and the 475-ray co-occupancy audit; run all three after a paired metal/body rebuild.
+
+`references/palm-body-rear-interface.json` records the master, rigid transform and contact bands. `build/rear-body-contact-audit.json`, `build/rear-inner-edge-contact-audit.json`, `build/rear-dense-occupancy.json`, and `build/assembly-front-interface-checks.json` bind independent checks to their exact exported STEP hashes; consult those hashes when comparing revisions. The named rear bands contact within 0.01 mm, the 105 inner-edge rays contact within 0.01 mm, and 475 independent rays find no co-occupancy above 0.005 mm. The named-contact audit skips global OCCT Common, which produced a negative signed-volume artifact on coincident long-seat faces in an earlier revision. These are sampled CAD checks, not a global physical fit proof. The CAD source retains the largest connected solid after the master-interface cut; the older disconnected-remnant measurement has been archived under `build/history/pre-far-end/` because it does not hash the current geometry.
+
+## Observed evidence and limits
+
+The unchanged reference retains every supplied triangle. The body is intentionally regularized: one median C rail profile, analytic rounded path segments, a smooth lower flare, a shallow quadratic connector-end bow, and clean measured tabs replace scan ripples and adhesive traces. Named comparison regions separate rails, front/rear ledges, connector end, and internal features. `build/palm-body-observed-fit.json` reports observed-vertex to CAD-triangle residuals with a deterministic sample; its nearest-triangle candidate search is approximate and is not a certified maximum-error bound.
+
+The main rails are closely fitted; end details and small molded features remain more uncertain than the broad frame. The paired body rebuild improves observed rear-rail p95 from 0.579 to 0.573 mm while upper-bridge p95 worsens from 1.360 to 1.436 mm; these approximate mesh distances expose the smoothness-versus-scan tradeoff at the far end. Small unresolved bosses, fine recesses and scan-softened edge details have not been invented. Nominal zero-clearance CAD contacts do not establish a physical press fit, and the scan does not supply manufacturing tolerances.
+
+An eased section at y=-43.5 mm reduces the exterior lower flare-to-bend shared-edge normal jump from 12.82° mean and 23.81° maximum to 0.91° mean and 2.63° maximum on reopened STEP. The independent upper rail-to-flare join remains at 11.56° maximum. The sampled observed lower-flare p95 distance changes from 1.354 to 1.394 mm; the exact metal seating surfaces are still cut from their masters.
+
+## Reproduction
+
+`references/import_palm_body_references.py --body /path/to/body.zip --whole /path/to/whole.zip --output-dir /path/to/output` preserves raw coordinates and every source triangle. The body PLY remains byte-for-byte identical after decompression; the rough whole-device STL is converted to indexed PLY with exact triangle coordinates, original facet normals and source-face order. The output provenance hashes identify the archives and geometry.
+
+`references/align_palm_body_references.py --project /path/to/project --output-dir /path/to/output` refines the saved inspection datum from the exposed outer rail envelope. It excludes inner ledges and tabs from the reflection objective. `references/fit_palm_body.py --project /path/to/project --output-dir /path/to/output` regenerates the nominal profile JSON from the unchanged imported mesh and frozen bilateral frame. The fitting helper was verified to reproduce the profile JSON byte-for-byte.
+
+## Export limitation
+
+The delivered CAD is the editable model and a validated single-solid STEP. The coarse native STL tessellation had zero-thickness artifacts and open boundary edges, so it is excluded from the deliverables rather than welded or filled. The preview mesh is not a verified printable mesh. Rebuild STEP with `references/export_body.py`; independent interface reports must be rerun when its hash changes.

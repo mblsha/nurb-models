@@ -1,0 +1,81 @@
+{
+  "rear_cover": {
+    "rotation_x_degrees": -0.2016643039662775,
+    "translation_mm": [
+      0,
+      1.4183786267337037,
+      -6.056841583130219
+    ],
+    "method": "Rigid Rx/Y/Z point-to-plane alignment of original exterior reference triangles to rough whole rear; X mirror plane preserved. Same transform applies to nominal rear without fitting away deliberate straightening.",
+    "reference_to_whole_nn_mm": {
+      "median": 0.17741156672441366,
+      "p95": 0.3575849744861475,
+      "p99": 0.47464121474465865
+    },
+    "points": 38774
+  },
+  "whole_frame": {
+    "source_label": "palm-v-whole-rough-observed",
+    "source_to_canonical": [
+      [
+        -0.10922572644686877,
+        0.6454672384636836,
+        -0.7559376857600234,
+        0.6376355473739272
+      ],
+      [
+        0.994016907224094,
+        0.0706513663750424,
+        -0.08329929520702148,
+        -0.24791964318279427
+      ],
+      [
+        -0.00035893564991422314,
+        -0.7605132664848164,
+        -0.6493222949089253,
+        3.870885865838079
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "extents_xyz": [
+      81.55268676518544,
+      115.88085412853458,
+      13.136619178539629
+    ],
+    "frame": "X=0 optimized outer-frame bilateral plane; Y toward top opposite connector/button end, Z front; Y/Z centered by robust end/face bounds, not mass centroid",
+    "orientation_status": "whole front identified by visible display/buttons; body front inferred from corresponding raw source orientation and must be verified from mating features",
+    "assembly_status": "independent rigid canonical pose only; no fit/congruence between front/back interfaces asserted",
+    "pca_initial_to_bilateral": [
+      [
+        0.9999994336372772,
+        -0.0005958415740026624,
+        0.0008818718406973816,
+        -0.046493355146022715
+      ],
+      [
+        0.0005958413423101517,
+        0.9999998224863935,
+        5.254559989053424e-07,
+        0.01753108072309928
+      ],
+      [
+        -0.0008818719972416602,
+        1.0587911840678754e-22,
+        0.9999996111508145,
+        -0.016202438191328383
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "alignment_method": "Robust reflected nearest-surface point-plane residual using outward side rails and paired end outline, excluding inner tabs and tiny disconnected components"
+  }
+}

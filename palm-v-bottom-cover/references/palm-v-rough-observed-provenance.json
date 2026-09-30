@@ -1,0 +1,100 @@
+{
+  "schema": "palm-supplied-mesh-reference/v1",
+  "label": "palm-v-rough-observed",
+  "archive": {
+    "file": "palm-v (rough).zip",
+    "bytes": 15798030,
+    "sha256": "5676f9625eac5c6c500c363b9abfb9b1e2f4a437c8be23f5db85b3dd56f81f95"
+  },
+  "source_mesh": {
+    "file": "aesub-blue Palm V.stl",
+    "format": "stl",
+    "bytes": 23658484,
+    "sha256": "1dcc44e532f4416eb654e1b8b46c7a9345e2a6d822f9e1acb3345afdcb120a2b"
+  },
+  "output": {
+    "file": "palm-v-rough-observed.ply.gz",
+    "bytes": 11945810,
+    "sha256": "f53be50195cc6595f9661c1c70c0f1f83331f287a46f8d85a414a8d951849fae",
+    "decompressed_sha256": "e96546d6132220cb955553ae0b622e3c0ace5a8d360c02691b5f7bbbcd266f94"
+  },
+  "coordinates": "Original source coordinates retained; no alignment or scale transform applied",
+  "units": {
+    "assumed": "millimetres",
+    "declared_by_source": false,
+    "basis": "Extent plausibility and comparison with measured Palm back cover; verify before manufacturing"
+  },
+  "topology": {
+    "vertices": 236588,
+    "triangles": 473168,
+    "watertight": true,
+    "winding_consistent": true,
+    "face_components": 2
+  },
+  "source_to_output": "Exact duplicate STL vertices indexed; every triangle, facet normal, attribute word and face order retained; no welding tolerance or repair",
+  "bounds_original": [
+    [
+      -58.080501556396484,
+      -28.285442352294922,
+      -32.81150436401367
+    ],
+    [
+      61.150447845458984,
+      35.39569091796875,
+      39.73133087158203
+    ]
+  ],
+  "extents_original": [
+    119.23094940185547,
+    63.68113327026367,
+    72.5428352355957
+  ],
+  "inspection_pca": {
+    "transform": [
+      [
+        -0.9940818120013357,
+        -0.0702667576181302,
+        0.082848861319732,
+        1.986451033239584
+      ],
+      [
+        -0.1086330716819111,
+        0.6461796452533217,
+        -0.7554142716399023,
+        0.7239346271156473
+      ],
+      [
+        -0.00045473629062868276,
+        -0.7599437142539743,
+        -0.6499887263489881,
+        4.819347579861251
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "bounds": [
+      [
+        -56.228110179364435,
+        -40.73351246465275,
+        -5.627236339388864
+      ],
+      [
+        59.66929562738985,
+        40.820296850457915,
+        7.490551564971062
+      ]
+    ],
+    "extents": [
+      115.89740580675428,
+      81.55380931511067,
+      13.117787904359925
+    ],
+    "role": "Inspection only; axes not assigned anatomical meaning"
+  },
+  "textures": false,
+  "original_registration_metadata": false
+}

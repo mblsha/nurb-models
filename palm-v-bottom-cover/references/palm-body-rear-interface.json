@@ -1,0 +1,87 @@
+{
+  "schema": "palm-shared-rear-interface/v1",
+  "master": "Aluminium: parts/palm_v_bottom_cover.py exterior_surface(smooth_split_end=True), inward normal offset at rear_sheet_mm. Plastic seat: paired exterior_surface(smooth_split_end=False), same nominal trim and gauge; local numerical difference <0.004 mm in checked contact region.",
+  "body_to_assembly_translation_mm": [
+    0,
+    0,
+    -0.8
+  ],
+  "master_to_body": {
+    "rotation_x_degrees": -0.2016643039662775,
+    "translation_mm": [
+      0,
+      1.4183786267337037,
+      -5.256841583130219
+    ]
+  },
+  "designed_clearance_mm": 0,
+  "bands_back_master_coordinates": [
+    {
+      "name": "right long rear seat",
+      "bounds_xy_mm": [
+        34,
+        38.2,
+        -35,
+        45
+      ]
+    },
+    {
+      "name": "left long rear seat",
+      "bounds_xy_mm": [
+        -38.2,
+        -34,
+        -35,
+        45
+      ]
+    },
+    {
+      "name": "right top rear seat",
+      "bounds_xy_mm": [
+        0,
+        35.4,
+        51,
+        55.23
+      ]
+    },
+    {
+      "name": "left top rear seat",
+      "bounds_xy_mm": [
+        -35.4,
+        0,
+        51,
+        55.23
+      ]
+    },
+    {
+      "name": "right split rear seat",
+      "bounds_xy_mm": [
+        17,
+        37,
+        -56.5,
+        -52.5
+      ]
+    },
+    {
+      "name": "left split rear seat",
+      "bounds_xy_mm": [
+        -37,
+        -17,
+        -56.5,
+        -52.5
+      ]
+    }
+  ],
+  "construction": "Trim paired inner-offset seat surface to contact bands and extrude 2.6 mm toward the interior. Add supported +Y corner seating and remove plastic below the master inner face or intersecting the master sheet. Front interface remains independent.",
+  "validation_status": "Current reopened STEP pair: one valid solid per component; 177/177 named contact samples and 105/105 actual +Y inner-edge samples within 0.01 mm; 475/475 independent occupancy rays with no co-occupied depth above 0.005 mm; front components show zero positive-volume overlap. These sampled CAD checks do not prove physical fit or a global Boolean result.",
+  "validation_reports": [
+    "build/rear-body-contact-audit.json",
+    "build/rear-inner-edge-contact-audit.json",
+    "build/rear-dense-occupancy.json",
+    "build/assembly-front-interface-checks.json"
+  ],
+  "excluded_grid_classification": "Six mirrored lower samples intersect the exterior surface and physical sheet cut-edge cap, but no inner offset seating surface. They are outside the intended seat footprint, not an empty designed seat.",
+  "last_validated_step_sha256": {
+    "rear": "80ba513280a999ecfe35face11eaa328b1223fba75be9b544a65ed2734508c1c",
+    "body": "2506877c8778dae77f21e4690ad48e057fc648fa32a1cbf94ea9820f904fa4ab"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "method": "Distances from original and reflected exported sample points to exact native BRep shells. Equal distances demonstrate mirror agreement at these samples; the nonzero distances diagnose coarse relative export tessellation, not a native asymmetry. Construction also mirrors front halves and every frame section explicitly. This is sampled evidence, not an independent universal continuity proof.",
+  "samples": [
+    {
+      "point": [
+        6.434767455912338,
+        57.753059550809475,
+        -0.9217489935144494
+      ],
+      "native_distance": 0.06050405104285294,
+      "reflected_native_distance": 0.06050405104286005
+    },
+    {
+      "point": [
+        5.875880523113253,
+        57.73503394918415,
+        -0.7838548596727707
+      ],
+      "native_distance": 0.04918052776920092,
+      "reflected_native_distance": 0.04918052776920863
+    },
+    {
+      "point": [
+        -9.167230555960902,
+        57.264709941195186,
+        -0.6788586525590423
+      ],
+      "native_distance": 0.3512574282154473,
+      "reflected_native_distance": 0.3512574282154547
+    },
+    {
+      "component": "Front aluminium shell",
+      "point": [
+        8.254364867068015,
+        54.249382374296204,
+        4.695122882046776
+      ],
+      "native_distance": 0.21191371782232685,
+      "reflected_native_distance": 0.21191371782232685
+    }
+  ]
+}
