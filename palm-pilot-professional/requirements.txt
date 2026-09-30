@@ -1,0 +1,2 @@
+# Public nurb revision with named assembly components and clearance metadata.
+nurb @ git+https://github.com/mblsha/nurb.git@7ebda880f47d61ad61784c207d7c51c0b34b2d4f

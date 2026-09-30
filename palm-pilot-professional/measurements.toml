@@ -1,0 +1,19 @@
+[observed_envelope]
+width = 80.77334
+height = 120.42548
+thickness = 19.36596
+how = "Supplied textured PLY, outer-rail symmetry-refined datum and source bounds; units provisionally mm"
+provisional = true
+
+[nominal_exterior]
+width = 80.77
+height = 120.3
+thickness = 19.37
+how = "Approximate source envelope; reconstructed with asymmetric XY chin arcs, circular side rolls and separate controls/covers. Not a manufacturing tolerance."
+provisional = true
+
+[datum]
+reflection_median = 0.19613
+reflection_p95 = 0.72719
+how = "Bilateral reflection fit to exposed side rails, excluding button and internal features"
+provisional = true

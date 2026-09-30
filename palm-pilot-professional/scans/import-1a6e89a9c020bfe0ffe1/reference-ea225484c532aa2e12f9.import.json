@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "source": {
+    "name": "palm-pilot-professional-stylus.zip",
+    "sha256": "e9a24b964ef1052b41e969c138841e39a8bd66bf710c8e2a771bb81de06154c0",
+    "archive_storage": "Original upload archive retained locally; extracted source assets are included in this project."
+  },
+  "assets": [
+    {
+      "path": "Pilot stylus.ply",
+      "sha256": "33a865713cdf0fdc7a33c40363c8b8e6b4275507226fe3d6e23bf8b02b3648f7",
+      "bytes": 4896351
+    },
+    {
+      "path": "Pilot stylus.png",
+      "sha256": "b1f2a493f896f7ae2ab0ea9f186e0efdf23d2b37e1e97d47068648c7932eccfa",
+      "bytes": 825173
+    }
+  ],
+  "asset_identity": "73381f49ff86fd32e5454dbb666913120d8d15ab1d6b197e0a0006143b8dfefa",
+  "units": {
+    "input": "mm",
+    "source": "argument",
+    "scale_to_mm": 1.0
+  },
+  "coordinate_frame": "original reference coordinates scaled to millimetres",
+  "texture": {
+    "path": "Pilot stylus.png",
+    "sha256": "b1f2a493f896f7ae2ab0ea9f186e0efdf23d2b37e1e97d47068648c7932eccfa"
+  },
+  "mesh": "Pilot stylus.ply",
+  "components": [
+    {
+      "id": "component-1",
+      "triangles": 97920,
+      "bounds_mm": [
+        [
+          -54.088104248046875,
+          -10.376546859741211,
+          -15.327199935913086
+        ],
+        [
+          52.18629837036133,
+          17.828733444213867,
+          18.35287857055664
+        ]
+      ],
+      "grouped_fragments": false
+    }
+  ],
+  "operations": [
+    "Scale coordinates to mm",
+    "Split vertices at UV seams; preserve original triangles"
+  ],
+  "excluded_components": [],
+  "derived_sha256": "8821b26aa7bf84a227b36c03638a89cb7e0fe4a9519826f02847e9846ecd3a4b",
+  "assets_directory": "assets",
+  "output_units": "mm"
+}
