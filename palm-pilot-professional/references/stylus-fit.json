@@ -91,7 +91,7 @@
     64.0
   ],
   "tip_taper_length_mm": 15.0,
-  "head_reconstruction": "Continuous solid extraction rib with measured waisted sections and rounded crown; prior cantilever gap and rectangular bridge rejected.",
+  "head_reconstruction": "Continuous extraction rib with a local matched cubic closure above Z106, rounded analytic crown, exact bilateral mirroring and a 0.010 mm apex trim. Original folded closing surface removed; lower eight-groove geometry retained.",
   "grooves": {
     "annular_centers_z_mm": [
       14.07774,
@@ -111,5 +111,7 @@
       105.075
     ],
     "method": "Measured revolved annular profiles and a bounded local rib patch, followed by exact half mirroring."
-  }
+  },
+  "modeled_length_mm": 107.358,
+  "terminal_apex_trim_mm": 0.01
 }
