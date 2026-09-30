@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "source": {
+    "name": "palm-pilot-professional-assembled.zip",
+    "sha256": "4f2ab8eb8be6b47bca838880c5f8a85eb480b154554d12fb09243e74fa013c63",
+    "archive_storage": "Original upload archive retained locally; extracted source assets are included in this project."
+  },
+  "assets": [
+    {
+      "path": "Pilot body.ply",
+      "sha256": "0f53c08d0a076b4ca2f1a2faec9a5694885916aeb993f831718b53f69e352295",
+      "bytes": 24811795
+    },
+    {
+      "path": "Pilot body.png",
+      "sha256": "5c8f776d3a605598f2db80494dcbf3d9e735c2d50ae727e66bb49d743ed4f1d9",
+      "bytes": 4309086
+    }
+  ],
+  "asset_identity": "1e06f951eaf55728be3d0c9dd39acfb59c261271ef688b5f9c4cca72dbb26c66",
+  "units": {
+    "input": "mm",
+    "source": "argument",
+    "scale_to_mm": 1.0
+  },
+  "coordinate_frame": "original reference coordinates scaled to millimetres",
+  "texture": {
+    "path": "Pilot body.png",
+    "sha256": "5c8f776d3a605598f2db80494dcbf3d9e735c2d50ae727e66bb49d743ed4f1d9"
+  },
+  "mesh": "Pilot body.ply",
+  "components": [
+    {
+      "id": "component-1",
+      "triangles": 496214,
+      "bounds_mm": [
+        [
+          -49.68147659301758,
+          -33.47138595581055,
+          -55.535316467285156
+        ],
+        [
+          48.157466888427734,
+          45.40437698364258,
+          62.058536529541016
+        ]
+      ],
+      "grouped_fragments": false
+    },
+    {
+      "id": "component-2",
+      "triangles": 4,
+      "bounds_mm": [
+        [
+          2.5951895713806152,
+          36.81549072265625,
+          -39.521358489990234
+        ],
+        [
+          2.841838836669922,
+          37.090171813964844,
+          -39.189292907714844
+        ]
+      ],
+      "grouped_fragments": false
+    },
+    {
+      "id": "component-3",
+      "triangles": 4,
+      "bounds_mm": [
+        [
+          0.9671493172645569,
+          37.009647369384766,
+          -39.988243103027344
+        ],
+        [
+          1.2842674255371094,
+          37.34346389770508,
+          -39.716182708740234
+        ]
+      ],
+      "grouped_fragments": false
+    },
+    {
+      "id": "component-4",
+      "triangles": 4,
+      "bounds_mm": [
+        [
+          0.3132515549659729,
+          36.64564895629883,
+          -40.64188003540039
+        ],
+        [
+          0.5816946029663086,
+          36.92435836791992,
+          -40.3454704284668
+        ]
+      ],
+      "grouped_fragments": false
+    }
+  ],
+  "operations": [
+    "Scale coordinates to mm",
+    "Split vertices at UV seams; preserve original triangles"
+  ],
+  "excluded_components": [],
+  "derived_sha256": "c70cebd96721a89ccb857c204e57daee7aca7638ed26ce253a233e3013b26052",
+  "assets_directory": "assets",
+  "output_units": "mm"
+}

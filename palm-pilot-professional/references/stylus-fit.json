@@ -1,0 +1,115 @@
+{
+  "units": "mm (provisional)",
+  "source_asset": "scans/import-1a6e89a9c020bfe0ffe1/reference-ea225484c532aa2e12f9.glb",
+  "raw_sha256": "8821b26aa7bf84a227b36c03638a89cb7e0fe4a9519826f02847e9846ecd3a4b",
+  "clean_reference": "scans/stylus-without-blu-tack-corrected.glb",
+  "clean_sha256": "d51d363cf9589e040ee648b58125a861d88d681983fa03edfcb304689ddc4216",
+  "faces_original": 97920,
+  "faces_excluded": 56626,
+  "faces_kept": 41294,
+  "exclusion_method": "Blu Tack attachment excluded from the original textured mesh; 337 gray shaft-reflection faces outside the attachment interval were restored. Exact original face indices and exclusion provenance are in references/stylus-reference-mask.json.",
+  "shaft_diameter_mm": 5.180704,
+  "shaft_axis_origin_mm": [
+    -0.1122876,
+    2.0820428,
+    0.9256708
+  ],
+  "shaft_axis_direction": [
+    0.9891187542456651,
+    0.1376351805907813,
+    -0.05196775022306488
+  ],
+  "clean_shaft_fit_vertices": 6589,
+  "radial_residual_median_mm": 0.0211,
+  "radial_residual_p95_mm": 0.0516,
+  "observed_length_mm": 107.368,
+  "reference_transform_to_stylus": [
+    0.14154864921279275,
+    -0.79403379359508,
+    0.5911635260526816,
+    1.1218836325040487,
+    -0.040100753363271444,
+    0.5920868946582,
+    0.8048757908855921,
+    -1.9823030947793658,
+    -0.9891187539854513,
+    -0.13763518373953432,
+    0.05196774683640626,
+    52.988595534522624,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "obscured_region": "Approximately Z35.74 to64mm in stylus coordinates is hidden by Blu Tack; the nominal straight cylinder reconstructs this interval.",
+  "source_to_stylus_transform": [
+    0.14154864921279275,
+    -0.79403379359508,
+    0.5911635260526816,
+    1.1218836325040487,
+    -0.040100753363271444,
+    0.5920868946582,
+    0.8048757908855921,
+    -1.9823030947793658,
+    -0.9891187539854513,
+    -0.13763518373953432,
+    0.05196774683640626,
+    52.988595534522624,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "cavity": {
+    "axis_x_mm": 36.0517,
+    "axis_z_mm": 6.8262,
+    "nominal_bore_diameter_mm": 5.380704,
+    "head_seated_y_mm": 59.315,
+    "tip_seated_y_mm": -48.053,
+    "blind_tip_clearance_mm": 0.1001,
+    "hidden_geometry": "Smooth ungrooved writing-tip master offset by 0.1001 mm, joined to cylindrical straight-withdrawal envelope. Concealed OEM internals are not recovered.",
+    "blind_tip_clearance": "0.1001 mm normal offset and axial blind allowance; independently sampled native closest-wall map, distinct from observed scan geometry.",
+    "observed_entrance_radius_range_mm": [
+      2.5727,
+      2.6065
+    ],
+    "observed_arc_fit_rms_mm": [
+      0.034,
+      0.044
+    ],
+    "nominal_radial_clearance_mm": 0.1,
+    "exposed_geometry": "Measured tapered side keyway, rounded start and asymmetric local mouth roll. Local inner root relief provides nominal running clearance.",
+    "verification_summary": "references/MEASUREMENTS.md"
+  },
+  "previous_clean_reference": {
+    "sha256": "a1c7a0ccbd1e0eb706433551dce4a4fe138c67a0f2509472b140beadff5c8037",
+    "storage": "Superseded filtered target retained in the local development archive; not required by this project."
+  },
+  "faces_restored": 337,
+  "comparison_obscuration_interval_mm": [
+    35.74,
+    64.0
+  ],
+  "tip_taper_length_mm": 15.0,
+  "head_reconstruction": "Continuous solid extraction rib with measured waisted sections and rounded crown; prior cantilever gap and rectangular bridge rejected.",
+  "grooves": {
+    "annular_centers_z_mm": [
+      14.07774,
+      18.11595,
+      22.1513
+    ],
+    "annular_valley_radii_mm": [
+      2.359972,
+      2.408108,
+      2.405548
+    ],
+    "rib_centers_z_mm": [
+      96.975,
+      99.0,
+      101.025,
+      103.05,
+      105.075
+    ],
+    "method": "Measured revolved annular profiles and a bounded local rib patch, followed by exact half mirroring."
+  }
+}
