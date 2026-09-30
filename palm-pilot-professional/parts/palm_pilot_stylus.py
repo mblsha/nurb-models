@@ -106,6 +106,101 @@ def _annular_grooves(radius):
         yield revolve(Face(wire),axis=Axis.Z)
 
 
+def _terminal_head(shape, length, radius, _tip_floor=None):
+    """Replace the folded loft closure above the last measured grip groove."""
+    from bisect import bisect_right
+    from math import sqrt
+
+    shift=length-107.368
+    if shift:
+        local=Pos(0,0,-shift)*shape
+        repaired=_terminal_head(local,107.368,radius,_tip_floor=min(-1.,-1.-shift))
+        return Pos(0,0,shift)*repaired
+    stations=[106.,106.5,107.,107.2,107.3,107.34]
+    dimensions=[(5.913,2.80,.97),(5.965,2.71,.965),(5.608,2.055,.87),(4.292,1.456,.68),(3.357,.98,.36),(2.80,.58,.20)]
+    def interpolator(values):
+        hs=[b-a for a,b in zip(stations,stations[1:])]
+        ds=[(b-a)/h for a,b,h in zip(values,values[1:],hs)]
+        def endpoint(h0,h1,d0,d1):
+            value=((2*h0+h1)*d0-h0*d1)/(h0+h1)
+            if value*d0<=0:return 0.
+            return 3*d0 if d0*d1<0 and abs(value)>abs(3*d0) else value
+        slopes=[endpoint(hs[0],hs[1],ds[0],ds[1])]
+        for i in range(1,len(values)-1):
+            a,b=ds[i-1:i+1];h0,h1=hs[i-1:i+1]
+            slopes.append(0. if a*b<=0 else 3*(h0+h1)/((2*h1+h0)/a+(h1+2*h0)/b))
+        slopes.append(endpoint(hs[-1],hs[-2],ds[-1],ds[-2]))
+        def value(z):
+            i=max(0,min(len(stations)-2,bisect_right(stations,z)-1))
+            t=(z-stations[i])/hs[i];h=hs[i]
+            return (2*t**3-3*t*t+1)*values[i]+(t**3-2*t*t+t)*h*slopes[i]+(-2*t**3+3*t*t)*values[i+1]+(t**3-t*t)*h*slopes[i+1]
+        return value
+    functions=[interpolator([row[i] for row in dimensions]) for i in range(3)]
+    original=_grip_rib_base(length)
+    def lower_at(z):
+        edges=section(original,Plane.XY.offset(z+shift)).faces()[0].outer_wire().edges()
+        return min([e for e in edges if e.length>3],key=lambda e:e.position_at(.5).Y)
+    base_curve=lower_at(106.)
+    near_curve=lower_at(106.02)
+    parameters=[i/44 for i in range(45)]
+    def profile(z):
+        if z<=107.34:
+            xmax,width,neck=[f(z) for f in functions]
+        else:
+            t=sqrt((107.368-z)/.028)
+            xmax,width,neck=1.8+t,.58*t,.20*t
+        root=1.7*max(0,1-(z-106)/.5)**2 if z<106.5 else max(0.,1.8-sqrt(100*(107.368-z)))
+        half=width/2;span=xmax-root
+        nx=min(2.4,root+.35*span);shoulder=max(nx+.05,xmax-.8)
+        if span<1.2:nx=root+.3*span;shoulder=root+.65*span
+        ry=min(neck,.7*half);height=z+shift
+        curves=[
+            Edge.make_bezier((root,-ry,height),(root+.33*(nx-root),-ry,height),(nx-.33*(nx-root),-neck,height),(nx,-neck,height)),
+            Edge.make_bezier((nx,-neck,height),(nx+.33*(shoulder-nx),-neck,height),(shoulder-.33*(shoulder-nx),-half,height),(shoulder,-half,height)),
+            Edge.make_bezier((shoulder,-half,height),(shoulder+.55228475*(xmax-shoulder),-half,height),(xmax,-.55228475*half,height),(xmax,0,height)),
+        ]
+        lengths=[e.length for e in curves];total=sum(lengths)
+        ends=[sum(lengths[:i+1])/total for i in range(3)]
+        def target(t):
+            i=min(bisect_right(ends,t),2);start=0. if i==0 else ends[i-1]
+            return curves[i].position_at((t-start)/(ends[i]-start))
+        if z==106.:
+            lower=base_curve
+        else:
+            u=min(1.,max(0.,(z-106.02)/.38))
+            blend=u**3*(10+u*(-15+6*u))
+            points=[]
+            for t in parameters:
+                p=target(t)
+                if blend<1:
+                    old=base_curve.position_at(t)+(near_curve.position_at(t)-base_curve.position_at(t))*((z-106.)/.02)
+                    p=old*(1-blend)+p*blend
+                points.append(p)
+            lower=Edge.make_spline(points,parameters=parameters,tangents=[(1,0,0),(0,1,0)])
+        upper=Edge(mirror(lower,about=Plane.XZ).edges()[0].wrapped.Reversed())
+        return Wire([lower,upper,Edge.make_line(upper.end_point(),lower.start_point())])
+
+    loft_builder=BRepOffsetAPI_ThruSections(True,False,1e-7)
+    loft_builder.SetMaxDegree(3)
+    heights=sorted(set([106.,106.002,*[round(106.01+.01*i,7) for i in range(133)],107.34,107.345,107.35,107.355,107.36,107.364,107.367,107.3679]))
+    for z in heights:loft_builder.AddWire(profile(z).wrapped)
+    loft_builder.Build()
+    rib=Solid(loft_builder.Shape())
+    lower=min(-1.,-1.+shift) if _tip_floor is None else _tip_floor
+    base=shape & Pos(0,0,lower)*Box(30,30,106.+shift-lower,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    crown=Pos(0,0,length-.020-4.8)*Sphere(4.8)
+    crown=crown & Pos(0,0,106+shift)*Cylinder(radius,2,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    crown=crown & Pos(0,0,106+shift)*Box(12,12,1.3479,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    result=base.fuse(crown,rib)
+    if _tip_floor is None:
+        half=result & Pos(0,-5,length/2)*Box(20,10,length+2)
+    else:
+        half=result & Pos(0,-5,(lower+length+1)/2)*Box(20,10,length+1-lower)
+    result=half.fuse(mirror(half,about=Plane.XZ))
+    # A ten-micron apex trim removes the ill-conditioned final loft sliver.
+    return result & Pos(0,0,lower)*Box(30,30,107.358+shift-lower,align=(Align.CENTER,Align.CENTER,Align.MIN))
+
+
 @part
 def palm_pilot_stylus(stylus_length=107.368,shaft_diameter=5.180704,tip_length=15.0,draft=False):
     """Scan-derived stylus with three shaft rings and five transverse grip grooves.
@@ -130,6 +225,7 @@ def palm_pilot_stylus(stylus_length=107.368,shaft_diameter=5.180704,tip_length=1
     # An explicit mirror avoids asymmetry introduced by loft parameterization.
     half=result & Pos(0,-5,stylus_length/2)*Box(20,10,stylus_length+2)
     result=half.fuse(mirror(half,about=Plane.XZ))
+    result=_terminal_head(result,stylus_length,radius)
     if not result.is_valid or len(result.solids())!=1:
         raise ValueError('Stylus must be one valid native solid')
     return result
