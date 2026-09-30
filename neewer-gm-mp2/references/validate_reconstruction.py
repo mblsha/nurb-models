@@ -21,12 +21,15 @@ VALIDATOR = Path(__file__).resolve()
 MEASUREMENTS = ROOT / "measurements.toml"
 PART = ROOT / "parts" / "neewer_macro_slide_gm_mp2.py"
 SLEEVE_PART = ROOT / "parts" / "neewer_outer_focus_sleeve.py"
+EXTERIOR_HELPER = ROOT / "parts" / "_neewer_exterior.py"
+FEET_HELPER = ROOT / "neewer_feet.py"
 REFERENCE = ROOT / "scans" / "neewer-macro-slide-GM-MP2.ply.gz"
 SLEEVE_STEP = ROOT / "references" / "neewer-outer-focus-sleeve.step"
-POSE = {"arca_detent": 0, "carriage_position_mm": 70.0}
-TRAVELS = (0.0, 70.0, 140.0)
+SCAN_TRAVEL_MM = 70.35
+POSE = {"arca_detent": 0, "carriage_position_mm": SCAN_TRAVEL_MM}
+TRAVELS = (0.0, SCAN_TRAVEL_MM, 140.0)
 DETENTS = (0, 1, 2, 3)
-ATTACHED = ("fixed top Arca clamp", "movable top Arca jaw", "clamp knob")
+ATTACHED = ("fixed top Arca clamp", "movable top Arca jaw", "clamp knob", "90-degree positioning lock")
 TOLERANCE_MM = 0.75
 
 # Functional contact flanks in the scan frame. Each is sampled from its exact
@@ -49,12 +52,13 @@ TRANSITION_CHECKS = (
 )
 MOTION_ERROR_LIMIT = 1e-7
 CAD_REQUIREMENT_ERROR_LIMIT_MM = 1e-6
-# Independently recorded scan datum: carriage at 70 mm and the midpoint between
+# Independently recorded scan datum: carriage at 70.35 mm and the midpoint between
 # the two measured rod axes. These are acceptance data, not model expressions.
 SCAN_PIVOT_MM = (103.5, 22.10675, 28.0)
-TRANSLATING = ("sliding carriage", "rotary base")
+TRANSLATING = ("sliding carriage", "rotary base", "rotary connector", "carriage wordmark")
+OPTIONAL_ATTACHED = ("removable camera plate", "quarter-inch camera stud", *(f"camera plate pad {column}-{row}" for column in (1, 2, 3) for row in (1, 2)))
 VIEWER_FEATURE_IDS = ("bottom-plate", "fixed-jaw", "moving-jaw", "drive-knob", "focus-sleeve", "front-rod", "rear-rod")
-VIEWER_INPUTS = (PART, SLEEVE_PART, VALIDATOR, MEASUREMENTS, REFERENCE, SLEEVE_STEP)
+VIEWER_INPUTS = (PART, SLEEVE_PART, EXTERIOR_HELPER, FEET_HELPER, VALIDATOR, MEASUREMENTS, REFERENCE, SLEEVE_STEP)
 
 
 def json_hash(value):
@@ -68,6 +72,10 @@ def acceptance_specification():
         "travels_mm": list(TRAVELS),
         "detents": list(DETENTS),
         "attached_components": list(ATTACHED),
+        "translating_components": list(TRANSLATING),
+        "optional_attached_components": list(OPTIONAL_ATTACHED),
+        "stationary_foot_components": ["left folding foot", "right folding foot"],
+        "feet_deployed": False,
         "motion_error_limit": MOTION_ERROR_LIMIT,
         "scan_pivot_mm": SCAN_PIVOT_MM,
         "commanded_rotation_deg": [0, 90, 180, 270],
@@ -273,6 +281,10 @@ def current_source_identity():
     return {
         "model_source": str(PART.relative_to(ROOT)),
         "model_source_sha256": sha256(PART),
+        "exterior_helper": str(EXTERIOR_HELPER.relative_to(ROOT)),
+        "exterior_helper_sha256": sha256(EXTERIOR_HELPER),
+        "feet_helper": str(FEET_HELPER.relative_to(ROOT)),
+        "feet_helper_sha256": sha256(FEET_HELPER),
         "sleeve_model_source": str(SLEEVE_PART.relative_to(ROOT)),
         "sleeve_model_source_sha256": sha256(SLEEVE_PART),
         "validator": str(VALIDATOR.relative_to(ROOT)),
@@ -300,11 +312,11 @@ def commanded_pose_check(found, baseline, detent, travel):
     rotation = np.array([[np.cos(angle), -np.sin(angle), 0.0],
                          [np.sin(angle), np.cos(angle), 0.0], [0.0, 0.0, 1.0]])
     pivot = np.asarray(SCAN_PIVOT_MM)
-    shift = np.array([travel - 70.0, 0.0, 0.0])
+    shift = np.array([travel - SCAN_TRAVEL_MM, 0.0, 0.0])
     rows = []
     for name, original in baseline.items():
         expected = relative_vertices(original, (0, 0, 0))
-        if name in ATTACHED:
+        if name in ATTACHED or name in OPTIONAL_ATTACHED:
             expected = (expected - pivot) @ rotation.T + pivot + shift
             requirement = "quarter turn about scan pivot, then commanded travel"
         elif name in TRANSLATING:
@@ -344,7 +356,7 @@ def validate(write=True):
     oracle = components(oracle_shape)
     for detent in DETENTS:
         # Establish the fixed mid-travel baseline first, then compare both ends.
-        for travel in (70.0, 0.0, 140.0):
+        for travel in (SCAN_TRAVEL_MM, 0.0, 140.0):
             parameters = {"arca_detent": detent, "carriage_position_mm": travel}
             shape, _, _ = builder.build(PART, overrides=parameters)
             found = components(shape)
@@ -365,7 +377,7 @@ def validate(write=True):
                     "relative_vertices": relative_vertices(found[name], base_origin),
                     "volume_mm3": float(found[name].volume),
                 }
-            if travel == 70.0:
+            if travel == SCAN_TRAVEL_MM:
                 baseline_by_detent[detent] = current
             baseline = baseline_by_detent.get(detent)
             attachment_checks = []
@@ -570,7 +582,7 @@ def validate(write=True):
             "svg": "neewer-arca-sections.svg",
             "limitations": [
                 "This is feature-local one-directional CAD requirement to scan evidence, not whole-model coverage.",
-                "The scan contains omitted feet, threads, markings, rubber pads, fasteners, and texture, so those are excluded from these acceptance regions.",
+                "These acceptance regions exclude added exterior details, photo-inferred camera hardware, provisional hidden mechanisms, unknown lead-screw threads, and fine texture. Separate detail reports describe their narrower checks.",
                 "Reference sections are mesh intersections; physical mating remains unverified.",
             ],
         },

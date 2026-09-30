@@ -1,0 +1,191 @@
+{
+  "reference_sha256": "03ede3f56b9c5f395c370eba35e48542913392bf59b4b85a31fb8647f7675b74",
+  "scope": "Axial median and percentile radii of the repaired scan, after cubic detrending. Candidate spectral peaks alone do not establish thread pitch.",
+  "searched_pitch_range_mm": [
+    0.5,
+    3.0
+  ],
+  "windows": [
+    {
+      "x_interval_mm": [
+        20.0,
+        70.0
+      ],
+      "sample_step_mm": 0.2,
+      "series": [
+        {
+          "statistic": "p10",
+          "radius_mean_mm": 2.504861517722292,
+          "detrended_rms_mm": 0.14458116125489143,
+          "candidate_peaks": [
+            {
+              "pitch_mm": 0.6605263157894737,
+              "fraction_of_band_power": 0.19279648297213656
+            },
+            {
+              "pitch_mm": 0.6519480519480519,
+              "fraction_of_band_power": 0.12526358134615503
+            },
+            {
+              "pitch_mm": 0.6693333333333333,
+              "fraction_of_band_power": 0.10627970085147816
+            },
+            {
+              "pitch_mm": 0.6783783783783783,
+              "fraction_of_band_power": 0.0630170954131799
+            },
+            {
+              "pitch_mm": 0.7171428571428572,
+              "fraction_of_band_power": 0.04989446753247678
+            }
+          ]
+        },
+        {
+          "statistic": "median",
+          "radius_mean_mm": 2.869220251713267,
+          "detrended_rms_mm": 0.022996042850317432,
+          "candidate_peaks": [
+            {
+              "pitch_mm": 2.642105263157895,
+              "fraction_of_band_power": 0.15130230367945338
+            },
+            {
+              "pitch_mm": 2.5100000000000002,
+              "fraction_of_band_power": 0.13235641556833141
+            },
+            {
+              "pitch_mm": 2.7888888888888888,
+              "fraction_of_band_power": 0.09289582161012087
+            },
+            {
+              "pitch_mm": 2.9529411764705884,
+              "fraction_of_band_power": 0.08126075384530651
+            },
+            {
+              "pitch_mm": 2.091666666666667,
+              "fraction_of_band_power": 0.05327682748267227
+            }
+          ]
+        },
+        {
+          "statistic": "p90",
+          "radius_mean_mm": 3.0485141806121687,
+          "detrended_rms_mm": 0.08606923865336612,
+          "candidate_peaks": [
+            {
+              "pitch_mm": 0.6435897435897436,
+              "fraction_of_band_power": 0.06977841472557117
+            },
+            {
+              "pitch_mm": 0.7492537313432837,
+              "fraction_of_band_power": 0.06085114444706882
+            },
+            {
+              "pitch_mm": 0.502,
+              "fraction_of_band_power": 0.04760919835717394
+            },
+            {
+              "pitch_mm": 0.7382352941176471,
+              "fraction_of_band_power": 0.046220196307842396
+            },
+            {
+              "pitch_mm": 1.9307692307692308,
+              "fraction_of_band_power": 0.035572245832411684
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "x_interval_mm": [
+        135.0,
+        185.0
+      ],
+      "sample_step_mm": 0.2,
+      "series": [
+        {
+          "statistic": "p10",
+          "radius_mean_mm": 2.470002372512444,
+          "detrended_rms_mm": 0.14852297419899876,
+          "candidate_peaks": [
+            {
+              "pitch_mm": 0.6048192771084338,
+              "fraction_of_band_power": 0.0848220205143444
+            },
+            {
+              "pitch_mm": 0.6197530864197531,
+              "fraction_of_band_power": 0.08079762301596474
+            },
+            {
+              "pitch_mm": 0.5976190476190476,
+              "fraction_of_band_power": 0.06413458502669384
+            },
+            {
+              "pitch_mm": 0.6354430379746836,
+              "fraction_of_band_power": 0.0602902257917427
+            },
+            {
+              "pitch_mm": 0.727536231884058,
+              "fraction_of_band_power": 0.0461223603467259
+            }
+          ]
+        },
+        {
+          "statistic": "median",
+          "radius_mean_mm": 2.9842599268212413,
+          "detrended_rms_mm": 0.025235393526407454,
+          "candidate_peaks": [
+            {
+              "pitch_mm": 0.6693333333333333,
+              "fraction_of_band_power": 0.05002521286535774
+            },
+            {
+              "pitch_mm": 0.5976190476190476,
+              "fraction_of_band_power": 0.04619600991062051
+            },
+            {
+              "pitch_mm": 2.2818181818181817,
+              "fraction_of_band_power": 0.04172558681342158
+            },
+            {
+              "pitch_mm": 2.5100000000000002,
+              "fraction_of_band_power": 0.04115459888982498
+            },
+            {
+              "pitch_mm": 0.5070707070707071,
+              "fraction_of_band_power": 0.03588634346168523
+            }
+          ]
+        },
+        {
+          "statistic": "p90",
+          "radius_mean_mm": 3.1417367914092265,
+          "detrended_rms_mm": 0.021788641438932943,
+          "candidate_peaks": [
+            {
+              "pitch_mm": 2.9529411764705884,
+              "fraction_of_band_power": 0.12726158583948263
+            },
+            {
+              "pitch_mm": 0.5070707070707071,
+              "fraction_of_band_power": 0.08681600515806069
+            },
+            {
+              "pitch_mm": 2.7888888888888888,
+              "fraction_of_band_power": 0.058515206873796514
+            },
+            {
+              "pitch_mm": 2.2818181818181817,
+              "fraction_of_band_power": 0.05666297148233721
+            },
+            {
+              "pitch_mm": 0.502,
+              "fraction_of_band_power": 0.054029662354609
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "decision": "Review agreement across both disjoint windows and radial statistics; retain smooth proxy unless a repeatable dominant signal is resolved."
+}

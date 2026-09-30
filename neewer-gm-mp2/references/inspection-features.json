@@ -10,12 +10,12 @@
       "center_mm": [
         103.375,
         22.1,
-        6.095
+        6.094999999999886
       ],
       "reference_point_mm": [
         103.375,
         22.1,
-        6.095
+        6.094999999999886
       ],
       "required": [
         "male Arca contact flanks interrupted at folded-foot bays"
@@ -75,12 +75,12 @@
       "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
       "center_mm": [
         103.4,
-        20.475,
+        20.47500005,
         37.8
       ],
       "reference_point_mm": [
         103.4,
-        20.475,
+        20.47500005,
         37.8
       ],
       "required": [
@@ -134,12 +134,12 @@
       "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
       "center_mm": [
         103.4,
-        47.6,
+        47.599999999999994,
         37.8
       ],
       "reference_point_mm": [
         103.4,
-        47.6,
+        47.599999999999994,
         37.8
       ],
       "required": [
@@ -192,14 +192,14 @@
       "configuration": "scan pose",
       "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
       "center_mm": [
-        -12.75,
-        22.195499999999996,
-        17.3643
+        -12.750000050000004,
+        22.1955,
+        17.364300005840196
       ],
       "reference_point_mm": [
-        -12.75,
-        22.195499999999996,
-        17.3643
+        -12.750000050000004,
+        22.1955,
+        17.364300005840196
       ],
       "required": [
         "large focus knob mating envelope"

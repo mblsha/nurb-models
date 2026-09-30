@@ -1,0 +1,68 @@
+{
+  "pose": {
+    "arca_detent": 0,
+    "carriage_position_mm": 70.35
+  },
+  "valid": true,
+  "solids": 1,
+  "slot_contours": [
+    {
+      "slot": 1,
+      "cad_to_scan_p95_mm": 0.06846127109473622,
+      "scan_to_cad_p95_mm": 0.06759314358468567
+    },
+    {
+      "slot": 2,
+      "cad_to_scan_p95_mm": 0.06620691856844359,
+      "scan_to_cad_p95_mm": 0.06494972074211537
+    },
+    {
+      "slot": 3,
+      "cad_to_scan_p95_mm": 0.05733264489340174,
+      "scan_to_cad_p95_mm": 0.05517741605844555
+    },
+    {
+      "slot": 4,
+      "cad_to_scan_p95_mm": 0.054172363136157226,
+      "scan_to_cad_p95_mm": 0.053768190316986354
+    },
+    {
+      "slot": 5,
+      "cad_to_scan_p95_mm": 0.07168170566140525,
+      "scan_to_cad_p95_mm": 0.06954575027631862
+    },
+    {
+      "slot": 6,
+      "cad_to_scan_p95_mm": 0.05684155661052313,
+      "scan_to_cad_p95_mm": 0.05432788494974687
+    }
+  ],
+  "upper_window_contours": [
+    {
+      "window": 1,
+      "cad_to_scan_p95_mm": 0.15006601574349787,
+      "scan_to_cad_p95_mm": 0.15109943268552853
+    },
+    {
+      "window": 2,
+      "cad_to_scan_p95_mm": 0.14342678909004192,
+      "scan_to_cad_p95_mm": 0.1508708685099762
+    }
+  ],
+  "all_six_void_probes_empty": true,
+  "all_seven_web_probes_solid": true,
+  "bounds_mm": [
+    [
+      0.7499999,
+      0.049999999999999975,
+      0.059999999999772013
+    ],
+    [
+      206.0000001,
+      44.150000000000006,
+      12.13
+    ]
+  ],
+  "method": "Both directions use continuous distances to mesh-plane intersection segments, with perimeter samples spaced at most 0.05 mm. These are local scan-fit checks, not physical verification.",
+  "accepted": true
+}

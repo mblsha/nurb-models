@@ -68,7 +68,7 @@ def lightseal_regions(root, transform):
 
 
 def neewer_regions(root, transform):
-    shape,_,_ = builder.build(root / "parts/neewer_macro_slide_gm_mp2.py", overrides={"arca_detent":0,"carriage_position_mm":70.0})
+    shape,_,_ = builder.build(root / "parts/neewer_macro_slide_gm_mp2.py", overrides={"arca_detent":0,"carriage_position_mm":70.35})
     solids = {component.label:component.solid for component in shape._nurb_scene.components}
     records = [
         ("bottom Arca plate", "bottom-plate", "male Arca contact flanks interrupted at folded-foot bays", .5, .25, [plane("rail_stations", [0,0,0], [1,0,0], [0,1,0], (5,10,20,31.75,40,100,175.25,185,197.5,202))], None),
@@ -111,5 +111,5 @@ def prepare(project, name, make_regions, overrides):
 
 
 if __name__ == "__main__":
-    prepare("neewer-gm-mp2", "neewer_macro_slide_gm_mp2", neewer_regions, {"arca_detent":0,"carriage_position_mm":70.0})
+    prepare("neewer-gm-mp2", "neewer_macro_slide_gm_mp2", neewer_regions, {"arca_detent":0,"carriage_position_mm":70.35})
     prepare("vision-pro-light-seal-13w", "vision_pro_light_seal_13w", lightseal_regions, {})

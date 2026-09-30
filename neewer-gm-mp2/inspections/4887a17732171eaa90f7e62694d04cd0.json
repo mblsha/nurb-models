@@ -4,17 +4,17 @@
   "id": "4887a17732171eaa90f7e62694d04cd0",
   "name": "fixed top Arca clamp",
   "part": "neewer_macro_slide_gm_mp2",
-  "created_at": "2026-09-22T03:01:42.733452+00:00",
+  "created_at": "2026-09-30T12:59:30.206779+00:00",
   "view": {
     "camera": {
       "position_mm": [
         178.4,
-        -89.525,
+        -89.52499995,
         137.8
       ],
       "target_mm": [
         103.4,
-        20.475,
+        20.47500005,
         37.8
       ],
       "up": [
@@ -66,11 +66,12 @@
     "pins": false,
     "symmetry_plane": false,
     "section_source": "preview",
-    "verification_policy": null
+    "verification_policy": null,
+    "surface": null
   },
   "identity": {
-    "geometry": "44f7be2bd0068c9e57baa7a16e1afc9acc994d787861e1c2ac2a5222211e15fc",
-    "source_revision": "33a050c1a57bd30302270447cdc16abbddd5650456ada71330506162f815702f",
+    "geometry": "690e524c0a29daa26e0a4bd51493afe2376a1aab1e421beae1dc0bddf54281db",
+    "source_revision": "1eecd0d1f908ecfee38cdac4f77b1df61b70fa65cad4fd60b744917dd4cbec54",
     "reference": {
       "file": "scans/neewer-macro-slide-GM-MP2.ply.gz",
       "content": "7875cab67bd5ff1ac9eb0976228970938f3f707a137d1675122555c925314838",
@@ -78,10 +79,13 @@
       "display_scale": 1.0
     },
     "configuration": {
-      "name": "arca_90_deg",
+      "name": "arca_0_deg",
       "parameters": {
-        "arca_detent": 1,
-        "carriage_position_mm": 70.0
+        "arca_detent": 0,
+        "carriage_position_mm": 70.35,
+        "feet_deployed": false,
+        "camera_plate_installed": false,
+        "include_sleeve": true
       }
     },
     "alignment": [
@@ -113,12 +117,12 @@
         "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
         "center_mm": [
           103.4,
-          20.475,
+          20.47500005,
           37.8
         ],
         "reference_point_mm": [
           103.4,
-          20.475,
+          20.47500005,
           37.8
         ],
         "required": [
@@ -163,14 +167,17 @@
       }
     },
     "draft": false,
-    "engine_revision": "842b016cc4d6a47514f6ba26ac8b6e6f6e789068884243a0c789abadded42b4a",
-    "token": "ee19590f6d67a378b6af3d8697a5da19d601eee334428d2a81720bbaab27029d"
+    "engine_revision": "8bfccad60b4ff0423950138e5c208a95b4ec68c76576dd725d217ed96537cfb6",
+    "token": "afe2640793c1c641b065c62baa2ad3b37d178faaab9b8b5a0548e2775177de41"
   },
   "configuration": {
-    "name": "arca_90_deg",
+    "name": "arca_0_deg",
     "parameters": {
-      "arca_detent": 1,
-      "carriage_position_mm": 70.0
+      "arca_detent": 0,
+      "carriage_position_mm": 70.35,
+      "feet_deployed": false,
+      "camera_plate_installed": false,
+      "include_sleeve": true
     }
   },
   "region": {
@@ -183,12 +190,12 @@
       "notes": "Raw-reference annotation locates the source neighborhood. Native section plots are mesh estimates; linked exact B-rep validators provide specialized acceptance.",
       "center_mm": [
         103.4,
-        20.475,
+        20.47500005,
         37.8
       ],
       "reference_point_mm": [
         103.4,
-        20.475,
+        20.47500005,
         37.8
       ],
       "required": [

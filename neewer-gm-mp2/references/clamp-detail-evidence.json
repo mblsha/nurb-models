@@ -1,0 +1,251 @@
+{
+  "status": "accepted",
+  "identity": {
+    "model_sha256": "057d93139ea552cb54e5eccb2cf5f2fd337b7593266cba1a009f534e720312b7",
+    "reference_sha256": "03ede3f56b9c5f395c370eba35e48542913392bf59b4b85a31fb8647f7675b74",
+    "evidence_script_sha256": "b9745212942c97811ebf1a49fdff1f2493c7d70a2aa6a32b546f517f0dc5cb05",
+    "pose": {
+      "arca_detent": 0,
+      "carriage_position_mm": 70.35
+    }
+  },
+  "scan_evidence": {
+    "pockets": [
+      {
+        "name": "left",
+        "independent_circle_fit": {
+          "center_mm": [
+            90.49728272608893,
+            22.01623696014452
+          ],
+          "radius_mm": 6.3758202025925215,
+          "rms_mm": 0.014844089011225881,
+          "sample_count": 110
+        },
+        "modeled_center_mm": [
+          90.5,
+          22.01
+        ],
+        "modeled_radius_mm": 6.36,
+        "scan_distance_p95_mm": 0.03941112716392542,
+        "cad_requirement_max_error_mm": 3.552713678800501e-15,
+        "accepted": true
+      },
+      {
+        "name": "right",
+        "independent_circle_fit": {
+          "center_mm": [
+            116.30665313235282,
+            22.004199807979564
+          ],
+          "radius_mm": 6.35002953628366,
+          "rms_mm": 0.011970867688729748,
+          "sample_count": 108
+        },
+        "modeled_center_mm": [
+          116.31,
+          22.01
+        ],
+        "modeled_radius_mm": 6.36,
+        "scan_distance_p95_mm": 0.03021145201425502,
+        "cad_requirement_max_error_mm": 3.552713678800501e-15,
+        "accepted": true
+      }
+    ],
+    "shallow_strips": [
+      {
+        "name": "front",
+        "modeled_mid_height_contour_mm": {
+          "center": [
+            103.45,
+            11.0
+          ],
+          "length": 42.35,
+          "width": 5.7,
+          "z": 39.5
+        },
+        "modeled_floor_z_mm": 39.2,
+        "observed_floor_median_z_mm": 39.222285561445226,
+        "observed_floor_range_z_mm": [
+          39.21281926242687,
+          39.22944279495317
+        ],
+        "scan_contour_p95_mm": 0.10990226084034169,
+        "cad_requirement_max_error_mm": 1.7504984653870411e-09,
+        "accepted": true
+      },
+      {
+        "name": "rear",
+        "modeled_mid_height_contour_mm": {
+          "center": [
+            103.45,
+            35.28
+          ],
+          "length": 42.75,
+          "width": 8.25,
+          "z": 39.5
+        },
+        "modeled_floor_z_mm": 39.13,
+        "observed_floor_median_z_mm": 39.125155861008864,
+        "observed_floor_range_z_mm": [
+          39.113328254560656,
+          39.13280579142872
+        ],
+        "scan_contour_p95_mm": 0.07055426411052572,
+        "cad_requirement_max_error_mm": 2.841168507717818e-09,
+        "accepted": true
+      }
+    ],
+    "uncertainty_mm": 0.25,
+    "note": "The scan is sampled at approximately 0.66 mm mesh-edge spacing. Least-squares residuals describe agreement to this mesh, not scanner accuracy."
+  },
+  "mechanical_interfaces": [
+    {
+      "components": [
+        "sliding carriage",
+        "front guide rod"
+      ],
+      "expected_gap_mm": 0.15,
+      "actual_gap_mm": 0.14999999999999752,
+      "overlap_mm3": 0.0,
+      "accepted": true
+    },
+    {
+      "components": [
+        "sliding carriage",
+        "rear guide rod"
+      ],
+      "expected_gap_mm": 0.15,
+      "actual_gap_mm": 0.14999999999999547,
+      "overlap_mm3": 0.0,
+      "accepted": true
+    },
+    {
+      "components": [
+        "sliding carriage",
+        "lead screw"
+      ],
+      "expected_gap_mm": 0.15,
+      "actual_gap_mm": 0.1499999637426472,
+      "overlap_mm3": 0.0,
+      "accepted": true
+    },
+    {
+      "components": [
+        "sliding carriage",
+        "rotary connector"
+      ],
+      "expected_gap_mm": 0.0,
+      "actual_gap_mm": 0.0,
+      "overlap_mm3": 0.0,
+      "accepted": true
+    },
+    {
+      "components": [
+        "rotary base",
+        "rotary connector"
+      ],
+      "expected_gap_mm": 0.0,
+      "actual_gap_mm": 0.0,
+      "overlap_mm3": 0.0,
+      "accepted": true
+    },
+    {
+      "components": [
+        "fixed top Arca clamp",
+        "90-degree positioning lock"
+      ],
+      "expected_gap_mm": 0.0,
+      "actual_gap_mm": 3.552713678800501e-15,
+      "overlap_mm3": 0.0,
+      "accepted": true
+    }
+  ],
+  "geometry": [
+    {
+      "component": "sliding carriage",
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "component": "rotary connector",
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "component": "rotary base",
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "component": "fixed top Arca clamp",
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "component": "movable top Arca jaw",
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "component": "90-degree positioning lock",
+      "valid": true,
+      "solids": 1
+    }
+  ],
+  "provisional_hidden_geometry": {
+    "guide_bore_radial_allowance_mm": 0.15,
+    "lead_screw_bore_diameter_mm": 6.0,
+    "rotary_stem_diameter_mm": 12.0,
+    "rotary_stem_z_range_mm": [
+      23.0,
+      25.0
+    ],
+    "rotary_socket_diameter_mm": 12.3,
+    "rotary_socket_floor_z_mm": 23.0,
+    "bearing_underside_relief_ceiling_z_mm": 12.3,
+    "bearing_underside_relief_y_mm": [
+      [
+        -0.1,
+        8.23
+      ],
+      [
+        35.97,
+        44.3
+      ]
+    ],
+    "reason": "Visible continuous shafts and a connected swiveling assembly establish the interfaces; the external scan does not measure the concealed diameters, bearing fits, thread or latch mechanism."
+  },
+  "lock_tab": {
+    "label_source": "https://usdb.oss-us-west-1.aliyuncs.com/neewer_support/instruction/GM-MP2%20%E8%AF%B4%E6%98%8E%E4%B9%A6_EN.pdf",
+    "modeled_external_envelope_mm": {
+      "x": [
+        99.45,
+        107.65
+      ],
+      "y": [
+        -6.1,
+        -2.55
+      ],
+      "z": [
+        33.8,
+        36.9
+      ]
+    },
+    "evidence": "The scan X=103.5 mm section reaches y=-6.034 mm and has upper and lower ledges at approximately z=36.88 and 33.81 mm. The manual names the visible feature a 90-degree swivel positioning lock. The hidden latch is not modeled.",
+    "uncertainty_mm": 0.4
+  },
+  "noncontact_corner_radii_mm": {
+    "outer_vertical": 1.1,
+    "outer_top": 0.55,
+    "uncertainty": "Nominal exterior softening, constrained to outward edges; all functional jaw-flank coordinates are unchanged."
+  },
+  "stationary_rail_clearance": {
+    "components": [
+      "sliding carriage",
+      "bottom Arca plate"
+    ],
+    "overlap_mm3": 0.0,
+    "note": "The fitted outer skirts retain the observed silhouette while concealed underside relief removes the original rail overlap. This does not establish unobserved bearing or manufacturing fits."
+  }
+}

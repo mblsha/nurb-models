@@ -1,0 +1,46 @@
+{
+  "part_sha256": "057d93139ea552cb54e5eccb2cf5f2fd337b7593266cba1a009f534e720312b7",
+  "scope": "Concealed receiver accommodation for existing placed shaft envelopes, not recovered manufactured bearings or threads.",
+  "provisional_radial_gap_mm": 0.05,
+  "blind_guide_rod_seats_x_mm": [
+    6.0,
+    200.5
+  ],
+  "blind_right_screw_seat_x_mm": 204.0,
+  "screw_axis_yz_mm": [
+    22.0,
+    17.58
+  ],
+  "knob_axis_yz_mm": [
+    22.1955,
+    17.3643
+  ],
+  "axis_note": "The independently scan-fitted axes are retained. No coaxial bearing standard is inferred.",
+  "poses": [
+    {
+      "feet_deployed": false,
+      "assembly_valid": true,
+      "all_components_valid": true,
+      "endblock_solid_count": 2,
+      "shaft_endblock_overlap_mm3": {
+        "front guide rod": 0.0,
+        "rear guide rod": 0.0,
+        "lead screw": 0.0,
+        "large focus knob": 0.0
+      }
+    },
+    {
+      "feet_deployed": true,
+      "assembly_valid": true,
+      "all_components_valid": true,
+      "endblock_solid_count": 2,
+      "shaft_endblock_overlap_mm3": {
+        "front guide rod": 0.0,
+        "rear guide rod": 0.0,
+        "lead screw": 0.0,
+        "large focus knob": 0.0
+      }
+    }
+  ],
+  "accepted": true
+}

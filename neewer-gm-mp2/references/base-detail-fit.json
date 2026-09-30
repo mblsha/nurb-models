@@ -1,0 +1,165 @@
+{
+  "method": "Rounded parallelogram least-squares fits to six independent scan contours at z=2.5 mm; no photo-derived dimensions.",
+  "slots": [
+    {
+      "parameters": {
+        "bottom_left_x_mm": 43.58229356712234,
+        "bottom_y_mm": 8.173688552317627,
+        "width_mm": 11.41381718848469,
+        "height_mm": 27.90816010003202,
+        "shear_dx_dy": 0.3651240861268292,
+        "corner_radius_mm": 3.5096638702161638
+      },
+      "residual_p50_mm": 0.03835932405583371,
+      "residual_p95_mm": 0.07275185577529253,
+      "scan_bounds_mm": [
+        [
+          45.18488168026592,
+          8.150997332111261
+        ],
+        [
+          63.601373199155,
+          36.129362121785846
+        ]
+      ]
+    },
+    {
+      "parameters": {
+        "bottom_left_x_mm": 61.67132641343725,
+        "bottom_y_mm": 8.13367359522056,
+        "width_mm": 11.42963354583858,
+        "height_mm": 27.964763289555638,
+        "shear_dx_dy": 0.36505045149482473,
+        "corner_radius_mm": 3.5426496578902027
+      },
+      "residual_p50_mm": 0.03800854710025965,
+      "residual_p95_mm": 0.0699291109007604,
+      "scan_bounds_mm": [
+        [
+          63.24370922264377,
+          8.10349815965502
+        ],
+        [
+          81.73982226292236,
+          36.13791549080339
+        ]
+      ]
+    },
+    {
+      "parameters": {
+        "bottom_left_x_mm": 79.75486420281669,
+        "bottom_y_mm": 8.083961535628486,
+        "width_mm": 11.431010470647909,
+        "height_mm": 28.0206997995528,
+        "shear_dx_dy": 0.36611807115531925,
+        "corner_radius_mm": 3.593459816475426
+      },
+      "residual_p50_mm": 0.034475531152361676,
+      "residual_p95_mm": 0.06635849017733385,
+      "scan_bounds_mm": [
+        [
+          81.35022100044034,
+          8.066853715831487
+        ],
+        [
+          99.8283294083292,
+          36.154890026748944
+        ]
+      ]
+    },
+    {
+      "parameters": {
+        "bottom_left_x_mm": 105.34551820639719,
+        "bottom_y_mm": 8.05998574790141,
+        "width_mm": 11.424153929822252,
+        "height_mm": 28.02376701548424,
+        "shear_dx_dy": 0.36620458978884796,
+        "corner_radius_mm": 3.600199063250339
+      },
+      "residual_p50_mm": 0.03464769409491371,
+      "residual_p95_mm": 0.0648989359473346,
+      "scan_bounds_mm": [
+        [
+          106.9567586001567,
+          8.027554674008188
+        ],
+        [
+          125.44735922118477,
+          36.11489487269947
+        ]
+      ]
+    },
+    {
+      "parameters": {
+        "bottom_left_x_mm": 123.49471449324432,
+        "bottom_y_mm": 8.068129697180039,
+        "width_mm": 11.415314558389214,
+        "height_mm": 27.988965481005856,
+        "shear_dx_dy": 0.364006596937127,
+        "corner_radius_mm": 3.5517633027927578
+      },
+      "residual_p50_mm": 0.03673602800522972,
+      "residual_p95_mm": 0.07303802423042569,
+      "scan_bounds_mm": [
+        [
+          125.09301983926365,
+          8.038394979078848
+        ],
+        [
+          143.54398538952955,
+          36.121829933087014
+        ]
+      ]
+    },
+    {
+      "parameters": {
+        "bottom_left_x_mm": 141.6134226443429,
+        "bottom_y_mm": 8.0766405569516,
+        "width_mm": 11.401313841476545,
+        "height_mm": 27.974431197466266,
+        "shear_dx_dy": 0.3638589479429977,
+        "corner_radius_mm": 3.520993921861179
+      },
+      "residual_p50_mm": 0.03620695903823087,
+      "residual_p95_mm": 0.06840887897582901,
+      "scan_bounds_mm": [
+        [
+          143.18860663425076,
+          8.041980280965102
+        ],
+        [
+          161.59028895499503,
+          36.091425389496194
+        ]
+      ]
+    }
+  ],
+  "plane_samples": {
+    "bottom_z_mm_p05_p50_p95": [
+      0.03472196757793427,
+      0.10660284260908763,
+      0.14861695965131125
+    ],
+    "top_z_mm_p05_p50_p95": [
+      4.07586699326833,
+      4.225876649220785,
+      4.383651836713154
+    ]
+  },
+  "uncertainty": "Provisional scan fits. Triangle spacing and local edge rounding limit the inferred analytic dimensions.",
+  "upper_windows": [
+    {
+      "window": 1,
+      "smoothing_rms_target_mm": 0.075,
+      "sample_count": 96,
+      "scan_to_smoothed_outline_p95_mm": 0.15022606470574465
+    },
+    {
+      "window": 2,
+      "smoothing_rms_target_mm": 0.075,
+      "sample_count": 96,
+      "scan_to_smoothed_outline_p95_mm": 0.14818549309905957
+    }
+  ],
+  "upper_web_scope": "Upper end lands and central bridge fitted at z=7.5 mm, represented through z=8.3 mm to stay below the separately modeled moving carriage; classification is scan-supported but internal assembly boundaries remain provisional."
+}

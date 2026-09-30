@@ -119,3 +119,69 @@ provisional = true
 value = 0.05
 unit = "mm"
 how = "Design regression lower bound for the modeled large focus knob against the exact supplied STEP sleeve; protects the current 0.089 mm CAD-to-CAD gap without claiming manufactured clearance"
+
+
+[scan_carriage_position]
+value = 70.35
+unit = "mm"
+how = "Calibrated coordinate: x=33.15+travel preserves the observed scan pivot x=103.5 while nominal 140 mm travel fits the scan-derived end faces; physical stops were not measured"
+provisional = true
+
+[carriage_housing_length]
+value = 43.97
+unit = "mm"
+how = "X-directed scan intersections at z=17.58 mm fit exterior faces x=81.69 and 125.66 away from guide-shaft seams; estimated uncertainty +/-0.4 mm"
+provisional = true
+
+[clamp_pocket_end_radius]
+value = 6.36
+unit = "mm"
+how = "Least-squares fits to independent z=38 mm scan contours give left 6.376 and right 6.350; see references/clamp-detail-evidence.json"
+provisional = true
+
+[front_clamp_strip_floor]
+value = 39.20
+unit = "mm"
+how = "Top-ray intersections through the front shallow capsule recess: median scan floor z=39.222 mm"
+provisional = true
+
+[rear_clamp_strip_floor]
+value = 39.13
+unit = "mm"
+how = "Top-ray intersections through the rear shallow capsule recess: median scan floor z=39.125 mm"
+provisional = true
+
+[camera_plate_nominal_length]
+value = 68.0
+unit = "mm"
+how = "Optional photo-inferred display geometry, scaled approximately against the known clamp; not a scan measurement or manufacturer dimension"
+provisional = true
+
+[camera_stud_nominal_diameter]
+value = 6.35
+unit = "mm"
+how = "Manufacturer GM-MP2 manual labels the camera mounting screw as 1/4 inch"
+
+[camera_stud_nominal_pitch]
+value = 1.27
+unit = "mm"
+how = "Nominal 1/4-20 camera-screw standard depiction; not measured from the scan. Does not describe the rail lead screw"
+provisional = true
+
+[folding_foot_deployment]
+value = 65.0
+unit = "deg"
+how = "Photo-inferred deployment about a provisional hinge at the visible bay seam; the fused scan does not expose the hidden pivot or physical stop"
+provisional = true
+
+[folding_foot_side_inset]
+value = 0.15
+unit = "mm"
+how = "CAD allowance inside the scan-derived folded-foot profile to preserve measured Arca flanks through the full inferred swing"
+provisional = true
+
+[end_block_receiver_radial_clearance]
+value = 0.05
+unit = "mm"
+how = "Concealed CAD accommodation around the existing independently fitted shaft and knob axes; blind seats are retained. Not measured bearing clearance or recovered internal geometry"
+provisional = true

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "scope": "Optional exterior appearance and a photo-inferred installed camera plate; no claim of a manufacturing replica.",
+  "sources": {
+    "scan": "scans/neewer-macro-slide-GM-MP2.ply.gz",
+    "product_photo": "references/gm-mp2-product-photo.png",
+    "official_manual": "https://usdb.oss-us-west-1.aliyuncs.com/neewer_support/instruction/GM-MP2%20%E8%AF%B4%E6%98%8E%E4%B9%A6_EN.pdf"
+  },
+  "scan_supported": [
+    "Counterbore centers x=5.6/201.0, y=12.1/32.1 and floor z=23.4 mm",
+    "External focus-knob end plane x=-28.5 mm",
+    "Guide rod axes and outer carriage walls",
+    "Curved clamp pockets and shallow strip recesses"
+  ],
+  "photo_supported": [
+    "Six separate anti-slip pad islands on the removable plate",
+    "Dark focus-knob end cap",
+    "White rail graduations and NEEWER wordmark",
+    "Silver fastener heads and focus controls",
+    "Black body finish"
+  ],
+  "photo_inferred_dimensions_mm": {
+    "camera_plate_length": 68.0,
+    "camera_plate_top_width": 44.0,
+    "camera_plate_top_z": 47.1,
+    "camera_pad_length": 18.0,
+    "camera_pad_width": 10.0,
+    "camera_pad_thickness": 0.9,
+    "plate_length_uncertainty": 5.0
+  },
+  "nominal_mechanical_choices": {
+    "camera_stud": "Nominal 1/4-20 visible thread, major diameter 6.35 mm, pitch 1.27 mm; a cosmetic profile with nominal diameter and pitch, not a tolerance-class or measured thread geometry. The lead screw remains smooth because its pitch is unknown.",
+    "screw_heads": "Four radius 3.3 mm, 0.55 mm tall silver heads fit measured counterbores; nominal 2.5 mm hex drives are cosmetic proxies, not identified fastener standards.",
+    "camera_plate_fit": "The reconstructed male profile is seated on the modeled clamp deck with lateral clearance. Source photographs do not verify the actual QR plate dimensions or hidden retention."
+  },
+  "appearance": "Per-component sRGB colors and roughness/metalness metadata are display properties. White markings are thin B-rep inlays with approximate deterministic stroke lettering; no font or texture dependency. Material values are tuned for legibility under the current viewer studio lighting, not measured PBR properties.",
+  "motion": "Camera plate, pads, stud and positioning lock follow clamp rotation and travel. Carriage wordmark follows carriage translation. Rail scales, end-block screw heads and focus end cap remain stationary.",
+  "reproduce": "Run references/exterior_detail_evidence.py for all four detents at 0, 70.35, 140 mm travel in both folded and deployed foot states, seated plate/jaw nonintersection, pad and fastener seating, component validity, commanded movement and GLB reopening. Runtime reports remain in build/.",
+  "scan_resolution_note": "Median scan triangle edge is approximately 0.664 mm. That is sampling density, not scanner accuracy. Fine knurling, rubber texture, engravings and unknown internal fits cannot be authenticated from this mesh alone."
+}
