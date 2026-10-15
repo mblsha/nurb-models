@@ -4,8 +4,19 @@ from copy import copy
 from functools import lru_cache
 from nurb import *
 
-FRONT_SLOPE_X = 0.004146
-FRONT_SLOPE_Y = 0.0040
+# One rigid datum keeps the screen, principal cover faces and seam parallel.
+# The requested nominal constraint overrides the independently fitted rear tilt.
+BODY_SLOPE_X = 0.004146
+BODY_SLOPE_Y = 0.0040
+BODY_DATUM = Rot(degrees(atan(BODY_SLOPE_Y)), -degrees(atan(BODY_SLOPE_X)), 0)
+# Both reveal boundaries are constant normal offsets in this shared rigid frame.
+FRONT_SEAM_Z = 10.65
+REAR_SEAM_Z = 10.2
+
+
+def cover_slide(x=0.0, y=0.0):
+    """Translate within the shared body plane, without an independent slide slope."""
+    return Pos((BODY_DATUM * Pos(x, y, 0)).position)
 
 
 def plan_outline(z, top=58.80, corner=3.0, inset=0.0):
@@ -76,8 +87,8 @@ def side_envelope(z0,z1, rolled=False):
 
 
 def level_to_scan(shape, rear=False):
-    # The preserved reference frame has a small measured front-plane tilt.
-    return Rot(degrees(atan(.0085 if rear else FRONT_SLOPE_Y)), -degrees(atan(FRONT_SLOPE_X)), 0)*shape
+    # The rear argument remains for existing dock helpers; both halves share one pose.
+    return BODY_DATUM * shape
 
 
 def coarse_components():
@@ -87,17 +98,17 @@ def coarse_components():
     for z,d in [(16.86,0.0),(17.86,.267949),(18.59205,1.0),(18.86,2.0)]:
         builder.AddWire(plan_outline(z,inset=d).wrapped)
     builder.Build()
-    front=extrude(Face(plan_outline(10.65)),amount=16.86-10.65).fuse(Solid(builder.Shape()))
-    front=front & side_envelope(10.65,18.86,True)
+    front=extrude(Face(plan_outline(FRONT_SEAM_Z)),amount=16.86-FRONT_SEAM_Z).fuse(Solid(builder.Shape()))
+    front=front & side_envelope(FRONT_SEAM_Z,18.86,True)
     rb=BRepOffsetAPI_ThruSections(True,False,1e-6);rb.SetMaxDegree(3)
     for z,d in [(1.8,2.0),(2.06795,1.0),(2.8,.267949),(3.8,0.0)]:
         rb.AddWire(plan_outline(z,59.1,3.0,d).wrapped)
     rb.Build()
-    rear=Solid(rb.Shape()).fuse(extrude(Face(plan_outline(3.8,59.1,3.0)),amount=10.2-3.8))
-    rear=rear & side_envelope(1.80,10.20,'bottom')
+    rear=Solid(rb.Shape()).fuse(extrude(Face(plan_outline(3.8,59.1,3.0)),amount=REAR_SEAM_Z-3.8))
+    rear=rear & side_envelope(1.80,REAR_SEAM_Z,'bottom')
     dock=docking_lip()
-    front=front.fuse(dock & Pos(0,-55,15.65)*Box(85,30,10.0))
-    rear=rear.fuse(dock & Pos(0,-55,5.2)*Box(85,30,10.0))
+    front=front.fuse(dock & Pos(0,-55,FRONT_SEAM_Z+5.0)*Box(85,30,10.0))
+    rear=rear.fuse(dock & Pos(0,-55,REAR_SEAM_Z-5.0)*Box(85,30,10.0))
     return level_to_scan(front),level_to_scan(rear,True)
 
 
@@ -164,7 +175,7 @@ def _scroll_ellipse(z,xc,yc,a,b,direction=1):
 
 
 def _front_scan_datum(shape):
-    return shape.transform_geometry(Matrix([[1,0,0,0],[0,1,0,0],[FRONT_SLOPE_X,FRONT_SLOPE_Y,1,0],[0,0,0,1]]))
+    return BODY_DATUM * shape
 
 
 def scroll_key(label):
@@ -230,7 +241,7 @@ def dock_side_sockets():
 
 def front_features(front,screen_width=59.623,screen_height=80.551,button_width=8.5):
     # Work in the levelled front datum; each separate insert follows that same frame.
-    pose=Rot(degrees(atan(FRONT_SLOPE_Y)),-degrees(atan(FRONT_SLOPE_X)),0)
+    pose=BODY_DATUM
     front=pose.inverse()*front
     center=(1.04,6.875);angle=.19
     low=rounded_cut(screen_width,screen_height,1.8,16.85,1.17,*center,angle)
@@ -244,7 +255,7 @@ def front_features(front,screen_width=59.623,screen_height=80.551,button_width=8
     specs=[(-25.029,-45.228,11.567,6.961),(-11.416,-45.215,11.581,7.006),(13.596,-45.184,11.692,6.955),(27.186,-45.165,11.642,6.937)]
     for i,(x,y,zc,radius) in enumerate(specs,1):
         front=front-button_well(x,y)
-        cap_zc=zc-FRONT_SLOPE_X*x-FRONT_SLOPE_Y*y
+        cap_zc=zc-BODY_SLOPE_X*x-BODY_SLOPE_Y*y
         dome=Pos(x,y,cap_zc)*Sphere(radius)
         stem=Pos(x,y,16.46)*Cylinder(button_width/2,4,align=(Align.CENTER,Align.CENTER,Align.MIN))
         cap=dome & stem
@@ -416,11 +427,6 @@ def _detailed_components(screen_width=59.623,screen_height=80.551,button_width=8
 from build123d import *
 
 
-def _datum(shape):
-    """Keep the independently measured rear slope in the fixed scan frame."""
-    return shape.transform_geometry(Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [.004146, .0085, 1, 0], [0, 0, 0, 1]]))
-
-
 def _rounded_prism(width, height, radius, depth, x, y, z):
     return Pos(x, y, z) * extrude(RectangleRounded(width, height, radius), amount=depth)
 
@@ -454,28 +460,29 @@ def thumb_dish():
     tool=extrude(Face(Wire([arc,edge])),amount=5.28)
     upper=[e for e in tool.edges() if e.center().Z>2.27 and e.length>15]
     tool=fillet(upper,radius=1.0)
-    return _datum(tool)
+    return tool
 
 
 def refine_rear(rear):
-    """Partition the observed exterior into two sliding doors and fixed details."""
+    """Build rear details in the shared datum, then return them in the scan frame."""
+    rear=BODY_DATUM.inverse() * rear
     rear=rear.fuse(_cover())
-    label=_datum(_rounded_prism(40.5,20.5,.45,.75,-14.05,-5.15,1.2))
+    label=_rounded_prism(40.5,20.5,.45,.75,-14.05,-5.15,1.2)
     rear=rear-label
     reset=Pos(-26.329,-9.249,-3.0)*Cylinder(2.1,6.86,align=(Align.CENTER,Align.CENTER,Align.MIN))
     rear=rear-reset-thumb_dish()
     for x,y in [(-33.,-56.),(32.,-55.8)]:
         rear=rear-Pos(x,y,-2)*Cylinder(2.15,8.15,align=(Align.CENTER,Align.CENTER,Align.MIN))
     # The backing thickness and smooth slide seats are nominal hidden geometry.
-    backing=_datum(Pos(0,0,-3)*Box(110,160,7.4,align=(Align.CENTER,Align.CENTER,Align.MIN)))
+    backing=Pos(0,0,-3)*Box(110,160,7.4,align=(Align.CENTER,Align.CENTER,Align.MIN))
     memory_plan=_rounded_prism(67.6,65.,1.,15.,-2.2,43.5,-3.)
     battery_face=Face(battery_outline())
     battery_plan=extrude(battery_face,amount=15)
     memory=rear & memory_plan & backing
-    battery_backing=_datum(Pos(0,0,-3)*Box(110,160,7.85,align=(Align.CENTER,Align.CENTER,Align.MIN)))
+    battery_backing=Pos(0,0,-3)*Box(110,160,7.85,align=(Align.CENTER,Align.CENTER,Align.MIN))
     battery=rear & battery_plan & battery_backing
-    memory_seat=_datum(_rounded_prism(68.,85.,1.2,7.6,-2.2,53.30,-3.))
-    battery_seat=_datum(extrude(offset(battery_face,amount=.2),amount=8.05))
+    memory_seat=_rounded_prism(68.,85.,1.2,7.6,-2.2,53.30,-3.)
+    battery_seat=extrude(offset(battery_face,amount=.2),amount=8.05)
     rear=rear-memory_seat-battery_seat
     pieces=[('Memory cover',memory),('Battery cover',battery)]
     pad=Pos(14.406,-1.920,.95)*Cylinder(6.84,1.55,align=(Align.CENTER,Align.CENTER,Align.MIN))
@@ -484,7 +491,7 @@ def refine_rear(rear):
     for name,x,y in [('Upper left rear foot',-32.1,52.3),('Upper right rear foot',34.6,52.3),('Lower left rear foot',-32.1,-45.3),('Lower right rear foot',34.6,-45.3)]:
         foot=_rounded_prism(2.65,6.8,.88,1.15,x,y,1.07)
         foot=fillet([e for e in foot.edges() if abs(e.center().Z-1.07)<.001],radius=.38)
-        pieces.append((name,_datum(foot)))
+        pieces.append((name,foot))
     for label,piece in pieces[2:]:
         rear=rear-piece
         memory=memory-piece
@@ -497,7 +504,7 @@ def refine_rear(rear):
     for label,piece in result:
         if not piece.is_valid or len(piece.solids())!=1 or piece.volume<=0:
             raise ValueError(f'{label}: valid={piece.is_valid}, solids={len(piece.solids())}, volume={piece.volume}')
-    return result
+    return [(label, BODY_DATUM * piece) for label, piece in result]
 
 
 def detailed_components(screen_width=59.623,screen_height=80.551,button_width=8.5,shaft_diameter=5.180704,bore_allowance=.2):

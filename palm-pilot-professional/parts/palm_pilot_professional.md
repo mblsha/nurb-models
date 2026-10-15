@@ -37,9 +37,18 @@ The hidden nose now uses a 0.1001 mm normal offset from the same smooth writing-
 
 The scroll cap exterior follows measured contours from local Z 18.9 to 20.0, with an approximately 13 mm outward arc and progressively shrinking crown. Corresponding bounded surface patches avoid the folds caused by a global smooth loft. The final tiny crown closure is within 0.01 mm of the fitted peak. Narrow reveals and shallow rolled well rims are observed; concealed skirt/pocket depths are nominal, with no actuation mechanism claimed. Both side dock sockets share an exactly mirrored cutter across X=0, crossing the front/rear casing seam. Their observed mouth is approximately Y −57.5 to −54.7 and Z 7.65 to 11.99, with a slight seam-level flare. The visible walls enter the case; the blind floor at |X|35.0 is an explicit nominal closure because the scan does not resolve an OEM floor. A local rear-owned dock seam backing stops at |X|36.55 and is trimmed against the front casing, leaving a shallow external groove and a continuous socket mouth. No full-case seam redesign or latch hardware is included. Selected source measurements and validation limits are recorded in the [source and validation notes](../references/MEASUREMENTS.md).
 
+## Parallel body planes
+
+The screen, broad front and rear casing planes, both casing seam planes and the flat portions/backing planes of both sliding rear covers share one rigid BODY_DATUM. Its accepted front registration uses slopes X0.004146 and Y0.0040; each surface keeps its own local Z offset. The prior rear slope Y0.0085 disagreed with the front by 0.257818286 degrees and is now overridden by the user-requested nominal parallel-plane constraint; the cause of that measured-fit disagreement is not established. Rear details and cover seats are constructed in the common local frame before this one rigid placement; no affine shear is used. Curved side rolls, asymmetric chin, docking lip and the memory cover's longitudinal bulge remain curved. Source scan assets and their saved target alignment are unchanged.
+
+The middle reveal has two separately named constant normal offsets, FRONT_SEAM_Z = 10.65 and REAR_SEAM_Z = 10.2 mm. Both entire perimeter boundaries, the curved chin/docking-lip continuation and the recessed rear-owned dock backing are parallel to the same datum. The 0.45 mm reveal remains unchanged; the curved XY outline is not flattened. The complete native seam inventory is six planar fragments with 64 trimmed boundary edges, including the two small side-socket corner fragments.
+
+Run `python checks/check_parallel_planes.py --output .build/middle-seam-parallel/verification.json` with the project environment to check the actual native output faces, complete seam fragments and trimmed-curve extrema, and the in-plane cover motions. The whole-boundary guard does not filter by the expected normal, and a missing or nonplanar fragment fails its required inventory. These geometric constraints establish parallelism, not a newly verified physical fit or OEM hidden construction. Earlier scan/dock/cover export reports describe the previous geometry until regenerated.
+
+
 ## Motion and hidden geometry
 
-battery_slide and memory_slide are positive outward travel in millimetres, from 0 to 60. The battery translation is (−d, 0, −0.004146d); memory is (0, d, 0.0085d), following the measured rear datum. Closed, partly open and fully removed configurations are available in the main assembly. overall_scale scales all geometry uniformly after posing.
+battery_slide and memory_slide are positive outward travel in millimetres, from 0 to 60. The battery and memory translations are respectively the shared body datum applied to local vectors (−d, 0, 0) and (0, d, 0). They remain exactly within the same plane as the screen and principal casing faces. Closed, partly open and fully removed configurations are available in the main assembly. overall_scale scales all geometry uniformly after posing.
 
 Only the closed exterior is scanned. Concealed backing thicknesses, shallow empty seats and 0.20 mm seam/seat clearances are nominal construction choices to make the separate covers movable without overlap. The memory backing is at local Z4.4 and the battery return at local Z4.85. No unseen guide rails, hooks, battery contacts, batteries or electronics are claimed. This is an exterior reconstruction, not a verified OEM replacement enclosure.
 
@@ -51,7 +60,7 @@ Generated STEP/STL/GLB files and export metadata are written under build/ and ar
 
 ## Don't
 
-Do not exchange the battery and memory identities, mirror their directions, detach the memory foot into the fixed body, or restore the obsolete seam around only the upper bulge. Do not restore the rejected twelve-station body loft, symmetric chin, engraved handwriting divider or Blu Tack. Preserve source assets and the fixed alignment. Native validity alone does not establish a valid saved mesh or unobstructed travel.
+Do not introduce independent slopes or affine shears for the screen, casing planes, middle reveal boundaries or rear cover seats. Keep all middle-seam perimeter curves at their named constant normal offsets, including the docking lip and the recessed rear-owned backing. Preserve the shared rigid body datum. Do not exchange the battery and memory identities, mirror their directions, detach the memory foot into the fixed body, or restore the obsolete seam around only the upper bulge. Do not restore the rejected twelve-station body loft, symmetric chin, engraved handwriting divider or Blu Tack. Preserve source assets and the fixed alignment. Native validity alone does not establish a valid saved mesh or unobstructed travel.
 
 ## Changelog
 
@@ -60,3 +69,7 @@ Do not exchange the battery and memory identities, mirror their directions, deta
 2026-09-30: Replaced the generic side slot and conical mouth with scan-derived tapered lips and a local rolled entrance, and rebuilt the hidden blind nose from the unchanged smooth stylus master plus nominal clearance. Preserved the finished stylus, both covers and all unrelated case surfaces.
 
 2026-09-30: Replaced the rectangular scroll caps/wells with measured curved forms and added the paired mirrored blind dock sockets, including local seam backing. Preserved the finished stylus, its cavity and both sliding covers.
+
+2026-10-14: Enforced a shared rigid datum for all principal body, screen, seam and sliding-cover planes; removed independently fitted rear tilt and shear while retaining curved profiles and the saved scan registration.
+
+2026-10-14: Made both middle-seam offsets explicit in the common datum and added a complete native seam-fragment and curve-extrema regression guard. The preceding parallel-plane revision already placed these boundaries in parallel planes; this change preserves their accepted geometry.

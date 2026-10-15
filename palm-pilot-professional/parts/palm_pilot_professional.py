@@ -40,9 +40,9 @@ def palm_pilot_professional(overall_scale=1.0,screen_width=59.623,screen_height=
     result=[]
     for label,shape in pieces:
         if label=='Battery cover':
-            shape=Pos(-float(battery_slide),0,-.004146*float(battery_slide))*shape
+            shape=_geometry.cover_slide(x=-float(battery_slide))*shape
         elif label=='Memory cover':
-            shape=Pos(0,float(memory_slide),.0085*float(memory_slide))*shape
+            shape=_geometry.cover_slide(y=float(memory_slide))*shape
         if not shape.is_valid or len(shape.solids())!=1 or shape.volume<=0:
             raise ValueError(f'{label} must remain one valid positive solid')
         if overall_scale!=1.0:
